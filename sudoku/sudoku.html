@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ナンプレ</title>
+    <link rel="stylesheet" href="sudoku.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>ナンプレ</h1>
+      <div class="controls">
+        <div class="difficulty-control">
+          <label for="difficulty">難易度:</label>
+          <select id="difficulty">
+            <option value="easy" selected>かんたん</option>
+            <option value="medium">ふつう</option>
+            <option value="hard">むずかしい</option>
+          </select>
+        </div>
+        <div id="timer">00:00:00</div>
+        <button id="new-game-btn">新しいゲーム</button>
+      </div>
+
+      <div id="sudoku-board"></div>
+      <p id="message-area"></p>
+
+      <div class="actions">
+        <div id="number-palette"></div>
+        <div class="action-buttons">
+          <button id="memo-toggle-btn">メモ</button>
+          <button id="check-btn">確認</button>
+          <button id="erase-btn">消去</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="sudoku.js"></script>
+  </body>
+</html>

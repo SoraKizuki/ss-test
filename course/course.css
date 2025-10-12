@@ -1,0 +1,83 @@
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  text-align: center;
+}
+
+#game-container,
+#result-container {
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 500px;
+}
+
+#progress {
+  font-size: 0.9em;
+  color: #888;
+}
+
+#question {
+  margin-bottom: 30px;
+  font-size: 1.5em;
+}
+
+.choices-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.choice-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 15px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.choice-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+#result-container h2 {
+  color: #007bff;
+}
+
+#result-title {
+  font-size: 2em;
+  margin: 10px 0;
+  color: #e8491d;
+}
+
+#result-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+#result-link:hover {
+  background-color: #218838;
+}
+
+/* 表示/非表示を切り替えるためのクラス */
+.hidden {
+  display: none;
+}

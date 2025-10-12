@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#game {
+  outline: solid black 3px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url("./img/game-bg.png");
+  background-size: contain;
+  overflow: hidden;
+  width: 95vw;
+  max-width: 800px;
+  aspect-ratio: 2 / 1;
+}
+#game * {
+  position: absolute;
+}
+#player {
+  width: 70px;
+  height: 70px;
+  bottom: 20px;
+  left: 60px;
+  background-image: url("./img/chara.png");
+  background-size: 200%;
+}
+#enemy {
+  width: 30px;
+  height: 30px;
+  bottom: 30px;
+  left: 570px;
+  visibility: hidden;
+  background-image: url("./img/enemy.png");
+  background-size: 100%;
+}
+#score {
+  font-family: "Press Start 2P";
+  font-size: 25px;
+  margin: 10px;
+  right: 0;
+}
+#gameover-screen {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+#gameover-text {
+  font-family: "Press Start 2P";
+  font-size: 40px;
+  color: white;
+  text-shadow: 2px 2px 4px #000;
+  position: relative;
+  transform: none;
+  top: 0;
+  left: 0;
+}
+#restart-button {
+  font-family: "Press Start 2P";
+  font-size: 20px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 2px solid white;
+  background-color: #333;
+  color: white;
+  box-shadow: 2px 2px 4px #000;
+  position: relative;
+  transform: none;
+  top: 0;
+  left: 0;
+}
+#restart-button:hover {
+  background-color: #555;
+}

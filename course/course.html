@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>おすすめサービス診断ゲーム</title>
+    <link rel="stylesheet" href="course.css" />
+  </head>
+  <body>
+    <div id="game-container">
+      <p id="progress"></p>
+      <h2 id="question"></h2>
+      <div id="choices" class="choices-container">
+        <button class="choice-btn"></button>
+        <button class="choice-btn"></button>
+      </div>
+    </div>
+
+    <div id="result-container" class="hidden">
+      <h2>あなたにおすすめのサービスは…</h2>
+      <h3 id="result-title"></h3>
+      <p id="result-description"></p>
+      <a href="#" id="result-link" target="_blank" rel="noopener noreferrer"
+        >もっと詳しく</a
+      >
+    </div>
+
+    <script src="course.js"></script>
+  </body>
+</html>
