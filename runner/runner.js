@@ -77,7 +77,7 @@ function gameLoop() {
   if (enemy.x <= 0) {
     enemy.hide();
     obstacleTimer = Math.random() * 200 + 100;
-    enemy.x = 570;
+    enemy.x = frame.el.offsetWidth;
   }
 
   // 当たり判定 (GAMEOVER)

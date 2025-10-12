@@ -33,14 +33,13 @@
   width: 30px;
   height: 30px;
   bottom: 30px;
-  left: 570px;
+  left: 100%;
   visibility: hidden;
   background-image: url("./img/enemy.png");
   background-size: 100%;
 }
 #score {
   font-family: "Press Start 2P";
-  /* 変更 */
   font-size: clamp(16px, 3.5vw, 25px);
   margin: 10px;
   right: 0;
@@ -58,10 +57,8 @@
 }
 #gameover-text {
   font-family: "Press Start 2P";
-  /* 変更 */
   font-size: clamp(24px, 8vw, 40px);
-  white-space: nowrap; /* 追加 */
-
+  white-space: nowrap;
   color: white;
   text-shadow: 2px 2px 4px #000;
   position: relative;
@@ -71,7 +68,6 @@
 }
 #restart-button {
   font-family: "Press Start 2P";
-  /* 変更 */
   font-size: clamp(14px, 3vw, 20px);
 
   margin-top: 20px;
