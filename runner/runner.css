@@ -40,7 +40,8 @@
 }
 #score {
   font-family: "Press Start 2P";
-  font-size: 25px;
+  /* 変更 */
+  font-size: clamp(16px, 3.5vw, 25px);
   margin: 10px;
   right: 0;
 }
@@ -57,7 +58,10 @@
 }
 #gameover-text {
   font-family: "Press Start 2P";
-  font-size: 40px;
+  /* 変更 */
+  font-size: clamp(24px, 8vw, 40px);
+  white-space: nowrap; /* 追加 */
+
   color: white;
   text-shadow: 2px 2px 4px #000;
   position: relative;
@@ -67,7 +71,9 @@
 }
 #restart-button {
   font-family: "Press Start 2P";
-  font-size: 20px;
+  /* 変更 */
+  font-size: clamp(14px, 3vw, 20px);
+
   margin-top: 20px;
   padding: 10px 20px;
   cursor: pointer;
