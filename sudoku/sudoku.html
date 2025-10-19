@@ -4,37 +4,58 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ナンプレ</title>
-    <link rel="stylesheet" href="sudoku.css" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div class="container">
+    <!-- スタート画面 -->
+    <div id="start-screen">
       <h1>ナンプレ</h1>
-      <div class="controls">
-        <div class="difficulty-control">
-          <label for="difficulty">難易度:</label>
-          <select id="difficulty">
-            <option value="easy" selected>かんたん</option>
-            <option value="medium">ふつう</option>
-            <option value="hard">むずかしい</option>
-          </select>
-        </div>
-        <div id="timer">00:00:00</div>
-        <button id="new-game-btn">新しいゲーム</button>
+      <div id="selection-container">
+        <!-- JavaScriptによって選択肢がここに表示されます -->
       </div>
+    </div>
 
-      <div id="sudoku-board"></div>
-      <p id="message-area"></p>
+    <!-- ゲーム画面 (最初は非表示) -->
+    <div id="game-container" class="hidden">
+      <div class="container">
+        <div class="top-bar">
+          <div id="timer">00:00:00</div>
+          <button id="new-game-btn">設定変更</button>
+        </div>
 
-      <div class="actions">
-        <div id="number-palette"></div>
-        <div class="action-buttons">
-          <button id="memo-toggle-btn">メモ</button>
-          <button id="check-btn">確認</button>
-          <button id="erase-btn">消去</button>
+        <div id="sudoku-board"></div>
+        <p id="message-area"></p>
+
+        <div class="actions">
+          <div id="number-palette"></div>
+          <div class="action-buttons">
+            <button id="memo-toggle-btn">メモ</button>
+            <button id="check-btn">確認</button>
+            <button id="erase-btn">消去</button>
+          </div>
         </div>
       </div>
     </div>
 
-    <script src="sudoku.js"></script>
+    <!-- 確認モーダル (最初は非表示) -->
+    <div id="confirm-modal" class="modal-overlay hidden">
+      <div class="modal-content">
+        <p>ゲームを最初から始めますか？</p>
+        <div class="modal-buttons">
+          <button id="confirm-yes">はい</button>
+          <button id="confirm-no">いいえ</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+    <!-- トップに戻るボタン -->
+    <a
+      href="../index.html"
+      id="toHome"
+      class="to-home"
+      aria-label="トップに戻る"
+      >トップに戻る</a
+    >
   </body>
 </html>

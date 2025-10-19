@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>オセロ</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="startScreen" class="start-screen">
+      <h1 class="title">オセロ</h1>
+
+      <div id="modeSelection" class="mode-selection">
+        <h2>対戦モードを選択</h2>
+        <div class="mode-buttons">
+          <button id="singlePlayerBtn" class="mode-btn">👤 １人で遊ぶ</button>
+          <button id="twoPlayerBtn" class="mode-btn">👥 ２人で遊ぶ</button>
+        </div>
+      </div>
+
+      <div id="cpuDifficultySelection" class="difficulty-selection hidden">
+        <h2>難易度を選択</h2>
+        <div class="difficulty-buttons">
+          <button class="difficulty-btn" data-difficulty="easy">
+            かんたん
+          </button>
+          <button class="difficulty-btn" data-difficulty="normal">
+            ふつう
+          </button>
+          <button class="difficulty-btn" data-difficulty="hard">
+            むずかしい
+          </button>
+        </div>
+      </div>
+
+      <div id="turnOrderSelection" class="turn-order-selection hidden">
+        <h2>先攻・後攻を選択</h2>
+        <div class="turn-order-buttons">
+          <button id="firstMoveBtn" class="turn-btn">先攻（緑）</button>
+          <button id="secondMoveBtn" class="turn-btn">後攻（白）</button>
+        </div>
+      </div>
+
+      <button id="startGameBtn" class="start-game-btn hidden">
+        ゲームスタート！
+      </button>
+    </div>
+
+    <div id="gameScreen" style="display: none">
+      <h1>オセロ</h1>
+
+      <!-- ターンメッセージ表示エリア（固定高さ） -->
+      <div id="turnMessage">
+        <span id="turn">🟢 緑の番</span>
+      </div>
+
+      <div id="status">
+        <span id="score">緑:2 白:2</span>
+        <button id="specialButton" class="special-button" disabled>必殺</button>
+        <button id="hintToggle" class="hint-button active" aria-pressed="true">
+          ヒント
+        </button>
+        <button id="resetButton">リセット</button>
+      </div>
+
+      <table id="board" role="grid" aria-label="オセロ盤"></table>
+
+      <div
+        id="gameOver"
+        class="game-over"
+        style="display: none"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div id="gameOverText"></div>
+        <button id="restartButton">もう一度</button>
+      </div>
+
+      <!-- リセット確認モーダル -->
+      <div
+        id="resetConfirm"
+        class="confirm-overlay hidden"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div class="confirm-box">
+          <div class="confirm-message">ゲームをリセットしますか？</div>
+          <div class="confirm-actions">
+            <button id="confirmYes" class="confirm-yes">はい</button>
+            <button id="confirmNo" class="confirm-no">いいえ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+    <!-- トップに戻るボタン -->
+    <a
+      href="../index.html"
+      id="toHome"
+      class="to-home"
+      aria-label="トップに戻る"
+      >トップに戻る</a
+    >
+  </body>
+</html>

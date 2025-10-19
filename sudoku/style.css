@@ -1,0 +1,403 @@
+:root {
+  --board-max-size: 540px;
+  --border-color: #ccc;
+  --border-thick: 2px solid #333;
+  --bg-color: #f9f9f9;
+  --prefilled-color: #444;
+  --user-input-color: #007bff;
+  --highlight-bg: #e6f2ff;
+  --error-bg: #ffe6e6;
+  --correct-bg: #e6ffed;
+  --primary-btn-bg: #007bff;
+  --primary-btn-color: white;
+}
+
+body {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color);
+  color: #333;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* --- ユーティリティクラス --- */
+.hidden {
+  display: none !important;
+}
+
+/* --- スタート画面のスタイル --- */
+#start-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+#start-screen h1 {
+  font-size: 3em;
+  margin-bottom: 40px;
+}
+
+.selection-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  min-width: 250px;
+}
+
+.selection-group h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.choice-btn,
+#start-game-btn {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: white;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.choice-btn:hover,
+#start-game-btn:hover {
+  background-color: #f0f0f0;
+}
+
+#start-game-btn {
+  background-color: var(--primary-btn-bg);
+  color: var(--primary-btn-color);
+  border: none;
+  font-weight: bold;
+}
+#start-game-btn:hover {
+  background-color: #0056b3;
+}
+
+/* --- ゲーム画面のスタイル --- */
+.container {
+  text-align: center;
+  padding: 10px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto 20px auto;
+  width: 90vw;
+  max-width: var(--board-max-size);
+}
+
+#sudoku-board {
+  display: grid;
+  width: 90vw;
+  max-width: var(--board-max-size);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border: var(--border-thick);
+  margin: 0 auto;
+}
+
+.cell {
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--border-color);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+/* --- 9x9 Grid Borders --- */
+.size-9x9 {
+  grid-template-columns: repeat(9, 1fr);
+}
+.size-9x9 .cell:nth-child(3n) {
+  border-right: var(--border-thick);
+}
+.size-9x9 .cell:nth-child(9n) {
+  border-right: none;
+}
+.size-9x9 .cell:nth-child(n + 1):nth-child(-n + 9) {
+  border-top: none;
+}
+.size-9x9 .cell:nth-child(n + 19):nth-child(-n + 27),
+.size-9x9 .cell:nth-child(n + 46):nth-child(-n + 54) {
+  border-bottom: var(--border-thick);
+}
+.size-9x9 .cell:nth-child(n + 73):nth-child(-n + 81) {
+  border-bottom: none;
+}
+.size-9x9 .cell:nth-child(9n + 1) {
+  border-left: none;
+}
+
+/* --- 6x6 Grid Borders (2x3 Blocks) --- */
+.size-6x6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+.size-6x6 .cell:nth-child(3n) {
+  border-right: var(--border-thick);
+}
+.size-6x6 .cell:nth-child(6n) {
+  border-right: none;
+}
+.size-6x6 .cell:nth-child(n + 1):nth-child(-n + 6) {
+  border-top: none;
+}
+/* 2行ごと (2, 4行目の下) に太いボーダーを表示 */
+.size-6x6 .cell:nth-child(n + 7):nth-child(-n + 12),
+.size-6x6 .cell:nth-child(n + 19):nth-child(-n + 24) {
+  /* この行を追加 */
+  border-bottom: var(--border-thick);
+}
+.size-6x6 .cell:nth-child(n + 31):nth-child(-n + 36) {
+  /* 修正 */
+  border-bottom: none;
+}
+.size-6x6 .cell:nth-child(6n + 1) {
+  border-left: none;
+}
+
+.cell.prefilled {
+  cursor: not-allowed;
+}
+
+.main-number {
+  font-weight: bold;
+  color: #006400; /* 入力数字の色 */
+  position: relative;
+  z-index: 2;
+}
+.size-9x9 .main-number {
+  font-size: 2em;
+}
+.size-6x6 .main-number {
+  font-size: 2.5em;
+}
+
+.cell.prefilled .main-number {
+  color: var(--prefilled-color); /* 初期数字の色 */
+}
+
+.cell.selected {
+  background-color: var(--highlight-bg);
+}
+
+.memo-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding: 2px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #666;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.memo-grid.memo-xlarge {
+  font-size: 1.2em;
+}
+.memo-grid.memo-large {
+  font-size: 0.8em;
+}
+.memo-grid.memo-medium {
+  font-size: 0.6em;
+}
+.memo-grid.memo-small {
+  font-size: 0.5em;
+}
+.size-6x6 .memo-grid.memo-xlarge {
+  font-size: 1.5em;
+}
+.size-6x6 .memo-grid.memo-large {
+  font-size: 1.1em;
+}
+.size-6x6 .memo-grid.memo-medium {
+  font-size: 0.9em;
+}
+.size-6x6 .memo-grid.memo-small {
+  font-size: 0.7em;
+}
+
+.memo-cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 30%;
+  flex-grow: 1;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin: 20px auto 0 auto;
+  width: 90vw;
+  max-width: var(--board-max-size);
+}
+
+#number-palette {
+  display: flex;
+  gap: 5px;
+}
+
+.num-btn {
+  width: 45px;
+  height: 45px;
+  font-size: 1.5em;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.action-buttons button,
+#new-game-btn {
+  width: 90px;
+  height: 45px;
+  font-size: 1em;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#memo-toggle-btn.active {
+  background-color: var(--user-input-color);
+  color: white;
+}
+
+#message-area {
+  height: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#timer {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #333;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* --- Modal Styles --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+}
+
+#confirm-yes {
+  background-color: var(--primary-btn-bg);
+  color: var(--primary-btn-color);
+  border-color: var(--primary-btn-bg);
+}
+
+@media (max-width: 600px) {
+  #start-screen h1 {
+    font-size: 2.2em;
+  }
+  .size-9x9 .main-number {
+    font-size: 1.5em;
+  }
+  .size-6x6 .main-number {
+    font-size: 2em;
+  }
+  .num-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1.2em;
+  }
+  .action-buttons button,
+  #new-game-btn {
+    width: 75px;
+    height: 38px;
+    font-size: 0.9em;
+  }
+  #timer {
+    font-size: 1.5em;
+  }
+}
+
+/* トップへ戻るボタン（画面下部固定） */
+.to-home {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 14px;
+  background: white;
+  color: #111;
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  z-index: 500;
+  border: 1px solid var(--border-color);
+}
+.to-home:active,
+.to-home:focus {
+  transform: translateX(-50%) scale(0.98);
+}

@@ -1,7 +1,4 @@
-// ========== 設定項目 (ここを編集してカスタマイズ) ==========
-
-// 質問リスト
-// 質問ごとに、選択肢がどのコースタイプに影響するかを設定します。
+// 設定項目 (編集可)
 const questions = [
   {
     question: "講師はどのように選びたいですか？",
@@ -9,12 +6,12 @@ const questions = [
       "まずは相性を見るため提案してほしい",
       "希望の条件（経歴など）を指定したい",
     ],
-    types: ["STANDARD", "SELECT"], // STANDARD系かSELECT系かを判断
+    types: ["STANDARD", "SELECT"],
   },
   {
     question: "学習の目標について教えてください",
     choices: ["基礎固めや学び直しが中心", "難関大学受験を視野に入れている"],
-    types: ["NORMAL_LEVEL", "PRO_LEVEL"], // 通常レベルかプロレベルかを判断
+    types: ["NORMAL_LEVEL", "PRO_LEVEL"],
   },
   {
     question: "特にプロ講師に指導を希望しますか？",
@@ -22,23 +19,22 @@ const questions = [
       "はい、経験豊富なプロにお願いしたい",
       "いいえ、特にこだわりはない",
     ],
-    types: ["PRO_LEVEL", "NORMAL_LEVEL"], // プロレベルへの重みづけ
+    types: ["PRO_LEVEL", "NORMAL_LEVEL"],
   },
   {
     question: "医学部や最難関国公立大学を具体的に目指していますか？",
     choices: ["はい、目指しています", "いいえ、そこまでは考えていない"],
-    types: ["PRO_SELECT_BOOST", null], // 最上位コースへの強力な重みづけ
+    types: ["PRO_SELECT_BOOST", null],
   },
   {
     question:
       "授業とは別に、学習計画や進路について相談できるサポートに興味はありますか？",
     choices: ["はい、ぜひ利用したい", "いいえ、今のところ必要ない"],
-    types: ["MENTOR_OPTION", null], // オプションの有無を判断
+    types: ["MENTOR_OPTION", null],
   },
 ];
 
-// 診断結果リスト
-// 4つのコース × オプションの有無 = 8パターンの結果を用意
+// 診断結果リスト (4コース × オプション)
 const results = {
   STANDARD: {
     withoutOption: {
@@ -98,9 +94,8 @@ const results = {
   },
 };
 
-// ========== ゲームのロジック部分 (ここから下は原則編集不要) ==========
-
-// HTML要素の取得
+// ゲームロジック（編集不要）
+// HTML 要素取得
 const progressText = document.getElementById("progress");
 const questionText = document.getElementById("question");
 const choiceButtons = document.querySelectorAll(".choice-btn");
@@ -108,14 +103,13 @@ const gameContainer = document.getElementById("game-container");
 const resultContainer = document.getElementById("result-container");
 
 let currentQuestionIndex = 0;
-// 各コースタイプのスコアを管理
+// 各コースタイプのスコア
 const scores = {
   STANDARD: 0,
   SELECT: 0,
   PRO_STANDARD: 0,
   PRO_SELECT: 0,
 };
-// メンターサポートオプションの有無を管理
 let isMentorSupportEnabled = false;
 const totalQuestions = questions.length;
 
@@ -134,7 +128,7 @@ function showQuestion() {
 
 // 回答を選択したときの処理
 function selectAnswer(type) {
-  // 選択に応じてスコアを加算、またはオプションを有効化
+  // 選択に応じてスコア更新
   switch (type) {
     case "STANDARD":
       scores.STANDARD++;
@@ -153,7 +147,7 @@ function selectAnswer(type) {
       scores.PRO_SELECT++;
       break;
     case "PRO_SELECT_BOOST":
-      scores.PRO_SELECT += 2; // この選択肢に大きな重みを持たせる
+      scores.PRO_SELECT += 2; // 重みづけ
       break;
     case "MENTOR_OPTION":
       isMentorSupportEnabled = true;
@@ -190,7 +184,12 @@ function showResult() {
   document.getElementById("result-title").textContent = result.title;
   document.getElementById("result-description").textContent =
     result.description;
-  document.getElementById("result-link").href = result.link;
+  // result.link は外部参照だが、ここでは同ウィンドウでトップへ戻す
+  const resultLinkEl = document.getElementById("result-link");
+  if (resultLinkEl) {
+    resultLinkEl.href = "../index.html";
+    resultLinkEl.dataset.externalLink = result.link || "";
+  }
 
   // ゲーム画面を非表示にし、結果画面を表示
   gameContainer.classList.add("hidden");

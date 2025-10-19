@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="runner.css" />
+    <title>Endless Runner</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <div id="game">
       <div id="player"></div>
-      <div id="enemy"></div>
+      <div id="enemy1" class="enemy"></div>
+      <div id="enemy2" class="enemy"></div>
       <p id="score">SCORE 00000</p>
 
       <div id="gameover-screen">
@@ -17,6 +18,7 @@
         <button id="restart-button">RESTART</button>
       </div>
     </div>
-    <script src="runner.js" type="module"></script>
+    <script src="./game.js" type="module"></script>
+    <script src="./script.js" type="module"></script>
   </body>
 </html>

@@ -38,7 +38,8 @@ class Game {
 }
 
 export const player = new Game("player");
-export const enemy = new Game("enemy");
+export const enemy1 = new Game("enemy1");
+export const enemy2 = new Game("enemy2");
 export const score = new Game("score");
 export const frame = new Game("game");
 export const gameoverScreen = new Game("gameover-screen");

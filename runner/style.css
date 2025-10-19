@@ -29,7 +29,7 @@
   background-image: url("./img/chara.png");
   background-size: 200%;
 }
-#enemy {
+.enemy {
   width: 30px;
   height: 30px;
   bottom: 30px;
@@ -69,7 +69,6 @@
 #restart-button {
   font-family: "Press Start 2P";
   font-size: clamp(14px, 3vw, 20px);
-
   margin-top: 20px;
   padding: 10px 20px;
   cursor: pointer;

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>おみくじ</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <h1>おみくじ</h1>
+      <p class="subtitle">運勢を占ってみましょう</p>
+
+      <div id="omikuji-area">
+        <div id="omikuji-box">
+          <img src="./img/omikuji-kuma.png" alt="クマ" id="bear-image" />
+          <img src="./img/omikuji-box.png" alt="おみくじ箱" id="box-image" />
+        </div>
+
+        <div id="result-area" class="hidden">
+          <p id="keka" class="keka-text"></p>
+          <p id="comment" class="comment-text"></p>
+        </div>
+
+        <button id="draw-button">おみくじを引く</button>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+    <a
+      href="../index.html"
+      id="toHome"
+      class="to-home"
+      aria-label="トップに戻る"
+      >トップに戻る</a
+    >
+  </body>
+</html>

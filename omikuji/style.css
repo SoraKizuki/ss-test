@@ -1,0 +1,355 @@
+/*
+ * おみくじアプリ - リファクタリング版
+ * テーマカラー: ソフトトーンの緑 (#8FBC8F)
+ */
+
+/* ========================================
+   CSS変数定義
+   ======================================== */
+:root {
+  /* カラーパレット */
+  --color-primary: #8fbc8f;
+  --color-primary-dark: #709370;
+  --color-primary-light: #9acd9a;
+  --color-accent: #4caf50;
+  --color-text: #3c3c3c;
+  --color-text-light: #6a6a6a;
+  --color-text-lighter: #555;
+  --color-bg: #f8f4e3;
+  --color-white: #ffffff;
+  --color-border: #e0e0e0;
+  --color-disabled: #c0c0c0;
+  --color-disabled-shadow: #a0a0a0;
+
+  /* 結果カラー */
+  --color-great-luck: #ff7f50;
+  --color-great-luck-shadow: #ffd700;
+  --color-bad-luck: #4b0082;
+  --color-result-default: #c06060;
+
+  /* スペーシング */
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 15px;
+  --spacing-lg: 30px;
+
+  /* ボーダー */
+  --border-width: 2px;
+  --border-width-thick: 3px;
+  --border-radius: 5px;
+  --border-radius-md: 10px;
+  --border-radius-full: 999px;
+
+  /* シャドウ */
+  --shadow-default: 0 4px 10px rgba(0, 0, 0, 0.1);
+  --shadow-button: 0 4px;
+
+  /* トランジション */
+  --transition-fast: 0.1s;
+  --transition-normal: 0.5s;
+
+  /* コンテナサイズ */
+  --container-max-width: 500px;
+  --container-height: 80vh;
+  --omikuji-box-width: 50%;
+  --omikuji-box-max-width: 200px;
+  --result-min-height: 150px;
+  --result-min-height-mobile: 130px;
+}
+
+/* ========================================
+   基本スタイル
+   ======================================== */
+html {
+  font-size: clamp(14px, 1.2vw + 0.5rem, 18px);
+}
+
+body {
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", "MS PMincho", serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0 var(--spacing-md);
+  box-sizing: border-box;
+}
+
+/* ========================================
+   レイアウト
+   ======================================== */
+#container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  height: var(--container-height);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-lg);
+  background-color: var(--color-white);
+  border: var(--border-width-thick) solid var(--color-primary);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-default);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#omikuji-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  flex-grow: 1;
+  min-height: 0;
+}
+
+/* ========================================
+   タイポグラフィ
+   ======================================== */
+h1 {
+  font-size: clamp(1.6rem, 2.8vw, 2.6rem);
+  color: var(--color-accent);
+  margin: 0 0 var(--spacing-sm);
+  letter-spacing: 0.1em;
+  border-bottom: var(--border-width) solid var(--color-primary);
+  padding-bottom: var(--spacing-xs);
+  flex-shrink: 0;
+}
+
+.subtitle {
+  margin-top: 0;
+  font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+  font-family: "Yu Gothic", "Meiryo", sans-serif;
+  color: var(--color-text-light);
+  flex-shrink: 0;
+}
+
+/* ========================================
+   おみくじボックス
+   ======================================== */
+#omikuji-box {
+  margin: var(--spacing-md) auto;
+  width: var(--omikuji-box-width);
+  max-width: var(--omikuji-box-max-width);
+  position: relative;
+}
+
+#omikuji-box::before {
+  content: "";
+  display: block;
+  padding-top: 150%;
+}
+
+#bear-image,
+#box-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#bear-image {
+  z-index: 1;
+}
+
+#box-image {
+  z-index: 2;
+  transform-origin: 30% 45%;
+}
+
+/* ========================================
+   アニメーション
+   ======================================== */
+@keyframes shake-box {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: rotate(-8deg) translateY(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: rotate(8deg) translateY(5px);
+  }
+}
+
+#box-image.shaking {
+  animation: shake-box 0.15s ease-in-out 6;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.05);
+    opacity: 0.95;
+  }
+}
+
+/* ========================================
+   結果表示エリア
+   ======================================== */
+#result-area {
+  width: 100%;
+  min-height: var(--result-min-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  transition: opacity var(--transition-normal);
+  box-sizing: border-box;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* 結果テキスト */
+.keka-text {
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  font-weight: bold;
+  margin: var(--spacing-sm) 0;
+  color: var(--color-result-default);
+}
+
+.keka-text.great-luck {
+  color: var(--color-great-luck) !important;
+  text-shadow: 1px 1px 2px var(--color-great-luck-shadow);
+  font-size: 3.5rem;
+  animation: pulse 1s infinite alternate;
+}
+
+.keka-text.bad-luck {
+  color: var(--color-bad-luck) !important;
+  font-size: 2.8rem;
+  border-bottom: var(--border-width-thick) dashed var(--color-bad-luck);
+}
+
+.comment-text {
+  font-family: "Yu Gothic", "Meiryo", sans-serif;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.6;
+  margin: var(--spacing-md) 0 var(--spacing-xs);
+  color: var(--color-text-lighter);
+}
+
+/* ========================================
+   ボタン
+   ======================================== */
+#draw-button {
+  font-family: "Yu Gothic", "Meiryo", sans-serif;
+  padding: 12px var(--spacing-lg);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-button) var(--color-primary-dark);
+  transition: background-color var(--transition-fast),
+    box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+#draw-button:hover:not(:disabled) {
+  background-color: var(--color-primary-light);
+}
+
+#draw-button:active:not(:disabled) {
+  background-color: var(--color-primary-dark);
+  box-shadow: 0 0 var(--color-primary-dark);
+  transform: translateY(4px);
+}
+
+#draw-button:disabled {
+  background-color: var(--color-disabled);
+  box-shadow: var(--shadow-button) var(--color-disabled-shadow);
+  cursor: default;
+}
+
+/* ========================================
+   ナビゲーション
+   ======================================== */
+.to-home {
+  position: fixed;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  background: var(--color-white);
+  color: var(--color-text);
+  padding: 8px 14px;
+  border: var(--border-width) solid var(--color-primary);
+  border-radius: var(--border-radius-full);
+  text-decoration: none;
+  font-weight: 700;
+  z-index: 500;
+}
+
+.to-home:active,
+.to-home:focus {
+  transform: translateX(-50%) scale(0.98);
+}
+
+/* ========================================
+   レスポンシブ (モバイル)
+   ======================================== */
+@media screen and (max-width: 480px) {
+  #container {
+    padding: var(--spacing-md);
+    margin: 20px var(--spacing-sm) var(--spacing-sm);
+    height: var(--container-height);
+  }
+
+  h1 {
+    font-size: clamp(1.4rem, 5vw, 2rem);
+  }
+
+  #omikuji-box {
+    width: 45%;
+    margin: var(--spacing-sm) auto;
+  }
+
+  #result-area {
+    min-height: var(--result-min-height-mobile);
+    padding: var(--spacing-xs);
+  }
+
+  .keka-text {
+    font-size: clamp(1.8rem, 6vw, 2.6rem);
+    margin: 0;
+  }
+
+  .keka-text.great-luck {
+    font-size: clamp(2.2rem, 8vw, 3.1rem);
+  }
+
+  .keka-text.bad-luck {
+    font-size: clamp(1.6rem, 5.5vw, 2.4rem);
+  }
+
+  .comment-text {
+    font-size: clamp(0.95rem, 3.5vw, 1rem);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  #draw-button {
+    padding: var(--spacing-sm) 20px;
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+  }
+}
