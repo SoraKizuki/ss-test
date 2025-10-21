@@ -12813,7 +12813,7 @@ const As = ({ item: O, level: dl = 0, onHeightChange: w }) => {
       children: [
         Bl.jsx("header", {
           children: Bl.jsx("h1", {
-            children: "アコーディオンメニュー (React)",
+            children: "ファイルツリー(React)",
           }),
         }),
         Bl.jsx("main", {
