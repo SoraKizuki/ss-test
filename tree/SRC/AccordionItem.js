@@ -1,5 +1,14 @@
 import React, { useState, useRef, useEffect, useId, useCallback } from "react";
 
+// ハイライトするアイテム名のリスト
+const HIGHLIGHT_NAMES = [
+  "public_html",
+  "wordpress",
+  "wp-content",
+  "themes",
+  "kizuki_or_jp",
+];
+
 /**
  * 再帰的なアコーディオン項目コンポーネント
  * @param {Object} props
@@ -20,6 +29,9 @@ const AccordionItem = ({ item, level = 0, onHeightChange }) => {
   const bodyId = `accordion-body-${uniqueId}`;
 
   const hasChildren = Boolean(item.children?.length);
+
+  // このアイテムをハイライトするかどうかを判定
+  const isHighlighted = HIGHLIGHT_NAMES.includes(item.name);
 
   // 高さ更新関数
   const updateHeight = useCallback(() => {
@@ -94,7 +106,10 @@ const AccordionItem = ({ item, level = 0, onHeightChange }) => {
   return (
     <li className={`accordion-item${isOpen ? " active" : ""}`}>
       <div
-        className="accordion-item-header"
+        // ハイライト用のクラスを追加
+        className={`accordion-item-header${
+          isHighlighted ? " highlighted-item" : ""
+        }`}
         onClick={handleToggle}
         onKeyDown={handleKeyDown}
         role={hasChildren ? "button" : undefined}

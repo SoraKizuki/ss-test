@@ -19,6 +19,13 @@
   --color-bg-focus: #f0f8ff;
   --color-border: #ddd;
   --color-border-light: #eee;
+  /* Highlight Colors */
+  --color-highlight-bg: #fffbe6;
+  --color-highlight-border: #ffe16a;
+  --color-highlight-hover: #fff9d9;
+  --color-highlight-focus: #fff5c2;
+  --color-highlight-active-bg: #fff0b3;
+  --color-highlight-active-text: #b38600;
 
   /* Spacing */
   --spacing-xs: 5px;
@@ -361,6 +368,52 @@ h1 {
 }
 
 /* ========================================
+   ハイライトアイテム (追加)
+   ======================================== */
+
+.highlighted-item {
+  background-color: var(--color-highlight-bg);
+  /* どのネストレベルでも目立つように、padding-leftを調整し、
+     border-leftを追加 */
+  padding-left: calc(var(--spacing-lg) - 3px) !important;
+  border-left: 3px solid var(--color-highlight-border);
+}
+
+.accordion-item-header[role="button"].highlighted-item:hover {
+  background-color: var(--color-highlight-hover);
+}
+
+.accordion-item-header[role="button"].highlighted-item:focus {
+  background-color: var(--color-highlight-focus);
+}
+
+.accordion-item-header[role="button"].highlighted-item:focus-visible {
+  background-color: var(--color-highlight-focus);
+}
+
+/* ネストされたハイライトアイテムのpadding調整 */
+.accordion-item-body-content .highlighted-item {
+  padding-left: calc(12px - 3px) !important; /* 元のpadding 12px - border 3px */
+}
+
+.accordion-item-body-content .accordion-item-body-content .highlighted-item {
+  padding-left: calc(
+    var(--spacing-sm) - 3px
+  ) !important; /* 元のpadding var(--spacing-sm) - border 3px */
+}
+
+/* アクティブ状態のハイライト */
+.accordion-item.active > .highlighted-item {
+  background-color: var(--color-highlight-active-bg);
+  color: var(--color-highlight-active-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+.accordion-item.active > .highlighted-item .arrow {
+  color: var(--color-highlight-active-text);
+}
+
+/* ========================================
    ダークモード対応
    ======================================== */
 
@@ -379,6 +432,14 @@ h1 {
     --scrollbar-color: #555;
     --scrollbar-hover-color: #777;
     --scrollbar-track-color: #252525;
+
+    /* Highlight Colors (Dark) */
+    --color-highlight-bg: #3a3629;
+    --color-highlight-border: #8c732b;
+    --color-highlight-hover: #423e31;
+    --color-highlight-focus: #4a4537;
+    --color-highlight-active-bg: #524c3d;
+    --color-highlight-active-text: #f0d061;
   }
 
   .accordion-item.active > .accordion-item-header {
@@ -406,6 +467,30 @@ h1 {
     .accordion-item-body-content
     .accordion-item-header {
     background-color: #202020;
+  }
+
+  /* ハイライト (Dark) - 既存のダークモードスタイルに追記 */
+  .accordion-item-header[role="button"]:focus:not(:focus-visible) {
+    /* ハイライト時は除外 */
+    background-color: var(--color-bg-secondary);
+  }
+  .highlighted-item.accordion-item-header[role="button"]:focus:not(
+      :focus-visible
+    ) {
+    background-color: var(
+      --color-highlight-bg
+    ); /* フォーカス解除時はハイライト色に戻す */
+  }
+
+  .accordion-item.active > .accordion-item-header {
+    /* ハイライト時は除外 */
+    color: var(--color-primary-light);
+    background-color: #2a2a2a;
+  }
+  .accordion-item.active > .highlighted-item {
+    /* ハイライトのアクティブ色を優先 */
+    color: var(--color-highlight-active-text);
+    background-color: var(--color-highlight-active-bg);
   }
 }
 
