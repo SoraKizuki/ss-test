@@ -12715,7 +12715,7 @@ const As = ({ item: O, level: dl = 0, onHeightChange: w }) => {
           name: "app-admin.kizuki.or.jp",
           children: [
             { id: "app-admin-default", name: "default_page.png" },
-            { id: "app-admin-index", name: "index.html" },
+            { id: "app-admin-index", name: "tree.html" },
           ],
         },
         {
@@ -12723,7 +12723,7 @@ const As = ({ item: O, level: dl = 0, onHeightChange: w }) => {
           name: "app-super.kizuki.or.jp",
           children: [
             { id: "app-super-default", name: "default_page.png" },
-            { id: "app-super-index", name: "index.html" },
+            { id: "app-super-index", name: "tree.html" },
           ],
         },
         {
@@ -12731,7 +12731,7 @@ const As = ({ item: O, level: dl = 0, onHeightChange: w }) => {
           name: "app.kizuki.or.jp",
           children: [
             { id: "app-default", name: "default_page.png" },
-            { id: "app-index", name: "index.html" },
+            { id: "app-index", name: "tree.html" },
           ],
         },
         { id: "apple-touch-icon", name: "apple-touch-icon.png" },
@@ -12772,7 +12772,7 @@ const As = ({ item: O, level: dl = 0, onHeightChange: w }) => {
         {
           id: "case",
           name: "case",
-          children: [{ id: "case-index", name: "index.html" }],
+          children: [{ id: "case-index", name: "tree.html" }],
         },
         {
           id: "common",
@@ -12802,7 +12802,7 @@ const As = ({ item: O, level: dl = 0, onHeightChange: w }) => {
           ],
         },
         { id: "favicon", name: "favicon.ico" },
-        { id: "index", name: "index.html" },
+        { id: "index", name: "tree.html" },
         { id: "robots", name: "robots.txt" },
       ],
     },
