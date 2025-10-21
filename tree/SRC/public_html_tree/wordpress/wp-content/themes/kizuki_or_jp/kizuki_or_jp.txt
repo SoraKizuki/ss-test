@@ -1,0 +1,518 @@
+.
+├── 404-company.php
+├── 404.php
+├── aboutus
+│   ├── page-aboutus-4sou-facility.php
+│   ├── page-aboutus-4sou-map.php
+│   ├── page-aboutus-4sou.php
+│   ├── page-aboutus-online-temp.php
+│   ├── page-aboutus.php
+│   ├── page-aboutusTop.php
+│   └── sidebar-aboutus.php
+├── archive-blog.php
+├── archive-company-1904.php
+├── archive-company.php
+├── archive-kbc-test.php
+├── archive-kbc.php
+├── archive-teachers.php
+├── archive-voice-test.php
+├── archive-voice.php
+├── archive.php
+├── backup-before202001_archive-teachers.php
+├── blog
+│   ├── sidebar-new-blog.php
+│   ├── sidebar-recommend-blog.php
+│   └── sidebar-related-blog.php
+├── category-news.php
+├── category.php
+├── company
+│   ├── foot-company.php
+│   ├── footer-company.php
+│   ├── gnavi-company.php
+│   ├── head-company-1904.php
+│   ├── head-company-lp.php
+│   ├── head-company.php
+│   ├── header-company.php
+│   ├── lp-parts
+│   │   ├── lp_cta_footer_teacher.php
+│   │   ├── lp_cta_teacher.php
+│   │   ├── lp_header_teacher.php
+│   │   └── lp_teacher.css
+│   ├── page-company-lp.php
+│   └── sidebar-company.php
+├── contact
+│   ├── page-contact.php
+│   └── sidebar-contact.php
+├── courses
+│   ├── page-course.php
+│   ├── page-courses.php
+│   └── sidebar-courses.php
+├── date.php
+├── donation
+│   ├── page-donation.php
+│   └── sidebar-donation.php
+├── file_tree.txt
+├── foot-top.php
+├── foot.php
+├── footer.php
+├── front-page-test.php
+├── front-page.php
+├── functions.php
+├── futoko_lp
+│   ├── lp_campaign_popup.php
+│   ├── lp_css_cta-4.php
+│   ├── lp_css_ctas.php
+│   ├── lp_cta_banner.php
+│   ├── lp_cta_CL.php
+│   ├── lp_cta_footer_CL.php
+│   ├── lp_cta_footer_media_tel.php
+│   ├── lp_cta_footer_notel.php
+│   ├── lp_cta_footer_teacher.php
+│   ├── lp_cta_footer_tel.php
+│   ├── lp_cta_footer_tel2.php
+│   ├── lp_cta_footer_tel3.php
+│   ├── lp_cta_footer_yagaku_notel.php
+│   ├── lp_cta_footer_yagaku_tel3.php
+│   ├── lp_cta_footer.php
+│   ├── lp_cta_form_pamphlet.php
+│   ├── lp_cta_media_tel.php
+│   ├── lp_cta_notel.php
+│   ├── lp_cta_teacher.php
+│   ├── lp_cta_tel.php
+│   ├── lp_cta_tel2.php
+│   ├── lp_cta_tel3.php
+│   ├── lp_cta_yagaku_notel.php
+│   ├── lp_cta_yagaku_tel3.php
+│   ├── lp_cta.php
+│   ├── lp_header_blank_tel.php
+│   ├── lp_header_chutai_notel.php
+│   ├── lp_header_chutai_tel.php
+│   ├── lp_header_daigaku_tel.php
+│   ├── lp_header_goal_tel3.php
+│   ├── lp_header_goal.php
+│   ├── lp_header_kyugaku_tel.php
+│   ├── lp_header_line.php
+│   ├── lp_header_manabi_notel.php
+│   ├── lp_header_manabi_tel.php
+│   ├── lp_header_manto_tel3.php
+│   ├── lp_header_media_tel.php
+│   ├── lp_header_nolink.php
+│   ├── lp_header_otona_a.php
+│   ├── lp_header_otona_e.php
+│   ├── lp_header_otona_m.php
+│   ├── lp_header_otona_s_uni.php
+│   ├── lp_header_otona_s.php
+│   ├── lp_header_otona_tel.php
+│   ├── lp_header_otona_tel2.php
+│   ├── lp_header_otona_tel3.php
+│   ├── lp_header_otona.php
+│   ├── lp_header_ronin_tel.php
+│   ├── lp_header_teacher.php
+│   ├── lp_header_tel_chs.php
+│   ├── lp_header_tel.php
+│   ├── lp_header_tel3.php
+│   ├── lp_header_winter_tel3.php
+│   ├── lp_header_winter.php
+│   ├── lp_header_yagaku_notel.php
+│   ├── lp_header_yagaku_tel3.php
+│   ├── lp_header_yorisoi_notel.php
+│   ├── lp_header_yorisoi_tel.php
+│   ├── lp_header_yorisoi_tel2.php
+│   ├── lp_header_yorisoi_tel3.php
+│   ├── lp_header_yorisoi.php
+│   ├── lp_header.php
+│   ├── page-10179-transition.php
+│   ├── page-10197-transition.php
+│   ├── page-10524-transition.php
+│   ├── page-10674-transition.php
+│   ├── page-11071-transition.php
+│   ├── page-12768-transition.php
+│   ├── page-13220-transition.php
+│   ├── page-15556-transition.php
+│   ├── page-15629-transition.php
+│   ├── page-16254-transition.php
+│   ├── page-16814-transition.php
+│   ├── page-18746-transition.php
+│   ├── page-18806-transition.php
+│   ├── page-18926-transition.php
+│   ├── page-19036-transition.php
+│   ├── page-19830-transition.php
+│   ├── page-20554-transition.php
+│   ├── page-20604-transition.php
+│   ├── page-20610-transition.php
+│   ├── page-20687-transition.php
+│   ├── page-20723-transition.php
+│   ├── page-20898-transition.php
+│   ├── page-21102-transition.php
+│   ├── page-21128-transition.php
+│   ├── page-21152-transition.php
+│   ├── page-21190-transition.php
+│   ├── page-21351-transition.php
+│   ├── page-21544-transition.php
+│   ├── page-22308-transition.php
+│   ├── page-22364-transition.php
+│   ├── page-22684-transition.php
+│   ├── page-22871-transition.php
+│   ├── page-23424-transition.php
+│   ├── page-23680-transition.php
+│   ├── page-25761-transition.php
+│   ├── page-26135-transition.php
+│   ├── page-26268-transition.php
+│   ├── page-26285-transition.php
+│   ├── page-26545-transition.php
+│   ├── page-2731-transition.php
+│   ├── page-27842-transition.php
+│   ├── page-27949-transition.php
+│   ├── page-28591-transition.php
+│   ├── page-29028-transition.php
+│   ├── page-29551-transition.php
+│   ├── page-29908-transition.php
+│   ├── page-30445-transition.php
+│   ├── page-30615-transition.php
+│   ├── page-30856-transition.php
+│   ├── page-30903-transition.php
+│   ├── page-31243-transition.php
+│   ├── page-31755-transition.php
+│   ├── page-32441-transition.php
+│   ├── page-33021-transition.php
+│   ├── page-33702-transition.php
+│   ├── page-33793-transition.php
+│   ├── page-34074-transition.php
+│   ├── page-34317-transition.php
+│   ├── page-34329-transition.php
+│   ├── page-34407-transition.php
+│   ├── page-34446-transition.php
+│   ├── page-34577-transition.php
+│   ├── page-34706-transition.php
+│   ├── page-34726-transition.php
+│   ├── page-34740-transition.php
+│   ├── page-34823-transition.php
+│   ├── page-34920-transition.php
+│   ├── page-34946-transition.php
+│   ├── page-35079-transition.php
+│   ├── page-35326-transition.php
+│   ├── page-35537-transition.php
+│   ├── page-36116-transition.php
+│   ├── page-36216-transition.php
+│   ├── page-39322-transition.php
+│   ├── page-39330-transition.php
+│   ├── page-39365-transition.php
+│   ├── page-49277-transition.php
+│   ├── page-49946-transition.php
+│   ├── page-50236-transition.php
+│   ├── page-57907-transition.php
+│   ├── page-blank-lp.php
+│   ├── page-chs-2025summer.php
+│   ├── page-chutai-lp-fc.php
+│   ├── page-chutai-lp.php
+│   ├── page-community-transition.php
+│   ├── page-corres.php
+│   ├── page-dd-2025summer.php
+│   ├── page-dd-hs-lp.php
+│   ├── page-dd-jhs-lp.php
+│   ├── page-dd-kyoto-lp.php
+│   ├── page-dd-lp-fc.php
+│   ├── page-dd-lp.php
+│   ├── page-dd-lp02.php
+│   ├── page-dd-ps-lp.php
+│   ├── page-freeschool-lp.php
+│   ├── page-futoko-japan-notel.php
+│   ├── page-futoko-japan.php
+│   ├── page-futoko-jhs-2025summer.php
+│   ├── page-futoko-kyoto-lp-notel.php
+│   ├── page-futoko-lp-fc.php
+│   ├── page-futoko-lp-feetest.php
+│   ├── page-futoko-lp-square.php
+│   ├── page-futoko-lp-test.php
+│   ├── page-futoko-lp.php
+│   ├── page-futoko-lp2.php
+│   ├── page-futoko-lp3.php
+│   ├── page-futoko-lp4.php
+│   ├── page-futoko-lp5.php
+│   ├── page-futoko-notel.php
+│   ├── page-futoko-osaka-lp-notel.php
+│   ├── page-futoko-osaka-lp-test.php
+│   ├── page-futoko-osaka-lp.php
+│   ├── page-futoko-ps-2025summer.php
+│   ├── page-futoko-transition.php
+│   ├── page-gbp-yoyogi.php
+│   ├── page-hikikomori-lp-fc.php
+│   ├── page-hikikomori-transition.php
+│   ├── page-life-transition.php
+│   ├── page-media-transition.php
+│   ├── page-oya-community.php
+│   ├── page-ps-lp.php
+│   ├── page-ronin-lp.php
+│   ├── page-sr-lp.php
+│   ├── page-study-support-lp.php
+│   ├── page-syakaijin-2025summer.php
+│   ├── page-syakaijin-lp.php
+│   ├── page-syakaijin-lp02.php
+│   ├── page-syakaijin-lp03.php
+│   ├── page-syakaijin-lp04.php
+│   ├── page-syakaijin-lp05.php
+│   ├── page-syakaijin-lp06_science_uni.php
+│   ├── page-syakaijin-lp06.php
+│   ├── page-syakaijin-lp07_science.php
+│   ├── page-teacher-kamagaya.php
+│   ├── page-teacher.php
+│   ├── page-terakoya-lp.php
+│   ├── page-winter-lp-notel.php
+│   ├── page-winter-lp.php
+│   ├── page-winter02-lp-notel.php
+│   ├── page-winter02-lp.php
+│   ├── page-yagaku-lp.php
+│   ├── page-yagaku-lp02.php
+│   └── tel-popup.php
+├── head-column.php
+├── head.php
+├── header.php
+├── index.php
+├── juku-floating-cta.php
+├── juku-foot.php
+├── kbc
+│   ├── kbc_lp_css_cta-4.php
+│   ├── kbc_lp_css_cta-5.php
+│   ├── kbc_lp_css_tel-popup.php
+│   ├── kbc_lp_css_temp.php
+│   ├── kbc_lp_cta_footer_tel.php
+│   ├── kbc_lp_cta_footer.php
+│   ├── kbc_lp_cta_tel.php
+│   ├── kbc_lp_cta.php
+│   ├── kbc_lp_header_career.php
+│   ├── kbc_lp_header.php
+│   ├── kbc-archive-column.php
+│   ├── kbc-archive-news.php
+│   ├── kbc-archive-staff.php
+│   ├── kbc-archive-voice.php
+│   ├── kbc-archive.php
+│   ├── kbc-foot.php
+│   ├── kbc-footer-chic.php
+│   ├── kbc-footer.php
+│   ├── kbc-head.php
+│   ├── kbc-header-chic.php
+│   ├── kbc-header.php
+│   ├── kbc-lp_test.php
+│   ├── kbc-lp-ad-job.php
+│   ├── kbc-lp-ad-notel.php
+│   ├── kbc-lp-ad.php
+│   ├── kbc-lp-depression-job.php
+│   ├── kbc-lp-depression-notel.php
+│   ├── kbc-lp-depression.php
+│   ├── kbc-lp-features-notel.php
+│   ├── kbc-lp-job.php
+│   ├── kbc-lp-notel.php
+│   ├── kbc-lp-phototest.php
+│   ├── kbc-lp.php
+│   ├── kbc-page.php
+│   ├── kbc-service.php
+│   ├── page-28081-transition.php
+│   ├── page-28128-transition.php
+│   ├── page-28168-transition.php
+│   ├── page-28252-transition.php
+│   ├── page-28255-transition.php
+│   ├── page-28337-transition.php
+│   ├── page-28363-transition.php
+│   ├── page-28396-transition.php
+│   ├── page-28643-transition.php
+│   ├── page-28743-transition.php
+│   ├── page-28860-transition.php
+│   ├── page-28879-transition.php
+│   ├── page-28887-transition.php
+│   ├── page-28907-transition.php
+│   ├── page-28921-transition.php
+│   ├── page-28937-transition.php
+│   ├── page-29175-transition.php
+│   ├── page-29242-transition.php
+│   ├── page-29244-transition.php
+│   ├── page-29515-transition.php
+│   ├── page-29709-transition.php
+│   ├── page-29773-transition.php
+│   ├── page-29962-transition.php
+│   ├── page-29989-transition.php
+│   ├── page-30003-transition.php
+│   ├── page-30556-transition.php
+│   ├── page-30637-transition.php
+│   ├── page-30697-transition.php
+│   ├── page-30889-transition.php
+│   ├── page-31012-transition.php
+│   ├── page-31986-transition.php
+│   ├── page-32007-transition.php
+│   ├── page-32468-transition.php
+│   ├── page-32493-transition.php
+│   ├── page-32624-transition.php
+│   ├── page-33267-transition.php
+│   ├── page-33287-transition.php
+│   ├── page-33610-transition.php
+│   ├── page-33621-transition.php
+│   ├── page-33799-transition.php
+│   ├── page-33842-transition.php
+│   ├── page-33859-transition.php
+│   ├── page-33897-transition.php
+│   ├── page-34065-transition.php
+│   ├── page-34118-transition.php
+│   ├── page-34129-transition.php
+│   ├── page-34137-transition.php
+│   ├── page-34579-transition.php
+│   ├── page-34692-transition.php
+│   ├── page-34891-transition.php
+│   ├── page-34908-transition.php
+│   ├── page-35051-transition.php
+│   ├── page-35070-transition.php
+│   ├── page-35416-transition.php
+│   ├── page-35430-transition.php
+│   ├── page-35466-transition.php
+│   ├── page-35615-transition.php
+│   ├── page-35642-transition.php
+│   ├── page-35715-transition.php
+│   ├── page-35741-transition.php
+│   ├── page-35798-transition.php
+│   ├── page-36204-transition.php
+│   ├── page-36743-transition.php
+│   ├── page-36795-transition.php
+│   ├── page-36940-transition.php
+│   ├── page-37090-transition.php
+│   ├── page-37165-transition.php
+│   ├── page-37284-transition.php
+│   ├── page-37374-transition.php
+│   ├── page-37464-transition.php
+│   ├── page-38385-transition.php
+│   ├── page-47788-transition.php
+│   ├── page-47914-transition.php
+│   ├── page-47987-transition.php
+│   ├── page-47999-transition.php
+│   ├── page-48005-transition.php
+│   ├── page-48062-transition.php
+│   ├── page-48204-transition.php
+│   ├── page-48334-transition.php
+│   ├── page-48369-transition.php
+│   ├── page-48626-transition.php
+│   ├── page-49082-transition.php
+│   ├── page-49200-transition.php
+│   ├── page-49261-transition.php
+│   ├── page-49333-transition.php
+│   ├── page-49629-transition.php
+│   ├── page-49721-transition.php
+│   ├── page-50564-transition.php
+│   ├── page-51546-transition.php
+│   ├── page-51549-transition.php
+│   ├── page-52506-transition.php
+│   ├── page-52721-transition.php
+│   ├── page-52753-transition.php
+│   ├── page-52932-transition.php
+│   ├── page-52986-transition.php
+│   ├── page-53131-transition.php
+│   ├── page-53161-transition.php
+│   ├── page-53265-transition.php
+│   ├── page-53272-transition.php
+│   ├── page-53593-transition.php
+│   ├── page-53667-transition.php
+│   ├── page-53872-transition.php
+│   ├── page-53888-transition.php
+│   ├── page-54756-transition.php
+│   ├── page-54837-transition.php
+│   ├── page-54911-transition.php
+│   ├── page-55056-transition.php
+│   ├── page-55172-transition.php
+│   ├── page-55219-transition.php
+│   ├── page-55354-transition.php
+│   ├── page-55420-transition.php
+│   ├── page-55441-transition.php
+│   ├── page-56011-transition-tt.php
+│   ├── page-56011-transition.php
+│   ├── page-56610-transition.php
+│   ├── page-56674-transition.php
+│   ├── page-57045-transition.php
+│   ├── page-57048-transition.php
+│   ├── page-57050-transition.php
+│   ├── page-57133-transition.php
+│   ├── page-58762-transition.php
+│   ├── page-59264-transition.php
+│   ├── page-59804-transition.php
+│   └── page-60849-transition.php
+├── ouen
+│   ├── footer-ouen.php
+│   ├── head-ouen.php
+│   ├── header-ouen.php
+│   ├── page-ouen.php
+│   ├── page-ouenTop.php
+│   └── sidebar-ouen.php
+├── page-about.php
+├── page-chutai_osaka-top.php
+├── page-chutai-top.php
+├── page-donationlp-sp.php
+├── page-donationlp.php
+├── page-form-thanks-yagaku.php
+├── page-form-thanks.php
+├── page-form-v2.php
+├── page-form.php
+├── page-form2-thanks.php
+├── page-form2.php
+├── page-front-page-test.php
+├── page-futoko_osaka-top.php
+├── page-futoko-top.php
+├── page-highschool.php
+├── page-hogosya_osaka-top.php
+├── page-hogosya-top.php
+├── page-kbc-form.php
+├── page-kbc-thanks.php
+├── page-parent.php
+├── page-redirect-formbridge-contactform.php
+├── page-syakaijin_osaka-top.php
+├── page-syakaijin-top.php
+├── page-test.php
+├── page-top_osaka.php
+├── page-tsushin-high-top.php
+├── page-tsushin-junior-top.php
+├── page.php
+├── questions
+│   └── page-questions.php
+├── serach.php
+├── sidebar-column.php
+├── sidebar-monthly.php
+├── sidebar.php
+├── single-blog.php
+├── single-column.php
+├── single-company-2023.php
+├── single-company-cookie.php
+├── single-company-withmv.php
+├── single-company.php
+├── single-kbc-column-chic.php
+├── single-kbc-staff.php
+├── single-kbc-teacher.php
+├── single-kbc-voice.php
+├── single-kbc.php
+├── single-redirect-line-kbc.php
+├── single-redirect-line.php
+├── single-redirect-select-kbc.php
+├── single-redirect.php
+├── single-teachers.php
+├── single-voice.php
+├── single.php
+├── style.css
+├── tag.php
+├── targets
+│   ├── page-4sou-chutai.php
+│   ├── page-4sou-futoko.php
+│   ├── page-4sou-syakaijin.php
+│   ├── page-4sou-tsushinsei.php
+│   └── page-targets.php
+├── taxonomy-blog-category.php
+├── taxonomy-blog-tag.php
+├── taxonomy-company-category.php
+├── taxonomy-company-tag.php
+├── test
+│   ├── archive-kbc-test.php
+│   ├── company-front-page-test.php
+│   ├── foot-test.php
+│   ├── foot-top-test.php
+│   ├── footer-test.php
+│   ├── front-page-test.php
+│   ├── head-test.php
+│   ├── header-test.php
+│   ├── page-test.php
+│   └── sidebar-test.php
+└── video
+    └── digital-strategy-department.mp4
+
+15 directories, 501 files
