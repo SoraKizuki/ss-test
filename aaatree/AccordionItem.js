@@ -62,7 +62,7 @@ const AccordionItem = ({ item, level = 0, onHeightChange }) => {
 
     observer.observe(bodyElement, {
       childList: true,
-      subtree: false, // 直接の子のみ監視してパフォーマンス向上
+      subtree: true,
       attributes: true,
       attributeFilter: ["style"],
     });
