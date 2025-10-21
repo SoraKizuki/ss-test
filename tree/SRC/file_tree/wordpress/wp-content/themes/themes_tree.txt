@@ -1,0 +1,8 @@
+.
+├── file_tree.txt
+├── index.php
+├── kizuki_or_jp
+├── twentytwentyfive
+└── twentytwentyfour
+
+4 directories, 2 files
