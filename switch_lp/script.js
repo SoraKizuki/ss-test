@@ -46,6 +46,7 @@ document.querySelectorAll("#question2 .option").forEach((option) => {
   });
 });
 
+//LPの遷移先
 function showResult() {
   let url = "#";
 
