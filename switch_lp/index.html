@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>あなたに最適なプランをご提案</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>あなたに最適なプランをご提案</h1>
+      <p class="subtitle">該当するものを選択してください</p>
+
+      <div id="question1" class="question">
+        <div class="question-title">選択肢１</div>
+        <div class="options">
+          <div class="option" data-value="guardian">保護者</div>
+          <div class="option" data-value="self">本人</div>
+        </div>
+      </div>
+
+      <div id="question2" class="question hidden">
+        <div class="question-title">選択肢２</div>
+        <div class="options">
+          <div class="option" data-value="junior">中学生</div>
+          <div class="option" data-value="high">高校生</div>
+          <div class="option" data-value="adult">社会人</div>
+        </div>
+      </div>
+
+      <div id="result" class="result-section hidden">
+        <div class="result-message">あなたに最適なプランをご用意しました</div>
+        <a href="#" id="resultLink" class="result-button">詳細を見る →</a>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
