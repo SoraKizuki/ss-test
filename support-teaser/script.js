@@ -1,7 +1,29 @@
 (function () {
-  "useD strict";
+  "use strict";
+  function createParticles() {
+    const particleContainer = document.querySelector(".splash-particles");
+    if (!particleContainer) return;
+    const particleCount = 70;
+    const maxSpread = Math.max(window.innerWidth, window.innerHeight) * 1.5;
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement("div");
+      particle.classList.add("particle");
+      const angle = Math.random() * 2 * Math.PI;
+      const radius = Math.random() * maxSpread;
+      const tx = Math.cos(angle) * radius + "px";
+      const ty = Math.sin(angle) * radius + "px";
+      const delay = Math.random() * 0.4 + "s";
+      const duration = Math.random() * 0.5 + 0.8 + "s";
+      particle.style.setProperty("--tx", tx);
+      particle.style.setProperty("--ty", ty);
+      particle.style.animationDelay = delay;
+      particle.style.animationDuration = duration;
+      particleContainer.appendChild(particle);
+    }
+  }
   const splashScreen = document.getElementById("splash-screen");
   if (splashScreen) {
+    setTimeout(createParticles, 400);
     function wrapCharacters(element, baseDelay) {
       const text = element.textContent;
       const chars = text.split("");
@@ -39,7 +61,8 @@
   const spNav = document.getElementById("sp-nav");
   const spNavLinks = document.querySelectorAll(".sp-nav-link");
   hamburgerBtn.addEventListener("click", function () {
-    this.classList.toggle("is-active");
+    const isOpen = this.classList.toggle("is-active");
+    this.setAttribute("aria-expanded", isOpen);
     document.body.classList.toggle("nav-open");
     if (spNav.classList.contains("is-open")) {
       spNav.classList.remove("is-open");
@@ -58,6 +81,7 @@
   spNavLinks.forEach(function (link) {
     link.addEventListener("click", function () {
       hamburgerBtn.classList.remove("is-active");
+      hamburgerBtn.setAttribute("aria-expanded", !1);
       document.body.classList.remove("nav-open");
       spNav.classList.remove("is-open");
       setTimeout(function () {
@@ -112,6 +136,7 @@
       const details = this.closest(".qa-accordion-item");
       const content = details.querySelector(".qa-accordion-content");
       const isOpen = details.hasAttribute("open");
+      summary.setAttribute("aria-expanded", !isOpen);
       if (isOpen) {
         content.style.display = "none";
         details.removeAttribute("open");
@@ -122,7 +147,11 @@
             const openContent = openDetails.querySelector(
               ".qa-accordion-content"
             );
+            const openSummary = openDetails.querySelector(
+              ".qa-accordion-summary"
+            );
             openContent.style.display = "none";
+            openSummary.setAttribute("aria-expanded", !1);
             openDetails.removeAttribute("open");
           });
         details.setAttribute("open", "");
@@ -166,7 +195,15 @@
     }
   }
   let scrollTimeout;
+  let ticking = !1;
   window.addEventListener("scroll", function () {
+    if (!ticking) {
+      window.requestAnimationFrame(function () {
+        handleCharacterScroll();
+        ticking = !1;
+      });
+      ticking = !0;
+    }
     if (!scrollTimeout) {
       scrollTimeout = setTimeout(function () {
         handleCharacterScroll();

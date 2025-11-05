@@ -19,13 +19,14 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="scroll-chara" id="scroll-chara-l">
-      <img src="./img/chara_l.webp" alt="キャラクター" />
+    <div class="scroll-chara" id="scroll-chara-l" aria-hidden="true">
+      <img src="./img/chara_l.webp" alt="" />
     </div>
-    <div class="scroll-chara" id="scroll-chara-r">
-      <img src="./img/chara_r.webp" alt="キャラクター" />
+    <div class="scroll-chara" id="scroll-chara-r" aria-hidden="true">
+      <img src="./img/chara_r.webp" alt="" />
     </div>
     <div id="splash-screen">
+      <div class="splash-particles" aria-hidden="true"></div>
       <div class="splash-overlay"></div>
       <div class="splash-content">
         <p>挫折を力に変える！</p>
@@ -39,7 +40,12 @@
         </a>
         <div class="header-nav">
           <a href="#cta" class="cta-button header-cta">願書受付中</a>
-          <button class="hamburger-btn" id="hamburger-btn">
+          <button
+            class="hamburger-btn"
+            id="hamburger-btn"
+            aria-label="メニュー"
+            aria-expanded="false"
+          >
             <span></span>
             <span></span>
             <span></span>
@@ -172,7 +178,7 @@
 
           <div class="qa-accordion-list">
             <details class="qa-accordion-item section-fade">
-              <summary class="qa-accordion-summary">
+              <summary class="qa-accordion-summary" aria-expanded="false">
                 <div class="qa-accordion-number">01</div>
                 <div class="qa-accordion-text">
                   <strong
@@ -192,7 +198,7 @@
             </details>
 
             <details class="qa-accordion-item section-fade">
-              <summary class="qa-accordion-summary">
+              <summary class="qa-accordion-summary" aria-expanded="false">
                 <div class="qa-accordion-number">02</div>
                 <div class="qa-accordion-text">
                   <strong
@@ -218,7 +224,7 @@
             </details>
 
             <details class="qa-accordion-item section-fade">
-              <summary class="qa-accordion-summary">
+              <summary class="qa-accordion-summary" aria-expanded="false">
                 <div class="qa-accordion-number">03</div>
                 <div class="qa-accordion-text">
                   <strong>Q. 体調に波があり、毎日通えるか不安です。</strong>
@@ -236,7 +242,7 @@
             </details>
 
             <details class="qa-accordion-item section-fade">
-              <summary class="qa-accordion-summary">
+              <summary class="qa-accordion-summary" aria-expanded="false">
                 <div class="qa-accordion-number">04</div>
                 <div class="qa-accordion-text">
                   <strong>Q. 高卒資格は確実に取れますか？</strong>
@@ -270,7 +276,7 @@
           </p>
 
           <div class="cta-box main-cta">
-            <h3>【限定10組】無料・個別 V字回復プランニング・セッション</h3>
+            <h3>V字回復プランニング・セッション</h3>
             <p>
               <strong>▼ このセッションで得られるもの ▼</strong><br />
               1. 専門家による「学習・メンタル」の現状分析<br />

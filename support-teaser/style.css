@@ -59,7 +59,7 @@ body {
 }
 .splash-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: 56.25rem;
   margin: 0 auto;
   color: var(--color-white);
@@ -118,6 +118,11 @@ a {
 }
 a:hover {
   opacity: 0.8;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 img {
   max-width: 100%;
@@ -250,12 +255,13 @@ body.nav-open {
   border: none;
   cursor: pointer;
   text-align: center;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
 }
 .cta-button:hover {
   background-color: var(--color-cta-hover);
   color: var(--color-text);
   opacity: 1;
+  transform: translateY(-2px);
 }
 .section-title {
   font-size: 3rem;
@@ -815,6 +821,8 @@ body.nav-open {
   width: 240px;
   z-index: 10;
   transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+  pointer-events: none;
 }
 .scroll-chara img {
   width: 100%;
@@ -843,5 +851,35 @@ body.nav-open {
   }
   #scroll-chara-r.is-visible {
     transform: translateY(-50%) translateX(65%) rotate(-30deg);
+  }
+}
+.splash-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  overflow: hidden;
+}
+.particle {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-white);
+  opacity: 0;
+  transform: rotate(45deg);
+  animation: burst 1.2s ease-out forwards;
+}
+@keyframes burst {
+  0% {
+    transform: translate(-50%, -50%) rotate(45deg) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) rotate(45deg) scale(1);
+    opacity: 0;
   }
 }
