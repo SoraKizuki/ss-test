@@ -9,7 +9,7 @@
   --color-cta-hover: #e69500;
   --font-base: "Shippori Mincho", "Yu Mincho", "YuMincho",
     "Hiragino Mincho ProN", "MS PMincho", serif;
-  --header-height: 4.375rem;
+  --header-height: 4rem;
   --container-width: 60rem;
   --container-padding: 0 1.25rem;
 }
@@ -837,20 +837,20 @@ body.nav-open {
   transform: translateY(-50%) translateX(100%) rotate(0deg);
 }
 #scroll-chara-l.is-visible {
-  transform: translateY(-50%) translateX(-80%) rotate(30deg);
+  transform: translateY(-50%) translateX(-120%) rotate(60deg);
 }
 #scroll-chara-r.is-visible {
-  transform: translateY(-50%) translateX(80%) rotate(-30deg);
+  transform: translateY(-50%) translateX(120%) rotate(-60deg);
 }
 @media (max-width: 767px) {
   .scroll-chara {
     width: 100px;
   }
   #scroll-chara-l.is-visible {
-    transform: translateY(-50%) translateX(-65%) rotate(30deg);
+    transform: translateY(-50%) translateX(-125%) rotate(60deg);
   }
   #scroll-chara-r.is-visible {
-    transform: translateY(-50%) translateX(65%) rotate(-30deg);
+    transform: translateY(-50%) translateX(125%) rotate(-60deg);
   }
 }
 .splash-particles {
