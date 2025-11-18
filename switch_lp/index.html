@@ -3,36 +3,207 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>あなたに最適なプランをご提案</title>
+    <title>キズキ共育塾 | ご相談フォーム</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
+    <header class="header">
+      <h1>キズキ共育塾</h1>
+    </header>
+
     <div class="container">
-      <h1>あなたに最適なプランをご提案</h1>
-      <p class="subtitle">該当するものを選択してください</p>
-
-      <div id="question1" class="question">
-        <div class="question-title">選択肢１</div>
-        <div class="options">
-          <div class="option" data-value="guardian">保護者</div>
-          <div class="option" data-value="self">本人</div>
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressBar"></div>
         </div>
       </div>
 
-      <div id="question2" class="question hidden">
-        <div class="question-title">選択肢２</div>
-        <div class="options">
-          <div class="option" data-value="junior">中学生</div>
-          <div class="option" data-value="high">高校生</div>
-          <div class="option" data-value="adult">社会人</div>
+      <form id="selectionForm">
+        <div class="step active" id="step1">
+          <h2 class="step-title">まずは、お客様について教えてください</h2>
+          <span class="step-note">※該当する方をお選びください</span>
+          <div class="options-grid">
+            <button
+              type="button"
+              class="option-btn"
+              onclick="nextStep('parent')"
+            >
+              保護者様
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="nextStep('student')"
+            >
+              ご本人様
+            </button>
+          </div>
         </div>
-      </div>
 
-      <div id="result" class="result-section hidden">
-        <div class="result-message">あなたに最適なプランをご用意しました</div>
-        <a href="#" id="resultLink" class="result-button">詳細を見る →</a>
-      </div>
+        <div class="step" id="step2-parent">
+          <h2 class="step-title">お子さまの年代を教えてください</h2>
+          <span class="step-note">※近いものを選んでください</span>
+          <div class="options-grid">
+            <button
+              type="button"
+              class="option-btn"
+              onclick="setAgeAndNext('小学生', 'parent')"
+            >
+              小学生
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="setAgeAndNext('中学生', 'parent')"
+            >
+              中学生
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="setAgeAndNext('高校生（通信制/定時制）', 'parent')"
+            >
+              高校生（通信制/定時制）
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="setAgeAndNext('高校生（全日制）', 'parent')"
+            >
+              高校生（全日制）
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="setAgeAndNext('既卒（社会人、フリーター）', 'parent')"
+            >
+              既卒（社会人、フリーター）
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="setAgeAndNext('高校中退', 'parent')"
+            >
+              高校中退
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="setAgeAndNext('大学生', 'parent')"
+            >
+              大学生
+            </button>
+          </div>
+        </div>
+
+        <div class="step" id="step2-student">
+          <h2 class="step-title">当てはまるものを選択ください</h2>
+          <span class="step-note">※近いものを選らんでください</span>
+          <div class="options-grid">
+            <button
+              type="button"
+              class="option-btn"
+              onclick="setAgeAndNext('小〜中学生', 'student')"
+            >
+              小〜中学生
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="setAgeAndNext('高校生（通信制/定時制）', 'student')"
+            >
+              高校生（通信制/定時制）
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="setAgeAndNext('高校生（全日制）', 'student')"
+            >
+              高校生（全日制）
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="setAgeAndNext('高校中退', 'student')"
+            >
+              高校中退
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="setAgeAndNext('大学生', 'student')"
+            >
+              大学生
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="setAgeAndNext('社会人/フリーター', 'student')"
+            >
+              社会人/フリーター
+            </button>
+          </div>
+        </div>
+
+        <div class="step" id="step3">
+          <h2 class="step-title">ご相談内容を教えてください</h2>
+          <span class="step-note">※最も関心のあるものをお選びください</span>
+          <div class="options-grid">
+            <button
+              type="button"
+              class="option-btn"
+              onclick="finishSelection('不登校')"
+            >
+              不登校
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="finishSelection('発達しょうがい')"
+            >
+              発達しょうがい
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="finishSelection('受験 / 進学')"
+            >
+              受験 / 進学
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="finishSelection('高卒認定取得')"
+            >
+              高卒認定取得
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="finishSelection('学び直し')"
+            >
+              学び直し
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="finishSelection('資格などその他試験')"
+            >
+              資格などその他試験
+            </button>
+            <button
+              type="button"
+              class="option-btn"
+              onclick="finishSelection('生活/メンタル面')"
+            >
+              生活/メンタル面
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
+
+    <footer>&copy; キズキ共育塾</footer>
 
     <script src="./script.js"></script>
   </body>
