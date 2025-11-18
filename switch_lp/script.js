@@ -46,8 +46,7 @@ function finishSelection(topic) {
   // ★★★ ここでLPの遷移先を分岐させます ★★★
   const finalUrl = getDestinationUrl(userData);
 
-  // 実際の遷移（テスト時はコメントアウトを外してください）
-  // window.location.href = finalUrl;
+  window.location.href = finalUrl;
 
   alert(
     `【デモ】以下の条件で遷移します。\n\n対象: ${userData.type}\n年代: ${userData.age}\n相談: ${userData.topic}\n\n遷移先URL: ${finalUrl}`
