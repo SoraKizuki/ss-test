@@ -103,21 +103,6 @@ body {
   display: none !important;
 }
 
-.no-scroll {
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-}
-
-/* デスクトップでのスクロールバーシフトを回避 */
-@media (min-width: 501px) {
-  .no-scroll {
-    padding-right: 17px;
-  }
-}
-
 /* ========================================
    4. レイアウト構造
    ======================================== */
@@ -507,7 +492,7 @@ body {
 .reflection::after {
   content: "";
   display: block;
-  width: 30px;
+  width: 100px;
   height: 100%;
   position: absolute;
   top: -180px;

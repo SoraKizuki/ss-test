@@ -226,13 +226,11 @@ async function handleDraw() {
 async function startFusumaAnimation() {
   if (!elements.fusumaScreen) return;
 
-  addClass(elements.body, CONFIG.CSS.NO_SCROLL);
   await wait(100);
   addClass(elements.fusumaScreen, CONFIG.CSS.FUSUMA_OPEN);
   await wait(CONFIG.TIMING.FUSUMA_TRANSFORM);
   addClass(elements.fusumaScreen, CONFIG.CSS.FUSUMA_FADE);
   await wait(CONFIG.TIMING.FUSUMA_FADE);
-  removeClass(elements.body, CONFIG.CSS.NO_SCROLL);
   elements.fusumaScreen.style.display = "none";
 }
 
