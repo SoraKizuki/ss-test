@@ -3,36 +3,162 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>おみくじ</title>
+    <meta
+      name="description"
+      content="2026年新春運試し - キズキ共育塾のおみくじで新年の運勢を占おう"
+    />
+    <title>2026年 新春運試し｜キズキ共育塾</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
+
+    <!-- Preload IMG -->
+    <link rel="preload" as="image" href="img/2026newyear_top.jpg" />
+    <link rel="preload" as="image" href="img/fusuma.webp" />
   </head>
   <body>
-    <div id="container">
-      <h1>おみくじ</h1>
-      <p class="subtitle">運勢を占ってみましょう</p>
-
-      <div id="omikuji-area">
-        <div id="omikuji-box">
-          <img src="./img/omikuji-kuma.png" alt="クマ" id="bear-image" />
-          <img src="./img/omikuji-box.png" alt="おみくじ箱" id="box-image" />
-        </div>
-
-        <div id="result-area" class="hidden">
-          <p id="keka" class="keka-text"></p>
-          <p id="comment" class="comment-text"></p>
-        </div>
-
-        <button id="draw-button">おみくじを引く</button>
+    <!-- ふすまアニメーション -->
+    <div id="fusuma-screen" aria-hidden="true">
+      <div class="fusuma-panel fusuma-left">
+        <img
+          src="img/fusuma.webp"
+          alt=""
+          class="fusuma-image"
+          loading="eager"
+          width="500"
+          height="1000"
+        />
+      </div>
+      <div class="fusuma-panel fusuma-right">
+        <img
+          src="img/fusuma.webp"
+          alt=""
+          class="fusuma-image"
+          loading="eager"
+          width="500"
+          height="1000"
+        />
       </div>
     </div>
 
+    <!-- Main Wrapper -->
+     <div class="reflection" aria-hidden="true"></div>
+    <div class="lp-wrapper">
+      <main class="lp-container">
+        <!-- Hero Section -->
+        <header class="hero-section">
+          <h1 class="visually-hidden">2026年 新春運試し - キズキ共育塾</h1>
+          <img
+            src="./img/2026newyear_top.jpg"
+            alt="謹賀新年 Happy New Year 2026 キズキ共育塾"
+            class="hero-image"
+            width="960"
+            height="1488"
+            loading="eager"
+          />
+          <img
+            src="./img/section.png"
+            alt=""
+            class="section-divider"
+            aria-hidden="true"
+            width="960"
+            height="317"
+            loading="eager"
+          />
+        </header>
+
+        <!-- おみくじセクション -->
+        <section id="omikuji-section" aria-labelledby="omikuji-title">
+          <div class="omikuji-content">
+            <h2 id="omikuji-title">
+              <img
+                src="./img/h2_01.png"
+                alt="おみくじ"
+                class="heading-image"
+                width="1080"
+                height="484"
+                loading="lazy"
+              />
+            </h2>
+            <img
+              src="./img/h2_text_01.png"
+              alt="新しい年の運命を占ってみましょう"
+              class="subheading-image"
+              width="1080"
+              height="479"
+              loading="lazy"
+            />
+
+            <!-- おみくじエリア-->
+            <div class="omikuji-area">
+              <div class="omikuji-box" role="img" aria-label="おみくじ箱とクマ">
+                <img
+                  src="./img/omikuji-kuma.png"
+                  alt=""
+                  class="bear-image"
+                  id="bear-image"
+                  width="703"
+                  height="1146"
+                  loading="lazy"
+                />
+                <img
+                  src="./img/omikuji-box1.png"
+                  alt=""
+                  class="box-image"
+                  id="box-image"
+                  width="703"
+                  height="1146"
+                  loading="lazy"
+                />
+              </div>
+
+              <button
+                id="draw-button"
+                type="button"
+                class="draw-button"
+                aria-label="おみくじを引く"
+              >
+                おみくじを引く
+              </button>
+
+              <div
+                id="result-area"
+                class="result-area hidden"
+                role="region"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                <p id="result-keka" class="result-keka"></p>
+                <p id="result-comment" class="result-comment"></p>
+              </div>
+            </div>
+
+            <!-- ホームボタン -->
+            <div class="home-button-wrapper">
+              <a href="../index.html" class="home-button">
+                <img
+                  src="./img/home-btn.png"
+                  alt="ホームへ戻る"
+                  width="1080"
+                  height="484"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- フッター -->
+        <footer class="lp-footer">
+          <small>&copy; 2026 キズキ共育塾</small>
+        </footer>
+      </main>
+    </div>
+
+    <!-- JavaScript -->
     <script src="./script.js"></script>
-    <a
-      href="../index.html"
-      id="toHome"
-      class="to-home"
-      aria-label="トップに戻る"
-      >トップに戻る</a
-    >
   </body>
 </html>
