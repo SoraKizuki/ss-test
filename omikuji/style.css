@@ -63,9 +63,6 @@
 
 html {
   font-size: 16px;
-  -webkit-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -79,6 +76,7 @@ body {
 
   /* パフォーマンス最適化された背景 */
   background: var(--clr-red-dark) url("img/bg.webp") center/cover fixed;
+  overflow-x: hidden;
 }
 
 /* フォント読み込み時のレイアウト変更を防止 */
@@ -144,7 +142,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 150%;
+  max-width: 100%;
   height: auto;
   z-index: 10;
   pointer-events: none;
@@ -152,15 +150,32 @@ body {
 
 @media (max-width: 500px) {
   .section-divider {
-    width: 120%;
+    width: 100%;
   }
 }
-
+/* ========================================
+   5.1 あけおめセクション
+   ======================================== */
+#message-section {
+  padding-top: 120px;
+}
+.newyear-message {
+  text-align: center;
+  font-weight: bold;
+  font-size: clamp(1rem, 5vw, 1.5rem);
+}
+.cast-img {
+  width: 80%;
+  max-width: 300px;
+  height: auto;
+  display: block;
+  margin: 20px auto 0;
+}
 /* ========================================
    6. おみくじセクション
    ======================================== */
+#message-section,
 #omikuji-section {
-  padding-top: 70px;
   background: url(img/sec-bg1.webp) center/cover;
 }
 

@@ -219,10 +219,6 @@ async function handleDraw() {
 // ========================================
 // 6. 襖（ふすま）開幕アニメーション
 // ========================================
-
-/**
- * 襖の開幕アニメーションを実行する
- */
 async function startFusumaAnimation() {
   if (!elements.fusumaScreen) return;
 
@@ -238,7 +234,6 @@ async function startFusumaAnimation() {
 // 7. イベントハンドラ
 // ========================================
 
-/** イベントリスナーを設定する */
 function setupEventListeners() {
   if (elements.drawButton) {
     elements.drawButton.addEventListener("click", handleDraw);
