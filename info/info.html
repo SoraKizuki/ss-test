@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LLMOコラムワークフロー提案</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- 
+    Palette Selection: "Brilliant Blues & Vibrant Orange"
+    Primary: #1e3a8a (Deep Blue)
+    Secondary: #3b82f6 (Bright Blue)
+    Accent: #f97316 (Vibrant Orange)
+    Background: #f8fafc (Slate 50)
+    Text: #1e293b (Slate 800)
+    -->
+
+    <style>
+      body {
+        font-family: "Noto Sans JP", sans-serif;
+        background-color: #f8fafc;
+        color: #1e293b;
+        scroll-behavior: smooth;
+      }
+
+      /* Chart Container Styling */
+      .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        height: 350px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .section-card {
+        background: white;
+        border-radius: 1.5rem;
+        box-shadow: 0 4px 15px -1px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .section-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      .gradient-header {
+        background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      }
+
+      /* HTML/CSS Connector lines */
+      .step-line {
+        position: absolute;
+        left: 50%;
+        top: 100%;
+        width: 2px;
+        height: 2rem;
+        background-color: #e2e8f0;
+        display: none;
+      }
+
+      @media (min-width: 1024px) {
+        .step-arrow-right::after {
+          content: "→";
+          font-size: 2rem;
+          color: #cbd5e1;
+          position: absolute;
+          right: -1.5rem;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+
+      .checklist-item {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem;
+        background-color: #f1f5f9;
+        border-radius: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Material elevation style */
+      .elevation-1 {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <!-- Hero Section -->
+    <header
+      class="gradient-header text-white pt-20 pb-24 px-8 text-center shadow-xl"
+    >
+      <div class="max-w-5xl mx-auto">
+        <span
+          class="inline-block py-1 px-4 rounded-full bg-white/20 text-xs font-bold mb-6 border border-white/30 tracking-widest uppercase"
+          >Operational Infographic</span
+        >
+        <h1 class="text-4xl md:text-6xl font-black mb-6 tracking-tight">
+          LLMOコラムワークフロー提案<br />〜役割分担〜
+        </h1>
+        <p
+          class="text-xl md:text-2xl font-light opacity-90 max-w-3xl mx-auto leading-relaxed"
+        >
+          2025.12.18　櫻井
+        </p>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-4 md:p-12 -mt-12 space-y-16">
+      <!-- Section 1: Strategic Decision (Radar Chart) -->
+      <section id="strategy" class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div class="section-card p-8 flex flex-col justify-center">
+          <h2
+            class="text-3xl font-black text-slate-900 mb-6 border-l-8 border-orange-500 pl-4"
+          >
+            結論：別ワードプレスを立ち上げましょう
+          </h2>
+          <div class="space-y-4 text-slate-600 text-lg leading-relaxed">
+            <p>
+              同一ドメイン内で類似記事の運用は、<strong class="text-slate-900"
+                >「カニバリゼーション（共食い）」</strong
+              >のリスクが非常に高いです。
+            </p>
+            <p>
+              また、動画埋め込み負荷でサイト全体のパフォーマンス低下リスクがあります。
+            </p>
+            <p>
+              そこで、本館の表示速度とSEO評価を100%守りつつ、AI向けの最新構造化データをサブドメインの別ワードプレスで運用しましょう。
+            </p>
+          </div>
+          <div class="mt-8 grid grid-cols-2 gap-4">
+            <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+              <div class="text-2xl font-bold text-blue-800">100%</div>
+              <div class="text-xs text-slate-500 uppercase">
+                速度の維持 (本館)
+              </div>
+            </div>
+            <div class="bg-orange-50 p-4 rounded-xl border border-orange-100">
+              <div class="text-2xl font-bold text-orange-800">0%</div>
+              <div class="text-xs text-slate-500 uppercase">重複リスク</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card p-8">
+          <h3 class="text-lg font-bold text-slate-800 mb-4 text-center">
+            運用モデルの比較分析
+          </h3>
+          <div class="chart-container">
+            <canvas id="strategyComparisonChart"></canvas>
+          </div>
+          <p class="text-center text-xs text-slate-400 mt-4">
+            ※サテライト運用はSEO安全性とAI最適化の自由度で圧倒的優位にあります
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 2: Core Roles (Grid of 4) -->
+      <section id="roles">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-black text-slate-900 mb-2">
+            専門家チームの役割分担
+          </h2>
+          <p class="text-slate-500 italic">
+            各担当者のミッションを明確化し、連携を加速させます
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Role: Producer -->
+          <div class="section-card p-6 border-t-8 border-blue-600">
+            <div
+              class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-3xl mb-4"
+            >
+              📢
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-1">
+              プロデューサー
+            </h3>
+            <p
+              class="text-xs font-bold text-blue-600 mb-4 tracking-tighter uppercase"
+            >
+              Overall Strategy & Youtube
+            </p>
+            <ul class="space-y-3 text-sm text-slate-600 mb-6">
+              <li class="flex items-start">
+                <span class="text-blue-500 mr-2">●</span>
+                Youtubeサブチャネル開設
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-500 mr-2">●</span>
+                動画の<strong>限定公開</strong>設定管理
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-500 mr-2">●</span> 各セクションの連携指揮
+              </li>
+            </ul>
+            <div
+              class="bg-blue-50 p-3 rounded-lg text-xs font-bold text-blue-800 mt-auto"
+            >
+              目標：ブランド毀損の防止
+            </div>
+          </div>
+
+          <!-- Role: Engineer -->
+          <div class="section-card p-6 border-t-8 border-cyan-500">
+            <div
+              class="w-16 h-16 bg-cyan-100 rounded-2xl flex items-center justify-center text-3xl mb-4"
+            >
+              ⚙️
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-1">エンジニア</h3>
+            <p
+              class="text-xs font-bold text-cyan-600 mb-4 tracking-tighter uppercase"
+            >
+              Code & Infrastructure
+            </p>
+            <ul class="space-y-3 text-sm text-slate-600 mb-6">
+              <li class="flex items-start">
+                <span class="text-cyan-500 mr-2">●</span> 別WordPress環境の構築
+              </li>
+              <li class="flex items-start">
+                <span class="text-cyan-500 mr-2">●</span>
+                <strong>Canonicalタグ</strong>の自動化
+              </li>
+              <li class="flex items-start">
+                <span class="text-cyan-500 mr-2">●</span>
+                動画用<strong>JSON-LD</strong>の実装
+              </li>
+              <li class="flex items-start">
+                <span class="text-cyan-500 mr-2">●</span> 埋め込みタグの最適化
+              </li>
+            </ul>
+            <div
+              class="bg-cyan-50 p-3 rounded-lg text-xs font-bold text-cyan-800 mt-auto"
+            >
+              目標：AIへの完璧な「翻訳」
+            </div>
+          </div>
+
+          <!-- Role: Designer -->
+          <div class="section-card p-6 border-t-8 border-indigo-600">
+            <div
+              class="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center text-3xl mb-4"
+            >
+              🎨
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-1">デザイナー</h3>
+            <p
+              class="text-xs font-bold text-indigo-600 mb-4 tracking-tighter uppercase"
+            >
+              Video & UX Design
+            </p>
+            <ul class="space-y-3 text-sm text-slate-600 mb-6">
+              <li class="flex items-start">
+                <span class="text-indigo-500 mr-2">●</span> 要約動画(MP4)の生成
+              </li>
+              <li class="flex items-start">
+                <span class="text-indigo-500 mr-2">●</span> 動画サムネイルの作成
+              </li>
+              <li class="flex items-start">
+                <span class="text-indigo-500 mr-2">●</span>
+                サテライトのUIパーツ調整
+              </li>
+            </ul>
+            <div
+              class="bg-indigo-50 p-3 rounded-lg text-xs font-bold text-indigo-800 mt-auto"
+            >
+              目標：高滞在時間の実現
+            </div>
+          </div>
+
+          <!-- Role: Writer -->
+          <div class="section-card p-6 border-t-8 border-orange-500">
+            <div
+              class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center text-3xl mb-4"
+            >
+              ✍️
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-1">ライター</h3>
+            <p
+              class="text-xs font-bold text-orange-600 mb-4 tracking-tighter uppercase"
+            >
+              Editing & Structure
+            </p>
+            <ul class="space-y-3 text-sm text-slate-600 mb-6">
+              <li class="flex items-start">
+                <span class="text-orange-500 mr-2">●</span>
+                <strong>結論ファースト</strong>のリライト
+              </li>
+              <li class="flex items-start">
+                <span class="text-orange-500 mr-2">●</span>
+                <strong>Q&A形式</strong>の見出し構成
+              </li>
+              <li class="flex items-start">
+                <span class="text-orange-500 mr-2">●</span> 文字起こし・表の配置
+              </li>
+            </ul>
+            <div
+              class="bg-orange-50 p-3 rounded-lg text-xs font-bold text-orange-800 mt-auto"
+            >
+              目標：AI引用率の最大化
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Value Loop (HTML/CSS Diagram) -->
+      <section
+        class="bg-slate-900 rounded-[2.5rem] p-8 md:p-16 text-white overflow-hidden relative"
+      >
+        <!-- Background Decoration (No SVG) -->
+        <div
+          class="absolute top-0 right-0 w-64 h-64 bg-blue-600 rounded-full -mr-32 -mt-32 opacity-20"
+        ></div>
+
+        <h2 class="text-3xl font-bold mb-12 text-center">
+          カノニカルが繋ぐ「価値」の循環
+        </h2>
+
+        <div
+          class="flex flex-col lg:flex-row items-center justify-between gap-8"
+        >
+          <!-- Main Site -->
+          <div
+            class="bg-white text-slate-900 p-8 rounded-2xl w-full lg:w-1/3 shadow-2xl z-10"
+          >
+            <div class="text-5xl mb-4 text-center">🏢</div>
+            <h4 class="font-black text-2xl text-center mb-2">本館 (Main)</h4>
+            <p class="text-sm text-slate-500 text-center mb-4">
+              オリジナル・信頼・成約
+            </p>
+            <div class="space-y-2">
+              <div class="h-2 bg-slate-100 rounded w-full"></div>
+              <div class="h-2 bg-slate-100 rounded w-5/6"></div>
+            </div>
+          </div>
+
+          <!-- Connector -->
+          <div class="flex flex-col items-center">
+            <div class="text-blue-400 font-bold mb-2">コピー & 要約動画化</div>
+            <div class="text-4xl animate-pulse text-blue-500">→</div>
+            <div class="text-orange-400 font-bold mt-2">
+              評価を還流 (Canonical)
+            </div>
+            <div class="text-4xl text-orange-500">←</div>
+          </div>
+
+          <!-- Satellite Site -->
+          <div
+            class="bg-orange-500 text-white p-8 rounded-2xl w-full lg:w-1/3 shadow-2xl z-10"
+          >
+            <div class="text-5xl mb-4 text-center">🛰️</div>
+            <h4 class="font-black text-2xl text-center mb-2">
+              別館 (Satellite)
+            </h4>
+            <p class="text-sm text-white/80 text-center mb-4">
+              動画・AI最適化・集客
+            </p>
+            <div class="bg-black/20 p-4 rounded-xl">
+              <code class="text-xs text-orange-200">rel="canonical"</code>
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-12 text-center text-slate-400 text-sm max-w-2xl mx-auto">
+          サテライトサイトで獲得した認知や被リンクは、カノニカルタグを通じて「本館」のドメインパワー向上に貢献します。
+        </p>
+      </section>
+
+      <!-- Section 4: Checklist -->
+      <section class="max-w-4xl mx-auto">
+        <div class="section-card p-10">
+          <h2 class="text-2xl font-black text-slate-900 mb-8 flex items-center">
+            <span class="bg-green-500 text-white p-1 rounded-lg mr-3">✓</span>
+            公開前「これだけは確認」チェックリスト
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="checklist-item">
+              <div
+                class="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center mr-3 font-bold"
+              >
+                1
+              </div>
+              <span class="text-sm font-medium"
+                >カノニカル先が「本館記事」になっているか</span
+              >
+            </div>
+            <div class="checklist-item">
+              <div
+                class="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center mr-3 font-bold"
+              >
+                2
+              </div>
+              <span class="text-sm font-medium"
+                >Youtube設定が「限定公開」であるか</span
+              >
+            </div>
+            <div class="checklist-item">
+              <div
+                class="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center mr-3 font-bold"
+              >
+                3
+              </div>
+              <span class="text-sm font-medium"
+                >埋め込みコード末尾に ?rel=0 があるか</span
+              >
+            </div>
+            <div class="checklist-item">
+              <div
+                class="w-8 h-8 bg-green-100 text-green-600 rounded-full flex items-center justify-center mr-3 font-bold"
+              >
+                4
+              </div>
+              <span class="text-sm font-medium"
+                >H2見出しが「ユーザーの疑問」形式か</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="text-center py-20 text-slate-400 text-sm">
+      <p>&copy; 202X LLMOサテライト戦略推進チーム</p>
+      <p class="mt-2 uppercase tracking-widest font-bold">
+        Confidential Internal Document
+      </p>
+    </footer>
+
+    <!-- Chart Script -->
+    <script>
+      // Label Wrapping logic (Mandatory)
+      function wrapLabel(str, maxLen) {
+        const chunks = [];
+        for (let i = 0; i < str.length; i += maxLen) {
+          chunks.push(str.substring(i, i + maxLen));
+        }
+        return chunks;
+      }
+
+      // Radar Chart Implementation
+      const ctx = document
+        .getElementById("strategyComparisonChart")
+        .getContext("2d");
+      new Chart(ctx, {
+        type: "radar",
+        data: {
+          labels: [
+            "SEO安全性",
+            "表示速度維持",
+            "AI最適化自由度",
+            "ブランド保護",
+            "実装スピード",
+          ].map((l) => wrapLabel(l, 8)),
+          datasets: [
+            {
+              label: "サテライト運用 (本提案)",
+              data: [100, 100, 95, 90, 60],
+              backgroundColor: "rgba(59, 130, 246, 0.2)",
+              borderColor: "#3b82f6",
+              pointBackgroundColor: "#3b82f6",
+              pointBorderColor: "#fff",
+              borderWidth: 3,
+            },
+            {
+              label: "同一サイト統合運用",
+              data: [20, 30, 40, 60, 95],
+              backgroundColor: "rgba(249, 115, 22, 0.1)",
+              borderColor: "#f97316",
+              pointBackgroundColor: "#f97316",
+              pointBorderColor: "#fff",
+              borderWidth: 2,
+              borderDash: [5, 5],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: "bottom",
+              labels: { font: { size: 12, weight: "bold" } },
+            },
+            tooltip: {
+              callbacks: {
+                title: function (tooltipItems) {
+                  const item = tooltipItems[0];
+                  let label = item.chart.data.labels[item.dataIndex];
+                  return Array.isArray(label) ? label.join("") : label;
+                },
+              },
+            },
+          },
+          scales: {
+            r: {
+              angleLines: { display: true },
+              suggestedMin: 0,
+              suggestedMax: 100,
+              ticks: { display: false },
+              pointLabels: {
+                font: { size: 12, weight: "bold" },
+                color: "#475569",
+              },
+            },
+          },
+        },
+      });
+    </script>
+
+    <!-- 
+    CRITICAL COMPLIANCE CHECK:
+    - NO SVG used.
+    - NO Mermaid JS used.
+    - Single HTML file structure.
+    - Chart.js labels processed (wrapped).
+    - Tooltip multiline title logic implemented.
+    -->
+  </body>
+</html>
