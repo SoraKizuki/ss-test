@@ -3,25 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
     <title>LLMOコラムワークフロー提案</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap"
       rel="stylesheet"
     />
-
-    <!-- 
-    Palette Selection: "Brilliant Blues & Vibrant Orange"
-    Primary: #1e3a8a (Deep Blue)
-    Secondary: #3b82f6 (Bright Blue)
-    Accent: #f97316 (Vibrant Orange)
-    Background: #f8fafc (Slate 50)
-    Text: #1e293b (Slate 800)
-    -->
 
     <style>
       body {
@@ -97,7 +86,6 @@
     </style>
   </head>
   <body class="antialiased">
-    <!-- Hero Section -->
     <header
       class="gradient-header text-white pt-20 pb-24 px-8 text-center shadow-xl"
     >
@@ -118,7 +106,132 @@
     </header>
 
     <main class="max-w-7xl mx-auto p-4 md:p-12 -mt-12 space-y-16">
-      <!-- Section 1: Strategic Decision (Radar Chart) -->
+      <section
+        id="overview"
+        class="section-card p-8 md:p-12 border-t-8 border-slate-500"
+      >
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl font-black text-slate-900 mb-6">施策の概要</h2>
+            <p class="text-slate-600 mb-6">
+              サイトのデザイン・内容はほぼ変えず、構成要素をAI検索に合わせてアップデートする。
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-start bg-slate-50 p-4 rounded-xl">
+                <div class="text-3xl mr-4">🎥</div>
+                <div>
+                  <h3 class="font-bold text-slate-900">
+                    TOP静止画を「要約動画」へ
+                  </h3>
+                  <p class="text-sm text-slate-500">
+                    既存記事のトップ画像を動画に差し替え
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start bg-slate-50 p-4 rounded-xl">
+                <div class="text-3xl mr-4">🤖</div>
+                <div>
+                  <h3 class="font-bold text-slate-900">記事をAI向けに最適化</h3>
+                  <p class="text-sm text-slate-500">
+                    内容は変えず、構造をLLMが理解しやすい形へ
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-red-50 p-8 rounded-2xl border-2 border-red-100">
+            <h3 class="text-xl font-bold text-red-700 mb-4 flex items-center">
+              <span class="mr-2">⚠️</span> 重大な懸念点
+            </h3>
+            <p class="text-red-900/80 mb-6 font-medium">
+              これを既存サイトでそのまま実施すると、以下のリスクが発生します。
+            </p>
+            <ul class="space-y-3 mb-8">
+              <li
+                class="flex items-center text-red-800 font-bold bg-white/50 p-2 rounded"
+              >
+                <span
+                  class="text-xs bg-red-200 text-red-800 px-2 py-1 rounded mr-3"
+                  >SEO</span
+                >
+                類似コンテンツ判定による評価低下
+              </li>
+              <li
+                class="flex items-center text-red-800 font-bold bg-white/50 p-2 rounded"
+              >
+                <span
+                  class="text-xs bg-red-200 text-red-800 px-2 py-1 rounded mr-3"
+                  >速度</span
+                >
+                動画埋め込みによるパフォーマンス低下
+              </li>
+            </ul>
+            <div class="text-center">
+              <div class="inline-block animate-bounce text-2xl">⬇</div>
+              <p class="text-sm text-red-600 font-bold">
+                これらを回避する解決策が「サテライト運用」です。<br />
+                コラムサイトとして立ち上げるのが最適解です。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="visual-comparison"
+        class="max-w-6xl mx-auto -mt-8 relative z-10"
+      >
+        <h3
+          class="text-center text-slate-400 font-bold text-sm mb-6 uppercase tracking-widest"
+        >
+          完成イメージ
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+          <div class="group">
+            <div class="flex items-center justify-between mb-3 px-2">
+              <span
+                class="bg-slate-200 text-slate-600 px-3 py-1 rounded-full text-xs font-bold"
+                >BEFORE</span
+              >
+            </div>
+            <div
+              class="bg-white p-2 rounded-2xl shadow-lg border border-slate-100 transition-transform group-hover:scale-[1.02]"
+            >
+              <img
+                src="img/before.png"
+                alt="Before: Static Image"
+                class="w-full rounded-xl"
+              />
+            </div>
+          </div>
+
+          <div class="group relative">
+            <div class="flex items-center justify-between mb-3 px-2">
+              <span
+                class="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-md shadow-blue-200"
+                >AFTER</span
+              >
+            </div>
+            <div
+              class="bg-white p-2 rounded-2xl shadow-xl border-2 border-blue-500 relative transition-transform group-hover:scale-[1.02]"
+            >
+              <div
+                class="absolute -right-2 -top-2 bg-orange-500 text-white w-12 h-12 flex items-center justify-center rounded-full text-xl font-bold shadow-lg z-10 animate-pulse"
+              >
+                ✨
+              </div>
+              <img
+                src="img/after.jpg"
+                alt="After: Video Implementation"
+                class="w-full rounded-xl"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="strategy" class="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div class="section-card p-8 flex flex-col justify-center">
           <h2
@@ -130,13 +243,11 @@
             <p>
               同一ドメイン内で類似記事の運用は、<strong class="text-slate-900"
                 >「カニバリゼーション（共食い）」</strong
-              >のリスクが非常に高いです。
+              >のリスクが非常に高く、動画埋め込み負荷（リンクでも同様）で、サイト全体のパフォーマンスが低下します。
             </p>
+            <p>また、LP化は管理面が煩雑で推奨できません。</p>
             <p>
-              また、動画埋め込み負荷でサイト全体のパフォーマンス低下リスクがあります。
-            </p>
-            <p>
-              そこで、本館の表示速度とSEO評価を100%守りつつ、AI向けの最新構造化データをサブドメインの別ワードプレスで運用しましょう。
+              そこで、本館の表示速度とSEO評価を100%守りつつ、AI向けの最新構造化データをサブドメインの別ワードプレスでコラムを運用しましょう。
             </p>
           </div>
           <div class="mt-8 grid grid-cols-2 gap-4">
@@ -166,19 +277,15 @@
         </div>
       </section>
 
-      <!-- Section 2: Core Roles (Grid of 4) -->
       <section id="roles">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-black text-slate-900 mb-2">
-            専門家チームの役割分担
+            各セクションの役割分担
           </h2>
-          <p class="text-slate-500 italic">
-            各担当者のミッションを明確化し、連携を加速させます
-          </p>
+          <p class="text-slate-500 italic">各担当者のミッションを明確化</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Role: Producer -->
           <div class="section-card p-6 border-t-8 border-blue-600">
             <div
               class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-3xl mb-4"
@@ -199,21 +306,74 @@
                 Youtubeサブチャネル開設
               </li>
               <li class="flex items-start">
-                <span class="text-blue-500 mr-2">●</span>
-                動画の<strong>限定公開</strong>設定管理
-              </li>
-              <li class="flex items-start">
                 <span class="text-blue-500 mr-2">●</span> 各セクションの連携指揮
               </li>
             </ul>
             <div
               class="bg-blue-50 p-3 rounded-lg text-xs font-bold text-blue-800 mt-auto"
             >
-              目標：ブランド毀損の防止
+              どの記事をサテライト化するか指示・管理する
             </div>
           </div>
 
-          <!-- Role: Engineer -->
+          <div class="section-card p-6 border-t-8 border-indigo-600">
+            <div
+              class="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center text-3xl mb-4"
+            >
+              🎨
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-1">デザイナー</h3>
+            <p
+              class="text-xs font-bold text-indigo-600 mb-4 tracking-tighter uppercase"
+            >
+              Video & UX Design
+            </p>
+            <ul class="space-y-3 text-sm text-slate-600 mb-6">
+              <li class="flex items-start">
+                <span class="text-indigo-500 mr-2">●</span>
+                要約動画(H.265)の作成
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-500 mr-2">●</span>
+                動画の<strong>限定公開</strong>設定管理
+              </li>
+            </ul>
+            <div
+              class="bg-indigo-50 p-3 rounded-lg text-xs font-bold text-indigo-800 mt-auto"
+            >
+              動画化して共有する
+            </div>
+          </div>
+
+          <div class="section-card p-6 border-t-8 border-orange-500">
+            <div
+              class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center text-3xl mb-4"
+            >
+              ✍️
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-1">ライター</h3>
+            <p
+              class="text-xs font-bold text-orange-600 mb-4 tracking-tighter uppercase"
+            >
+              Editing & Structure
+            </p>
+            <ul class="space-y-3 text-sm text-slate-600 mb-6">
+              <li class="flex items-start">
+                <span class="text-orange-500 mr-2">●</span>
+                <strong>結論ファースト</strong>のリライト
+              </li>
+              <li class="flex items-start">
+                <span class="text-orange-500 mr-2">●</span>
+                <strong>Q&A形式</strong>の見出し構成
+              </li>
+            </ul>
+            <div
+              class="bg-orange-50 p-3 rounded-lg text-xs font-bold text-orange-800 mt-auto"
+            >
+              AI向け記事の最適化
+            </div>
+          </div>
+
           <div class="section-card p-6 border-t-8 border-cyan-500">
             <div
               class="w-16 h-16 bg-cyan-100 rounded-2xl flex items-center justify-center text-3xl mb-4"
@@ -245,101 +405,35 @@
             <div
               class="bg-cyan-50 p-3 rounded-lg text-xs font-bold text-cyan-800 mt-auto"
             >
-              目標：AIへの完璧な「翻訳」
-            </div>
-          </div>
-
-          <!-- Role: Designer -->
-          <div class="section-card p-6 border-t-8 border-indigo-600">
-            <div
-              class="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center text-3xl mb-4"
-            >
-              🎨
-            </div>
-            <h3 class="text-xl font-bold text-slate-800 mb-1">デザイナー</h3>
-            <p
-              class="text-xs font-bold text-indigo-600 mb-4 tracking-tighter uppercase"
-            >
-              Video & UX Design
-            </p>
-            <ul class="space-y-3 text-sm text-slate-600 mb-6">
-              <li class="flex items-start">
-                <span class="text-indigo-500 mr-2">●</span> 要約動画(MP4)の生成
-              </li>
-              <li class="flex items-start">
-                <span class="text-indigo-500 mr-2">●</span> 動画サムネイルの作成
-              </li>
-              <li class="flex items-start">
-                <span class="text-indigo-500 mr-2">●</span>
-                サテライトのUIパーツ調整
-              </li>
-            </ul>
-            <div
-              class="bg-indigo-50 p-3 rounded-lg text-xs font-bold text-indigo-800 mt-auto"
-            >
-              目標：高滞在時間の実現
-            </div>
-          </div>
-
-          <!-- Role: Writer -->
-          <div class="section-card p-6 border-t-8 border-orange-500">
-            <div
-              class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center text-3xl mb-4"
-            >
-              ✍️
-            </div>
-            <h3 class="text-xl font-bold text-slate-800 mb-1">ライター</h3>
-            <p
-              class="text-xs font-bold text-orange-600 mb-4 tracking-tighter uppercase"
-            >
-              Editing & Structure
-            </p>
-            <ul class="space-y-3 text-sm text-slate-600 mb-6">
-              <li class="flex items-start">
-                <span class="text-orange-500 mr-2">●</span>
-                <strong>結論ファースト</strong>のリライト
-              </li>
-              <li class="flex items-start">
-                <span class="text-orange-500 mr-2">●</span>
-                <strong>Q&A形式</strong>の見出し構成
-              </li>
-              <li class="flex items-start">
-                <span class="text-orange-500 mr-2">●</span> 文字起こし・表の配置
-              </li>
-            </ul>
-            <div
-              class="bg-orange-50 p-3 rounded-lg text-xs font-bold text-orange-800 mt-auto"
-            >
-              目標：AI引用率の最大化
+              SEOリスクの管理、AI向けのコーディング
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Section 3: Value Loop (HTML/CSS Diagram) -->
       <section
         class="bg-slate-900 rounded-[2.5rem] p-8 md:p-16 text-white overflow-hidden relative"
       >
-        <!-- Background Decoration (No SVG) -->
         <div
           class="absolute top-0 right-0 w-64 h-64 bg-blue-600 rounded-full -mr-32 -mt-32 opacity-20"
         ></div>
 
         <h2 class="text-3xl font-bold mb-12 text-center">
-          カノニカルが繋ぐ「価値」の循環
+          コピーサイト判定をカノニカルタグで回避する
         </h2>
 
         <div
           class="flex flex-col lg:flex-row items-center justify-between gap-8"
         >
-          <!-- Main Site -->
           <div
             class="bg-white text-slate-900 p-8 rounded-2xl w-full lg:w-1/3 shadow-2xl z-10"
           >
             <div class="text-5xl mb-4 text-center">🏢</div>
-            <h4 class="font-black text-2xl text-center mb-2">本館 (Main)</h4>
+            <h4 class="font-black text-2xl text-center mb-2">
+              本館 (公式サイト)
+            </h4>
             <p class="text-sm text-slate-500 text-center mb-4">
-              オリジナル・信頼・成約
+              https://kizuki.or.jp/
             </p>
             <div class="space-y-2">
               <div class="h-2 bg-slate-100 rounded w-full"></div>
@@ -347,27 +441,23 @@
             </div>
           </div>
 
-          <!-- Connector -->
           <div class="flex flex-col items-center">
             <div class="text-blue-400 font-bold mb-2">コピー & 要約動画化</div>
             <div class="text-4xl animate-pulse text-blue-500">→</div>
             <div class="text-orange-400 font-bold mt-2">
-              評価を還流 (Canonical)
+              評価を還流 (カノニカル)
             </div>
             <div class="text-4xl text-orange-500">←</div>
           </div>
 
-          <!-- Satellite Site -->
           <div
             class="bg-orange-500 text-white p-8 rounded-2xl w-full lg:w-1/3 shadow-2xl z-10"
           >
             <div class="text-5xl mb-4 text-center">🛰️</div>
             <h4 class="font-black text-2xl text-center mb-2">
-              別館 (Satellite)
+              別館 (サテライト)
             </h4>
-            <p class="text-sm text-white/80 text-center mb-4">
-              動画・AI最適化・集客
-            </p>
+            <p class="text-sm text-white/80 text-center mb-4">サブドメイン</p>
             <div class="bg-black/20 p-4 rounded-xl">
               <code class="text-xs text-orange-200">rel="canonical"</code>
             </div>
@@ -379,12 +469,11 @@
         </p>
       </section>
 
-      <!-- Section 4: Checklist -->
       <section class="max-w-4xl mx-auto">
         <div class="section-card p-10">
           <h2 class="text-2xl font-black text-slate-900 mb-8 flex items-center">
             <span class="bg-green-500 text-white p-1 rounded-lg mr-3">✓</span>
-            公開前「これだけは確認」チェックリスト
+            公開前チェックリスト
           </h2>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -434,13 +523,9 @@
     </main>
 
     <footer class="text-center py-20 text-slate-400 text-sm">
-      <p>&copy; 202X LLMOサテライト戦略推進チーム</p>
-      <p class="mt-2 uppercase tracking-widest font-bold">
-        Confidential Internal Document
-      </p>
+      <p>&copy; 2025 LLMOサテライト戦略</p>
     </footer>
 
-    <!-- Chart Script -->
     <script>
       // Label Wrapping logic (Mandatory)
       function wrapLabel(str, maxLen) {
@@ -520,14 +605,5 @@
         },
       });
     </script>
-
-    <!-- 
-    CRITICAL COMPLIANCE CHECK:
-    - NO SVG used.
-    - NO Mermaid JS used.
-    - Single HTML file structure.
-    - Chart.js labels processed (wrapped).
-    - Tooltip multiline title logic implemented.
-    -->
   </body>
 </html>
