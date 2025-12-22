@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>キズキ高等学院 | 本気の自立</title>
+    <meta
+      name="description"
+      content="安心していいよ。ただし、人生は、真剣勝負だ。不登校支援15年、キズキ高等学院のLPワイヤーフレーム。"
+    />
+    <style>
+      /* --- リセット & ベーススタイル --- */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+          "Hiragino Sans", Meiryo, sans-serif;
+        color: #333;
+        line-height: 1.8;
+        background-color: #f4f5f7; /* わずかに青みのあるライトグレー */
+        font-size: 16px; /* ベースサイズ */
+        position: relative; /* TOPへ戻るボタンの基準 */
+      }
+
+      /* --- カラーパレット & フォント設定 --- */
+      :root {
+        --bg-dark: #2c3e50; /* スレートグレー（ベース） */
+        --bg-deep: #1a252f; /* より深いグレー（引き締め） */
+        --text-light: #ecf0f1;
+        --blue-flame-start: #005c97; /* 青い炎の芯 */
+        --blue-flame-end: #363795; /* 青い炎の外側 */
+        --accent-glow: #4facfe; /* 光彩 */
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", serif; /* 明朝体で真剣さを演出 */
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      /* --- 共通コンポーネント --- */
+      .container {
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .btn-cta {
+        display: inline-block;
+        background: linear-gradient(
+          135deg,
+          var(--blue-flame-start),
+          var(--accent-glow)
+        );
+        color: white;
+        padding: 1.2rem 2rem;
+        border-radius: 2px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.1rem;
+        letter-spacing: 0.1em;
+        box-shadow: 0 4px 15px rgba(0, 92, 151, 0.4);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: center;
+        width: 100%; /* スマホでは幅いっぱい */
+        /* キランと光るアニメーション用設定 */
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* キランと光るエフェクト（疑似要素で光の帯を作る） */
+      .btn-cta::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.4) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        transform: skewX(-25deg);
+        /* 5秒間隔でアニメーションを実行 */
+        animation: shine 5s infinite;
+      }
+
+      @keyframes shine {
+        0% {
+          left: -100%;
+        }
+        15% {
+          left: 200%;
+        } /* 素早く通り過ぎる */
+        100% {
+          left: 200%;
+        } /* 残りの時間は待機 */
+      }
+
+      @media (min-width: 768px) {
+        .btn-cta {
+          width: auto;
+          padding: 18px 40px;
+        }
+      }
+
+      .btn-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      @media (min-width: 768px) {
+        section {
+          padding: 100px 0;
+        }
+      }
+
+      /* --- ヘッダー --- */
+      header {
+        background-color: var(--bg-deep);
+        color: white;
+        padding: 12px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid #34495e;
+        /* スマホでの誤操作防止のため少しシャドウを強める */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1rem;
+        font-weight: bold;
+        letter-spacing: 0.05em;
+        white-space: nowrap;
+      }
+
+      /* --- ヘッダーボタン用CSS --- */
+      .header-actions {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .btn-header {
+        font-size: 0.75rem;
+        padding: 8px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+      }
+
+      /* 電話で相談ボタン */
+      .btn-tel {
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        background: transparent;
+      }
+
+      /* 個別相談会ボタン */
+      .btn-consult {
+        background-color: var(--blue-flame-start);
+        color: white;
+        border: 1px solid var(--blue-flame-start);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      @media (min-width: 768px) {
+        .logo {
+          font-size: 1.4rem;
+        }
+        .header-actions {
+          gap: 15px;
+        }
+        .btn-header {
+          font-size: 0.9rem;
+          padding: 10px 20px;
+        }
+      }
+
+      /* --- ヒーローセクション (First View) --- */
+      .hero {
+        background-color: var(--bg-dark);
+        background-image: linear-gradient(
+          to bottom,
+          rgba(44, 62, 80, 0.9),
+          rgba(26, 37, 47, 1)
+        );
+        color: var(--text-light);
+        height: 90vh; /* モバイルブラウザのアドレスバー考慮 */
+        min-height: 500px;
+        display: flex;
+        align-items: stretch; /* コンテンツエリアを広げる */
+        justify-content: center;
+        text-align: left;
+        position: relative;
+        overflow: hidden;
+        padding-top: 80px; /* ヘッダーの高さ分 */
+        padding-bottom: 40px;
+      }
+
+      /* 青い炎のイメージ演出 */
+      .hero::before {
+        content: "";
+        position: absolute;
+        bottom: -50px;
+        left: 20%; /* 左側から燃え上がるイメージ */
+        transform: translateX(-50%);
+        width: 150%;
+        height: 60vh;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(79, 172, 254, 0.25) 0%,
+          rgba(0, 0, 0, 0) 70%
+        );
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        /* 変更: 上下端に要素を振り分ける */
+        justify-content: space-between;
+      }
+
+      /* --- キャッチコピーの特殊レイアウト --- */
+
+      /* 1. サブコピー (最上段固定) */
+      .hero-sub {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        margin-bottom: 10px;
+        display: block;
+        font-weight: normal;
+        width: 100%;
+        /* 右上の縦書き文字と被らないように幅を制限 */
+        max-width: 85%;
+      }
+
+      /* 文節改行用の設定：spanをインラインブロック化することで、タグの中身が途中で改行されるのを防ぐ */
+      .hero-sub span {
+        display: inline-block;
+      }
+
+      /* 2. 右上：縦書きパート (絶対配置) */
+      .copy-vertical {
+        position: absolute;
+        top: 2vh;
+        right: 0;
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+        font-size: clamp(2rem, 8vh, 4.5rem); /* 高さに応じてサイズ調整 */
+        letter-spacing: 0.15em;
+        line-height: 1.8;
+        font-weight: 500;
+        opacity: 0.9;
+        white-space: nowrap;
+        /* h1タグとしてのスタイルリセット */
+        margin: 0;
+        font-family: "Yu Mincho", serif;
+      }
+
+      /* 3. 左下：メインコピーとボタンのラッパー */
+      .hero-bottom-area {
+        width: 100%;
+        margin-top: auto;
+      }
+
+      /* 左下：横書きパート */
+      .copy-main {
+        display: block;
+        font-size: clamp(3rem, 13vw, 8rem);
+        line-height: 1.1;
+        text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        font-feature-settings: "palt";
+        word-break: keep-all;
+        overflow-wrap: break-word;
+        margin-bottom: 20px;
+        font-family: "Yu Mincho", serif;
+        font-weight: 700;
+      }
+
+      /* スマホ向けの改行調整 */
+      .copy-main br {
+        display: block;
+      }
+
+      .hero .btn-cta {
+        max-width: 100%;
+      }
+
+      @media (min-width: 768px) {
+        .hero {
+          padding-bottom: 60px;
+        }
+        .hero-sub {
+          font-size: 1.1rem;
+          margin-bottom: 20px;
+          max-width: 70%; /* PCなら少し余裕を持たせる */
+        }
+        .copy-main {
+          line-height: 1.2;
+          margin-bottom: 30px;
+        }
+        .copy-vertical {
+          top: 5vh;
+          right: 5%; /* PCでは少し内側に */
+          font-size: clamp(3rem, 6vw, 5rem);
+        }
+        .hero .btn-cta {
+          width: auto;
+        }
+
+        /* PCでは炎の位置を中心寄りに */
+        .hero::before {
+          left: 50%;
+          width: 70%;
+        }
+      }
+
+      /* --- マーキーアニメーション（流れる文字） --- */
+      .marquee-section {
+        margin-top: 60px; /* 上の水平線が明確に見えるようにマージンを追加 */
+        border-top: 2px solid var(--bg-deep); /* 上の水平線 */
+        border-bottom: 2px solid var(--bg-deep); /* 下の水平線 */
+        background-color: #fff;
+        padding: 10px 0;
+        overflow: hidden; /* はみ出し部分を隠す */
+        width: 100%;
+        position: relative;
+        z-index: 2;
+      }
+
+      .marquee-track {
+        display: flex;
+        width: fit-content;
+      }
+
+      .marquee-content {
+        display: flex;
+        align-items: center;
+        /* 右から左へ無限ループ */
+        animation: marquee 40s linear infinite;
+      }
+
+      .marquee-text {
+        font-family: "Yu Mincho", serif;
+        font-weight: 900;
+        /* 劇的に大きく */
+        font-size: clamp(5rem, 15vw, 12rem);
+        white-space: nowrap;
+        padding-right: 0.5em; /* 文字間隔 */
+        color: var(--bg-dark);
+        line-height: 1.1;
+        /* 少し透過させて背景になじませる場合は以下を調整 */
+        opacity: 0.9;
+      }
+
+      @keyframes marquee {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+      /* --- 現実（Reality）セクション --- */
+      .reality {
+        background-color: #e8eaed;
+        text-align: center;
+      }
+
+      .reality h2 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        color: var(--bg-deep);
+        line-height: 1.4;
+      }
+
+      .data-grid {
+        display: flex;
+        flex-direction: column; /* スマホファースト: 縦積み */
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .data-card {
+        background: white;
+        padding: 25px;
+        border-left: 5px solid var(--bg-dark);
+        width: 100%; /* スマホでは幅いっぱい */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* --- 比較グラフ（横棒チャート）のスタイル --- */
+      .chart-wrapper {
+        width: 100%;
+        max-width: 350px; /* PCでの最大幅 */
+      }
+
+      .chart-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--bg-deep);
+        margin-bottom: 20px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+      }
+
+      .chart-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+      }
+
+      .chart-label {
+        width: 80px; /* ラベル幅固定 */
+        font-weight: bold;
+        color: #666;
+        text-align: right;
+        padding-right: 10px;
+        font-size: 0.8rem;
+        flex-shrink: 0;
+      }
+
+      .chart-bar-area {
+        flex-grow: 1;
+        background-color: #f0f0f0;
+        border-radius: 4px;
+        height: 24px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .chart-bar {
+        height: 100%;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 8px;
+        color: white;
+        font-size: 0.8rem;
+        font-weight: bold;
+        transition: width 1s ease-out;
+      }
+
+      /* バーの色分け */
+      .bar-normal {
+        background-color: #bdc3c7;
+        color: #555;
+      } /* 全日制: 目立たないグレー */
+      .bar-teiji {
+        background-color: #95a5a6;
+      } /* 定時制: 少し濃いグレー */
+      .bar-target {
+        background: linear-gradient(
+          90deg,
+          var(--blue-flame-start),
+          var(--accent-glow)
+        );
+        box-shadow: 0 0 10px rgba(0, 92, 151, 0.3);
+      } /* 通信制: 強調（青い炎） */
+
+      .chart-value {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: inherit;
+      }
+
+      /* ターゲットのバーだけ文字色を白に強制 */
+      .bar-target .chart-value {
+        color: white;
+      }
+      .bar-normal .chart-value {
+        color: #555;
+        left: 10px;
+        right: auto;
+      } /* 短いバー用 */
+
+      .reality-text {
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: left;
+        font-size: 1rem;
+        margin-top: 20px;
+      }
+
+      @media (min-width: 768px) {
+        .reality h2 {
+          font-size: 2.2rem;
+          margin-bottom: 50px;
+        }
+        .data-grid {
+          flex-direction: row;
+          gap: 40px;
+          align-items: stretch;
+        }
+        .data-card {
+          width: 45%;
+          padding: 40px;
+        } /* 幅を少し広げる */
+      }
+
+      /* --- 覚悟（Message）セクション --- */
+      .message {
+        background-color: var(--bg-deep);
+        color: var(--text-light);
+      }
+
+      .message h2 {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 15px;
+        margin-bottom: 25px;
+        display: inline-block;
+        font-size: 1.6rem;
+        line-height: 1.4;
+      }
+
+      .message-body {
+        display: flex;
+        flex-direction: column; /* スマホファースト: 縦積み */
+        gap: 30px;
+      }
+
+      .message-visual {
+        width: 100%;
+        height: 250px; /* スマホでの高さ */
+        background: linear-gradient(45deg, #333, #444);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        font-size: 0.9rem;
+        border-radius: 4px;
+      }
+      .message-visual::after {
+        content: "Visual: 真剣な眼差しの横顔";
+      }
+
+      @media (min-width: 768px) {
+        .message h2 {
+          font-size: 2rem;
+          margin-bottom: 40px;
+        }
+        .message-body {
+          flex-direction: row;
+          align-items: center;
+          gap: 60px;
+        }
+        .message-text {
+          flex: 1;
+        }
+        .message-visual {
+          flex: 1;
+          height: 350px;
+        }
+      }
+
+      /* --- コンセプト（Solution）セクション --- */
+      .concept {
+        background-color: white;
+        text-align: center;
+      }
+
+      .concept-title {
+        color: var(--blue-flame-start);
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: block;
+        letter-spacing: 0.2em;
+      }
+
+      .concept h2 {
+        font-size: 2.2rem;
+        margin-bottom: 40px;
+        color: var(--bg-deep);
+      }
+
+      .steps {
+        display: flex;
+        flex-direction: column; /* スマホファースト: 縦積み */
+        gap: 20px;
+      }
+
+      .step-card {
+        width: 100%;
+        padding: 30px 20px;
+        text-align: left;
+        position: relative;
+      }
+
+      /* Step 1: 安心（グレー） */
+      .step-1 {
+        background-color: #f4f5f7;
+        border-top: 5px solid #bdc3c7;
+      }
+
+      /* Step 2: 自立（青） */
+      .step-2 {
+        background-color: #f0f8ff;
+        border-top: 5px solid var(--blue-flame-start);
+        box-shadow: 0 10px 30px rgba(0, 92, 151, 0.1);
+      }
+
+      .step-heading {
+        font-size: 1.4rem;
+        font-family: "Yu Mincho", serif;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+
+      @media (min-width: 768px) {
+        .concept h2 {
+          font-size: 2.8rem;
+          margin-bottom: 60px;
+        }
+        .steps {
+          flex-direction: row;
+          align-items: stretch;
+          gap: 30px;
+        }
+        .step-card {
+          flex: 1;
+          padding: 50px;
+        }
+        .step-heading {
+          font-size: 1.6rem;
+          margin-bottom: 20px;
+        }
+      }
+
+      /* --- 特色（Features）セクション --- */
+      .features {
+        background-color: #f8f9fa; /* コンセプトと区別するための薄いグレー */
+        text-align: left; /* 基本は左揃え */
+      }
+
+      .features h2 {
+        font-size: 2rem;
+        margin-bottom: 40px;
+        color: var(--bg-deep);
+        text-align: center;
+      }
+
+      .feature-list {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .feature-item {
+        background: white;
+        padding: 30px;
+        border-radius: 4px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+        border-bottom: 4px solid var(--blue-flame-start); /* アクセント */
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        transition: transform 0.3s ease;
+      }
+
+      .feature-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .feature-number {
+        font-family: "Helvetica Neue", sans-serif;
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: #e0e4e8; /* 薄いグレーで背景っぽく */
+        line-height: 0.8;
+        margin-bottom: 5px;
+      }
+
+      /* 選択されているかのような青のアクセント */
+      .feature-number span {
+        color: var(--blue-flame-start);
+      }
+
+      .feature-content h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        color: var(--bg-deep);
+        line-height: 1.5;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+      }
+
+      .feature-content p {
+        font-size: 0.95rem;
+        color: #555;
+      }
+
+      @media (min-width: 768px) {
+        .features h2 {
+          font-size: 2.8rem;
+          margin-bottom: 60px;
+        }
+        .feature-list {
+          flex-direction: row; /* 横並び */
+          align-items: stretch;
+          justify-content: center;
+        }
+        .feature-item {
+          flex: 1;
+          max-width: 32%; /* 3列配置 */
+        }
+      }
+
+      /* --- FAQセクション --- */
+      .faq {
+        background-color: white;
+        text-align: left;
+      }
+
+      .faq h2 {
+        font-size: 2rem;
+        margin-bottom: 50px;
+        color: var(--bg-deep);
+        text-align: center;
+      }
+
+      .faq-list {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .faq-item {
+        padding-bottom: 30px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .faq-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .faq-q {
+        font-weight: bold;
+        font-size: 1.1rem;
+        margin-bottom: 0; /* アコーディオン用に調整（下マージンはJS/CSSで制御） */
+        padding: 15px 0; /* クリックしやすいようにパディング追加 */
+        display: flex;
+        align-items: center; /* アイコン位置調整 */
+        gap: 15px;
+        color: var(--bg-deep);
+        line-height: 1.6;
+        cursor: pointer; /* クリックできる指カーソル */
+        position: relative;
+        transition: color 0.3s;
+      }
+
+      .faq-q:hover {
+        color: var(--blue-flame-start);
+      }
+
+      /* 開閉用の矢印アイコン */
+      .faq-q::after {
+        content: "";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        width: 10px;
+        height: 10px;
+        border-right: 2px solid #ccc;
+        border-bottom: 2px solid #ccc;
+        transform: translateY(-50%) rotate(45deg); /* 下向き矢印 */
+        transition: transform 0.3s ease, border-color 0.3s ease;
+      }
+
+      /* アクティブ時の矢印（上向き） */
+      .faq-item.active .faq-q::after {
+        transform: translateY(-50%) rotate(-135deg);
+        border-color: var(--blue-flame-start);
+      }
+
+      .faq-a {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.8;
+        /* アコーディオン用のアニメーション設定 */
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        margin-top: 0;
+        transition: height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
+      }
+
+      /* アクティブ時のスタイル（高さはJSで動的に設定） */
+      .faq-item.active .faq-a {
+        opacity: 1;
+        /* margin-top: 15px; JSで制御 */
+      }
+
+      .faq-marker {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        font-family: "Helvetica Neue", sans-serif;
+        font-weight: bold;
+        font-size: 1rem;
+        margin-top: -2px; /* テキストとの位置調整 */
+      }
+
+      .q-marker {
+        background-color: var(--blue-flame-start);
+        color: white;
+      }
+
+      .a-marker {
+        background-color: #f4f5f7; /* 薄いグレー */
+        color: var(--blue-flame-start);
+        font-weight: bold;
+      }
+
+      @media (min-width: 768px) {
+        .faq h2 {
+          font-size: 2.8rem;
+          margin-bottom: 70px;
+        }
+        .faq-q {
+          font-size: 1.2rem;
+        }
+      }
+
+      /* --- クロージング（Footer CTA） --- */
+      .closing {
+        background: radial-gradient(circle at center, #2c3e50 0%, #1a252f 100%);
+        color: white;
+        text-align: center;
+        padding: 80px 20px;
+      }
+
+      .closing h2 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        line-height: 1.4;
+      }
+
+      @media (min-width: 768px) {
+        .closing {
+          padding: 120px 20px;
+        }
+        .closing h2 {
+          font-size: 2.4rem;
+          margin-bottom: 50px;
+        }
+      }
+
+      /* --- フッター --- */
+      footer {
+        background-color: #111;
+        color: #999;
+        text-align: center;
+        padding: 60px 20px 20px;
+        font-size: 0.9rem;
+      }
+
+      .footer-logo {
+        font-family: "Yu Mincho", serif;
+        font-size: 1.5rem;
+        color: white;
+        margin-bottom: 25px;
+        font-weight: bold;
+        letter-spacing: 0.05em;
+      }
+
+      .footer-contact {
+        margin-bottom: 40px;
+      }
+
+      .contact-title {
+        font-size: 1rem;
+        color: var(--text-light);
+        margin-bottom: 15px;
+        font-weight: bold;
+        display: inline-block;
+        border-bottom: 1px solid #444;
+        padding-bottom: 5px;
+      }
+
+      .contact-item {
+        margin-bottom: 10px;
+        font-family: "Helvetica Neue", sans-serif;
+      }
+
+      .contact-item a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s;
+        font-size: 1.1rem;
+      }
+
+      .contact-item a:hover {
+        color: white;
+        text-decoration: underline;
+      }
+
+      .contact-hours {
+        font-size: 0.85rem;
+        margin-left: 10px;
+        color: #777;
+      }
+
+      .footer-links {
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+
+      .footer-links a {
+        color: #777;
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: color 0.3s;
+        display: inline-block;
+        border-bottom: 1px solid transparent;
+      }
+
+      .footer-links a:hover {
+        color: white;
+        border-bottom-color: white;
+      }
+
+      .copyright {
+        font-size: 0.7rem;
+        opacity: 0.5;
+        border-top: 1px solid #333;
+        padding-top: 20px;
+        margin-top: 20px;
+        display: block;
+      }
+
+      /* --- TOPへ戻るボタン --- */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: var(--blue-flame-start);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+        font-weight: bold;
+        font-size: 1.5rem;
+        line-height: 1;
+        padding-bottom: 4px; /* 矢印の位置調整 */
+      }
+
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        background-color: var(--accent-glow);
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+      }
+    </style>
+  </head>
+  <body id="top">
+    <header>
+      <div class="container">
+        <div class="logo">キズキ高等学院</div>
+        <div class="header-actions">
+          <a href="#" class="btn-header btn-tel">電話で相談</a>
+          <a href="#" class="btn-header btn-consult">資料をもらう</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- First View: 惹きつけ -->
+    <section class="hero">
+      <div class="container hero-content">
+        <!-- 1. 最上段に配置するサブコピー -->
+        <!-- 指定の区切りで span タグで囲み、inline-block 化することで途中改行を防ぐ -->
+        <p class="hero-sub">
+          <span>卒業から進学、</span>
+          <span>その先の</span>
+          <span>自立までを</span>
+          <span>フルコミットする</span>
+          <span>サポート校</span>
+        </p>
+
+        <!-- 2. 右上配置の縦書きコピー (絶対配置) -->
+        <h1 class="copy-vertical">安心して<br />いいよ。</h1>
+
+        <!-- 3. 左下配置のコンテンツ群 (下部に固定) -->
+        <div class="hero-bottom-area">
+          <p class="copy-main">
+            ただし、<br />
+            人生は、<br />
+            真剣勝負だ。
+          </p>
+          <a href="#cta" class="btn-cta">「本気の自立」について相談する</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee Animation: 劇的に大きく流れる文字 -->
+    <div class="marquee-section">
+      <div class="marquee-track">
+        <!-- 途切れさせないためにコンテンツを2セット配置 -->
+        <div class="marquee-content">
+          <span class="marquee-text">キズキ高等学院</span>
+          <span class="marquee-text">キズキ高等学院</span>
+          <span class="marquee-text">キズキ高等学院</span>
+        </div>
+        <!-- ループ用の複製 (aria-hiddenで読み上げ除外) -->
+        <div class="marquee-content" aria-hidden="true">
+          <span class="marquee-text">キズキ高等学院</span>
+          <span class="marquee-text">キズキ高等学院</span>
+          <span class="marquee-text">キズキ高等学院</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Introduction: 現実の提示 -->
+    <section class="reality">
+      <div class="container">
+        <h2>社会の現実は、<br />時に厳しい。</h2>
+        <div class="data-grid">
+          <!-- グラフ1: 高校中退率の比較 -->
+          <div class="data-card">
+            <div class="chart-wrapper">
+              <h3 class="chart-title">高校中退率</h3>
+
+              <!-- 全日制 -->
+              <div class="chart-row">
+                <span class="chart-label">全日制</span>
+                <div class="chart-bar-area">
+                  <div class="chart-bar bar-normal" style="width: 5%">
+                    <span class="chart-value">約1%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 定時制 -->
+              <div class="chart-row">
+                <span class="chart-label">定時制</span>
+                <div class="chart-bar-area">
+                  <div class="chart-bar bar-teiji" style="width: 40%">
+                    <span class="chart-value">約8%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 通信制（ターゲット） -->
+              <div class="chart-row">
+                <span class="chart-label">通信制</span>
+                <div class="chart-bar-area">
+                  <div class="chart-bar bar-target" style="width: 100%">
+                    <!-- 20%を100%幅として相対表示 -->
+                    <span class="chart-value">20%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- グラフ2: 進路未決定率の比較 -->
+          <div class="data-card">
+            <div class="chart-wrapper">
+              <h3 class="chart-title">卒業後の進路未決定率</h3>
+
+              <!-- 全日制 -->
+              <div class="chart-row">
+                <span class="chart-label">全日制</span>
+                <div class="chart-bar-area">
+                  <div class="chart-bar bar-normal" style="width: 20%">
+                    <span class="chart-value">約6%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 定時制 -->
+              <div class="chart-row">
+                <span class="chart-label">定時制</span>
+                <div class="chart-bar-area">
+                  <div class="chart-bar bar-teiji" style="width: 70%">
+                    <span class="chart-value">約20%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 通信制（ターゲット） -->
+              <div class="chart-row">
+                <span class="chart-label">通信制</span>
+                <div class="chart-bar-area">
+                  <div class="chart-bar bar-target" style="width: 100%">
+                    <!-- 28%を100%幅として相対表示 -->
+                    <span class="chart-value">28%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reality-text">
+          <p>
+            この数字は、社会はそんなに甘くないという現実を突きつけています。通常の高校生と比較しても、通信制高校からの自立には高いハードルが存在します。「ただ待つだけ」「居場所があるだけ」では、越えられない壁があるのです。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reason: キズキの覚悟 -->
+    <section class="message">
+      <div class="container">
+        <div class="message-body">
+          <div class="message-text">
+            <h2>なぜ、私たちは<br />「厳しさ」も伝えるのか。</h2>
+            <p>
+              私たちキズキ高等学院は、不登校支援15年、延べ1.4万人以上の不登校生の人生に寄り添い続けてきました。
+            </p>
+            <br />
+            <p>
+              多くの生徒を見てきたからこそ、「本当に頑張らなければならないその時」がわかります。だから私たちは約束します。あなたが勝負すべきその時、全力で背中を押すことを。
+            </p>
+          </div>
+          <div class="message-visual">
+            <!-- ここにドキュメンタリータッチの画像が入る -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Method: 解決策 -->
+    <section class="concept">
+      <div class="container">
+        <span class="concept-title">CONCEPT</span>
+        <h2>本気の自立</h2>
+        <div class="steps">
+          <div class="step-card step-1">
+            <span class="step-label">STEP 1</span>
+            <h3 class="step-heading">徹底的な安心</h3>
+            <p>
+              まずは、あなたが心から「安心できる。」と言える場所であること。不登校の今の状態を否定せず、ありのまま受け入れます。
+            </p>
+          </div>
+          <div class="step-card step-2">
+            <span class="step-label">STEP 2</span>
+            <h3 class="step-heading">本気の自立</h3>
+            <p>
+              安心を土台に、学習支援、進路指導、社会性の獲得へ。どんな時も「本気の自立」に徹底してフルコミットし、伴走します。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features: 特色 -->
+    <section class="features">
+      <div class="container">
+        <h2>キズキ高等学院の特色</h2>
+        <div class="feature-list">
+          <!-- 01 -->
+          <div class="feature-item">
+            <div class="feature-number"><span>0</span>1</div>
+            <div class="feature-content">
+              <h3>
+                専任メンター制度による<br />「学習」と「メンタル」のサポート
+              </h3>
+              <p>
+                生徒一人一人に、専任のメンターが付き、それぞれの特性や挫折経験を丁寧に理解し、モチベーション維持から学習計画立案まで自立に必要な様々なサポートを行います。
+              </p>
+            </div>
+          </div>
+          <!-- 02 -->
+          <div class="feature-item">
+            <div class="feature-number"><span>0</span>2</div>
+            <div class="feature-content">
+              <h3>オーダーメイドカリキュラムと<br />マンツーマン指導</h3>
+              <p>
+                基礎の学び直しから難関大学合格まで、あなたの「現在地」に合わせたオーダーメイドカリキュラムを作成。生徒一人一人をマンツーマン指導するから、それぞれの状況に合わせた形で学びを支援します。
+              </p>
+            </div>
+          </div>
+          <!-- 03 -->
+          <div class="feature-item">
+            <div class="feature-number"><span>0</span>3</div>
+            <div class="feature-content">
+              <h3>
+                高校卒業後もメンターサポートや<br />学習支援が定期的に受けられる
+              </h3>
+              <p>
+                卒業後も、定期的なメンターサポートや学習支援で、本気の自立をサポートします。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ: よくあるご質問 -->
+    <section class="faq">
+      <div class="container">
+        <h2>よくあるご質問</h2>
+        <div class="faq-list">
+          <!-- Q1 -->
+          <div class="faq-item">
+            <div class="faq-q">
+              <span class="faq-marker q-marker">Q</span>
+              今、全く外に出られません。オンラインでのサポートは可能ですか？
+            </div>
+            <div class="faq-a">
+              <span class="faq-marker a-marker">A</span>
+              <div>
+                はい。オンライン形式も併設しており、ご自宅からの通学が可能です。体調が安定してから校舎への通学に切り替えることもできます。
+              </div>
+            </div>
+          </div>
+          <!-- Q2 -->
+          <div class="faq-item">
+            <div class="faq-q">
+              <span class="faq-marker q-marker">Q</span>
+              提携する通信制高校について教えてください。
+            </div>
+            <div class="faq-a">
+              <span class="faq-marker a-marker">A</span>
+              <div>
+                鹿島山北高等学校は、全国に学習センターを展開する広域通信制高校です。レポート学習やスクーリングを通じて、確実に高校卒業資格を取得できる仕組みを整えており、通学頻度・課題提出スケジュールなども個別に調整できます。
+              </div>
+            </div>
+          </div>
+          <!-- Q3 -->
+          <div class="faq-item">
+            <div class="faq-q">
+              <span class="faq-marker q-marker">Q</span>
+              スクーリングはどこで行いますか？
+            </div>
+            <div class="faq-a">
+              <span class="faq-marker a-marker">A</span>
+              <div>
+                スクーリングは年に1回、提携先の通信制高校のキャンパスで行います。宿泊型で行うため、通常10日程度かかるスクーリングを3泊4日で完了させることができます。場所は神奈川県山北町。自然豊かな環境で非日常を味わいながら、勉強だけでなく、農業体験などにも参加できるので、高校生活の素敵な想い出作りにもなります。
+              </div>
+            </div>
+          </div>
+          <!-- Q4 -->
+          <div class="faq-item">
+            <div class="faq-q">
+              <span class="faq-marker q-marker">Q</span>
+              サークル活動は必須参加ですか？
+            </div>
+            <div class="faq-a">
+              <span class="faq-marker a-marker">A</span>
+              <div>
+                いいえ、全て任意参加です。ご自身の体調や興味に合わせて、参加したいものだけお選びいただけます。まずは見学だけでも歓迎です。
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing: オファー -->
+    <section class="closing" id="cta">
+      <div class="container">
+        <h2>人生を諦めない、<br />一歩踏み出したいあなたのために。</h2>
+        <p style="margin-bottom: 40px; opacity: 0.8">
+          あなたの人生に寄り添い、どんな時も「本気の自立」に徹底してフルコミットします。<br />それが、キズキ高等学院です。
+        </p>
+        <a href="#" class="btn-cta">「本気の自立」について相談する</a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">キズキ高等学院</div>
+          <div class="footer-contact">
+            <div class="contact-title">お問い合わせ</div>
+            <p class="contact-item">
+              Email: <a href="mailto:info@kizuki.or.jp">info@kizuki.or.jp</a>
+            </p>
+            <p class="contact-item">
+              電話: <a href="tel:0120501858">0120-501-858</a>
+              <span class="contact-hours">(平日 11:00-22:00)</span>
+            </p>
+          </div>
+          <div class="footer-links">
+            <a
+              href="https://kizuki-corp.com/privacy/?_ebx=1hsuw3rdmfp.1757657756.844lxp7"
+              >プライバシーポリシー</a
+            >
+          </div>
+        </div>
+        <p class="copyright">
+          &copy; Kizuki Higher Education School. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- TOPへ戻るボタン -->
+    <a
+      href="#"
+      class="back-to-top"
+      id="backToTop"
+      aria-label="ページトップへ戻る"
+      >↑</a
+    >
+
+    <!-- アコーディオン動作用のスクリプト -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // FAQアコーディオン
+        const faqQuestions = document.querySelectorAll(".faq-q");
+
+        faqQuestions.forEach((question) => {
+          question.addEventListener("click", () => {
+            const currentItem = question.parentNode;
+            const currentAnswer = currentItem.querySelector(".faq-a");
+            const isActive = currentItem.classList.contains("active");
+
+            // 排他制御: まず全てのアイテムを閉じる
+            document.querySelectorAll(".faq-item").forEach((item) => {
+              const answer = item.querySelector(".faq-a");
+              item.classList.remove("active");
+              answer.style.height = "0";
+              answer.style.marginTop = "0";
+            });
+
+            // クリックされたアイテムが閉じていた場合のみ開く
+            if (!isActive) {
+              currentItem.classList.add("active");
+              // コンテンツの高さを取得して設定（アニメーション用）
+              currentAnswer.style.height = currentAnswer.scrollHeight + "px";
+              currentAnswer.style.marginTop = "15px";
+            }
+          });
+        });
+
+        // TOPへ戻るボタン
+        const backToTopBtn = document.getElementById("backToTop");
+
+        // スクロール時に表示/非表示を切り替え
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 300) {
+            // 300px以上スクロールしたら表示
+            backToTopBtn.classList.add("visible");
+          } else {
+            backToTopBtn.classList.remove("visible");
+          }
+        });
+
+        // クリック時にスムーズスクロールでトップへ
+        backToTopBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
