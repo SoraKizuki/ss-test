@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>キズキキャリア - 「配慮」のその先へ</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo,
+          sans-serif;
+        line-height: 1.8;
+        color: #333;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+        padding: 100px 0 80px;
+        text-align: center;
+        position: relative;
+      }
+
+      .hero-image {
+        width: 100%;
+        height: 400px;
+        background: #d0d0d0;
+        margin-bottom: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+        font-size: 18px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        margin-bottom: 30px;
+        font-weight: 500;
+        letter-spacing: 2px;
+      }
+
+      .hero-subtitle {
+        font-size: 18px;
+        margin-bottom: 30px;
+        color: #666;
+      }
+
+      .hero-description {
+        font-size: 16px;
+        line-height: 2;
+        margin-bottom: 40px;
+        color: #666;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: #333;
+        color: #fff;
+        padding: 18px 60px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 4px;
+        transition: background 0.3s;
+      }
+
+      .cta-button:hover {
+        background: #555;
+      }
+
+      /* Mission Section */
+      .mission {
+        padding: 100px 0;
+        background: #fff;
+      }
+
+      .section-label {
+        display: inline-block;
+        background: #e8e8e8;
+        padding: 6px 16px;
+        font-size: 12px;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+        border-radius: 3px;
+      }
+
+      .mission-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .mission h2 {
+        font-size: 36px;
+        margin-bottom: 30px;
+        font-weight: 500;
+        line-height: 1.5;
+      }
+
+      .mission-text {
+        font-size: 16px;
+        line-height: 2;
+        color: #666;
+        margin-bottom: 20px;
+      }
+
+      .mission-image {
+        width: 100%;
+        height: 400px;
+        background: #d0d0d0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+      }
+
+      /* Reasons Section */
+      .reasons {
+        padding: 100px 0;
+        background: #f9f9f9;
+      }
+
+      .reasons h2 {
+        font-size: 32px;
+        margin-bottom: 60px;
+        font-weight: 500;
+      }
+
+      .reasons-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+      }
+
+      .reason-card {
+        background: #fff;
+        padding: 40px 30px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .reason-number {
+        width: 50px;
+        height: 50px;
+        background: #333;
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      .reason-card h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        font-weight: 500;
+      }
+
+      .reason-card p {
+        font-size: 14px;
+        line-height: 1.8;
+        color: #666;
+      }
+
+      /* Data Section */
+      .data {
+        padding: 100px 0;
+        background: #fff;
+      }
+
+      .data h2 {
+        font-size: 32px;
+        margin-bottom: 60px;
+        font-weight: 500;
+      }
+
+      .data-highlight {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .data-percentage {
+        font-size: 72px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 15px;
+      }
+
+      .data-label {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 10px;
+      }
+
+      .data-description {
+        font-size: 14px;
+        color: #999;
+      }
+
+      .data-charts {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 60px;
+        margin-bottom: 60px;
+      }
+
+      .chart-item h3 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
+
+      .chart-description {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 30px;
+      }
+
+      .chart-container {
+        width: 100%;
+        height: 300px;
+        position: relative;
+      }
+
+      .chart-container canvas {
+        max-height: 300px;
+      }
+
+      .bar-chart {
+        margin-top: 30px;
+      }
+
+      .bar-chart h3 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
+
+      .bar-chart-description {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 30px;
+      }
+
+      .bar-chart-container {
+        width: 100%;
+        height: 400px;
+        position: relative;
+      }
+
+      .bar-chart-container canvas {
+        max-height: 400px;
+      }
+
+      /* Companies Section */
+      .companies {
+        padding: 100px 0;
+        background: #f9f9f9;
+      }
+
+      .companies h2 {
+        font-size: 32px;
+        margin-bottom: 30px;
+        font-weight: 500;
+      }
+
+      .companies-description {
+        font-size: 16px;
+        line-height: 2;
+        color: #666;
+        margin-bottom: 50px;
+      }
+
+      .companies-logos {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        gap: 30px;
+        align-items: center;
+      }
+
+      .company-logo {
+        width: 100%;
+        height: 80px;
+        background: #fff;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .company-logo-icon {
+        font-size: 24px;
+        color: #999;
+      }
+
+      /* Services Section */
+      .services {
+        padding: 100px 0;
+        background: #fff;
+      }
+
+      .services h2 {
+        font-size: 32px;
+        margin-bottom: 60px;
+        font-weight: 500;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 60px;
+      }
+
+      .service-category h3 {
+        font-size: 22px;
+        margin-bottom: 30px;
+        font-weight: 500;
+      }
+
+      .service-category ul {
+        list-style: none;
+      }
+
+      .service-category li {
+        padding: 15px 0;
+        border-bottom: 1px solid #e8e8e8;
+        font-size: 15px;
+        color: #666;
+      }
+
+      .service-category li:before {
+        content: "・";
+        margin-right: 8px;
+      }
+
+      /* Company Section */
+      .company-info {
+        padding: 100px 0;
+        background: #f9f9f9;
+      }
+
+      .company-info h2 {
+        font-size: 32px;
+        margin-bottom: 60px;
+        font-weight: 500;
+      }
+
+      .company-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: start;
+      }
+
+      .company-text h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
+
+      .company-text p {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 15px;
+        line-height: 2;
+      }
+
+      .company-image {
+        width: 100%;
+        height: 400px;
+        background: #d0d0d0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 32px;
+        }
+
+        .hero-subtitle {
+          font-size: 16px;
+        }
+
+        .mission-content,
+        .data-charts,
+        .services-grid,
+        .company-details {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .reasons-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .companies-logos {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+        }
+
+        .data-percentage {
+          font-size: 56px;
+        }
+
+        .mission h2,
+        .reasons h2,
+        .data h2,
+        .companies h2,
+        .services h2,
+        .company-info h2 {
+          font-size: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-image">[ヒーロー画像エリア]</div>
+        <h1>「配慮」のその先へ</h1>
+        <p class="hero-subtitle">
+          お客様ひとり、人生を彩る道のような仕事を作りたいのです。
+        </p>
+        <p class="hero-description">
+          就労前後を通じて長期的なサポートを届けることで、ストレスの少ない「配慮」を実現します。そのために、障害者雇用支援「後見人」で仕事の<br />
+          「提案」を支え、「見守り」は「配慮」の発揮に役立てています。
+        </p>
+        <a href="#" class="cta-button">お問い合わせ</a>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission">
+      <div class="container">
+        <span class="section-label">OUR MISSION</span>
+        <div class="mission-content">
+          <div>
+            <h2>何度でもやり直せる社会をつくる</h2>
+            <p class="mission-text">
+              人はみな、生きている中で様々な困難に直面します。しかしニートやひきこもりなど、一度つまずいた人が、簡単には再出発できない日本社会がありました。「一度きり」ではなく、何度でもやり直せる社会を、キズキと一緒に作りませんか。
+            </p>
+            <p class="mission-text">
+              当社提供中に様々な困難がある人でも、挑戦と成長機会を十分に提供できる環境と支援策を整え、全ての人々が活躍できる社会を作ります。
+            </p>
+          </div>
+          <div class="mission-image">[ミーティング画像エリア]</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reasons Section -->
+    <section class="reasons">
+      <div class="container">
+        <span class="section-label">選ばれる理由REASON</span>
+        <h2>キズキキャリアが選ばれる3つの理由</h2>
+        <div class="reasons-grid">
+          <div class="reason-card">
+            <div class="reason-number">1</div>
+            <h3>良質なマッチング</h3>
+            <p>
+              スキルだけでなく、価値観やキャリアビジョンを深く理解することで、企業と個人、双方に最適なマッチングを実現させます。
+            </p>
+          </div>
+          <div class="reason-card">
+            <div class="reason-number">2</div>
+            <h3>「伴走」型エージェント</h3>
+            <p>
+              「伴走型」長期間密着し、転職活動のあらゆる場面においてきめ細やかなサポートを提供します。
+            </p>
+          </div>
+          <div class="reason-card">
+            <div class="reason-number">3</div>
+            <h3>障害主導型サポート</h3>
+            <p>
+              障害主導型的発想で、ひとりひとりの個性や強みを最大限に活かし、自分らしい働き方を見つけるサポートをいたします。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Section -->
+    <section class="data">
+      <div class="container">
+        <span class="section-label">実績データ</span>
+        <h2>実績データ</h2>
+        <div class="data-highlight">
+          <p class="data-label">定着率(内定後6ヶ月間のデータ結果)</p>
+          <div class="data-percentage">95%</div>
+          <p class="data-description">
+            応募総合企業様の代理面接を実施し、転職、早期定着を実現しています。
+          </p>
+        </div>
+
+        <div class="data-charts">
+          <div class="chart-item">
+            <h3>性別年齢</h3>
+            <p class="chart-description">
+              性別年齢を問わず幅広い支援を行なっています。
+            </p>
+            <div class="chart-container">
+              <canvas id="genderAgeChart"></canvas>
+            </div>
+          </div>
+          <div class="chart-item">
+            <h3>就職先企業規模</h3>
+            <p class="chart-description">
+              企業規模に寄らず支援実績があります。
+            </p>
+            <div class="chart-container">
+              <canvas id="companySizeChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="bar-chart">
+          <h3>職種割合</h3>
+          <p class="bar-chart-description">
+            幅広いキャリアをご提案。求職者ひとり人のニーズと強みに合わせます。
+          </p>
+          <div class="bar-chart-container">
+            <canvas id="jobTypeChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Companies Section -->
+    <section class="companies">
+      <div class="container">
+        <span class="section-label">実績(求職登録者)</span>
+        <h2>就職先企業</h2>
+        <p class="companies-description">
+          求職者に最適なキャリアをご提案できる支援実績と、大企業から中堅企業まで幅広い企業様と繋がりがあります。具体例として、就労支援、登録、就労等々実績があります。
+        </p>
+        <div class="companies-logos">
+          <div class="company-logo">
+            <span class="company-logo-icon">🏢</span>
+          </div>
+          <div class="company-logo">
+            <span class="company-logo-icon">🏢</span>
+          </div>
+          <div class="company-logo">
+            <span class="company-logo-icon">🏢</span>
+          </div>
+          <div class="company-logo">
+            <span class="company-logo-icon">🏢</span>
+          </div>
+          <div class="company-logo">
+            <span class="company-logo-icon">🏢</span>
+          </div>
+          <div class="company-logo">
+            <span class="company-logo-icon">🏢</span>
+          </div>
+          <div class="company-logo">
+            <span class="company-logo-icon">🏢</span>
+          </div>
+          <div class="company-logo">
+            <span class="company-logo-icon">🏢</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+      <div class="container">
+        <span class="section-label">サービス内容</span>
+        <h2>サービス内容</h2>
+        <div class="services-grid">
+          <div class="service-category">
+            <h3>企業様向け</h3>
+            <ul>
+              <li>人材紹介サービス（障害者、若年者の転職が困難な層）</li>
+              <li>障害者受け入れ体制づくりの組織コンサルティング事業</li>
+              <li>企業向け障害者理解・協働に関する研修事業</li>
+              <li>障害者雇用に関する経営相談・リーガルチェック</li>
+            </ul>
+          </div>
+          <div class="service-category">
+            <h3>求職者向け</h3>
+            <ul>
+              <li>
+                キャリアカウンセリング（転職相談、個別支援を含む全体カリキュラム）
+              </li>
+              <li>
+                書類選考・面接対策（応募先ごとに対応した具体的な対策と面接練習）
+              </li>
+              <li>人材紹介サービス（正社員・契約正社員の採用案件）</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Company Info Section -->
+    <section class="company-info">
+      <div class="container">
+        <span class="section-label">運営会社</span>
+        <h2>運営会社</h2>
+        <div class="company-details">
+          <div class="company-text">
+            <h3>キズキキャリア株式会社</h3>
+            <p>【設立時期:平成28年10月28日設立】</p>
+            <p>
+              私たちは、平成28年10月28日に設立しました。設立の理念は、職業的・経済的に困難な状況にある人々が、誰でも何度でも新しいチャレンジができる社会を実現することでした。
+            </p>
+            <p>
+              「導く」という行為をプロフェッショナルにサポートすることを核としており、若者就労支援事業も新たに手がけながら、誰もが活躍できる社会づくりを目指しています。
+            </p>
+            <a href="#" class="cta-button">お問い合わせ</a>
+          </div>
+          <div class="company-image">[会社画像エリア]</div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // 性別年齢チャート
+      const genderAgeCtx = document
+        .getElementById("genderAgeChart")
+        .getContext("2d");
+      new Chart(genderAgeCtx, {
+        type: "doughnut",
+        data: {
+          labels: ["20代男性", "30代男性", "20代女性", "30代女性", "その他"],
+          datasets: [
+            {
+              data: [30, 25, 20, 15, 10],
+              backgroundColor: [
+                "#2c3e50",
+                "#34495e",
+                "#7f8c8d",
+                "#95a5a6",
+                "#bdc3c7",
+              ],
+              borderWidth: 0,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: "bottom",
+              labels: {
+                padding: 20,
+                font: {
+                  size: 12,
+                },
+              },
+            },
+          },
+          animation: {
+            animateRotate: true,
+            animateScale: true,
+            duration: 1500,
+            easing: "easeInOutQuart",
+          },
+        },
+      });
+
+      // 企業規模チャート
+      const companySizeCtx = document
+        .getElementById("companySizeChart")
+        .getContext("2d");
+      new Chart(companySizeCtx, {
+        type: "doughnut",
+        data: {
+          labels: [
+            "大企業（1000名以上）",
+            "中堅企業（300-1000名）",
+            "中小企業（100-300名）",
+            "小規模企業（100名未満）",
+          ],
+          datasets: [
+            {
+              data: [35, 30, 20, 15],
+              backgroundColor: ["#2c3e50", "#34495e", "#7f8c8d", "#95a5a6"],
+              borderWidth: 0,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: "bottom",
+              labels: {
+                padding: 20,
+                font: {
+                  size: 12,
+                },
+              },
+            },
+          },
+          animation: {
+            animateRotate: true,
+            animateScale: true,
+            duration: 1500,
+            easing: "easeInOutQuart",
+          },
+        },
+      });
+
+      // 職種割合チャート
+      const jobTypeCtx = document
+        .getElementById("jobTypeChart")
+        .getContext("2d");
+      new Chart(jobTypeCtx, {
+        type: "bar",
+        data: {
+          labels: [
+            "IT・エンジニア",
+            "事務・アシスタント",
+            "マーケティング・広報",
+            "営業・企画",
+            "専門職・技術職",
+            "クリエイティブ",
+            "その他",
+          ],
+          datasets: [
+            {
+              label: "就職者数",
+              data: [38, 12, 22, 8, 5, 10, 5],
+              backgroundColor: "#2c3e50",
+              borderRadius: 4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                font: {
+                  size: 12,
+                },
+              },
+              grid: {
+                color: "#e8e8e8",
+              },
+            },
+            x: {
+              ticks: {
+                font: {
+                  size: 11,
+                },
+                maxRotation: 45,
+                minRotation: 45,
+              },
+              grid: {
+                display: false,
+              },
+            },
+          },
+          animation: {
+            duration: 1500,
+            easing: "easeInOutQuart",
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
