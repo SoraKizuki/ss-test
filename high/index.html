@@ -21,19 +21,20 @@
           "Hiragino Sans", Meiryo, sans-serif;
         color: #333;
         line-height: 1.8;
-        background-color: #f4f5f7; /* わずかに青みのあるライトグレー */
+        background-color: #f4f7f5; /* わずかに緑みのあるライトグレー */
         font-size: 16px; /* ベースサイズ */
         position: relative; /* TOPへ戻るボタンの基準 */
       }
 
       /* --- カラーパレット & フォント設定 --- */
       :root {
-        --bg-dark: #2c3e50; /* スレートグレー（ベース） */
-        --bg-deep: #1a252f; /* より深いグレー（引き締め） */
+        /* 深み緑系への変更 */
+        --bg-dark: #1e3828; /* 深い森の緑（ベース） */
+        --bg-deep: #0e1d15; /* 黒に近い深緑（引き締め） */
         --text-light: #ecf0f1;
-        --blue-flame-start: #005c97; /* 青い炎の芯 */
-        --blue-flame-end: #363795; /* 青い炎の外側 */
-        --accent-glow: #4facfe; /* 光彩 */
+        --blue-flame-start: #145a32; /* 深緑の炎の芯 */
+        --blue-flame-end: #0b3d20; /* 深緑の炎の外側 */
+        --accent-glow: #27ae60; /* 鮮やかな緑の光彩（ネフライトグリーン） */
       }
 
       h1,
@@ -66,7 +67,8 @@
         font-weight: bold;
         font-size: 1.1rem;
         letter-spacing: 0.1em;
-        box-shadow: 0 4px 15px rgba(0, 92, 151, 0.4);
+        /* 緑系のシャドウに変更 */
+        box-shadow: 0 4px 15px rgba(20, 90, 50, 0.4);
         transition: all 0.3s ease;
         border: 1px solid rgba(255, 255, 255, 0.2);
         text-align: center;
@@ -116,7 +118,8 @@
 
       .btn-cta:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
+        /* 緑系の光彩に変更 */
+        box-shadow: 0 6px 20px rgba(39, 174, 96, 0.6);
       }
 
       section {
@@ -138,7 +141,8 @@
         width: 100%;
         top: 0;
         z-index: 100;
-        border-bottom: 1px solid #34495e;
+        /* ボーダー色を深緑系に */
+        border-bottom: 1px solid #1f3a2b;
         /* スマホでの誤操作防止のため少しシャドウを強める */
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
       }
@@ -207,10 +211,11 @@
       /* --- ヒーローセクション (First View) --- */
       .hero {
         background-color: var(--bg-dark);
+        /* 背景グラデーションを深緑系に */
         background-image: linear-gradient(
           to bottom,
-          rgba(44, 62, 80, 0.9),
-          rgba(26, 37, 47, 1)
+          rgba(30, 56, 40, 0.9),
+          rgba(14, 29, 21, 1)
         );
         color: var(--text-light);
         height: 90vh; /* モバイルブラウザのアドレスバー考慮 */
@@ -225,7 +230,7 @@
         padding-bottom: 40px;
       }
 
-      /* 青い炎のイメージ演出 */
+      /* 緑の炎のイメージ演出 */
       .hero::before {
         content: "";
         position: absolute;
@@ -234,9 +239,10 @@
         transform: translateX(-50%);
         width: 150%;
         height: 60vh;
+        /* グラデーション色を緑系に */
         background: radial-gradient(
           ellipse at center,
-          rgba(79, 172, 254, 0.25) 0%,
+          rgba(39, 174, 96, 0.25) 0%,
           rgba(0, 0, 0, 0) 70%
         );
         z-index: 0;
@@ -497,8 +503,9 @@
           var(--blue-flame-start),
           var(--accent-glow)
         );
-        box-shadow: 0 0 10px rgba(0, 92, 151, 0.3);
-      } /* 通信制: 強調（青い炎） */
+        /* 緑系のシャドウ */
+        box-shadow: 0 0 10px rgba(20, 90, 50, 0.3);
+      } /* 通信制: 強調（緑の炎） */
 
       .chart-value {
         position: absolute;
@@ -568,7 +575,7 @@
       .message-visual {
         width: 100%;
         height: 250px; /* スマホでの高さ */
-        background: linear-gradient(45deg, #333, #444);
+        background: linear-gradient(45deg, #111, #222);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -639,11 +646,13 @@
         border-top: 5px solid #bdc3c7;
       }
 
-      /* Step 2: 自立（青） */
+      /* Step 2: 自立（緑） */
       .step-2 {
-        background-color: #f0f8ff;
+        /* 背景色を薄いミントグリーンに */
+        background-color: #f0f7f2;
         border-top: 5px solid var(--blue-flame-start);
-        box-shadow: 0 10px 30px rgba(0, 92, 151, 0.1);
+        /* 緑系のシャドウ */
+        box-shadow: 0 10px 30px rgba(20, 90, 50, 0.1);
       }
 
       .step-heading {
@@ -718,7 +727,7 @@
         margin-bottom: 5px;
       }
 
-      /* 選択されているかのような青のアクセント */
+      /* 選択されているかのような緑のアクセント */
       .feature-number span {
         color: var(--blue-flame-start);
       }
@@ -881,7 +890,8 @@
 
       /* --- クロージング（Footer CTA） --- */
       .closing {
-        background: radial-gradient(circle at center, #2c3e50 0%, #1a252f 100%);
+        /* 背景色を深緑のグラデーションに */
+        background: radial-gradient(circle at center, #1e3828 0%, #0e1d15 100%);
         color: white;
         text-align: center;
         padding: 80px 20px;
@@ -905,7 +915,7 @@
 
       /* --- フッター --- */
       footer {
-        background-color: #111;
+        background-color: #050a07; /* ほとんど黒に近い緑 */
         color: #999;
         text-align: center;
         padding: 60px 20px 20px;
@@ -1221,7 +1231,7 @@
         <div class="feature-list">
           <!-- 01 -->
           <div class="feature-item">
-            <div class="feature-number"><span>0</span>1</div>
+            <div class="feature-number">0<span>1</span></div>
             <div class="feature-content">
               <h3>
                 専任メンター制度による<br />「学習」と「メンタル」のサポート
@@ -1233,7 +1243,7 @@
           </div>
           <!-- 02 -->
           <div class="feature-item">
-            <div class="feature-number"><span>0</span>2</div>
+            <div class="feature-number">0<span>2</span></div>
             <div class="feature-content">
               <h3>オーダーメイドカリキュラムと<br />マンツーマン指導</h3>
               <p>
@@ -1243,7 +1253,7 @@
           </div>
           <!-- 03 -->
           <div class="feature-item">
-            <div class="feature-number"><span>0</span>3</div>
+            <div class="feature-number">0<span>3</span></div>
             <div class="feature-content">
               <h3>
                 高校卒業後もメンターサポートや<br />学習支援が定期的に受けられる
