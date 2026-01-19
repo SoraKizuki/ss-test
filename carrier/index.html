@@ -1,11 +1,75 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" prefix="og: http://ogp.me/ns#">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>キズキキャリア</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+    <!-- SEO強化: メタディスクリプション -->
+    <meta
+      name="description"
+      content="就労移⾏⽀援の確かなノウハウで、ミスマッチを防ぎ、定着と「活躍」を支援します。私たちは、障害者雇用を「福祉」ではなく、企業の「成長」と個人の「再出発」の架け橋にします。"
+    />
+
+    <!-- SEO強化: OGPタグ (SNSシェア設定) -->
+    <meta property="og:title" content="キズキキャリア - 「配慮」のその先へ" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kizuki-corp.com/" />
+    <!-- ※運用時に正しいURLへ変更してください -->
+    <meta property="og:image" content="https://kizuki-corp.com/ogp.jpg" />
+    <!-- ※運用時に正しい画像パスへ変更してください -->
+    <meta property="og:site_name" content="キズキキャリア" />
+    <meta
+      property="og:description"
+      content="就労移⾏⽀援の確かなノウハウで、ミスマッチを防ぎ、定着と「活躍」を支援します。私たちは、障害者雇用を「福祉」ではなく、企業の「成長」と個人の「再出発」の架け橋にします。"
+    />
+
+    <!-- SEO強化: Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- パフォーマンス最適化: defer属性を追加 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
+      defer
+    ></script>
     <style>
+      /* =========================================
+         Variables & Base Settings
+         ========================================= */
+      :root {
+        /* Colors */
+        --color-primary: #20a384;
+        --color-primary-hover: #178066;
+        --color-secondary: #b2dfdb;
+        --color-accent-light: #4db6ac;
+
+        /* Backgrounds */
+        --color-bg-light: #f7fcfa;
+        --color-bg-accent: #e0f2f1;
+        --color-white: #fff;
+
+        /* Typography */
+        --color-text-main: #333;
+        --color-text-sub: #555;
+        --color-text-light: #666;
+        --color-text-muted: #999;
+
+        /* Layout */
+        --header-height: 80px;
+        --container-width: 1200px;
+        --section-padding: 100px 0;
+
+        /* Utils */
+        --shadow-default: 0 2px 10px rgba(0, 0, 0, 0.05);
+        --border-color-light: #e8e8e8;
+        --radius-default: 8px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: var(--header-height);
+      }
+
       * {
         margin: 0;
         padding: 0;
@@ -16,35 +80,288 @@
         font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo,
           sans-serif;
         line-height: 1.8;
-        color: #333;
+        color: var(--color-text-main);
+        padding-top: var(--header-height);
+        /* BtoB向け: 文字詰めを行うことでプロフェッショナルな印象を与える */
+        font-feature-settings: "palt";
+        -webkit-font-smoothing: antialiased;
       }
 
       .container {
-        max-width: 1200px;
+        max-width: var(--container-width);
         margin: 0 auto;
         padding: 0 20px;
       }
 
-      /* Hero Section */
+      /* =========================================
+         Shared Components
+         ========================================= */
+      .cta-button {
+        display: inline-block;
+        background: var(--color-primary);
+        color: var(--color-white);
+        padding: 18px 60px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 4px;
+        transition: background 0.3s, transform 0.2s;
+      }
+
+      .cta-button:hover {
+        background: var(--color-primary-hover);
+        transform: translateY(-2px);
+      }
+
+      .section-label {
+        display: inline-block;
+        background: var(--color-bg-accent);
+        color: var(--color-primary);
+        padding: 6px 16px;
+        font-size: 12px;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+        border-radius: 3px;
+        font-weight: bold;
+      }
+
+      /* セクション共通スタイル */
+      section {
+        padding: var(--section-padding);
+      }
+
+      /* セクション背景色のグルーピング */
+      /* 変更: セクション構成変更に伴い配色パターンを調整 */
+      .mission,
+      .data,
+      .services,
+      .company-info {
+        background: var(--color-white);
+      }
+      .reasons,
+      .companies,
+      .faq {
+        background: var(--color-bg-light);
+      }
+
+      /* 見出しの共通化 */
+      section h2 {
+        font-size: 32px;
+        margin-bottom: 60px;
+        font-weight: 500;
+        line-height: 1.5;
+        color: var(--color-text-main);
+        letter-spacing: 0.05em;
+      }
+
+      /* 例外的な見出し調整 */
+      .mission h2 {
+        font-size: 36px;
+        margin-bottom: 30px;
+      }
+
+      /* テキスト共通スタイル */
+      .section-description,
+      .chart-description,
+      .bar-chart-description,
+      .companies-description {
+        font-size: 16px;
+        line-height: 2;
+        color: var(--color-text-light);
+        margin-bottom: 30px;
+      }
+
+      /* データ出典注釈 */
+      .data-note {
+        font-size: 12px;
+        color: var(--color-text-muted);
+        text-align: right;
+        margin-top: 30px;
+        line-height: 1.5;
+      }
+
+      /* =========================================
+         Header
+         ========================================= */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--header-height);
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: var(--shadow-default);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        backdrop-filter: blur(5px);
+      }
+
+      .header-logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--color-primary);
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--color-text-main);
+        font-weight: 500;
+        transition: color 0.3s;
+        font-size: 15px;
+      }
+
+      .nav-links a:hover {
+        color: var(--color-primary);
+      }
+
+      /* =========================================
+         Hamburger & Mobile Menu
+         ========================================= */
+      .hamburger {
+        display: none; /* PC First: デフォルト非表示 */
+        flex-direction: column;
+        justify-content: center; /* 修正: space-aroundから変更して配置を制御しやすくする */
+        gap: 6px; /* 修正: 線と線の間隔を固定 */
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001;
+      }
+
+      .hamburger span {
+        width: 30px;
+        height: 3px;
+        background: var(--color-text-main);
+        border-radius: 10px;
+        transition: all 0.3s linear;
+        position: relative;
+        /* transform-origin: 1px; 削除: 中心を基準に回転させるため */
+      }
+
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--color-white);
+        z-index: 999;
+        visibility: hidden;
+        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+          visibility 0.4s step-end;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mobile-menu.active {
+        right: 0;
+        visibility: visible;
+        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
+      }
+
+      .mobile-menu ul {
+        list-style: none;
+        text-align: center;
+      }
+
+      .mobile-menu li {
+        margin: 20px 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      .mobile-menu.active li {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: calc(0.1s * var(--i, 1));
+      }
+
+      /* アニメーション用delay */
+      .mobile-menu.active li:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+      .mobile-menu.active li:nth-child(2) {
+        transition-delay: 0.15s;
+      }
+      .mobile-menu.active li:nth-child(3) {
+        transition-delay: 0.2s;
+      }
+      .mobile-menu.active li:nth-child(4) {
+        transition-delay: 0.25s;
+      }
+      .mobile-menu.active li:nth-child(5) {
+        transition-delay: 0.3s;
+      }
+      .mobile-menu.active li:nth-child(6) {
+        transition-delay: 0.35s;
+      }
+      .mobile-menu.active li:nth-child(7) {
+        transition-delay: 0.4s;
+      }
+      .mobile-menu.active li:nth-child(8) {
+        transition-delay: 0.45s;
+      }
+
+      .mobile-menu a {
+        font-size: 20px;
+        color: var(--color-text-main);
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      /* Hamburger Animation: 対称的なXになるように修正 */
+      .hamburger.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg); /* 下に移動して回転 */
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg); /* 上に移動して回転 */
+      }
+
+      /* =========================================
+         Hero Section
+         ========================================= */
       .hero {
-        /* Green gradient background */
-        background: linear-gradient(135deg, #f0fdfa 0%, #e0f2f1 100%);
+        background: linear-gradient(
+          135deg,
+          #f0fdfa 0%,
+          var(--color-bg-accent) 100%
+        );
         padding: 100px 0 80px;
         text-align: center;
-        position: relative;
       }
 
       .hero-image {
         width: 100%;
         height: 400px;
-        background: #b2dfdb; /* Lighter green placeholder */
+        background: var(--color-secondary);
         margin-bottom: 60px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #fff;
+        color: var(--color-white);
         font-size: 18px;
-        border-radius: 8px;
+        border-radius: var(--radius-default);
       }
 
       .hero h1 {
@@ -58,53 +375,24 @@
       .hero-subtitle {
         font-size: 18px;
         margin-bottom: 30px;
-        color: #555;
+        color: var(--color-text-sub);
       }
 
       .hero-description {
         font-size: 16px;
         line-height: 2;
         margin-bottom: 40px;
-        color: #666;
+        color: var(--color-text-light);
         max-width: 800px;
         margin-left: auto;
         margin-right: auto;
       }
 
-      .cta-button {
-        display: inline-block;
-        background: #20a384; /* Primary Green */
-        color: #fff;
-        padding: 18px 60px;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: bold;
-        border-radius: 4px;
-        transition: background 0.3s;
-      }
+      /* =========================================
+         Content Sections (PC First Layouts)
+         ========================================= */
 
-      .cta-button:hover {
-        background: #178066; /* Darker Green on hover */
-      }
-
-      /* Mission Section */
-      .mission {
-        padding: 100px 0;
-        background: #fff;
-      }
-
-      .section-label {
-        display: inline-block;
-        background: #e0f2f1; /* Very light green */
-        color: #20a384; /* Green text */
-        padding: 6px 16px;
-        font-size: 12px;
-        letter-spacing: 1px;
-        margin-bottom: 30px;
-        border-radius: 3px;
-        font-weight: bold;
-      }
-
+      /* Mission */
       .mission-content {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -112,44 +400,26 @@
         align-items: center;
       }
 
-      .mission h2 {
-        font-size: 36px;
-        margin-bottom: 30px;
-        font-weight: 500;
-        line-height: 1.5;
-        color: #333;
-      }
-
       .mission-text {
         font-size: 16px;
         line-height: 2;
-        color: #666;
+        color: var(--color-text-light);
         margin-bottom: 20px;
       }
 
-      .mission-image {
+      .mission-image,
+      .company-image {
         width: 100%;
         height: 400px;
-        background: #b2dfdb;
-        border-radius: 8px;
+        background: var(--color-secondary);
+        border-radius: var(--radius-default);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #fff;
+        color: var(--color-white);
       }
 
-      /* Reasons Section */
-      .reasons {
-        padding: 100px 0;
-        background: #f7fcfa; /* Very subtle green tint */
-      }
-
-      .reasons h2 {
-        font-size: 32px;
-        margin-bottom: 60px;
-        font-weight: 500;
-      }
-
+      /* Reasons */
       .reasons-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -157,17 +427,18 @@
       }
 
       .reason-card {
-        background: #fff;
+        background: var(--color-white);
         padding: 40px 30px;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(32, 163, 132, 0.1); /* Subtle green shadow */
+        border-radius: var(--radius-default);
+        box-shadow: 0 2px 10px rgba(32, 163, 132, 0.1);
+        height: 100%; /* 高さ揃え */
       }
 
       .reason-number {
         width: 50px;
         height: 50px;
-        background: #20a384; /* Primary Green */
-        color: #fff;
+        background: var(--color-primary);
+        color: var(--color-white);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -181,27 +452,16 @@
         font-size: 18px;
         margin-bottom: 15px;
         font-weight: 500;
-        color: #20a384; /* Green headings */
+        color: var(--color-primary);
       }
 
       .reason-card p {
         font-size: 14px;
         line-height: 1.8;
-        color: #666;
+        color: var(--color-text-light);
       }
 
-      /* Data Section */
-      .data {
-        padding: 100px 0;
-        background: #fff;
-      }
-
-      .data h2 {
-        font-size: 32px;
-        margin-bottom: 60px;
-        font-weight: 500;
-      }
-
+      /* Data */
       .data-highlight {
         text-align: center;
         margin-bottom: 80px;
@@ -210,19 +470,20 @@
       .data-percentage {
         font-size: 72px;
         font-weight: bold;
-        color: #20a384; /* Green percentage */
+        color: var(--color-primary);
         margin-bottom: 15px;
+        line-height: 1;
       }
 
       .data-label {
         font-size: 16px;
-        color: #666;
+        color: var(--color-text-light);
         margin-bottom: 10px;
       }
 
       .data-description {
         font-size: 14px;
-        color: #999;
+        color: var(--color-text-muted);
       }
 
       .data-charts {
@@ -232,16 +493,11 @@
         margin-bottom: 60px;
       }
 
-      .chart-item h3 {
+      .chart-item h3,
+      .bar-chart h3 {
         font-size: 18px;
         margin-bottom: 20px;
         font-weight: 500;
-      }
-
-      .chart-description {
-        font-size: 14px;
-        color: #666;
-        margin-bottom: 30px;
       }
 
       .chart-container {
@@ -249,7 +505,6 @@
         height: 300px;
         position: relative;
       }
-
       .chart-container canvas {
         max-height: 300px;
       }
@@ -257,133 +512,142 @@
       .bar-chart {
         margin-top: 30px;
       }
-
-      .bar-chart h3 {
-        font-size: 18px;
-        margin-bottom: 20px;
-        font-weight: 500;
-      }
-
-      .bar-chart-description {
-        font-size: 14px;
-        color: #666;
-        margin-bottom: 30px;
-      }
-
       .bar-chart-container {
         width: 100%;
         height: 400px;
         position: relative;
       }
-
       .bar-chart-container canvas {
         max-height: 400px;
       }
 
-      /* Companies Section */
-      .companies {
-        padding: 100px 0;
-        background: #f7fcfa; /* Subtle green tint */
-      }
-
-      .companies h2 {
-        font-size: 32px;
-        margin-bottom: 30px;
-        font-weight: 500;
-      }
-
-      .companies-description {
-        font-size: 16px;
-        line-height: 2;
-        color: #666;
-        margin-bottom: 50px;
-      }
-
+      /* Companies: PC First Grid */
       .companies-logos {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 30px;
+        /* PCデフォルト: 8カラム */
+        grid-template-columns: repeat(8, 1fr);
+        gap: 20px;
         align-items: center;
-      }
-
-      @media (min-width: 900px) {
-        .companies-logos {
-          grid-template-columns: repeat(8, 1fr);
-        }
       }
 
       .company-logo {
         width: 100%;
         height: 80px;
-        background: #fff;
-        border-radius: 8px;
+        background: var(--color-white);
+        border-radius: var(--radius-default);
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        box-shadow: var(--shadow-default);
+        transition: transform 0.2s; /* ホバー効果 */
+      }
+
+      .company-logo:hover {
+        transform: translateY(-2px);
       }
 
       .company-logo-icon {
         font-size: 24px;
-        color: #b2dfdb; /* Light Green icon */
+        color: var(--color-secondary);
       }
 
-      /* Services Section */
-      .services {
-        padding: 100px 0;
-        background: #fff;
-      }
-
-      .services h2 {
-        font-size: 32px;
-        margin-bottom: 60px;
-        font-weight: 500;
-      }
-
+      /* Services */
       .services-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 60px;
       }
 
+      .service-category {
+        background: var(--color-bg-light); /* 視認性向上のため背景追加 */
+        padding: 30px;
+        border-radius: var(--radius-default);
+      }
+
       .service-category h3 {
         font-size: 22px;
         margin-bottom: 30px;
         font-weight: 500;
-        color: #20a384; /* Green heading */
-        border-bottom: 2px solid #e0f2f1;
+        color: var(--color-primary);
+        border-bottom: 2px solid var(--color-bg-accent);
         padding-bottom: 10px;
       }
 
       .service-category ul {
         list-style: none;
       }
-
       .service-category li {
         padding: 15px 0;
-        border-bottom: 1px solid #e8e8e8;
+        border-bottom: 1px solid var(--border-color-light);
         font-size: 15px;
-        color: #666;
+        color: var(--color-text-light);
       }
-
       .service-category li:before {
         content: "・";
         margin-right: 8px;
-        color: #20a384; /* Green bullet */
+        color: var(--color-primary);
       }
 
-      /* Company Section */
-      .company-info {
-        padding: 100px 0;
-        background: #f7fcfa;
+      /* FAQ Section */
+      .faq-grid {
+        max-width: 800px;
+        margin: 0 auto;
       }
 
-      .company-info h2 {
-        font-size: 32px;
-        margin-bottom: 60px;
-        font-weight: 500;
+      .faq-item {
+        background: var(--color-white);
+        border-radius: var(--radius-default);
+        margin-bottom: 20px;
+        padding: 20px 30px;
+        box-shadow: var(--shadow-default);
       }
 
+      .faq-item summary {
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        list-style: none;
+        position: relative;
+        padding-right: 30px;
+        color: var(--color-primary);
+        transition: color 0.3s;
+      }
+
+      .faq-item summary:hover {
+        color: var(--color-primary-hover);
+      }
+
+      .faq-item summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq-item summary::after {
+        content: "+";
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 24px;
+        line-height: 1;
+        font-weight: normal;
+        color: var(--color-text-muted);
+        transition: transform 0.3s ease;
+      }
+
+      .faq-item[open] summary::after {
+        content: "-";
+        transform: rotate(180deg);
+      }
+
+      .faq-item p {
+        margin-top: 15px;
+        font-size: 14px;
+        line-height: 1.8;
+        color: var(--color-text-light);
+        border-top: 1px solid var(--border-color-light);
+        padding-top: 15px;
+      }
+
+      /* Company Info */
       .company-details {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -396,68 +660,247 @@
         margin-bottom: 20px;
         font-weight: 500;
       }
-
       .company-text p {
-        font-size: 14px;
-        color: #666;
         margin-bottom: 15px;
         line-height: 2;
+        color: var(--color-text-light);
       }
 
-      .company-image {
-        width: 100%;
-        height: 400px;
-        background: #b2dfdb;
-        border-radius: 8px;
+      /* =========================================
+         Footer
+         ========================================= */
+      footer {
+        background: var(--color-text-main);
+        color: var(--color-white);
+        padding: 60px 0 30px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-logo {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: var(--color-white);
+      }
+
+      .footer-links ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .footer-links a {
+        color: var(--color-white);
+        text-decoration: none;
+        font-size: 14px;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+      }
+      .footer-links a:hover {
+        opacity: 1;
+      }
+
+      .copyright {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 30px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--color-text-muted);
+      }
+
+      /* Back to Top */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--color-primary);
+        color: var(--color-white);
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #fff;
+        text-decoration: none;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+        z-index: 900;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        font-size: 24px;
+        border: none;
+      }
+      .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      .back-to-top:hover {
+        background: var(--color-primary-hover);
+        transform: translateY(-5px);
       }
 
-      /* Responsive */
+      /* =========================================
+         Media Queries (PC First Approach)
+         ベースをPCとして記述し、max-widthでSP/Tablet対応
+         ========================================= */
+
+      @media (max-width: 900px) {
+        .companies-logos {
+          /* Tablet: 4 columns */
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
       @media (max-width: 768px) {
+        header {
+          padding: 0 20px;
+        }
+
+        /* Navigation Switch */
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+
         .hero h1 {
           font-size: 32px;
         }
-
         .hero-subtitle {
           font-size: 16px;
         }
 
+        /* Grid Single Column Conversion */
         .mission-content,
+        .reasons-grid,
         .data-charts,
         .services-grid,
-        .company-details {
+        .company-details,
+        .footer-content {
           grid-template-columns: 1fr;
           gap: 40px;
         }
 
-        .reasons-grid {
-          grid-template-columns: 1fr;
-        }
-
+        /* Mobile specific adjustments */
         .companies-logos {
+          /* Mobile: 4 columns (compact) or 2 columns */
           grid-template-columns: repeat(4, 1fr);
-          gap: 20px;
+          gap: 15px;
         }
 
         .data-percentage {
           font-size: 56px;
         }
 
-        .mission h2,
-        .reasons h2,
-        .data h2,
-        .companies h2,
-        .services h2,
-        .company-info h2 {
+        /* Mobile Font Sizes for Headings */
+        section h2,
+        .mission h2 {
           font-size: 28px;
+        }
+
+        /* Footer Specifics */
+        .footer-content {
+          text-align: center;
+        }
+        .footer-links ul {
+          justify-content: center;
+          gap: 15px;
+          margin-top: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        /* Smaller Mobile Screens */
+        .companies-logos {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .cta-button {
+          width: 100%;
+          text-align: center;
+          padding: 16px;
         }
       }
     </style>
   </head>
   <body>
+    <!-- Header -->
+    <header>
+      <a href="#" class="header-logo">キズキキャリア</a>
+      <!-- セマンティック改善: navタグを使用、ARIAラベル追加 -->
+      <nav aria-label="メインメニュー">
+        <ul class="nav-links">
+          <li><a href="#mission">MISSION</a></li>
+          <li><a href="#reasons">選ばれる理由</a></li>
+          <li><a href="#data">実績データ</a></li>
+          <li><a href="#companies">就職先企業</a></li>
+          <li><a href="#services">サービス内容</a></li>
+          <li><a href="#faq">よくある質問</a></li>
+          <li><a href="#company">運営会社</a></li>
+          <li>
+            <a
+              href="#"
+              style="
+                background: var(--color-primary);
+                color: white;
+                padding: 10px 20px;
+                border-radius: 4px;
+              "
+              >お問い合わせ</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <!-- アクセシビリティ改善: aria-label, aria-expanded, aria-controls追加 -->
+      <button
+        class="hamburger"
+        id="hamburger-btn"
+        aria-label="メニューを開く"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <!-- Mobile Menu -->
+    <!-- セマンティック改善: divからnavに変更, aria-label, aria-hidden追加 -->
+    <nav
+      class="mobile-menu"
+      id="mobile-menu"
+      aria-label="モバイルメニュー"
+      aria-hidden="true"
+    >
+      <ul>
+        <li><a href="#mission" class="mobile-link">MISSION</a></li>
+        <li><a href="#reasons" class="mobile-link">選ばれる理由</a></li>
+        <li><a href="#data" class="mobile-link">実績データ</a></li>
+        <li><a href="#companies" class="mobile-link">就職先企業</a></li>
+        <li><a href="#services" class="mobile-link">サービス内容</a></li>
+        <li><a href="#faq" class="mobile-link">よくある質問</a></li>
+        <li><a href="#company" class="mobile-link">運営会社</a></li>
+        <li>
+          <a
+            href="#"
+            class="mobile-link"
+            style="color: var(--color-primary); margin-top: 20px"
+            >お問い合わせ</a
+          >
+        </li>
+      </ul>
+    </nav>
+
     <!-- Hero Section -->
     <section class="hero">
       <div class="container">
@@ -474,7 +917,7 @@
     </section>
 
     <!-- Mission Section -->
-    <section class="mission">
+    <section class="mission" id="mission">
       <div class="container">
         <span class="section-label">OUR MISSION</span>
         <div class="mission-content">
@@ -490,15 +933,15 @@
               仕事を通じて世界中の人々がより輝き、企業にとって欠かせない戦力となる未来を創り出します。
             </p>
           </div>
-          <div class="mission-image">[ミーティング画像エリア]</div>
+          <div class="mission-image">[イメージ画像]</div>
         </div>
       </div>
     </section>
 
     <!-- Reasons Section -->
-    <section class="reasons">
+    <section class="reasons" id="reasons">
       <div class="container">
-        <span class="section-label">選ばれる理由REASON</span>
+        <span class="section-label">REASON</span>
         <h2>キズキキャリアが選ばれる3つの理由</h2>
         <div class="reasons-grid">
           <div class="reason-card">
@@ -527,9 +970,9 @@
     </section>
 
     <!-- Data Section -->
-    <section class="data">
+    <section class="data" id="data">
       <div class="container">
-        <span class="section-label">実績データ</span>
+        <span class="section-label">DATA</span>
         <h2>実績データ</h2>
         <p class="chart-description">
           キズキキャリアの就労定着サービスがこれまでに達成してきた実績をご紹介します。
@@ -572,13 +1015,16 @@
             <canvas id="jobTypeChart"></canvas>
           </div>
         </div>
+        <p class="data-note">
+          ※本データの数値は、2020年〜2025年までの当社実績に基づきます（自社調べ）。
+        </p>
       </div>
     </section>
 
     <!-- Companies Section -->
-    <section class="companies">
+    <section class="companies" id="companies">
       <div class="container">
-        <span class="section-label">実績(求職登録者)</span>
+        <span class="section-label">COMPANIES</span>
         <h2>就職先企業</h2>
         <p class="companies-description">
           私たちは、多くの大手企業や中堅企業と連携し、支援者の皆様の新たなキャリアをサポートしてきました。各社のロゴは、私たちの実績と信頼の証です。
@@ -613,9 +1059,9 @@
     </section>
 
     <!-- Services Section -->
-    <section class="services">
+    <section class="services" id="services">
       <div class="container">
-        <span class="section-label">サービス内容</span>
+        <span class="section-label">SERVICE</span>
         <h2>サービス内容</h2>
         <div class="services-grid">
           <div class="service-category">
@@ -638,10 +1084,44 @@
       </div>
     </section>
 
-    <!-- Company Info Section -->
-    <section class="company-info">
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
       <div class="container">
-        <span class="section-label">運営会社</span>
+        <span class="section-label">FAQ</span>
+        <h2>よくある質問</h2>
+        <div class="faq-grid">
+          <details class="faq-item">
+            <summary>利用料はかかりますか？</summary>
+            <p>
+              原則として利用料はかかりませんが、前年度の収入によっては自己負担が発生する場合があります。詳細はお問い合わせください。
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>在職中でも利用できますか？</summary>
+            <p>
+              はい、ご利用いただけます。転職に向けたサポートや、現在の職場での定着支援も行っています。
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>どのような障害種別の方が対象ですか？</summary>
+            <p>
+              身体、知的、精神、発達障害など、障害者手帳をお持ちの方や医師の診断がある方が対象です。手帳をお持ちでない方もご相談ください。
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>オンラインでの相談は可能ですか？</summary>
+            <p>
+              はい、Zoom等を使用したオンライン相談も承っております。遠方の方や外出が難しい方もお気軽にご利用ください。
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Company Info Section -->
+    <section class="company-info" id="company">
+      <div class="container">
+        <span class="section-label">COMPANY</span>
         <h2>運営会社</h2>
         <div class="company-details">
           <div class="company-text">
@@ -660,150 +1140,291 @@
       </div>
     </section>
 
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-info">
+            <div class="footer-logo">キズキキャリア</div>
+            <p style="font-size: 14px; color: #ccc; line-height: 1.8">
+              〒160-0022<br />
+              東京都新宿区新宿6-28-7 新宿EAST COURT 2階
+            </p>
+          </div>
+          <!-- セマンティック改善: divからnavに変更, aria-label追加 -->
+          <nav class="footer-links" aria-label="フッターメニュー">
+            <ul>
+              <li>
+                <a href="https://kizuki-corp.com/privacy/">個人情報保護方針</a>
+              </li>
+              <li>
+                <a href="https://kizuki-corp.com/pi-handling/"
+                  >個人情報の取扱いについて</a
+                >
+              </li>
+              <li>
+                <a href="https://kizuki-corp.com/customer-abuse-policy/"
+                  >カスタマーハラスメントに対する基本方針</a
+                >
+              </li>
+              <li><a href="https://kizuki-corp.com/documents/">社内規定</a></li>
+              <li><a href="#">お問い合わせ</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="copyright">&copy; 株式会社キズキ. Allrights reserved.</div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <!-- アクセシビリティ改善: aria-label追加 -->
+    <button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">
+      ↑
+    </button>
+
     <script>
-      // 雇用形態チャート
-      const genderAgeCtx = document
-        .getElementById("genderAgeChart")
-        .getContext("2d");
-      new Chart(genderAgeCtx, {
-        type: "doughnut",
-        data: {
-          labels: ["一般雇用", "障害者雇用"],
-          datasets: [
-            {
-              data: [58, 42],
-              // Green Palette
-              backgroundColor: ["#20a384", "#b2dfdb"],
-              borderWidth: 0,
-            },
-          ],
+      /**
+       * アプリケーション設定と定数管理
+       * マジックナンバーの削減と設定の一元化
+       */
+      const CONFIG = {
+        SCROLL: {
+          BACK_TO_TOP_THRESHOLD: 300,
         },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: "bottom",
-              labels: {
-                padding: 20,
-                font: {
-                  size: 12,
-                },
-              },
-            },
-          },
-          animation: {
-            animateRotate: true,
-            animateScale: true,
-            duration: 1500,
-            easing: "easeInOutQuart",
-          },
+        ANIMATION: {
+          DURATION: 1500,
+          EASING: "easeInOutQuart",
         },
-      });
+        COLORS: {
+          PRIMARY: "#20a384",
+          PRIMARY_HOVER: "#178066",
+          SECONDARY: "#b2dfdb",
+          ACCENT: "#178066",
+          ACCENT_LIGHT: "#4db6ac",
+          GRID: "#e0f2f1",
+        },
+      };
 
-      // 企業規模チャート
-      const companySizeCtx = document
-        .getElementById("companySizeChart")
-        .getContext("2d");
-      new Chart(companySizeCtx, {
-        type: "doughnut",
-        data: {
-          labels: ["大企業・グループ", "中堅企業・中小企業", "その他"],
-          datasets: [
-            {
-              data: [53, 37, 10],
-              // Green Palette
-              backgroundColor: ["#178066", "#4db6ac", "#b2dfdb"],
-              borderWidth: 0,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: "bottom",
-              labels: {
-                padding: 20,
-                font: {
-                  size: 12,
-                },
+      /**
+       * チャート設定を生成するヘルパー関数
+       * 重複コードの削減
+       */
+      const createChartConfig = (type, labels, data, bgColors) => {
+        return {
+          type: type,
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: type === "bar" ? "就職者数" : undefined,
+                data: data,
+                backgroundColor: bgColors,
+                borderWidth: type === "doughnut" ? 0 : undefined,
+                borderRadius: type === "bar" ? 4 : undefined,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: type !== "bar",
+                position: "bottom",
+                labels:
+                  type !== "bar"
+                    ? {
+                        padding: 20,
+                        font: { size: 12 },
+                      }
+                    : undefined,
               },
             },
+            scales:
+              type === "bar"
+                ? {
+                    y: {
+                      beginAtZero: true,
+                      ticks: { font: { size: 12 } },
+                      grid: { color: CONFIG.COLORS.GRID },
+                    },
+                    x: {
+                      ticks: {
+                        font: { size: 11 },
+                        maxRotation: 45,
+                        minRotation: 45,
+                      },
+                      grid: { display: false },
+                    },
+                  }
+                : undefined,
+            animation: {
+              animateRotate: true,
+              animateScale: true,
+              duration: CONFIG.ANIMATION.DURATION,
+              easing: CONFIG.ANIMATION.EASING,
+            },
           },
-          animation: {
-            animateRotate: true,
-            animateScale: true,
-            duration: 1500,
-            easing: "easeInOutQuart",
-          },
-        },
-      });
+        };
+      };
 
-      // 職種割合チャート
-      const jobTypeCtx = document
-        .getElementById("jobTypeChart")
-        .getContext("2d");
-      new Chart(jobTypeCtx, {
-        type: "bar",
-        data: {
-          labels: [
-            "事務職",
-            "IT専門職",
-            "専門・研究職",
-            "営業職",
-            "サービス職",
-            "その他",
-          ],
-          datasets: [
-            {
-              label: "就職者数",
-              data: [43, 15, 12, 10, 7, 13],
-              // Primary Green
-              backgroundColor: "#20a384",
-              borderRadius: 4,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: false,
-            },
+      /**
+       * モバイルメニューの初期化
+       */
+      const initMobileMenu = () => {
+        const hamburgerBtn = document.getElementById("hamburger-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const mobileLinks = document.querySelectorAll(".mobile-link");
+
+        if (!hamburgerBtn || !mobileMenu) return;
+
+        const closeMenu = () => {
+          hamburgerBtn.classList.remove("active");
+          mobileMenu.classList.remove("active");
+          hamburgerBtn.setAttribute("aria-expanded", "false");
+          hamburgerBtn.setAttribute("aria-label", "メニューを開く");
+          mobileMenu.setAttribute("aria-hidden", "true");
+        };
+
+        const toggleMenu = () => {
+          const isActive = hamburgerBtn.classList.toggle("active");
+          mobileMenu.classList.toggle("active");
+          hamburgerBtn.setAttribute("aria-expanded", isActive);
+          hamburgerBtn.setAttribute(
+            "aria-label",
+            isActive ? "メニューを閉じる" : "メニューを開く"
+          );
+          mobileMenu.setAttribute("aria-hidden", !isActive);
+        };
+
+        hamburgerBtn.addEventListener("click", toggleMenu);
+
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            closeMenu();
+            hamburgerBtn.focus();
+          });
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && mobileMenu.classList.contains("active")) {
+            closeMenu();
+            hamburgerBtn.focus();
+          }
+        });
+      };
+
+      /**
+       * トップへ戻るボタンの初期化
+       */
+      const initScrollToTop = () => {
+        const backToTopBtn = document.getElementById("backToTop");
+        if (!backToTopBtn) return;
+
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > CONFIG.SCROLL.BACK_TO_TOP_THRESHOLD) {
+            backToTopBtn.classList.add("show");
+          } else {
+            backToTopBtn.classList.remove("show");
+          }
+        });
+
+        backToTopBtn.addEventListener("click", () => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+      };
+
+      /**
+       * チャートの初期化 (Intersection Observerによる遅延読み込み)
+       */
+      const initCharts = () => {
+        const chartDefinitions = [
+          {
+            id: "genderAgeChart",
+            type: "doughnut",
+            labels: ["一般雇用", "障害者雇用"],
+            data: [58, 42],
+            colors: [CONFIG.COLORS.PRIMARY, CONFIG.COLORS.SECONDARY],
           },
-          scales: {
-            y: {
-              beginAtZero: true,
-              ticks: {
-                font: {
-                  size: 12,
-                },
-              },
-              grid: {
-                color: "#e0f2f1", // Light green grid
-              },
-            },
-            x: {
-              ticks: {
-                font: {
-                  size: 11,
-                },
-                maxRotation: 45,
-                minRotation: 45,
-              },
-              grid: {
-                display: false,
-              },
-            },
+          {
+            id: "companySizeChart",
+            type: "doughnut",
+            labels: ["大企業・グループ", "中堅企業・中小企業", "その他"],
+            data: [53, 37, 10],
+            colors: [
+              CONFIG.COLORS.ACCENT,
+              CONFIG.COLORS.ACCENT_LIGHT,
+              CONFIG.COLORS.SECONDARY,
+            ],
           },
-          animation: {
-            duration: 1500,
-            easing: "easeInOutQuart",
+          {
+            id: "jobTypeChart",
+            type: "bar",
+            labels: [
+              "事務職",
+              "IT専門職",
+              "専門・研究職",
+              "営業職",
+              "サービス職",
+              "その他",
+            ],
+            data: [43, 15, 12, 10, 7, 13],
+            colors: CONFIG.COLORS.PRIMARY,
           },
-        },
+        ];
+
+        // Intersection Observerのオプション
+        const observerOptions = {
+          root: null, // ビューポート
+          rootMargin: "0px",
+          threshold: 0.1, // 10%見えたら発火
+        };
+
+        // チャート生成を行うコールバック
+        const handleIntersect = (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const canvas = entry.target;
+              const chartId = canvas.id;
+
+              // 対応する定義を探す
+              const def = chartDefinitions.find((d) => d.id === chartId);
+
+              if (def) {
+                new Chart(
+                  canvas.getContext("2d"),
+                  createChartConfig(def.type, def.labels, def.data, def.colors)
+                );
+              }
+
+              // 一度描画したら監視を解除
+              observer.unobserve(canvas);
+            }
+          });
+        };
+
+        const observer = new IntersectionObserver(
+          handleIntersect,
+          observerOptions
+        );
+
+        // 各キャンバスを監視対象に追加
+        chartDefinitions.forEach((def) => {
+          const el = document.getElementById(def.id);
+          if (el) {
+            observer.observe(el);
+          }
+        });
+      };
+
+      // アプリケーション初期化
+      document.addEventListener("DOMContentLoaded", () => {
+        initMobileMenu();
+        initScrollToTop();
+        initCharts();
       });
     </script>
   </body>
