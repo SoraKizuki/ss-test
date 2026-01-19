@@ -1,0 +1,1962 @@
+<!doctype html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>キズキキャリア</title>
+
+    <!-- これはダミーです: メタディスクリプション -->
+    <meta
+      name="description"
+      content="就労移⾏⽀援の確かなノウハウで、ミスマッチを防ぎ、定着と「活躍」を支援します。私たちは、障害者雇用を「福祉」ではなく、企業の「成長」と個人の「再出発」の架け橋にします。"
+    />
+
+    <!-- これはダミーです: OGPタグ (SNSシェア設定) -->
+    <meta property="og:title" content="キズキキャリア - 「配慮」のその先へ" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kizuki-corp.com/" />
+    <!-- これはダミーです -->
+    <meta property="og:image" content="https://kizuki-corp.com/ogp.jpg" />
+    <!-- これはダミーです -->
+    <meta property="og:site_name" content="キズキキャリア" />
+    <meta
+      property="og:description"
+      content="就労移⾏⽀援の確かなノウハウで、ミスマッチを防ぎ、定着と「活躍」を支援します。私たちは、障害者雇用を「福祉」ではなく、企業の「成長」と個人の「再出発」の架け橋にします。"
+    />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
+      defer
+    ></script>
+    <style>
+      :root {
+        /* カラー */
+        --color-primary: #20a384;
+        --color-primary-hover: #178066;
+        --color-secondary: #b2dfdb;
+        --color-accent-light: #4db6ac;
+
+        /* 背景 */
+        --color-bg-light: #f7fcfa;
+        --color-bg-accent: #e0f2f1;
+        --color-white: #fff;
+
+        /* フォント */
+        --color-text-main: #333;
+        --color-text-sub: #555;
+        --color-text-light: #666;
+        --color-text-muted: #999;
+
+        /* レイアウト */
+        --header-height: 80px;
+        --switcher-height: 60px; /* タブ切り替えバーの高さ */
+        --container-width: 1200px;
+        --section-padding: 100px 0;
+
+        /* その他 */
+        --shadow-default: 0 2px 10px rgba(0, 0, 0, 0.05);
+        --border-color-light: #e8e8e8;
+        --radius-default: 8px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        /* ヘッダー + スイッチャーの高さを考慮してスクロール位置を調整 */
+        scroll-padding-top: calc(var(--header-height) + var(--switcher-height));
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+        line-height: 1.8;
+        color: var(--color-text-main);
+        padding-top: var(--header-height);
+        font-feature-settings: "palt";
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container {
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* =========================================
+         Shared Components
+         ========================================= */
+      .cta-button {
+        display: inline-block;
+        background: var(--color-primary);
+        color: var(--color-white);
+        padding: 18px 60px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 4px;
+        transition:
+          background 0.3s,
+          transform 0.2s;
+        cursor: pointer;
+        border: none;
+      }
+
+      .cta-button:hover {
+        background: var(--color-primary-hover);
+        transform: translateY(-2px);
+      }
+
+      .section-label {
+        display: inline-block;
+        background: var(--color-bg-accent);
+        color: var(--color-primary);
+        padding: 6px 16px;
+        font-size: 12px;
+        letter-spacing: 1px;
+        margin-bottom: 30px;
+        border-radius: 3px;
+        font-weight: bold;
+      }
+
+      /* セクション共通スタイル */
+      section {
+        padding: var(--section-padding);
+      }
+
+      /* セクション背景色のグルーピング */
+      .bg-white {
+        background: var(--color-white);
+      }
+      .bg-light {
+        background: var(--color-bg-light);
+      }
+
+      /* 見出しの共通化 */
+      section h2 {
+        font-size: 32px;
+        margin-bottom: 60px;
+        font-weight: 500;
+        line-height: 1.5;
+        color: var(--color-text-main);
+        letter-spacing: 0.05em;
+      }
+
+      /* テキスト共通スタイル */
+      .section-description,
+      .chart-description,
+      .bar-chart-description,
+      .companies-description {
+        font-size: 16px;
+        line-height: 2;
+        color: var(--color-text-light);
+        margin-bottom: 30px;
+      }
+
+      /* データ出典注釈 */
+      .data-note {
+        font-size: 12px;
+        color: var(--color-text-muted);
+        text-align: right;
+        margin-top: 30px;
+        line-height: 1.5;
+      }
+
+      /* =========================================
+         Header
+         ========================================= */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: var(--header-height);
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: var(--shadow-default);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        backdrop-filter: blur(5px);
+      }
+
+      .header-logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--color-primary);
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--color-text-main);
+        font-weight: 500;
+        transition: color 0.3s;
+        font-size: 15px;
+      }
+
+      .nav-links a:hover {
+        color: var(--color-primary);
+      }
+
+      /* =========================================
+         View Switcher (Tab)
+         ========================================= */
+      .view-switcher-container {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        height: var(--switcher-height);
+        z-index: 990;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        display: flex;
+        justify-content: center;
+      }
+
+      .view-switcher {
+        display: flex;
+        width: 100%;
+        max-width: 600px;
+      }
+
+      .switcher-btn {
+        flex: 1;
+        border: none;
+        background: transparent;
+        font-size: 16px;
+        font-weight: bold;
+        color: var(--color-text-muted);
+        cursor: pointer;
+        transition: all 0.3s;
+        border-bottom: 3px solid transparent;
+      }
+
+      .switcher-btn:hover {
+        color: var(--color-primary);
+        background: var(--color-bg-light);
+      }
+
+      .switcher-btn.active {
+        color: var(--color-primary);
+        border-bottom: 3px solid var(--color-primary);
+        background: var(--color-bg-accent);
+      }
+
+      /* Body padding adjustment for switcher */
+      body {
+        padding-top: calc(var(--header-height) + var(--switcher-height));
+      }
+
+      /* View Content Toggle */
+      .view-content {
+        display: none;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .view-content.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* =========================================
+         Hamburger & Mobile Menu
+         ========================================= */
+      .hamburger {
+        display: none; /* PC非表示 */
+        flex-direction: column;
+        justify-content: center;
+        gap: 6px;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001;
+      }
+
+      .hamburger span {
+        width: 30px;
+        height: 3px;
+        background: var(--color-text-main);
+        border-radius: 10px;
+        transition: all 0.3s linear;
+        position: relative;
+      }
+
+      .mobile-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--color-white);
+        z-index: 999;
+        visibility: hidden;
+        transition:
+          right 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+          visibility 0.4s step-end;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mobile-menu.active {
+        right: 0;
+        visibility: visible;
+        transition:
+          right 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+          visibility 0s;
+      }
+
+      .mobile-menu ul {
+        list-style: none;
+        text-align: center;
+      }
+
+      .mobile-menu li {
+        margin: 20px 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+      }
+
+      .mobile-menu.active li {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: calc(0.1s * var(--i, 1));
+      }
+
+      /* アニメーション用delay */
+      .mobile-menu.active li:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+      .mobile-menu.active li:nth-child(2) {
+        transition-delay: 0.15s;
+      }
+      .mobile-menu.active li:nth-child(3) {
+        transition-delay: 0.2s;
+      }
+      .mobile-menu.active li:nth-child(4) {
+        transition-delay: 0.25s;
+      }
+      .mobile-menu.active li:nth-child(5) {
+        transition-delay: 0.3s;
+      }
+      .mobile-menu.active li:nth-child(6) {
+        transition-delay: 0.35s;
+      }
+      .mobile-menu.active li:nth-child(7) {
+        transition-delay: 0.4s;
+      }
+      .mobile-menu.active li:nth-child(8) {
+        transition-delay: 0.45s;
+      }
+      .mobile-menu.active li:nth-child(9) {
+        transition-delay: 0.5s;
+      }
+
+      .mobile-menu a {
+        font-size: 20px;
+        color: var(--color-text-main);
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+      }
+
+      /* =========================================
+         Hero Section
+         ========================================= */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #f0fdfa 0%,
+          var(--color-bg-accent) 100%
+        );
+        padding: 100px 0 80px;
+        text-align: center;
+      }
+
+      /* toC向けヒーロー背景バリエーション */
+      .hero-toc {
+        background: linear-gradient(135deg, #fffbf0 0%, #fef3c7 100%);
+      }
+
+      .hero-image {
+        width: 100%;
+        height: 400px;
+        background: var(--color-secondary);
+        margin-bottom: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-white);
+        font-size: 18px;
+        border-radius: var(--radius-default);
+      }
+
+      /* toC向け画像プレースホルダー色変更 */
+      .hero-toc .hero-image {
+        background: #fcd34d;
+        color: #78350f;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        margin-bottom: 30px;
+        font-weight: 500;
+        letter-spacing: 2px;
+        color: #2c3e50;
+      }
+
+      .hero-subtitle {
+        font-size: 18px;
+        margin-bottom: 30px;
+        color: var(--color-text-sub);
+      }
+
+      .hero-description {
+        font-size: 16px;
+        line-height: 2;
+        margin-bottom: 40px;
+        color: var(--color-text-light);
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* =========================================
+         Content Sections
+         ========================================= */
+
+      /* Mission */
+      .mission-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .mission-text {
+        font-size: 16px;
+        line-height: 2;
+        color: var(--color-text-light);
+        margin-bottom: 20px;
+      }
+
+      .mission-image,
+      .company-image {
+        width: 100%;
+        height: 400px;
+        background: var(--color-secondary);
+        border-radius: var(--radius-default);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-white);
+      }
+
+      /* Reasons */
+      .reasons-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+      }
+
+      .reason-card {
+        background: var(--color-white);
+        padding: 40px 30px;
+        border-radius: var(--radius-default);
+        box-shadow: 0 2px 10px rgba(32, 163, 132, 0.1);
+        height: 100%;
+      }
+
+      .reason-number {
+        width: 50px;
+        height: 50px;
+        background: var(--color-primary);
+        color: var(--color-white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      .reason-card h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        font-weight: 500;
+        color: var(--color-primary);
+      }
+
+      .reason-card p {
+        font-size: 14px;
+        line-height: 1.8;
+        color: var(--color-text-light);
+      }
+
+      /* Data */
+      .data-highlight {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .data-percentage {
+        font-size: 72px;
+        font-weight: bold;
+        color: var(--color-primary);
+        margin-bottom: 15px;
+        line-height: 1;
+      }
+
+      .data-label {
+        font-size: 16px;
+        color: var(--color-text-light);
+        margin-bottom: 10px;
+      }
+
+      .data-description {
+        font-size: 14px;
+        color: var(--color-text-muted);
+      }
+
+      .data-charts {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 60px;
+        margin-bottom: 60px;
+      }
+
+      .chart-item h3,
+      .bar-chart h3 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
+
+      .chart-container {
+        width: 100%;
+        height: 300px;
+        position: relative;
+      }
+      .chart-container canvas {
+        max-height: 300px;
+      }
+
+      .bar-chart {
+        margin-top: 30px;
+      }
+      .bar-chart-container {
+        width: 100%;
+        height: 400px;
+        position: relative;
+      }
+      .bar-chart-container canvas {
+        max-height: 400px;
+      }
+
+      /* Companies: PC First Grid */
+      .companies-logos {
+        display: grid;
+        /* PCデフォルト: 8カラム */
+        grid-template-columns: repeat(8, 1fr);
+        gap: 20px;
+        align-items: center;
+      }
+
+      .company-logo {
+        width: 100%;
+        height: 80px;
+        background: var(--color-white);
+        border-radius: var(--radius-default);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow-default);
+        transition: transform 0.2s;
+      }
+
+      .company-logo:hover {
+        transform: translateY(-2px);
+      }
+
+      .company-logo-icon {
+        font-size: 24px;
+        color: var(--color-secondary);
+      }
+
+      /* Services */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 60px;
+      }
+
+      .service-category {
+        background: var(--color-bg-light);
+        padding: 30px;
+        border-radius: var(--radius-default);
+      }
+
+      .service-category h3 {
+        font-size: 22px;
+        margin-bottom: 30px;
+        font-weight: 500;
+        color: var(--color-primary);
+        border-bottom: 2px solid var(--color-bg-accent);
+        padding-bottom: 10px;
+      }
+
+      .service-category ul {
+        list-style: none;
+      }
+      .service-category li {
+        padding: 15px 0;
+        border-bottom: 1px solid var(--border-color-light);
+        font-size: 15px;
+        color: var(--color-text-light);
+      }
+      .service-category li:before {
+        content: "・";
+        margin-right: 8px;
+        color: var(--color-primary);
+      }
+
+      /* toC向けサービスセクション用：フロー表示 */
+      .service-flow-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+      }
+      .service-flow-card {
+        background: var(--color-white);
+        padding: 30px;
+        border-radius: var(--radius-default);
+        text-align: center;
+        border: 1px solid var(--border-color-light);
+        position: relative;
+      }
+      .service-flow-step {
+        display: inline-block;
+        background: var(--color-primary);
+        color: #fff;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 12px;
+        margin-bottom: 15px;
+        font-weight: bold;
+      }
+      .service-flow-card h4 {
+        margin-bottom: 15px;
+        font-size: 18px;
+        color: var(--color-text-main);
+      }
+      .service-flow-card p {
+        font-size: 14px;
+        color: var(--color-text-light);
+        text-align: left;
+      }
+
+      /* FAQ Section */
+      .faq-grid {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        background: var(--color-white);
+        border-radius: var(--radius-default);
+        margin-bottom: 20px;
+        padding: 20px 30px;
+        box-shadow: var(--shadow-default);
+      }
+
+      .faq-item summary {
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        list-style: none;
+        position: relative;
+        padding-right: 30px;
+        color: var(--color-primary);
+        transition: color 0.3s;
+      }
+
+      .faq-item summary:hover {
+        color: var(--color-primary-hover);
+      }
+
+      .faq-item summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq-item summary::after {
+        content: "+";
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 24px;
+        line-height: 1;
+        font-weight: normal;
+        color: var(--color-text-muted);
+        transition: transform 0.3s ease;
+      }
+
+      .faq-item[open] summary::after {
+        content: "-";
+        transform: rotate(180deg);
+      }
+
+      .faq-item p {
+        margin-top: 15px;
+        font-size: 14px;
+        line-height: 1.8;
+        color: var(--color-text-light);
+        border-top: 1px solid var(--border-color-light);
+        padding-top: 15px;
+      }
+
+      /* Company Info */
+      .company-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: start;
+      }
+
+      .company-text h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
+      .company-text p {
+        margin-bottom: 15px;
+        line-height: 2;
+        color: var(--color-text-light);
+      }
+
+      /* =========================================
+         Footer
+         ========================================= */
+      footer {
+        background: var(--color-text-main);
+        color: var(--color-white);
+        padding: 60px 0 30px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-logo {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: var(--color-white);
+      }
+
+      .footer-links ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .footer-links a {
+        color: var(--color-white);
+        text-decoration: none;
+        font-size: 14px;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+      }
+      .footer-links a:hover {
+        opacity: 1;
+      }
+
+      .copyright {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 30px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--color-text-muted);
+      }
+
+      /* Back to Top */
+      .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--color-primary);
+        color: var(--color-white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+        z-index: 900;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        font-size: 24px;
+        border: none;
+      }
+      .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      .back-to-top:hover {
+        background: var(--color-primary-hover);
+        transform: translateY(-5px);
+      }
+
+      /* =========================================
+         Mobile
+         ========================================= */
+
+      @media (max-width: 900px) {
+        .companies-logos {
+          /* Tablet: 4 columns */
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        header {
+          padding: 0 20px;
+        }
+
+        /* Navigation Switch */
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+
+        .hero h1 {
+          font-size: 32px;
+        }
+        .hero-subtitle {
+          font-size: 16px;
+        }
+
+        .mission-content,
+        .reasons-grid,
+        .data-charts,
+        .services-grid,
+        .company-details,
+        .footer-content,
+        .service-flow-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        /* Mobile specific adjustments */
+        .companies-logos {
+          /* Mobile: 4 columns (compact) or 2 columns */
+          grid-template-columns: repeat(4, 1fr);
+          gap: 15px;
+        }
+
+        .data-percentage {
+          font-size: 56px;
+        }
+
+        /* Mobile Font Sizes for Headings */
+        section h2,
+        .mission h2 {
+          font-size: 28px;
+        }
+
+        /* Footer Specifics */
+        .footer-content {
+          text-align: center;
+        }
+        .footer-links ul {
+          justify-content: center;
+          gap: 15px;
+          margin-top: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .companies-logos {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .cta-button {
+          width: 100%;
+          text-align: center;
+          padding: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="#" class="header-logo">キズキキャリア</a>
+      <nav aria-label="メインメニュー">
+        <ul class="nav-links">
+          <!-- PCメニュー: data-key属性を追加 -->
+          <li data-key="mission">
+            <a href="#mission" class="nav-link-mission">ミッション</a>
+          </li>
+          <li data-key="reasons">
+            <a href="#reasons" class="nav-link-reasons">選ばれる理由</a>
+          </li>
+          <li data-key="data">
+            <a href="#data" class="nav-link-data">実績データ</a>
+          </li>
+          <li data-key="companies">
+            <a href="#companies" class="nav-link-companies">就職先企業</a>
+          </li>
+          <li data-key="services">
+            <a href="#services" class="nav-link-services">サービス内容</a>
+          </li>
+          <li data-key="faq">
+            <a href="#faq" class="nav-link-faq">よくある質問</a>
+          </li>
+          <li data-key="company">
+            <a href="#company" class="nav-link-company">運営会社</a>
+          </li>
+          <li data-key="contact">
+            <a
+              href="#"
+              style="
+                background: var(--color-primary);
+                color: white;
+                padding: 10px 20px;
+                border-radius: 4px;
+              "
+              >お問い合わせ</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <button
+        class="hamburger"
+        id="hamburger-btn"
+        aria-label="メニューを開く"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <!-- Mobile Menu -->
+    <nav
+      class="mobile-menu"
+      id="mobile-menu"
+      aria-label="モバイルメニュー"
+      aria-hidden="true"
+    >
+      <ul>
+        <!-- モバイルメニュー: data-key属性を追加 -->
+        <li data-key="top">
+          <a href="#" class="mobile-link nav-link-top">TOP</a>
+        </li>
+        <li data-key="mission">
+          <a href="#mission" class="mobile-link nav-link-mission">ミッション</a>
+        </li>
+        <li data-key="reasons">
+          <a href="#reasons" class="mobile-link nav-link-reasons"
+            >選ばれる理由</a
+          >
+        </li>
+        <li data-key="data">
+          <a href="#data" class="mobile-link nav-link-data">実績データ</a>
+        </li>
+        <li data-key="companies">
+          <a href="#companies" class="mobile-link nav-link-companies"
+            >就職先企業</a
+          >
+        </li>
+        <li data-key="services">
+          <a href="#services" class="mobile-link nav-link-services"
+            >サービス内容</a
+          >
+        </li>
+        <li data-key="faq">
+          <a href="#faq" class="mobile-link nav-link-faq">よくある質問</a>
+        </li>
+        <li data-key="company">
+          <a href="#company" class="mobile-link nav-link-company">運営会社</a>
+        </li>
+        <li data-key="contact">
+          <a
+            href="#"
+            class="mobile-link"
+            style="color: var(--color-primary); margin-top: 20px"
+            >お問い合わせ</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <!-- View Switcher -->
+    <div class="view-switcher-container">
+      <div class="view-switcher">
+        <button class="switcher-btn active" onclick="switchView('tob')">
+          企業のご担当者様
+        </button>
+        <button class="switcher-btn" onclick="switchView('toc')">
+          求職者の方
+        </button>
+      </div>
+    </div>
+
+    <!-- ==============================================
+         toB View (Optimized Order)
+         ============================================== -->
+    <div id="view-tob" class="view-content active">
+      <!-- 1. Hero -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-image">[ヒーロー画像エリア]</div>
+          <h1>「配慮」のその先へ</h1>
+          <p class="hero-subtitle">
+            仕事を通じて、人生をより良くしたいと願うすべての人へ。
+          </p>
+          <p class="hero-description">
+            就労移⾏⽀援の確かなノウハウで、ミスマッチを防ぎ、定着と「活躍」を支援します。私たちは、障害者雇用を「福祉」ではなく、企業の「成長」と個人の「再出発」の架け橋にします。
+          </p>
+          <a href="#" class="cta-button">お問い合わせ</a>
+        </div>
+      </section>
+
+      <!-- 2. Reasons (bg-white) -->
+      <section class="reasons bg-white" id="reasons">
+        <div class="container">
+          <span class="section-label">REASON</span>
+          <h2>キズキキャリアが選ばれる3つの理由</h2>
+          <div class="reasons-grid">
+            <div class="reason-card">
+              <div class="reason-number">1</div>
+              <h3>高精度マッチング</h3>
+              <p>
+                スキルだけでなく、特性・ストレス耐性・必要な合理的配慮を深く分析。採用のミスマッチを最小化します。
+              </p>
+            </div>
+            <div class="reason-card">
+              <div class="reason-number">2</div>
+              <h3>「活躍」をゴールに</h3>
+              <p>
+                「定着」は最低条件。現場でバリューを発揮し、自信を持って働ける状態を目指します。
+              </p>
+            </div>
+            <div class="reason-card">
+              <div class="reason-number">3</div>
+              <h3>自立支援のアプローチ</h3>
+              <p>
+                過度な保護はしません。自らの強みを確認し、主体的にキャリアを築けるようサポートします。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Data (bg-light) -->
+      <section class="data bg-light" id="data">
+        <div class="container">
+          <span class="section-label">DATA</span>
+          <h2>実績データ</h2>
+          <p class="chart-description">
+            キズキキャリアの就労定着サービスがこれまでに達成してきた実績をご紹介します。
+          </p>
+          <div class="data-highlight">
+            <p class="data-label">定着率</p>
+            <div class="data-percentage">95%</div>
+            <p class="data-description">
+              就職後の長期的な活躍を支援し、高い定着率を実現しています。
+            </p>
+          </div>
+
+          <div class="data-charts">
+            <div class="chart-item">
+              <h3>雇用形態</h3>
+              <p class="chart-description">
+                当社の支援を受けた方の雇用形態の内訳です。
+              </p>
+              <div class="chart-container">
+                <canvas id="genderAgeChart"></canvas>
+              </div>
+            </div>
+            <div class="chart-item">
+              <h3>就職先企業規模</h3>
+              <p class="chart-description">
+                支援を通じて就職された企業の規模別割合です。
+              </p>
+              <div class="chart-container">
+                <canvas id="companySizeChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="bar-chart">
+            <h3>職種別割合</h3>
+            <p class="bar-chart-description">
+              就職された方の職種の内訳は以下の通りです。
+            </p>
+            <div class="bar-chart-container">
+              <canvas id="jobTypeChart"></canvas>
+            </div>
+          </div>
+          <p class="data-note">
+            ※本データの数値は、2020年〜2025年までの当社実績に基づきます（自社調べ）。
+          </p>
+        </div>
+      </section>
+
+      <!-- 4. Services (bg-white) -->
+      <section class="services bg-white" id="services">
+        <div class="container">
+          <span class="section-label">SERVICE</span>
+          <h2>サービス内容</h2>
+          <div class="services-grid">
+            <div class="service-category">
+              <h3>企業様向け</h3>
+              <ul>
+                <li>人材紹介サービス：即戦力・専門人材のご紹介</li>
+                <li>雇用コンサルティング：業務設計・マニュアル作成支援</li>
+                <li>
+                  定着・活躍マネジメント：定期面談・コミュニケーション研修
+                </li>
+              </ul>
+            </div>
+            <div class="service-category">
+              <h3>求職者向け</h3>
+              <ul>
+                <li>
+                  キャリアカウンセリング：経験や「強み」に焦点を当てた対話
+                </li>
+                <li>求人紹介・マッチング：自分らしく活躍できる環境の提案</li>
+                <li>入社後フォロー：継続的な相談サポート</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Companies (bg-light) -->
+      <section class="companies bg-light" id="companies">
+        <div class="container">
+          <span class="section-label">COMPANIES</span>
+          <h2>就職先企業</h2>
+          <p class="companies-description">
+            私たちは、多くの大手企業や中堅企業と連携し、支援者の皆様の新たなキャリアをサポートしてきました。各社のロゴは、私たちの実績と信頼の証です。
+          </p>
+          <div class="companies-logos">
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Mission (bg-white) -->
+      <section class="mission bg-white" id="mission">
+        <div class="container">
+          <span class="section-label">OUR MISSION</span>
+          <div class="mission-content">
+            <div>
+              <h2>何度でもやり直せる社会をつくる</h2>
+              <p class="mission-text">
+                人生には、立ち止まってしまう時があります。しかし、そこからどう歩み出すかが、その後の人生を決めます。
+              </p>
+              <p class="mission-text">
+                キズキキャリアは、単に「仕事を紹介する」だけのエージェントではありません。これまでの型にはまらず「やり直し」を肯定できるようなグループでありたいと考えます。本質的な個性の理解と、輝く場所の創造に。<br />
+              </p>
+              <p class="mission-text">
+                仕事を通じて世界中の人々がより輝き、企業にとって欠かせない戦力となる未来を創り出します。
+              </p>
+            </div>
+            <div class="mission-image">[イメージ画像]</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. FAQ (bg-light) -->
+      <section class="faq bg-light" id="faq">
+        <div class="container">
+          <span class="section-label">FAQ</span>
+          <h2>よくある質問</h2>
+          <div class="faq-grid">
+            <details class="faq-item">
+              <summary>利用料はかかりますか？</summary>
+              <p>
+                原則として利用料はかかりませんが、前年度の収入によっては自己負担が発生する場合があります。詳細はお問い合わせください。
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>在職中でも利用できますか？</summary>
+              <p>
+                はい、ご利用いただけます。転職に向けたサポートや、現在の職場での定着支援も行っています。
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>どのような障害種別の方が対象ですか？</summary>
+              <p>
+                身体、知的、精神、発達障害など、障害者手帳をお持ちの方や医師の診断がある方が対象です。手帳をお持ちでない方もご相談ください。
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>オンラインでの相談は可能ですか？</summary>
+              <p>
+                はい、Zoom等を使用したオンライン相談も承っております。遠方の方や外出が難しい方もお気軽にご利用ください。
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Company Info (bg-white) -->
+      <section class="company-info bg-white" id="company">
+        <div class="container">
+          <span class="section-label">COMPANY</span>
+          <h2>運営会社</h2>
+          <div class="company-details">
+            <div class="company-text">
+              <h3>キズキキャリア株式会社</h3>
+              <p>（株式会社キズキ 100%子会社）</p>
+              <p>
+                私たちは、不登校・中退・ひきこもり・うつ病などの困難を経験した方々の支援を行うキズキグループの一員として、雇用領域における最高のソリューションを提供します。
+              </p>
+              <p>
+                「優しさ」だけでなく、プロフェッショナルとして人生を再構築する姿勢で、求職者と企業の双方に寄り添います。
+              </p>
+              <a href="#" class="cta-button">お問い合わせ</a>
+            </div>
+            <div class="company-image">[会社画像エリア]</div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- End of toB View -->
+
+    <!-- ==============================================
+         toC View (New Order & Optimized Content)
+         ============================================== -->
+    <div id="view-toc" class="view-content">
+      <!-- 1. Hero (toC) -->
+      <section class="hero hero-toc">
+        <div class="container">
+          <div class="hero-image">[求職者向けイメージ]</div>
+          <h1>自分らしく働ける場所が、<br />きっとある。</h1>
+          <p class="hero-subtitle">
+            あなたの「強み」を見つけ、長く安心して働ける職場へ。
+          </p>
+          <p class="hero-description">
+            キズキキャリアは、障害や特性のある方の就職・転職をサポートするエージェントです。<br />
+            ただ仕事を紹介するだけでなく、あなたが自信を持って働けるよう、カウンセリングから定着まで伴走します。
+          </p>
+          <a href="#" class="cta-button">お問い合わせ</a>
+        </div>
+      </section>
+
+      <!-- 2. Data (toC) - 実績を先に見せて安心感を醸成 -->
+      <section class="data bg-white" id="data_toc">
+        <div class="container">
+          <span class="section-label">DATA</span>
+          <h2>数字で見るキズキキャリア</h2>
+          <p class="chart-description">
+            多くの方が、自分に合った職場を見つけ、長く活躍されています。
+          </p>
+          <div class="data-highlight">
+            <p class="data-label">定着率</p>
+            <div class="data-percentage">95%</div>
+            <p class="data-description">
+              入社後もしっかりサポートするため、早期離職が非常に少ないのが特徴です。
+            </p>
+          </div>
+
+          <!-- toC用にチャートエリアを少し簡略化して表示 -->
+          <div class="bar-chart">
+            <h3>多様な職種での活躍</h3>
+            <p class="bar-chart-description">
+              事務職だけでなく、専門スキルを活かせる職種など、幅広い選択肢があります。
+            </p>
+            <div class="bar-chart-container">
+              <!-- JSでチャートを再描画するのは複雑なため、ここは同じCanvasIDを使用しないよう注意 -->
+              <!-- 実際の実装ではJSで両方のキャンバスを描画するか、Canvasを移動させる。今回は簡易的に複製IDを用意 -->
+              <canvas id="jobTypeChartToc"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Reasons (toC) - 求職者メリット -->
+      <section class="reasons bg-light" id="reasons_toc">
+        <div class="container">
+          <span class="section-label">MERIT</span>
+          <h2>あなたがキズキキャリアを使うべき理由</h2>
+          <div class="reasons-grid">
+            <div class="reason-card">
+              <div class="reason-number">1</div>
+              <h3>「強み」の再発見</h3>
+              <p>
+                これまでの経験や特性を丁寧にヒアリング。自分では気づかなかった「得意」を見つけ、自信につなげます。
+              </p>
+            </div>
+            <div class="reason-card">
+              <div class="reason-number">2</div>
+              <h3>厳選された企業紹介</h3>
+              <p>
+                「配慮」への理解があり、長く働きやすい環境が整っている企業を厳選してご紹介します。
+              </p>
+            </div>
+            <div class="reason-card">
+              <div class="reason-number">3</div>
+              <h3>入社後も続くサポート</h3>
+              <p>
+                就職はゴールではありません。働き始めてからの悩みも、専任のスタッフが継続的にサポートします。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Services (toC) - 具体的なステップ -->
+      <section class="services bg-white" id="services_toc">
+        <div class="container">
+          <span class="section-label">FLOW</span>
+          <h2>ご利用の流れ</h2>
+          <p class="section-description" style="text-align: center">
+            登録から就職、そして定着まで。専任アドバイザーがマンツーマンでサポートします。
+          </p>
+          <div class="service-flow-grid">
+            <div class="service-flow-card">
+              <span class="service-flow-step">STEP 1</span>
+              <h4>カウンセリング</h4>
+              <p>
+                まずはあなたの状況や希望をお聞かせください。オンラインでの面談も可能です。
+              </p>
+            </div>
+            <div class="service-flow-card">
+              <span class="service-flow-step">STEP 2</span>
+              <h4>求人紹介・対策</h4>
+              <p>
+                希望に合う求人をご提案。応募書類の添削や模擬面接など、選考対策も万全に行います。
+              </p>
+            </div>
+            <div class="service-flow-card">
+              <span class="service-flow-step">STEP 3</span>
+              <h4>内定・定着支援</h4>
+              <p>
+                条件交渉もお任せください。入社後も定期的な面談を行い、安定した就労を支えます。
+              </p>
+            </div>
+          </div>
+          <div style="text-align: center; margin-top: 50px">
+            <a href="#" class="cta-button">お問い合わせ</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Companies (toC) -->
+      <section class="companies bg-light" id="companies_toc">
+        <div class="container">
+          <span class="section-label">COMPANIES</span>
+          <h2>主な就職実績</h2>
+          <p class="companies-description">
+            大手企業から特例子会社、成長中のベンチャーまで、多様な企業への就職実績があります。
+          </p>
+          <!-- ロゴグリッドは共通デザイン -->
+          <div class="companies-logos">
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Mission (toC) - 想いを最後に -->
+      <section class="mission bg-white" id="mission_toc">
+        <div class="container">
+          <span class="section-label">MESSAGE</span>
+          <div class="mission-content">
+            <div>
+              <h2>何度でも、ここから始められる</h2>
+              <p class="mission-text">
+                「一度つまづいたら、もう終わり」なんてことはありません。<br />
+                私たちは、何度でもやり直せる社会をつくりたいと考えています。
+              </p>
+              <p class="mission-text">
+                あなたのペースで大丈夫です。私たちと一緒に、<br />自分らしく輝ける次のステージを探しに行きませんか？
+              </p>
+            </div>
+            <div class="mission-image">[サポーティブな画像]</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. FAQ (toC) -->
+      <section class="faq bg-light" id="faq_toc">
+        <div class="container">
+          <span class="section-label">FAQ</span>
+          <h2>よくある質問</h2>
+          <div class="faq-grid">
+            <details class="faq-item">
+              <summary>サービスの利用にお金はかかりますか？</summary>
+              <p>
+                いいえ、求職者の方は<strong>完全無料</strong>でご利用いただけます。費用は一切かかりませんのでご安心ください。
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>まだ転職するか決めていないのですが...</summary>
+              <p>
+                もちろん大丈夫です。「まずは話だけ聞いてみたい」「自分の市場価値を知りたい」という方も歓迎です。
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>障害者手帳を持っていなくても利用できますか？</summary>
+              <p>
+                はい、手帳をお持ちでない方や申請中の方、医師の診断がある方もご相談可能です。まずは一度お問い合わせください。
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>地方在住でもサポートを受けられますか？</summary>
+              <p>
+                はい、オンライン（Zoom等）での面談を実施しておりますので、全国どこからでもサポート可能です。
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Company (toC) -->
+      <section class="company-info bg-white" id="company_toc">
+        <div class="container">
+          <span class="section-label">COMPANY</span>
+          <h2>運営会社</h2>
+          <div class="company-details">
+            <div class="company-text">
+              <h3>キズキキャリア株式会社</h3>
+              <p>
+                「何度でもやり直せる社会をつくる」をミッションに掲げるキズキグループの一員です。<br />
+                就労支援のほか、不登校支援の学習塾なども運営しており、困難を抱える方の「次の一歩」を応援し続けています。
+              </p>
+              <a href="#" class="cta-button">会社概要を見る</a>
+            </div>
+            <div class="company-image">[会社画像エリア]</div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- End of toC View -->
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-info">
+            <div class="footer-logo">キズキキャリア</div>
+            <p style="font-size: 14px; color: #ccc; line-height: 1.8">
+              〒160-0022<br />
+              東京都新宿区新宿6-28-7 新宿EAST COURT 2階
+            </p>
+          </div>
+          <nav class="footer-links" aria-label="フッターメニュー">
+            <ul>
+              <li>
+                <a href="https://kizuki-corp.com/privacy/">個人情報保護方針</a>
+              </li>
+              <li>
+                <a href="https://kizuki-corp.com/pi-handling/"
+                  >個人情報の取扱いについて</a
+                >
+              </li>
+              <li>
+                <a href="https://kizuki-corp.com/customer-abuse-policy/"
+                  >カスタマーハラスメントに対する基本方針</a
+                >
+              </li>
+              <li><a href="https://kizuki-corp.com/documents/">社内規定</a></li>
+              <li><a href="#">お問い合わせ</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="copyright">&copy; 株式会社キズキ. Allrights reserved.</div>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">
+      ↑
+    </button>
+
+    <script>
+      const CONFIG = {
+        SCROLL: {
+          BACK_TO_TOP_THRESHOLD: 300,
+        },
+        ANIMATION: {
+          DURATION: 1500,
+          EASING: "easeInOutQuart",
+        },
+        COLORS: {
+          PRIMARY: "#20a384",
+          PRIMARY_HOVER: "#178066",
+          SECONDARY: "#b2dfdb",
+          ACCENT: "#178066",
+          ACCENT_LIGHT: "#4db6ac",
+          GRID: "#e0f2f1",
+        },
+      };
+
+      // メニュー順序の定義
+      const MENU_ORDER = {
+        // toB (企業向け): Reasons -> Data -> Services -> Companies -> Mission -> FAQ -> Company
+        tob: [
+          "top",
+          "reasons",
+          "data",
+          "services",
+          "companies",
+          "mission",
+          "faq",
+          "company",
+          "contact",
+        ],
+        // toC (求職者向け): Data -> Reasons -> Services -> Companies -> Mission -> FAQ -> Company
+        toc: [
+          "top",
+          "data",
+          "reasons",
+          "services",
+          "companies",
+          "mission",
+          "faq",
+          "company",
+          "contact",
+        ],
+      };
+
+      // ビュー切り替え機能
+      function switchView(type) {
+        // ボタンのアクティブ化
+        const buttons = document.querySelectorAll(".switcher-btn");
+        // 一旦全解除
+        buttons.forEach((btn) => btn.classList.remove("active"));
+
+        if (type === "tob") {
+          buttons[0].classList.add("active");
+          updateNavLinks("tob");
+          reorderNav("tob");
+        } else {
+          buttons[1].classList.add("active");
+          updateNavLinks("toc");
+          reorderNav("toc");
+        }
+
+        // コンテンツの表示切り替え
+        document.querySelectorAll(".view-content").forEach((content) => {
+          content.classList.remove("active");
+        });
+        document.getElementById(`view-${type}`).classList.add("active");
+
+        // toCチャートの初期化（初回表示時のみ等の制御が必要だが簡易的に呼び出し）
+        if (type === "toc") {
+          // 少し遅延させて描画（display:block適用待ち）
+          setTimeout(initTocCharts, 100);
+        }
+
+        // スクロール位置をトップへ（UX向上）
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // ナビゲーションリンクの更新
+      function updateNavLinks(viewType) {
+        const suffix = viewType === "toc" ? "_toc" : "";
+
+        // マッピング定義
+        const map = {
+          mission: `#mission${suffix}`,
+          reasons: `#reasons${suffix}`,
+          data: `#data${suffix}`,
+          companies: `#companies${suffix}`,
+          services: `#services${suffix}`,
+          faq: `#faq${suffix}`,
+          company: `#company${suffix}`,
+        };
+
+        // 各リンクのhrefを更新
+        for (const [key, val] of Object.entries(map)) {
+          const links = document.querySelectorAll(`.nav-link-${key}`);
+          links.forEach((link) => link.setAttribute("href", val));
+        }
+      }
+
+      // ナビゲーションの順序並び替え
+      function reorderNav(viewType) {
+        const order = MENU_ORDER[viewType];
+
+        // モバイルメニューとPCメニュー両方を対象にする
+        const containers = [
+          document.querySelector(".mobile-menu ul"),
+          document.querySelector(".nav-links"),
+        ];
+
+        containers.forEach((container) => {
+          if (!container) return;
+
+          // 現在のアイテムを取得してMapにする
+          const items = Array.from(container.children);
+          const itemMap = {};
+          items.forEach((item) => {
+            const key = item.getAttribute("data-key");
+            if (key) itemMap[key] = item;
+          });
+
+          // 順序通りに再配置 (appendChildは既存ノードを移動させる特性があるため、これだけで並び変わる)
+          order.forEach((key) => {
+            if (itemMap[key]) {
+              container.appendChild(itemMap[key]);
+            }
+          });
+        });
+      }
+
+      const createChartConfig = (type, labels, data, bgColors) => {
+        return {
+          type: type,
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: type === "bar" ? "就職者数" : undefined,
+                data: data,
+                backgroundColor: bgColors,
+                borderWidth: type === "doughnut" ? 0 : undefined,
+                borderRadius: type === "bar" ? 4 : undefined,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: type !== "bar",
+                position: "bottom",
+                labels:
+                  type !== "bar"
+                    ? {
+                        padding: 20,
+                        font: { size: 12 },
+                      }
+                    : undefined,
+              },
+            },
+            scales:
+              type === "bar"
+                ? {
+                    y: {
+                      beginAtZero: true,
+                      ticks: { font: { size: 12 } },
+                      grid: { color: CONFIG.COLORS.GRID },
+                    },
+                    x: {
+                      ticks: {
+                        font: { size: 11 },
+                        maxRotation: 45,
+                        minRotation: 45,
+                      },
+                      grid: { display: false },
+                    },
+                  }
+                : undefined,
+            animation: {
+              animateRotate: true,
+              animateScale: true,
+              duration: CONFIG.ANIMATION.DURATION,
+              easing: CONFIG.ANIMATION.EASING,
+            },
+          },
+        };
+      };
+
+      /**
+       * モバイルメニューの初期化
+       */
+      const initMobileMenu = () => {
+        const hamburgerBtn = document.getElementById("hamburger-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const mobileLinks = document.querySelectorAll(".mobile-link");
+
+        if (!hamburgerBtn || !mobileMenu) return;
+
+        const closeMenu = () => {
+          hamburgerBtn.classList.remove("active");
+          mobileMenu.classList.remove("active");
+          hamburgerBtn.setAttribute("aria-expanded", "false");
+          hamburgerBtn.setAttribute("aria-label", "メニューを開く");
+          mobileMenu.setAttribute("aria-hidden", "true");
+        };
+
+        const toggleMenu = () => {
+          const isActive = hamburgerBtn.classList.toggle("active");
+          mobileMenu.classList.toggle("active");
+          hamburgerBtn.setAttribute("aria-expanded", isActive);
+          hamburgerBtn.setAttribute(
+            "aria-label",
+            isActive ? "メニューを閉じる" : "メニューを開く"
+          );
+          mobileMenu.setAttribute("aria-hidden", !isActive);
+        };
+
+        hamburgerBtn.addEventListener("click", toggleMenu);
+
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            closeMenu();
+            hamburgerBtn.focus();
+          });
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && mobileMenu.classList.contains("active")) {
+            closeMenu();
+            hamburgerBtn.focus();
+          }
+        });
+      };
+
+      /**
+       * トップへ戻るボタンの初期化
+       */
+      const initScrollToTop = () => {
+        const backToTopBtn = document.getElementById("backToTop");
+        if (!backToTopBtn) return;
+
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > CONFIG.SCROLL.BACK_TO_TOP_THRESHOLD) {
+            backToTopBtn.classList.add("show");
+          } else {
+            backToTopBtn.classList.remove("show");
+          }
+        });
+
+        backToTopBtn.addEventListener("click", () => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+      };
+
+      // toC用のチャート初期化（簡易実装）
+      let tocChartInitialized = false;
+      const initTocCharts = () => {
+        if (tocChartInitialized) return;
+        const canvas = document.getElementById("jobTypeChartToc");
+        if (canvas) {
+          new Chart(
+            canvas.getContext("2d"),
+            createChartConfig(
+              "bar",
+              [
+                "事務職",
+                "IT専門職",
+                "専門・研究職",
+                "営業職",
+                "サービス職",
+                "その他",
+              ],
+              [43, 15, 12, 10, 7, 13],
+              CONFIG.COLORS.PRIMARY
+            )
+          );
+          tocChartInitialized = true;
+        }
+      };
+
+      /**
+       * チャートの初期化 (Intersection Observerによる遅延読み込み)
+       * toB用のチャート初期化
+       */
+      const initCharts = () => {
+        const chartDefinitions = [
+          {
+            id: "genderAgeChart",
+            type: "doughnut",
+            labels: ["一般雇用", "障害者雇用"],
+            data: [58, 42],
+            colors: [CONFIG.COLORS.PRIMARY, CONFIG.COLORS.SECONDARY],
+          },
+          {
+            id: "companySizeChart",
+            type: "doughnut",
+            labels: ["大企業・グループ", "中堅企業・中小企業", "その他"],
+            data: [53, 37, 10],
+            colors: [
+              CONFIG.COLORS.ACCENT,
+              CONFIG.COLORS.ACCENT_LIGHT,
+              CONFIG.COLORS.SECONDARY,
+            ],
+          },
+          {
+            id: "jobTypeChart",
+            type: "bar",
+            labels: [
+              "事務職",
+              "IT専門職",
+              "専門・研究職",
+              "営業職",
+              "サービス職",
+              "その他",
+            ],
+            data: [43, 15, 12, 10, 7, 13],
+            colors: CONFIG.COLORS.PRIMARY,
+          },
+        ];
+
+        // Intersection Observerのオプション
+        const observerOptions = {
+          root: null, // ビューポート
+          rootMargin: "0px",
+          threshold: 0.1, // 10%見えたら発火
+        };
+
+        // チャート生成を行うコールバック
+        const handleIntersect = (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const canvas = entry.target;
+              const chartId = canvas.id;
+
+              // 対応する定義を探す
+              const def = chartDefinitions.find((d) => d.id === chartId);
+
+              if (def) {
+                new Chart(
+                  canvas.getContext("2d"),
+                  createChartConfig(def.type, def.labels, def.data, def.colors)
+                );
+              }
+
+              // 一度描画したら監視を解除
+              observer.unobserve(canvas);
+            }
+          });
+        };
+
+        const observer = new IntersectionObserver(
+          handleIntersect,
+          observerOptions
+        );
+
+        // 各キャンバスを監視対象に追加
+        chartDefinitions.forEach((def) => {
+          const el = document.getElementById(def.id);
+          if (el) {
+            observer.observe(el);
+          }
+        });
+      };
+
+      // アプリケーション初期化
+      document.addEventListener("DOMContentLoaded", () => {
+        // 初期状態のメニュー順序を適用（デフォルトがHTML順と異なる場合に備えて）
+        reorderNav("tob");
+        initMobileMenu();
+        initScrollToTop();
+        initCharts();
+      });
+    </script>
+  </body>
+</html>

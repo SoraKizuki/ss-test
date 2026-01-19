@@ -1,65 +1,62 @@
-<!DOCTYPE html>
+<!doctype html>
+<!-- これはダミーです -->
 <html lang="ja" prefix="og: http://ogp.me/ns#">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>キズキキャリア</title>
 
-    <!-- SEO強化: メタディスクリプション -->
+    <!-- これはダミーです: メタディスクリプション -->
     <meta
       name="description"
       content="就労移⾏⽀援の確かなノウハウで、ミスマッチを防ぎ、定着と「活躍」を支援します。私たちは、障害者雇用を「福祉」ではなく、企業の「成長」と個人の「再出発」の架け橋にします。"
     />
 
-    <!-- SEO強化: OGPタグ (SNSシェア設定) -->
+    <!-- これはダミーです: OGPタグ (SNSシェア設定) -->
     <meta property="og:title" content="キズキキャリア - 「配慮」のその先へ" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://kizuki-corp.com/" />
-    <!-- ※運用時に正しいURLへ変更してください -->
+    <!-- これはダミーです -->
     <meta property="og:image" content="https://kizuki-corp.com/ogp.jpg" />
-    <!-- ※運用時に正しい画像パスへ変更してください -->
+    <!-- これはダミーです -->
     <meta property="og:site_name" content="キズキキャリア" />
     <meta
       property="og:description"
       content="就労移⾏⽀援の確かなノウハウで、ミスマッチを防ぎ、定着と「活躍」を支援します。私たちは、障害者雇用を「福祉」ではなく、企業の「成長」と個人の「再出発」の架け橋にします。"
     />
 
-    <!-- SEO強化: Twitter Card -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- パフォーマンス最適化: defer属性を追加 -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
       defer
     ></script>
     <style>
-      /* =========================================
-         Variables & Base Settings
-         ========================================= */
       :root {
-        /* Colors */
+        /* カラー */
         --color-primary: #20a384;
         --color-primary-hover: #178066;
         --color-secondary: #b2dfdb;
         --color-accent-light: #4db6ac;
 
-        /* Backgrounds */
+        /* 背景 */
         --color-bg-light: #f7fcfa;
         --color-bg-accent: #e0f2f1;
         --color-white: #fff;
 
-        /* Typography */
+        /* フォント */
         --color-text-main: #333;
         --color-text-sub: #555;
         --color-text-light: #666;
         --color-text-muted: #999;
 
-        /* Layout */
+        /* レイアウト */
         --header-height: 80px;
         --container-width: 1200px;
         --section-padding: 100px 0;
 
-        /* Utils */
+        /* その他 */
         --shadow-default: 0 2px 10px rgba(0, 0, 0, 0.05);
         --border-color-light: #e8e8e8;
         --radius-default: 8px;
@@ -77,12 +74,11 @@
       }
 
       body {
-        font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo,
-          sans-serif;
+        font-family:
+          "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
         line-height: 1.8;
         color: var(--color-text-main);
         padding-top: var(--header-height);
-        /* BtoB向け: 文字詰めを行うことでプロフェッショナルな印象を与える */
         font-feature-settings: "palt";
         -webkit-font-smoothing: antialiased;
       }
@@ -105,7 +101,9 @@
         font-size: 16px;
         font-weight: bold;
         border-radius: 4px;
-        transition: background 0.3s, transform 0.2s;
+        transition:
+          background 0.3s,
+          transform 0.2s;
       }
 
       .cta-button:hover {
@@ -131,7 +129,6 @@
       }
 
       /* セクション背景色のグルーピング */
-      /* 変更: セクション構成変更に伴い配色パターンを調整 */
       .mission,
       .data,
       .services,
@@ -228,10 +225,10 @@
          Hamburger & Mobile Menu
          ========================================= */
       .hamburger {
-        display: none; /* PC First: デフォルト非表示 */
+        display: none; /* PC非表示 */
         flex-direction: column;
-        justify-content: center; /* 修正: space-aroundから変更して配置を制御しやすくする */
-        gap: 6px; /* 修正: 線と線の間隔を固定 */
+        justify-content: center;
+        gap: 6px;
         width: 30px;
         height: 25px;
         background: transparent;
@@ -248,7 +245,6 @@
         border-radius: 10px;
         transition: all 0.3s linear;
         position: relative;
-        /* transform-origin: 1px; 削除: 中心を基準に回転させるため */
       }
 
       .mobile-menu {
@@ -260,7 +256,8 @@
         background: var(--color-white);
         z-index: 999;
         visibility: hidden;
-        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        transition:
+          right 0.4s cubic-bezier(0.16, 1, 0.3, 1),
           visibility 0.4s step-end;
         display: flex;
         flex-direction: column;
@@ -271,7 +268,9 @@
       .mobile-menu.active {
         right: 0;
         visibility: visible;
-        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s;
+        transition:
+          right 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+          visibility 0s;
       }
 
       .mobile-menu ul {
@@ -283,7 +282,9 @@
         margin: 20px 0;
         opacity: 0;
         transform: translateY(20px);
-        transition: opacity 0.4s ease, transform 0.4s ease;
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
       }
 
       .mobile-menu.active li {
@@ -317,6 +318,9 @@
       .mobile-menu.active li:nth-child(8) {
         transition-delay: 0.45s;
       }
+      .mobile-menu.active li:nth-child(9) {
+        transition-delay: 0.5s;
+      }
 
       .mobile-menu a {
         font-size: 20px;
@@ -325,9 +329,8 @@
         font-weight: bold;
       }
 
-      /* Hamburger Animation: 対称的なXになるように修正 */
       .hamburger.active span:nth-child(1) {
-        transform: translateY(9px) rotate(45deg); /* 下に移動して回転 */
+        transform: translateY(9px) rotate(45deg);
       }
 
       .hamburger.active span:nth-child(2) {
@@ -335,7 +338,7 @@
       }
 
       .hamburger.active span:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg); /* 上に移動して回転 */
+        transform: translateY(-9px) rotate(-45deg);
       }
 
       /* =========================================
@@ -389,7 +392,7 @@
       }
 
       /* =========================================
-         Content Sections (PC First Layouts)
+         Content Sections
          ========================================= */
 
       /* Mission */
@@ -431,7 +434,7 @@
         padding: 40px 30px;
         border-radius: var(--radius-default);
         box-shadow: 0 2px 10px rgba(32, 163, 132, 0.1);
-        height: 100%; /* 高さ揃え */
+        height: 100%;
       }
 
       .reason-number {
@@ -539,7 +542,7 @@
         align-items: center;
         justify-content: center;
         box-shadow: var(--shadow-default);
-        transition: transform 0.2s; /* ホバー効果 */
+        transition: transform 0.2s;
       }
 
       .company-logo:hover {
@@ -559,7 +562,7 @@
       }
 
       .service-category {
-        background: var(--color-bg-light); /* 視認性向上のため背景追加 */
+        background: var(--color-bg-light);
         padding: 30px;
         border-radius: var(--radius-default);
       }
@@ -749,8 +752,7 @@
       }
 
       /* =========================================
-         Media Queries (PC First Approach)
-         ベースをPCとして記述し、max-widthでSP/Tablet対応
+         Mobile
          ========================================= */
 
       @media (max-width: 900px) {
@@ -780,7 +782,6 @@
           font-size: 16px;
         }
 
-        /* Grid Single Column Conversion */
         .mission-content,
         .reasons-grid,
         .data-charts,
@@ -820,7 +821,6 @@
       }
 
       @media (max-width: 480px) {
-        /* Smaller Mobile Screens */
         .companies-logos {
           grid-template-columns: repeat(2, 1fr);
         }
@@ -833,13 +833,11 @@
     </style>
   </head>
   <body>
-    <!-- Header -->
     <header>
       <a href="#" class="header-logo">キズキキャリア</a>
-      <!-- セマンティック改善: navタグを使用、ARIAラベル追加 -->
       <nav aria-label="メインメニュー">
         <ul class="nav-links">
-          <li><a href="#mission">MISSION</a></li>
+          <li><a href="#mission">ミッション</a></li>
           <li><a href="#reasons">選ばれる理由</a></li>
           <li><a href="#data">実績データ</a></li>
           <li><a href="#companies">就職先企業</a></li>
@@ -860,7 +858,6 @@
           </li>
         </ul>
       </nav>
-      <!-- アクセシビリティ改善: aria-label, aria-expanded, aria-controls追加 -->
       <button
         class="hamburger"
         id="hamburger-btn"
@@ -875,7 +872,6 @@
     </header>
 
     <!-- Mobile Menu -->
-    <!-- セマンティック改善: divからnavに変更, aria-label, aria-hidden追加 -->
     <nav
       class="mobile-menu"
       id="mobile-menu"
@@ -883,7 +879,8 @@
       aria-hidden="true"
     >
       <ul>
-        <li><a href="#mission" class="mobile-link">MISSION</a></li>
+        <li><a href="#" class="mobile-link">TOP</a></li>
+        <li><a href="#mission" class="mobile-link">ミッション</a></li>
         <li><a href="#reasons" class="mobile-link">選ばれる理由</a></li>
         <li><a href="#data" class="mobile-link">実績データ</a></li>
         <li><a href="#companies" class="mobile-link">就職先企業</a></li>
@@ -1111,7 +1108,7 @@
           <details class="faq-item">
             <summary>オンラインでの相談は可能ですか？</summary>
             <p>
-              はい、Zoom等を使用したオンライン相談も承っております。遠方の方や外出が難しい方もお気軽にご利用ください。
+              はい、Zoom等を使用したオンライン相談も承っております。遠方の方や外出が難しい方もお気軽ご利用ください。
             </p>
           </details>
         </div>
@@ -1133,7 +1130,7 @@
             <p>
               「優しさ」だけでなく、プロフェッショナルとして人生を再構築する姿勢で、求職者と企業の双方に寄り添います。
             </p>
-            <a href="#" class="cta-button">無料詳細はこちら</a>
+            <a href="#" class="cta-button">お問い合わせ</a>
           </div>
           <div class="company-image">[会社画像エリア]</div>
         </div>
@@ -1151,7 +1148,6 @@
               東京都新宿区新宿6-28-7 新宿EAST COURT 2階
             </p>
           </div>
-          <!-- セマンティック改善: divからnavに変更, aria-label追加 -->
           <nav class="footer-links" aria-label="フッターメニュー">
             <ul>
               <li>
@@ -1177,16 +1173,11 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <!-- アクセシビリティ改善: aria-label追加 -->
     <button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">
       ↑
     </button>
 
     <script>
-      /**
-       * アプリケーション設定と定数管理
-       * マジックナンバーの削減と設定の一元化
-       */
       const CONFIG = {
         SCROLL: {
           BACK_TO_TOP_THRESHOLD: 300,
@@ -1205,10 +1196,6 @@
         },
       };
 
-      /**
-       * チャート設定を生成するヘルパー関数
-       * 重複コードの削減
-       */
       const createChartConfig = (type, labels, data, bgColors) => {
         return {
           type: type,
