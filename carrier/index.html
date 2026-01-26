@@ -1,5 +1,4 @@
 <!doctype html>
-<!-- これはダミーです -->
 <html lang="ja" prefix="og: http://ogp.me/ns#">
   <head>
     <meta charset="UTF-8" />
@@ -53,6 +52,7 @@
 
         /* レイアウト */
         --header-height: 80px;
+        --switcher-height: 60px; /* タブ切り替えバーの高さ */
         --container-width: 1200px;
         --section-padding: 100px 0;
 
@@ -64,7 +64,8 @@
 
       html {
         scroll-behavior: smooth;
-        scroll-padding-top: var(--header-height);
+        /* ヘッダー + スイッチャーの高さを考慮してスクロール位置を調整 */
+        scroll-padding-top: calc(var(--header-height) + var(--switcher-height));
       }
 
       * {
@@ -104,6 +105,8 @@
         transition:
           background 0.3s,
           transform 0.2s;
+        cursor: pointer;
+        border: none;
       }
 
       .cta-button:hover {
@@ -129,15 +132,10 @@
       }
 
       /* セクション背景色のグルーピング */
-      .mission,
-      .data,
-      .services,
-      .company-info {
+      .bg-white {
         background: var(--color-white);
       }
-      .reasons,
-      .companies,
-      .faq {
+      .bg-light {
         background: var(--color-bg-light);
       }
 
@@ -149,12 +147,6 @@
         line-height: 1.5;
         color: var(--color-text-main);
         letter-spacing: 0.05em;
-      }
-
-      /* 例外的な見出し調整 */
-      .mission h2 {
-        font-size: 36px;
-        margin-bottom: 30px;
       }
 
       /* テキスト共通スタイル */
@@ -219,6 +211,77 @@
 
       .nav-links a:hover {
         color: var(--color-primary);
+      }
+
+      /* =========================================
+         View Switcher (Tab)
+         ========================================= */
+      .view-switcher-container {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        height: var(--switcher-height);
+        z-index: 990;
+        background: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        display: flex;
+        justify-content: center;
+      }
+
+      .view-switcher {
+        display: flex;
+        width: 100%;
+        max-width: 600px;
+      }
+
+      .switcher-btn {
+        flex: 1;
+        border: none;
+        background: transparent;
+        font-size: 16px;
+        font-weight: bold;
+        color: var(--color-text-muted);
+        cursor: pointer;
+        transition: all 0.3s;
+        border-bottom: 3px solid transparent;
+      }
+
+      .switcher-btn:hover {
+        color: var(--color-primary);
+        background: var(--color-bg-light);
+      }
+
+      .switcher-btn.active {
+        color: var(--color-primary);
+        border-bottom: 3px solid var(--color-primary);
+        background: var(--color-bg-accent);
+      }
+
+      /* Body padding adjustment for switcher */
+      body {
+        padding-top: calc(var(--header-height) + var(--switcher-height));
+      }
+
+      /* View Content Toggle */
+      .view-content {
+        display: none;
+        animation: fadeIn 0.5s ease;
+      }
+
+      .view-content.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       /* =========================================
@@ -354,6 +417,11 @@
         text-align: center;
       }
 
+      /* toC向けヒーロー背景バリエーション */
+      .hero-toc {
+        background: linear-gradient(135deg, #fffbf0 0%, #fef3c7 100%);
+      }
+
       .hero-image {
         width: 100%;
         height: 400px;
@@ -365,6 +433,12 @@
         color: var(--color-white);
         font-size: 18px;
         border-radius: var(--radius-default);
+      }
+
+      /* toC向け画像プレースホルダー色変更 */
+      .hero-toc .hero-image {
+        background: #fcd34d;
+        color: #78350f;
       }
 
       .hero h1 {
@@ -591,6 +665,41 @@
         color: var(--color-primary);
       }
 
+      /* toC向けサービスセクション用：フロー表示 */
+      .service-flow-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+      }
+      .service-flow-card {
+        background: var(--color-white);
+        padding: 30px;
+        border-radius: var(--radius-default);
+        text-align: center;
+        border: 1px solid var(--border-color-light);
+        position: relative;
+      }
+      .service-flow-step {
+        display: inline-block;
+        background: var(--color-primary);
+        color: #fff;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 12px;
+        margin-bottom: 15px;
+        font-weight: bold;
+      }
+      .service-flow-card h4 {
+        margin-bottom: 15px;
+        font-size: 18px;
+        color: var(--color-text-main);
+      }
+      .service-flow-card p {
+        font-size: 14px;
+        color: var(--color-text-light);
+        text-align: left;
+      }
+
       /* FAQ Section */
       .faq-grid {
         max-width: 800px;
@@ -787,7 +896,8 @@
         .data-charts,
         .services-grid,
         .company-details,
-        .footer-content {
+        .footer-content,
+        .service-flow-grid {
           grid-template-columns: 1fr;
           gap: 40px;
         }
@@ -837,14 +947,29 @@
       <a href="#" class="header-logo">キズキキャリア</a>
       <nav aria-label="メインメニュー">
         <ul class="nav-links">
-          <li><a href="#mission">ミッション</a></li>
-          <li><a href="#reasons">選ばれる理由</a></li>
-          <li><a href="#data">実績データ</a></li>
-          <li><a href="#companies">就職先企業</a></li>
-          <li><a href="#services">サービス内容</a></li>
-          <li><a href="#faq">よくある質問</a></li>
-          <li><a href="#company">運営会社</a></li>
-          <li>
+          <!-- PCメニュー: data-key属性を追加 -->
+          <li data-key="mission">
+            <a href="#mission" class="nav-link-mission">ミッション</a>
+          </li>
+          <li data-key="reasons">
+            <a href="#reasons" class="nav-link-reasons">選ばれる理由</a>
+          </li>
+          <li data-key="data">
+            <a href="#data" class="nav-link-data">実績データ</a>
+          </li>
+          <li data-key="companies">
+            <a href="#companies" class="nav-link-companies">就職先企業</a>
+          </li>
+          <li data-key="services">
+            <a href="#services" class="nav-link-services">サービス内容</a>
+          </li>
+          <li data-key="faq">
+            <a href="#faq" class="nav-link-faq">よくある質問</a>
+          </li>
+          <li data-key="company">
+            <a href="#company" class="nav-link-company">運営会社</a>
+          </li>
+          <li data-key="contact">
             <a
               href="#"
               style="
@@ -879,15 +1004,38 @@
       aria-hidden="true"
     >
       <ul>
-        <li><a href="#" class="mobile-link">TOP</a></li>
-        <li><a href="#mission" class="mobile-link">ミッション</a></li>
-        <li><a href="#reasons" class="mobile-link">選ばれる理由</a></li>
-        <li><a href="#data" class="mobile-link">実績データ</a></li>
-        <li><a href="#companies" class="mobile-link">就職先企業</a></li>
-        <li><a href="#services" class="mobile-link">サービス内容</a></li>
-        <li><a href="#faq" class="mobile-link">よくある質問</a></li>
-        <li><a href="#company" class="mobile-link">運営会社</a></li>
-        <li>
+        <!-- モバイルメニュー: data-key属性を追加 -->
+        <li data-key="top">
+          <a href="#" class="mobile-link nav-link-top">TOP</a>
+        </li>
+        <li data-key="mission">
+          <a href="#mission" class="mobile-link nav-link-mission">ミッション</a>
+        </li>
+        <li data-key="reasons">
+          <a href="#reasons" class="mobile-link nav-link-reasons"
+            >選ばれる理由</a
+          >
+        </li>
+        <li data-key="data">
+          <a href="#data" class="mobile-link nav-link-data">実績データ</a>
+        </li>
+        <li data-key="companies">
+          <a href="#companies" class="mobile-link nav-link-companies"
+            >就職先企業</a
+          >
+        </li>
+        <li data-key="services">
+          <a href="#services" class="mobile-link nav-link-services"
+            >サービス内容</a
+          >
+        </li>
+        <li data-key="faq">
+          <a href="#faq" class="mobile-link nav-link-faq">よくある質問</a>
+        </li>
+        <li data-key="company">
+          <a href="#company" class="mobile-link nav-link-company">運営会社</a>
+        </li>
+        <li data-key="contact">
           <a
             href="#"
             class="mobile-link"
@@ -898,244 +1046,498 @@
       </ul>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-image">[ヒーロー画像エリア]</div>
-        <h1>「配慮」のその先へ</h1>
-        <p class="hero-subtitle">
-          仕事を通じて、人生をより良くしたいと願うすべての人へ。
-        </p>
-        <p class="hero-description">
-          就労移⾏⽀援の確かなノウハウで、ミスマッチを防ぎ、定着と「活躍」を支援します。私たちは、障害者雇用を「福祉」ではなく、企業の「成長」と個人の「再出発」の架け橋にします。
-        </p>
-        <a href="#" class="cta-button">お問い合わせ</a>
+    <!-- View Switcher -->
+    <div class="view-switcher-container">
+      <div class="view-switcher">
+        <button class="switcher-btn active" onclick="switchView('tob')">
+          企業のご担当者様
+        </button>
+        <button class="switcher-btn" onclick="switchView('toc')">
+          求職者の方
+        </button>
       </div>
-    </section>
+    </div>
 
-    <!-- Mission Section -->
-    <section class="mission" id="mission">
-      <div class="container">
-        <span class="section-label">OUR MISSION</span>
-        <div class="mission-content">
-          <div>
-            <h2>何度でもやり直せる社会をつくる</h2>
-            <p class="mission-text">
-              人生には、立ち止まってしまう時があります。しかし、そこからどう歩み出すかが、その後の人生を決めます。
-            </p>
-            <p class="mission-text">
-              キズキキャリアは、単に「仕事を紹介する」だけのエージェントではありません。これまでの型にはまらず「やり直し」を肯定できるようなグループでありたいと考えます。本質的な個性の理解と、輝く場所の創造に。<br />
-            </p>
-            <p class="mission-text">
-              仕事を通じて世界中の人々がより輝き、企業にとって欠かせない戦力となる未来を創り出します。
-            </p>
-          </div>
-          <div class="mission-image">[イメージ画像]</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Reasons Section -->
-    <section class="reasons" id="reasons">
-      <div class="container">
-        <span class="section-label">REASON</span>
-        <h2>キズキキャリアが選ばれる3つの理由</h2>
-        <div class="reasons-grid">
-          <div class="reason-card">
-            <div class="reason-number">1</div>
-            <h3>高精度マッチング</h3>
-            <p>
-              スキルだけでなく、特性・ストレス耐性・必要な合理的配慮を深く分析。採用のミスマッチを最小化します。
-            </p>
-          </div>
-          <div class="reason-card">
-            <div class="reason-number">2</div>
-            <h3>「活躍」をゴールに</h3>
-            <p>
-              「定着」は最低条件。現場でバリューを発揮し、自信を持って働ける状態を目指します。
-            </p>
-          </div>
-          <div class="reason-card">
-            <div class="reason-number">3</div>
-            <h3>自立支援のアプローチ</h3>
-            <p>
-              過度な保護はしません。自らの強みを確認し、主体的にキャリアを築けるようサポートします。
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Data Section -->
-    <section class="data" id="data">
-      <div class="container">
-        <span class="section-label">DATA</span>
-        <h2>実績データ</h2>
-        <p class="chart-description">
-          キズキキャリアの就労定着サービスがこれまでに達成してきた実績をご紹介します。
-        </p>
-        <div class="data-highlight">
-          <p class="data-label">定着率</p>
-          <div class="data-percentage">95%</div>
-          <p class="data-description">
-            就職後の長期的な活躍を支援し、高い定着率を実現しています。
+    <!-- ==============================================
+         toB View (Optimized Order)
+         ============================================== -->
+    <div id="view-tob" class="view-content active">
+      <!-- 1. Hero -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-image">[ヒーロー画像エリア]</div>
+          <h1>「配慮」のその先へ</h1>
+          <p class="hero-subtitle">
+            仕事を通じて、人生をより良くしたいと願うすべての人へ。
           </p>
+          <p class="hero-description">
+            就労移⾏⽀援の確かなノウハウで、ミスマッチを防ぎ、定着と「活躍」を支援します。私たちは、障害者雇用を「福祉」ではなく、企業の「成長」と個人の「再出発」の架け橋にします。
+          </p>
+          <a href="#" class="cta-button">お問い合わせ</a>
         </div>
+      </section>
 
-        <div class="data-charts">
-          <div class="chart-item">
-            <h3>雇用形態</h3>
-            <p class="chart-description">
-              当社の支援を受けた方の雇用形態の内訳です。
-            </p>
-            <div class="chart-container">
-              <canvas id="genderAgeChart"></canvas>
+      <!-- 2. Reasons (bg-white) -->
+      <section class="reasons bg-white" id="reasons">
+        <div class="container">
+          <span class="section-label">REASON</span>
+          <h2>キズキキャリアが選ばれる3つの理由</h2>
+          <div class="reasons-grid">
+            <div class="reason-card">
+              <div class="reason-number">1</div>
+              <h3>高精度マッチング</h3>
+              <p>
+                スキルだけでなく、特性・ストレス耐性・必要な合理的配慮を深く分析。採用のミスマッチを最小化します。
+              </p>
             </div>
-          </div>
-          <div class="chart-item">
-            <h3>就職先企業規模</h3>
-            <p class="chart-description">
-              支援を通じて就職された企業の規模別割合です。
-            </p>
-            <div class="chart-container">
-              <canvas id="companySizeChart"></canvas>
+            <div class="reason-card">
+              <div class="reason-number">2</div>
+              <h3>「活躍」をゴールに</h3>
+              <p>
+                「定着」は最低条件。現場でバリューを発揮し、自信を持って働ける状態を目指します。
+              </p>
+            </div>
+            <div class="reason-card">
+              <div class="reason-number">3</div>
+              <h3>自立支援のアプローチ</h3>
+              <p>
+                過度な保護はしません。自らの強みを確認し、主体的にキャリアを築けるようサポートします。
+              </p>
             </div>
           </div>
         </div>
+      </section>
 
-        <div class="bar-chart">
-          <h3>職種別割合</h3>
-          <p class="bar-chart-description">
-            就職された方の職種の内訳は以下の通りです。
+      <!-- 3. Data (bg-light) -->
+      <section class="data bg-light" id="data">
+        <div class="container">
+          <span class="section-label">DATA</span>
+          <h2>実績データ</h2>
+          <p class="chart-description">
+            キズキキャリアの就労定着サービスがこれまでに達成してきた実績をご紹介します。
           </p>
-          <div class="bar-chart-container">
-            <canvas id="jobTypeChart"></canvas>
+          <div class="data-highlight">
+            <p class="data-label">定着率</p>
+            <div class="data-percentage">95%</div>
+            <p class="data-description">
+              就職後の長期的な活躍を支援し、高い定着率を実現しています。
+            </p>
+          </div>
+
+          <div class="data-charts">
+            <div class="chart-item">
+              <h3>雇用形態</h3>
+              <p class="chart-description">
+                当社の支援を受けた方の雇用形態の内訳です。
+              </p>
+              <div class="chart-container">
+                <canvas id="genderAgeChart"></canvas>
+              </div>
+            </div>
+            <div class="chart-item">
+              <h3>就職先企業規模</h3>
+              <p class="chart-description">
+                支援を通じて就職された企業の規模別割合です。
+              </p>
+              <div class="chart-container">
+                <canvas id="companySizeChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="bar-chart">
+            <h3>職種別割合</h3>
+            <p class="bar-chart-description">
+              就職された方の職種の内訳は以下の通りです。
+            </p>
+            <div class="bar-chart-container">
+              <canvas id="jobTypeChart"></canvas>
+            </div>
+          </div>
+          <p class="data-note">
+            ※本データの数値は、2020年〜2025年までの当社実績に基づきます（自社調べ）。
+          </p>
+        </div>
+      </section>
+
+      <!-- 4. Services (bg-white) -->
+      <section class="services bg-white" id="services">
+        <div class="container">
+          <span class="section-label">SERVICE</span>
+          <h2>サービス内容</h2>
+          <div class="services-grid">
+            <div class="service-category">
+              <h3>企業様向け</h3>
+              <ul>
+                <li>人材紹介サービス：即戦力・専門人材のご紹介</li>
+                <li>雇用コンサルティング：業務設計・マニュアル作成支援</li>
+                <li>
+                  定着・活躍マネジメント：定期面談・コミュニケーション研修
+                </li>
+              </ul>
+            </div>
+            <div class="service-category">
+              <h3>求職者向け</h3>
+              <ul>
+                <li>
+                  キャリアカウンセリング：経験や「強み」に焦点を当てた対話
+                </li>
+                <li>求人紹介・マッチング：自分らしく活躍できる環境の提案</li>
+                <li>入社後フォロー：継続的な相談サポート</li>
+              </ul>
+            </div>
           </div>
         </div>
-        <p class="data-note">
-          ※本データの数値は、2020年〜2025年までの当社実績に基づきます（自社調べ）。
-        </p>
-      </div>
-    </section>
+      </section>
 
-    <!-- Companies Section -->
-    <section class="companies" id="companies">
-      <div class="container">
-        <span class="section-label">COMPANIES</span>
-        <h2>就職先企業</h2>
-        <p class="companies-description">
-          私たちは、多くの大手企業や中堅企業と連携し、支援者の皆様の新たなキャリアをサポートしてきました。各社のロゴは、私たちの実績と信頼の証です。
-        </p>
-        <div class="companies-logos">
-          <div class="company-logo">
-            <span class="company-logo-icon">🏢</span>
-          </div>
-          <div class="company-logo">
-            <span class="company-logo-icon">🏢</span>
-          </div>
-          <div class="company-logo">
-            <span class="company-logo-icon">🏢</span>
-          </div>
-          <div class="company-logo">
-            <span class="company-logo-icon">🏢</span>
-          </div>
-          <div class="company-logo">
-            <span class="company-logo-icon">🏢</span>
-          </div>
-          <div class="company-logo">
-            <span class="company-logo-icon">🏢</span>
-          </div>
-          <div class="company-logo">
-            <span class="company-logo-icon">🏢</span>
-          </div>
-          <div class="company-logo">
-            <span class="company-logo-icon">🏢</span>
+      <!-- 5. Companies (bg-light) -->
+      <section class="companies bg-light" id="companies">
+        <div class="container">
+          <span class="section-label">COMPANIES</span>
+          <h2>就職先企業</h2>
+          <p class="companies-description">
+            私たちは、多くの大手企業や中堅企業と連携し、支援者の皆様の新たなキャリアをサポートしてきました。各社のロゴは、私たちの実績と信頼の証です。
+          </p>
+          <div class="companies-logos">
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-      <div class="container">
-        <span class="section-label">SERVICE</span>
-        <h2>サービス内容</h2>
-        <div class="services-grid">
-          <div class="service-category">
-            <h3>企業様向け</h3>
-            <ul>
-              <li>人材紹介サービス：即戦力・専門人材のご紹介</li>
-              <li>雇用コンサルティング：業務設計・マニュアル作成支援</li>
-              <li>定着・活躍マネジメント：定期面談・コミュニケーション研修</li>
-            </ul>
-          </div>
-          <div class="service-category">
-            <h3>求職者向け</h3>
-            <ul>
-              <li>キャリアカウンセリング：経験や「強み」に焦点を当てた対話</li>
-              <li>求人紹介・マッチング：自分らしく活躍できる環境の提案</li>
-              <li>入社後フォロー：継続的な相談サポート</li>
-            </ul>
+      <!-- 6. Mission (bg-white) -->
+      <section class="mission bg-white" id="mission">
+        <div class="container">
+          <span class="section-label">OUR MISSION</span>
+          <div class="mission-content">
+            <div>
+              <h2>何度でもやり直せる社会をつくる</h2>
+              <p class="mission-text">
+                人生には、立ち止まってしまう時があります。しかし、そこからどう歩み出すかが、その後の人生を決めます。
+              </p>
+              <p class="mission-text">
+                キズキキャリアは、単に「仕事を紹介する」だけのエージェントではありません。これまでの型にはまらず「やり直し」を肯定できるようなグループでありたいと考えます。本質的な個性の理解と、輝く場所の創造に。<br />
+              </p>
+              <p class="mission-text">
+                仕事を通じて世界中の人々がより輝き、企業にとって欠かせない戦力となる未来を創り出します。
+              </p>
+            </div>
+            <div class="mission-image">[イメージ画像]</div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- FAQ Section -->
-    <section class="faq" id="faq">
-      <div class="container">
-        <span class="section-label">FAQ</span>
-        <h2>よくある質問</h2>
-        <div class="faq-grid">
-          <details class="faq-item">
-            <summary>利用料はかかりますか？</summary>
-            <p>
-              原則として利用料はかかりませんが、前年度の収入によっては自己負担が発生する場合があります。詳細はお問い合わせください。
-            </p>
-          </details>
-          <details class="faq-item">
-            <summary>在職中でも利用できますか？</summary>
-            <p>
-              はい、ご利用いただけます。転職に向けたサポートや、現在の職場での定着支援も行っています。
-            </p>
-          </details>
-          <details class="faq-item">
-            <summary>どのような障害種別の方が対象ですか？</summary>
-            <p>
-              身体、知的、精神、発達障害など、障害者手帳をお持ちの方や医師の診断がある方が対象です。手帳をお持ちでない方もご相談ください。
-            </p>
-          </details>
-          <details class="faq-item">
-            <summary>オンラインでの相談は可能ですか？</summary>
-            <p>
-              はい、Zoom等を使用したオンライン相談も承っております。遠方の方や外出が難しい方もお気軽ご利用ください。
-            </p>
-          </details>
+      <!-- 7. FAQ (bg-light) -->
+      <section class="faq bg-light" id="faq">
+        <div class="container">
+          <span class="section-label">FAQ</span>
+          <h2>よくある質問</h2>
+          <div class="faq-grid">
+            <details class="faq-item">
+              <summary>利用料はかかりますか？</summary>
+              <p>
+                原則として利用料はかかりませんが、前年度の収入によっては自己負担が発生する場合があります。詳細はお問い合わせください。
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>在職中でも利用できますか？</summary>
+              <p>
+                はい、ご利用いただけます。転職に向けたサポートや、現在の職場での定着支援も行っています。
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>どのような障害種別の方が対象ですか？</summary>
+              <p>
+                身体、知的、精神、発達障害など、障害者手帳をお持ちの方や医師の診断がある方が対象です。手帳をお持ちでない方もご相談ください。
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>オンラインでの相談は可能ですか？</summary>
+              <p>
+                はい、Zoom等を使用したオンライン相談も承っております。遠方の方や外出が難しい方もお気軽にご利用ください。
+              </p>
+            </details>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Company Info Section -->
-    <section class="company-info" id="company">
-      <div class="container">
-        <span class="section-label">COMPANY</span>
-        <h2>運営会社</h2>
-        <div class="company-details">
-          <div class="company-text">
-            <h3>キズキキャリア株式会社</h3>
-            <p>（株式会社キズキ 100%子会社）</p>
-            <p>
-              私たちは、不登校・中退・ひきこもり・うつ病などの困難を経験した方々の支援を行うキズキグループの一員として、雇用領域における最高のソリューションを提供します。
+      <!-- 8. Company Info (bg-white) -->
+      <section class="company-info bg-white" id="company">
+        <div class="container">
+          <span class="section-label">COMPANY</span>
+          <h2>運営会社</h2>
+          <div class="company-details">
+            <div class="company-text">
+              <h3>キズキキャリア株式会社</h3>
+              <p>（株式会社キズキ 100%子会社）</p>
+              <p>
+                私たちは、不登校・中退・ひきこもり・うつ病などの困難を経験した方々の支援を行うキズキグループの一員として、雇用領域における最高のソリューションを提供します。
+              </p>
+              <p>
+                「優しさ」だけでなく、プロフェッショナルとして人生を再構築する姿勢で、求職者と企業の双方に寄り添います。
+              </p>
+              <a href="#" class="cta-button">お問い合わせ</a>
+            </div>
+            <div class="company-image">[会社画像エリア]</div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- End of toB View -->
+
+    <!-- ==============================================
+         toC View (New Order & Optimized Content)
+         ============================================== -->
+    <div id="view-toc" class="view-content">
+      <!-- 1. Hero (toC) -->
+      <section class="hero hero-toc">
+        <div class="container">
+          <div class="hero-image">[求職者向けイメージ]</div>
+          <h1>自分らしく働ける場所が、<br />きっとある。</h1>
+          <p class="hero-subtitle">
+            あなたの「強み」を見つけ、長く安心して働ける職場へ。
+          </p>
+          <p class="hero-description">
+            キズキキャリアは、障害や特性のある方の就職・転職をサポートするエージェントです。<br />
+            ただ仕事を紹介するだけでなく、あなたが自信を持って働けるよう、カウンセリングから定着まで伴走します。
+          </p>
+          <a href="#" class="cta-button">お問い合わせ</a>
+        </div>
+      </section>
+
+      <!-- 2. Data (toC) - 実績を先に見せて安心感を醸成 -->
+      <section class="data bg-white" id="data_toc">
+        <div class="container">
+          <span class="section-label">DATA</span>
+          <h2>数字で見るキズキキャリア</h2>
+          <p class="chart-description">
+            多くの方が、自分に合った職場を見つけ、長く活躍されています。
+          </p>
+          <div class="data-highlight">
+            <p class="data-label">定着率</p>
+            <div class="data-percentage">95%</div>
+            <p class="data-description">
+              入社後もしっかりサポートするため、早期離職が非常に少ないのが特徴です。
             </p>
-            <p>
-              「優しさ」だけでなく、プロフェッショナルとして人生を再構築する姿勢で、求職者と企業の双方に寄り添います。
+          </div>
+
+          <!-- toC用にチャートエリアを少し簡略化して表示 -->
+          <div class="bar-chart">
+            <h3>多様な職種での活躍</h3>
+            <p class="bar-chart-description">
+              事務職だけでなく、専門スキルを活かせる職種など、幅広い選択肢があります。
             </p>
+            <div class="bar-chart-container">
+              <!-- JSでチャートを再描画するのは複雑なため、ここは同じCanvasIDを使用しないよう注意 -->
+              <!-- 実際の実装ではJSで両方のキャンバスを描画するか、Canvasを移動させる。今回は簡易的に複製IDを用意 -->
+              <canvas id="jobTypeChartToc"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Reasons (toC) - 求職者メリット -->
+      <section class="reasons bg-light" id="reasons_toc">
+        <div class="container">
+          <span class="section-label">MERIT</span>
+          <h2>あなたがキズキキャリアを使うべき理由</h2>
+          <div class="reasons-grid">
+            <div class="reason-card">
+              <div class="reason-number">1</div>
+              <h3>「強み」の再発見</h3>
+              <p>
+                これまでの経験や特性を丁寧にヒアリング。自分では気づかなかった「得意」を見つけ、自信につなげます。
+              </p>
+            </div>
+            <div class="reason-card">
+              <div class="reason-number">2</div>
+              <h3>厳選された企業紹介</h3>
+              <p>
+                「配慮」への理解があり、長く働きやすい環境が整っている企業を厳選してご紹介します。
+              </p>
+            </div>
+            <div class="reason-card">
+              <div class="reason-number">3</div>
+              <h3>入社後も続くサポート</h3>
+              <p>
+                就職はゴールではありません。働き始めてからの悩みも、専任のスタッフが継続的にサポートします。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Services (toC) - 具体的なステップ -->
+      <section class="services bg-white" id="services_toc">
+        <div class="container">
+          <span class="section-label">FLOW</span>
+          <h2>ご利用の流れ</h2>
+          <p class="section-description" style="text-align: center">
+            登録から就職、そして定着まで。専任アドバイザーがマンツーマンでサポートします。
+          </p>
+          <div class="service-flow-grid">
+            <div class="service-flow-card">
+              <span class="service-flow-step">STEP 1</span>
+              <h4>カウンセリング</h4>
+              <p>
+                まずはあなたの状況や希望をお聞かせください。オンラインでの面談も可能です。
+              </p>
+            </div>
+            <div class="service-flow-card">
+              <span class="service-flow-step">STEP 2</span>
+              <h4>求人紹介・対策</h4>
+              <p>
+                希望に合う求人をご提案。応募書類の添削や模擬面接など、選考対策も万全に行います。
+              </p>
+            </div>
+            <div class="service-flow-card">
+              <span class="service-flow-step">STEP 3</span>
+              <h4>内定・定着支援</h4>
+              <p>
+                条件交渉もお任せください。入社後も定期的な面談を行い、安定した就労を支えます。
+              </p>
+            </div>
+          </div>
+          <div style="text-align: center; margin-top: 50px">
             <a href="#" class="cta-button">お問い合わせ</a>
           </div>
-          <div class="company-image">[会社画像エリア]</div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <!-- 5. Companies (toC) -->
+      <section class="companies bg-light" id="companies_toc">
+        <div class="container">
+          <span class="section-label">COMPANIES</span>
+          <h2>主な就職実績</h2>
+          <p class="companies-description">
+            大手企業から特例子会社、成長中のベンチャーまで、多様な企業への就職実績があります。
+          </p>
+          <!-- ロゴグリッドは共通デザイン -->
+          <div class="companies-logos">
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+            <div class="company-logo">
+              <span class="company-logo-icon">🏢</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Mission (toC) - 想いを最後に -->
+      <section class="mission bg-white" id="mission_toc">
+        <div class="container">
+          <span class="section-label">MESSAGE</span>
+          <div class="mission-content">
+            <div>
+              <h2>何度でも、ここから始められる</h2>
+              <p class="mission-text">
+                「一度つまづいたら、もう終わり」なんてことはありません。<br />
+                私たちは、何度でもやり直せる社会をつくりたいと考えています。
+              </p>
+              <p class="mission-text">
+                あなたのペースで大丈夫です。私たちと一緒に、<br />自分らしく輝ける次のステージを探しに行きませんか？
+              </p>
+            </div>
+            <div class="mission-image">[サポーティブな画像]</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. FAQ (toC) -->
+      <section class="faq bg-light" id="faq_toc">
+        <div class="container">
+          <span class="section-label">FAQ</span>
+          <h2>よくある質問</h2>
+          <div class="faq-grid">
+            <details class="faq-item">
+              <summary>サービスの利用にお金はかかりますか？</summary>
+              <p>
+                いいえ、求職者の方は<strong>完全無料</strong>でご利用いただけます。費用は一切かかりませんのでご安心ください。
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>まだ転職するか決めていないのですが...</summary>
+              <p>
+                もちろん大丈夫です。「まずは話だけ聞いてみたい」「自分の市場価値を知りたい」という方も歓迎です。
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>障害者手帳を持っていなくても利用できますか？</summary>
+              <p>
+                はい、手帳をお持ちでない方や申請中の方、医師の診断がある方もご相談可能です。まずは一度お問い合わせください。
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>地方在住でもサポートを受けられますか？</summary>
+              <p>
+                はい、オンライン（Zoom等）での面談を実施しておりますので、全国どこからでもサポート可能です。
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Company (toC) -->
+      <section class="company-info bg-white" id="company_toc">
+        <div class="container">
+          <span class="section-label">COMPANY</span>
+          <h2>運営会社</h2>
+          <div class="company-details">
+            <div class="company-text">
+              <h3>キズキキャリア株式会社</h3>
+              <p>
+                「何度でもやり直せる社会をつくる」をミッションに掲げるキズキグループの一員です。<br />
+                就労支援のほか、不登校支援の学習塾なども運営しており、困難を抱える方の「次の一歩」を応援し続けています。
+              </p>
+              <a href="#" class="cta-button">会社概要を見る</a>
+            </div>
+            <div class="company-image">[会社画像エリア]</div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- End of toC View -->
 
     <!-- Footer -->
     <footer>
@@ -1195,6 +1597,119 @@
           GRID: "#e0f2f1",
         },
       };
+
+      // メニュー順序の定義
+      const MENU_ORDER = {
+        // toB (企業向け): Reasons -> Data -> Services -> Companies -> Mission -> FAQ -> Company
+        tob: [
+          "top",
+          "reasons",
+          "data",
+          "services",
+          "companies",
+          "mission",
+          "faq",
+          "company",
+          "contact",
+        ],
+        // toC (求職者向け): Data -> Reasons -> Services -> Companies -> Mission -> FAQ -> Company
+        toc: [
+          "top",
+          "data",
+          "reasons",
+          "services",
+          "companies",
+          "mission",
+          "faq",
+          "company",
+          "contact",
+        ],
+      };
+
+      // ビュー切り替え機能
+      function switchView(type) {
+        // ボタンのアクティブ化
+        const buttons = document.querySelectorAll(".switcher-btn");
+        // 一旦全解除
+        buttons.forEach((btn) => btn.classList.remove("active"));
+
+        if (type === "tob") {
+          buttons[0].classList.add("active");
+          updateNavLinks("tob");
+          reorderNav("tob");
+        } else {
+          buttons[1].classList.add("active");
+          updateNavLinks("toc");
+          reorderNav("toc");
+        }
+
+        // コンテンツの表示切り替え
+        document.querySelectorAll(".view-content").forEach((content) => {
+          content.classList.remove("active");
+        });
+        document.getElementById(`view-${type}`).classList.add("active");
+
+        // toCチャートの初期化（初回表示時のみ等の制御が必要だが簡易的に呼び出し）
+        if (type === "toc") {
+          // 少し遅延させて描画（display:block適用待ち）
+          setTimeout(initTocCharts, 100);
+        }
+
+        // スクロール位置をトップへ（UX向上）
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // ナビゲーションリンクの更新
+      function updateNavLinks(viewType) {
+        const suffix = viewType === "toc" ? "_toc" : "";
+
+        // マッピング定義
+        const map = {
+          mission: `#mission${suffix}`,
+          reasons: `#reasons${suffix}`,
+          data: `#data${suffix}`,
+          companies: `#companies${suffix}`,
+          services: `#services${suffix}`,
+          faq: `#faq${suffix}`,
+          company: `#company${suffix}`,
+        };
+
+        // 各リンクのhrefを更新
+        for (const [key, val] of Object.entries(map)) {
+          const links = document.querySelectorAll(`.nav-link-${key}`);
+          links.forEach((link) => link.setAttribute("href", val));
+        }
+      }
+
+      // ナビゲーションの順序並び替え
+      function reorderNav(viewType) {
+        const order = MENU_ORDER[viewType];
+
+        // モバイルメニューとPCメニュー両方を対象にする
+        const containers = [
+          document.querySelector(".mobile-menu ul"),
+          document.querySelector(".nav-links"),
+        ];
+
+        containers.forEach((container) => {
+          if (!container) return;
+
+          // 現在のアイテムを取得してMapにする
+          const items = Array.from(container.children);
+          const itemMap = {};
+          items.forEach((item) => {
+            const key = item.getAttribute("data-key");
+            if (key) itemMap[key] = item;
+          });
+
+          // 順序通りに再配置 (appendChildは既存ノードを移動させる特性があるため、これだけで並び変わる)
+          order.forEach((key) => {
+            if (itemMap[key]) {
+              container.appendChild(itemMap[key]);
+            }
+          });
+        });
+      }
 
       const createChartConfig = (type, labels, data, bgColors) => {
         return {
@@ -1279,7 +1794,7 @@
           hamburgerBtn.setAttribute("aria-expanded", isActive);
           hamburgerBtn.setAttribute(
             "aria-label",
-            isActive ? "メニューを閉じる" : "メニューを開く"
+            isActive ? "メニューを閉じる" : "メニューを開く",
           );
           mobileMenu.setAttribute("aria-hidden", !isActive);
         };
@@ -1324,8 +1839,35 @@
         });
       };
 
+      // toC用のチャート初期化（簡易実装）
+      let tocChartInitialized = false;
+      const initTocCharts = () => {
+        if (tocChartInitialized) return;
+        const canvas = document.getElementById("jobTypeChartToc");
+        if (canvas) {
+          new Chart(
+            canvas.getContext("2d"),
+            createChartConfig(
+              "bar",
+              [
+                "事務職",
+                "IT専門職",
+                "専門・研究職",
+                "営業職",
+                "サービス職",
+                "その他",
+              ],
+              [43, 15, 12, 10, 7, 13],
+              CONFIG.COLORS.PRIMARY,
+            ),
+          );
+          tocChartInitialized = true;
+        }
+      };
+
       /**
        * チャートの初期化 (Intersection Observerによる遅延読み込み)
+       * toB用のチャート初期化
        */
       const initCharts = () => {
         const chartDefinitions = [
@@ -1383,7 +1925,7 @@
               if (def) {
                 new Chart(
                   canvas.getContext("2d"),
-                  createChartConfig(def.type, def.labels, def.data, def.colors)
+                  createChartConfig(def.type, def.labels, def.data, def.colors),
                 );
               }
 
@@ -1395,7 +1937,7 @@
 
         const observer = new IntersectionObserver(
           handleIntersect,
-          observerOptions
+          observerOptions,
         );
 
         // 各キャンバスを監視対象に追加
@@ -1409,6 +1951,8 @@
 
       // アプリケーション初期化
       document.addEventListener("DOMContentLoaded", () => {
+        // 初期状態のメニュー順序を適用（デフォルトがHTML順と異なる場合に備えて）
+        reorderNav("tob");
         initMobileMenu();
         initScrollToTop();
         initCharts();
