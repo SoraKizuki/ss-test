@@ -131,6 +131,23 @@
         font-weight: bold;
       }
 
+      /* Scroll Animations */
+      .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+
+      .scroll-animate.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .delay-100 { transition-delay: 0.1s; }
+      .delay-200 { transition-delay: 0.2s; }
+      .delay-300 { transition-delay: 0.3s; }
+
       section {
         padding: var(--section-padding);
       }
@@ -176,10 +193,11 @@
       /* 法定雇用率セクション */
       .statutory-rate {
         background: var(--color-bg-opportunity);
+        border-top: 4px solid var(--color-primary);
       }
       .statutory-alert {
         display: flex;
-        gap: 40px;
+        gap: 60px;
         align-items: center;
         background: var(--color-white);
         padding: 50px;
@@ -201,36 +219,101 @@
         color: var(--color-text-main);
         margin-bottom: 15px;
       }
-      .statutory-chart-mock {
+
+      /* 新しい法定雇用率ビジュアルのスタイル */
+      .statutory-visual {
         flex-shrink: 0;
-        width: 280px;
-        height: 200px;
-        background: var(--color-opportunity-chart);
+        width: 300px;
+        background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        border-radius: 20px;
+        padding: 30px 25px;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border-radius: 8px;
-        color: var(--color-opportunity-text);
-        padding: 20px;
-        text-align: center;
-        font-weight: bold;
+        gap: 15px;
+        box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.15);
+        border: 1px solid #bfdbfe;
+        position: relative;
       }
-      .statutory-chart-year {
+
+      .statutory-item {
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 12px;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid transparent;
+      }
+
+      .statutory-item.future {
+        background: #fff;
+        border: 2px solid #3b82f6;
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.15);
+        transform: scale(1.05);
+        position: relative;
+        z-index: 1;
+      }
+      /* 未来を示すラベル */
+      .statutory-item.future::before {
+        content: "UP";
+        position: absolute;
+        top: -10px;
+        right: 10px;
+        background: #ef4444; /* 赤系で強調 */
+        color: white;
+        font-size: 10px;
+        font-weight: bold;
+        padding: 2px 8px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+
+      .statutory-date {
         font-size: 14px;
-        margin-bottom: 5px;
+        color: #64748b;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+      }
+      .statutory-date span {
+        font-size: 11px;
+        opacity: 0.8;
+        font-weight: normal;
+        margin-top: 2px;
+      }
+
+      .statutory-value {
+        font-size: 32px;
+        font-weight: 800;
+        color: #1e40af;
+        line-height: 1;
+        letter-spacing: -1px;
+      }
+      .statutory-value span {
+        font-size: 16px;
+        font-weight: 600;
+        margin-left: 2px;
+        color: #3b82f6;
+      }
+
+      .statutory-arrow-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #3b82f6;
+        height: 10px;
         opacity: 0.8;
       }
-      .statutory-chart-val {
-        font-size: 40px;
-        line-height: 1;
-        margin-bottom: 10px;
-        color: #1d4ed8;
+      .statutory-arrow-icon {
+        font-size: 20px;
+        animation: bounce 2s infinite;
       }
-      .statutory-chart-arrow {
-        font-size: 24px;
-        margin: 5px 0;
-        color: var(--color-opportunity-border);
+
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+        40% {transform: translateY(5px);}
+        60% {transform: translateY(3px);}
       }
 
       /* Strength */
@@ -761,17 +844,13 @@
           Hero Section
           ========================================= */
       .hero {
-        background: linear-gradient(
-          135deg,
-          #f0fdfa 0%,
-          var(--color-bg-accent) 100%
-        );
+        background: #fff;
         padding: 100px 0 80px;
         text-align: center;
       }
 
       .hero-toc {
-        background: linear-gradient(135deg, #fffbf0 0%, #fef3c7 100%);
+        background: #fff;
       }
 
       .hero-image {
@@ -1176,6 +1255,11 @@
         .statutory-alert {
           flex-direction: column;
           text-align: center;
+          gap: 40px;
+        }
+        .statutory-visual {
+          width: 100%;
+          max-width: 320px;
         }
         .flow-step-item {
           flex-direction: column;
@@ -1355,19 +1439,27 @@
         </div>
       </section>
 
-      <section class="statutory-rate" id="statutory_rate">
+      <section class="statutory-rate scroll-animate" id="statutory_rate">
         <div class="container">
           <span class="section-label">MARKET</span>
           <h2>法定雇用率2.7%時代を見据えて</h2>
           <div class="statutory-alert">
-            <div class="statutory-chart-mock">
-              <span class="statutory-chart-year">2024年4月〜</span>
-              <span class="statutory-chart-val">2.5%</span>
-              <span class="statutory-chart-arrow">▼</span>
-              <span class="statutory-chart-year">2026年7月〜</span>
-              <span class="statutory-chart-val">2.7%</span>
+            <!-- 新しいデザインに変更 -->
+            <div class="statutory-visual scroll-animate delay-100">
+              <div class="statutory-item">
+                <div class="statutory-date">2024.4~<span>現在</span></div>
+                <div class="statutory-value">2.5<span>%</span></div>
+              </div>
+              <div class="statutory-arrow-box">
+                <span class="statutory-arrow-icon">▼</span>
+              </div>
+              <div class="statutory-item future">
+                <div class="statutory-date">2026.7~<span>引き上げ予定</span></div>
+                <div class="statutory-value">2.7<span>%</span></div>
+              </div>
             </div>
-            <div class="statutory-text">
+            
+            <div class="statutory-text scroll-animate delay-200">
               <h3>「数合わせ」の採用から、<br />「戦力化」する採用へ。</h3>
               <p>
                 2024年4月から法定雇用率が2.5%へ引き上げられ、2026年には2.7%への引き上げが予定されています。
@@ -1383,12 +1475,12 @@
       <section class="reasons bg-white" id="strength">
         <div class="container">
           <span class="section-label">STRENGTH</span>
-          <h2>キズキキャリアが選ばれる3つの独自のソリューション</h2>
-          <p class="section-description" style="text-align: center">
+          <h2 class="scroll-animate">キズキキャリアが選ばれる3つの独自のソリューション</h2>
+          <p class="section-description scroll-animate" style="text-align: center">
             「見えない障害」を可視化し、相互理解を深めるための独自のツールとメソッドを提供します。
           </p>
           <div class="strength-grid">
-            <div class="strength-card">
+            <div class="strength-card scroll-animate">
               <div class="strength-content">
                 <span class="strength-number">SOLUTION 01</span>
                 <h3 class="strength-title">オリジナルレジュメ</h3>
@@ -1406,7 +1498,7 @@
               </div>
             </div>
 
-            <div class="strength-card">
+            <div class="strength-card scroll-animate">
               <div class="strength-content">
                 <span class="strength-number">SOLUTION 02</span>
                 <h3 class="strength-title">ケアブリッジ</h3>
@@ -1424,7 +1516,7 @@
               </div>
             </div>
 
-            <div class="strength-card">
+            <div class="strength-card scroll-animate">
               <div class="strength-content">
                 <span class="strength-number">SOLUTION 03</span>
                 <h3 class="strength-title">職場定着伴走</h3>
@@ -1448,9 +1540,9 @@
       <section class="voice bg-light" id="voice">
         <div class="container">
           <span class="section-label">VOICE</span>
-          <h2>導入企業・ご利用者の声</h2>
+          <h2 class="scroll-animate">導入企業・ご利用者の声</h2>
           <div class="voice-grid">
-            <div class="voice-card">
+            <div class="voice-card scroll-animate">
               <div class="voice-header">
                 <div>
                   <div class="voice-company-name">A社（大手ECグループ会社）</div>
@@ -1465,7 +1557,7 @@
                 以前までは、自分の特性について言いづらく、苦手な仕事を避けようとしていましたが、今では障害特性を理解いただきながら、主体的に仕事ができるようになりました。適性がある業務で、働きやすい環境で働かせてもらっているので、2年以上気持ちよく働くことができています。
               </p>
             </div>
-            <div class="voice-card">
+            <div class="voice-card scroll-animate delay-200">
               <div class="voice-header">
                 <div>
                   <div class="voice-company-name">B社（通信インフラ事業）</div>
@@ -1487,11 +1579,11 @@
       <section class="data bg-white" id="data">
         <div class="container">
           <span class="section-label">DATA</span>
-          <h2>実績データ</h2>
-          <p class="chart-description">
+          <h2 class="scroll-animate">実績データ</h2>
+          <p class="chart-description scroll-animate">
             キズキキャリアの就労定着サービスがこれまでに達成してきた実績をご紹介します。
           </p>
-          <div class="data-highlight">
+          <div class="data-highlight scroll-animate delay-100">
             <p class="data-label">定着率</p>
             <div class="data-percentage">95%</div>
             <p class="data-description">
@@ -1500,7 +1592,7 @@
           </div>
 
           <div class="data-charts">
-            <div class="chart-item">
+            <div class="chart-item scroll-animate delay-100">
               <h3>雇用形態</h3>
               <p class="chart-description">
                 当社の支援を受けた方の雇用形態の内訳です。
@@ -1509,7 +1601,7 @@
                 <canvas id="genderAgeChart"></canvas>
               </div>
             </div>
-            <div class="chart-item">
+            <div class="chart-item scroll-animate delay-200">
               <h3>就職先企業規模</h3>
               <p class="chart-description">
                 支援を通じて就職された企業の規模別割合です。
@@ -1520,7 +1612,7 @@
             </div>
           </div>
 
-          <div class="bar-chart">
+          <div class="bar-chart scroll-animate delay-300">
             <h3>職種別割合</h3>
             <p class="bar-chart-description">
               就職された方の職種の内訳は以下の通りです。
@@ -1538,9 +1630,9 @@
       <section class="services bg-light" id="services">
         <div class="container">
           <span class="section-label">SERVICE</span>
-          <h2>サービス内容</h2>
+          <h2 class="scroll-animate">サービス内容</h2>
           <div class="services-grid">
-            <div class="service-category">
+            <div class="service-category scroll-animate">
               <h3>企業様向け</h3>
               <ul>
                 <li>人材紹介サービス：即戦力・専門人材のご紹介</li>
@@ -1548,7 +1640,7 @@
                 <li>定着・活躍マネジメント：定期面談・コミュニケーション研修</li>
               </ul>
             </div>
-            <div class="service-category">
+            <div class="service-category scroll-animate delay-200">
               <h3>求職者向け</h3>
               <ul>
                 <li>キャリアカウンセリング：経験や「強み」に焦点を当てた対話</li>
@@ -1563,33 +1655,33 @@
       <section class="flow bg-white" id="flow_tob">
         <div class="container">
           <span class="section-label">FLOW</span>
-          <h2>ご利用の流れ</h2>
-          <p class="section-description">
+          <h2 class="scroll-animate">ご利用の流れ</h2>
+          <p class="section-description scroll-animate">
             お問い合わせから採用、そして定着まで。一気通貫でサポートいたします。
           </p>
           <div class="flow-steps">
-            <div class="flow-step-item">
+            <div class="flow-step-item scroll-animate">
               <div class="step-number">1</div>
               <div class="step-content">
                 <h3>課題ヒアリング・要件定義</h3>
                 <p>貴社の業務内容や課題、現場の雰囲気を詳細にヒアリング。プロが言語化し、求人票作成をサポートします。</p>
               </div>
             </div>
-            <div class="flow-step-item">
+            <div class="flow-step-item scroll-animate">
               <div class="step-number">2</div>
               <div class="step-content">
                 <h3>候補者のご紹介・選考</h3>
                 <p>要件に合う人材を厳選してご紹介。必要に応じて「実習」の調整も行い、ミスマッチを防ぎます。</p>
               </div>
             </div>
-            <div class="flow-step-item">
+            <div class="flow-step-item scroll-animate">
               <div class="step-number">3</div>
               <div class="step-content">
                 <h3>受け入れ体制の整備・ご入社</h3>
                 <p>入社当日の迎え入れ方や現場社員への周知など、スムーズなスタートのアドバイスを行います。</p>
               </div>
             </div>
-            <div class="flow-step-item">
+            <div class="flow-step-item scroll-animate">
               <div class="step-number">4</div>
               <div class="step-content">
                 <h3>定着・活躍支援</h3>
@@ -1597,7 +1689,7 @@
               </div>
             </div>
           </div>
-          <div class="fee-box">
+          <div class="fee-box scroll-animate">
             <div class="fee-title">料金について</div>
             <div class="fee-main">完全成功報酬型（初期費用無料）</div>
             <p>
@@ -1616,13 +1708,13 @@
         <div class="container">
           <span class="section-label">OUR MISSION</span>
           <div class="mission-content">
-            <div>
+            <div class="scroll-animate">
               <h2>何度でもやり直せる社会をつくる</h2>
               <p class="mission-text">人生には立ち止まってしまう時があります。しかし、そこからどう歩み出すかが重要です。</p>
               <p class="mission-text">キズキキャリアは単に仕事を紹介するだけでなく「やり直し」を肯定できるグループでありたいと考えます。</p>
               <p class="mission-text">仕事を通じて世界中の人々が輝き、企業の戦力となる未来を創り出します。</p>
             </div>
-            <div class="mission-image">
+            <div class="mission-image scroll-animate delay-200">
                <img src="img/mission.webp" alt="キズキキャリア ミッション">
             </div>
           </div>
@@ -1632,17 +1724,17 @@
       <section class="faq bg-white" id="faq">
         <div class="container">
           <span class="section-label">FAQ</span>
-          <h2>よくある質問</h2>
+          <h2 class="scroll-animate">よくある質問</h2>
           <div class="faq-grid">
-            <details class="faq-item">
+            <details class="faq-item scroll-animate">
               <summary>利用料はかかりますか？</summary>
               <p>原則として利用料はかかりませんが、前年度収入により自己負担が発生する場合があります。</p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item scroll-animate delay-100">
               <summary>在職中でも利用できますか？</summary>
               <p>はい、ご利用いただけます。転職サポートや現在の職場での定着支援も行っています。</p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item scroll-animate delay-200">
               <summary>オンライン相談は可能ですか？</summary>
               <p>はい、Zoom等を使用したオンライン相談も承っております。</p>
             </details>
@@ -1653,16 +1745,16 @@
       <section class="company-info bg-light" id="company">
         <div class="container">
           <span class="section-label">COMPANY</span>
-          <h2>運営会社</h2>
+          <h2 class="scroll-animate">運営会社</h2>
           <div class="company-details">
-            <div class="company-text">
+            <div class="company-text scroll-animate">
               <h3>キズキキャリア株式会社</h3>
               <p>（株式会社キズキ 100%子会社）</p>
               <p>私たちは不登校・ひきこもり等の支援を行うキズキグループの一員として最高のソリューションを提供します。</p>
               <p>プロフェッショナルとして人生を再構築する姿勢で、求職者と企業双方に寄り添います。</p>
               <a href="#" class="cta-button">お問い合わせ</a>
             </div>
-            <div class="company-image">
+            <div class="company-image scroll-animate delay-200">
                <img src="img/company.webp" alt="キズキキャリア 会社風景">
             </div>
           </div>
@@ -1699,28 +1791,28 @@
       <section class="data bg-white" id="data_toc">
         <div class="container">
           <span class="section-label">DATA</span>
-          <h2>数字で見るキズキキャリア</h2>
-          <p class="chart-description">多くの方が自分に合った職場を見つけ、長く活躍されています。</p>
-          <div class="data-highlight">
+          <h2 class="scroll-animate">数字で見るキズキキャリア</h2>
+          <p class="chart-description scroll-animate">多くの方が自分に合った職場を見つけ、長く活躍されています。</p>
+          <div class="data-highlight scroll-animate delay-100">
             <p class="data-label">定着率</p>
             <div class="data-percentage">95%</div>
             <p class="data-description">入社後もしっかりサポートするため、早期離職が非常に少ないのが特徴です。</p>
           </div>
           <div class="data-charts">
-            <div class="chart-item">
+            <div class="chart-item scroll-animate delay-100">
               <h3>雇用形態</h3>
               <div class="chart-container">
                 <canvas id="genderAgeChartToc"></canvas>
               </div>
             </div>
-            <div class="chart-item">
+            <div class="chart-item scroll-animate delay-200">
               <h3>就職先企業規模</h3>
               <div class="chart-container">
                 <canvas id="companySizeChartToc"></canvas>
               </div>
             </div>
           </div>
-          <div class="bar-chart">
+          <div class="bar-chart scroll-animate delay-300">
             <h3>多様な職種での活躍</h3>
             <div class="bar-chart-container">
               <canvas id="jobTypeChartToc"></canvas>
@@ -1732,19 +1824,19 @@
       <section class="reasons bg-light" id="reasons_toc">
         <div class="container">
           <span class="section-label">MERIT</span>
-          <h2>あなたがキズキキャリアを使うべき理由</h2>
+          <h2 class="scroll-animate">あなたがキズキキャリアを使うべき理由</h2>
           <div class="reasons-grid">
-            <div class="reason-card">
+            <div class="reason-card scroll-animate">
               <div class="reason-number">1</div>
               <h3>「強み」の再発見</h3>
               <p>これまでの経験や特性を丁寧にヒアリング。自分では気づかなかった「得意」を見つけ、自信につなげます。</p>
             </div>
-            <div class="reason-card">
+            <div class="reason-card scroll-animate delay-100">
               <div class="reason-number">2</div>
               <h3>厳選された企業紹介</h3>
               <p>「配慮」への理解があり、長く働きやすい環境が整っている企業を厳選してご紹介します。</p>
             </div>
-            <div class="reason-card">
+            <div class="reason-card scroll-animate delay-200">
               <div class="reason-number">3</div>
               <h3>入社後も続くサポート</h3>
               <p>就職はゴールではありません。働き始めてからの悩みも、専任のスタッフが継続的にサポートします。</p>
@@ -1756,9 +1848,9 @@
       <section class="voice bg-white" id="voice_toc">
         <div class="container">
           <span class="section-label">VOICE</span>
-          <h2>ご利用者の声</h2>
+          <h2 class="scroll-animate">ご利用者の声</h2>
           <div class="voice-grid">
-            <div class="voice-card">
+            <div class="voice-card scroll-animate">
               <div class="voice-header">
                 <div>
                   <div class="voice-company-name">30代前半・女性</div>
@@ -1770,7 +1862,7 @@
               </div>
               <p class="voice-comment">障害特性を理解いただきながら主体的に仕事ができるようになりました。適性がある業務で2年以上気持ちよく働けています。</p>
             </div>
-            <div class="voice-card">
+            <div class="voice-card scroll-animate delay-200">
               <div class="voice-header">
                 <div>
                   <div class="voice-company-name">40代前半・男性</div>
@@ -1789,37 +1881,37 @@
       <section class="services bg-light" id="services_toc">
         <div class="container">
           <span class="section-label">FLOW</span>
-          <h2>ご利用の流れ</h2>
+          <h2 class="scroll-animate">ご利用の流れ</h2>
           <div class="flow-steps">
-            <div class="flow-step-item">
+            <div class="flow-step-item scroll-animate">
               <div class="step-number">1</div>
               <div class="step-content">
                 <h3>無料登録・カウンセリング</h3>
                 <p>Webから簡単登録。あなたの状況や希望、不安をじっくりお聞かせください。</p>
               </div>
             </div>
-            <div class="flow-step-item">
+            <div class="flow-step-item scroll-animate">
               <div class="step-number">2</div>
               <div class="step-content">
                 <h3>求人紹介・自己分析</h3>
                 <p>強みや特性を整理し、あなたに合った求人を提案。非公開求人も多数ございます。</p>
               </div>
             </div>
-            <div class="flow-step-item">
+            <div class="flow-step-item scroll-animate">
               <div class="step-number">3</div>
               <div class="step-content">
                 <h3>選考対策</h3>
                 <p>書類添削や模擬面接を徹底的に行います。企業ごとのポイントもアドバイス可能です。</p>
               </div>
             </div>
-            <div class="flow-step-item">
+            <div class="flow-step-item scroll-animate">
               <div class="step-number">4</div>
               <div class="step-content">
                 <h3>内定・条件交渉</h3>
                 <p>給与や入社日、必要な配慮事項などの条件交渉を代行します。</p>
               </div>
             </div>
-            <div class="flow-step-item">
+            <div class="flow-step-item scroll-animate">
               <div class="step-number">5</div>
               <div class="step-content">
                 <h3>入社・定着サポート</h3>
@@ -1828,7 +1920,7 @@
             </div>
           </div>
           <div style="text-align: center; margin-top: 50px">
-            <a href="#" class="cta-button">お問い合わせ</a>
+            <a href="#" class="cta-button scroll-animate">お問い合わせ</a>
           </div>
         </div>
       </section>
@@ -1837,12 +1929,12 @@
         <div class="container">
           <span class="section-label">MESSAGE</span>
           <div class="mission-content">
-            <div>
+            <div class="scroll-animate">
               <h2>何度でも、ここから始められる</h2>
               <p class="mission-text">「一度つまづいたら終わり」なんてことはありません。何度でもやり直せる社会をつくりたいと考えています。</p>
               <p class="mission-text">あなたのペースで大丈夫です。自分らしく輝ける次のステージを一緒に探しに行きませんか？</p>
             </div>
-            <div class="mission-image">
+            <div class="mission-image scroll-animate delay-200">
                <img src="img/mission.webp" alt="キズキキャリア 求職者様向けメッセージ">
             </div>
           </div>
@@ -1852,17 +1944,17 @@
       <section class="faq bg-light" id="faq_toc">
         <div class="container">
           <span class="section-label">FAQ</span>
-          <h2>よくある質問</h2>
+          <h2 class="scroll-animate">よくある質問</h2>
           <div class="faq-grid">
-            <details class="faq-item">
+            <details class="faq-item scroll-animate">
               <summary>サービスの利用にお金はかかりますか？</summary>
               <p>いいえ、求職者の方は完全無料でご利用いただけます。</p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item scroll-animate delay-100">
               <summary>まだ転職するか決めていないのですが...</summary>
               <p>もちろん大丈夫です。「まずは話だけ聞いてみたい」という方も歓迎です。</p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item scroll-animate delay-200">
               <summary>障害者手帳を持っていなくても利用できますか？</summary>
               <p>はい、医師の診断がある方もご相談可能です。まずは一度お問い合わせください。</p>
             </details>
@@ -1873,14 +1965,14 @@
       <section class="company-info bg-white" id="company_toc">
         <div class="container">
           <span class="section-label">COMPANY</span>
-          <h2>運営会社</h2>
+          <h2 class="scroll-animate">運営会社</h2>
           <div class="company-details">
-            <div class="company-text">
+            <div class="company-text scroll-animate">
               <h3>キズキキャリア株式会社</h3>
               <p>何度でもやり直せる社会をつくるキズキグループの一員です。困難を抱える方の「次の一歩」を応援し続けています。</p>
               <a href="#" class="cta-button">会社概要を見る</a>
             </div>
-            <div class="company-image">
+            <div class="company-image scroll-animate delay-200">
                <img src="img/company.webp" alt="会社風景">
             </div>
           </div>
@@ -1894,7 +1986,7 @@
         <div class="footer-content">
           <div class="footer-info">
             <div class="footer-logo">
-              <img src="img/logo.webp" alt="キズキキャリア" width="200" height="183" />
+              <img src="img/logo.webp" alt="キズキキャリア" width="200" height="152" />
             </div>
             <p style="font-size: 14px; color: #ccc; line-height: 1.8">
               〒160-0022 東京都新宿区新宿6-28-7 新宿EAST COURT 2階
@@ -2135,11 +2227,33 @@
         });
       };
 
+      // Scroll Animation Init
+      const initScrollAnimations = () => {
+        const observerOptions = {
+          root: null,
+          rootMargin: '0px 0px -10% 0px',
+          threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        const elements = document.querySelectorAll('.scroll-animate');
+        elements.forEach(el => observer.observe(el));
+      };
+
       document.addEventListener("DOMContentLoaded", () => {
         reorderNav("tob");
         initMobileMenu();
         initScrollToTop();
         initCharts();
+        initScrollAnimations();
       });
     </script>
   </body>
