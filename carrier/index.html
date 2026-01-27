@@ -856,6 +856,16 @@
         align-items: center;
         justify-content: center;
         color: var(--color-white);
+        /* 追加: 画像が枠からはみ出さないようにする */
+        overflow: hidden;
+      }
+
+      /* 追加: 画像を枠いっぱいにトリミングして表示する設定 */
+      .mission-image img,
+      .company-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
       /* Reasons */
@@ -1191,6 +1201,16 @@
         .toast-notification {
           width: 90%;
           font-size: 12px;
+        }
+        
+        /* 追加: スマホでの各画像の高さを調整（見やすくするため） */
+        .hero-image {
+          aspect-ratio: auto;
+          height: 250px;
+        }
+        .mission-image, 
+        .company-image {
+          height: 250px;
         }
       }
     </style>
@@ -1874,7 +1894,7 @@
         <div class="footer-content">
           <div class="footer-info">
             <div class="footer-logo">
-              <img src="img/logo.webp" alt="キズキキャリア" width="200" height="152" />
+              <img src="img/logo.webp" alt="キズキキャリア" width="200" height="183" />
             </div>
             <p style="font-size: 14px; color: #ccc; line-height: 1.8">
               〒160-0022 東京都新宿区新宿6-28-7 新宿EAST COURT 2階
