@@ -5,19 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>キズキキャリア</title>
 
-    <!-- これはダミーです: メタディスクリプション -->
+    <!-- メタディスクリプション -->
     <meta
       name="description"
       content="就労移⾏⽀援の確かなノウハウで、ミスマッチを防ぎ、定着と「活躍」を支援します。私たちは、障害者雇用を「福祉」ではなく、企業の「成長」と個人の「再出発」の架け橋にします。"
     />
 
-    <!-- これはダミーです: OGPタグ (SNSシェア設定) -->
+    <!-- OGPタグ (SNSシェア設定) -->
     <meta property="og:title" content="キズキキャリア - 「配慮」のその先へ" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://kizuki-corp.com/" />
-    <!-- これはダミーです -->
     <meta property="og:image" content="https://kizuki-corp.com/ogp.jpg" />
-    <!-- これはダミーです -->
     <meta property="og:site_name" content="キズキキャリア" />
     <meta
       property="og:description"
@@ -44,7 +42,7 @@
         --color-bg-accent: #e0f2f1;
         --color-white: #fff;
 
-        /* 変更: 法定雇用率セクション用の機会を示すブルー */
+        /* 法定雇用率セクション用 */
         --color-bg-opportunity: #eff6ff;
         --color-opportunity-border: #3b82f6;
         --color-opportunity-text: #1e40af;
@@ -58,7 +56,7 @@
 
         /* レイアウト */
         --header-height: 80px;
-        --switcher-height: 60px; /* タブ切り替えバーの高さ */
+        --switcher-height: 60px;
         --container-width: 1200px;
         --section-padding: 100px 0;
 
@@ -71,7 +69,6 @@
 
       html {
         scroll-behavior: smooth;
-        /* ヘッダー + スイッチャーの高さを考慮してスクロール位置を調整 */
         scroll-padding-top: calc(var(--header-height) + var(--switcher-height));
       }
 
@@ -134,12 +131,10 @@
         font-weight: bold;
       }
 
-      /* セクション共通スタイル */
       section {
         padding: var(--section-padding);
       }
 
-      /* セクション背景色のグルーピング */
       .bg-white {
         background: var(--color-white);
       }
@@ -147,7 +142,6 @@
         background: var(--color-bg-light);
       }
 
-      /* 見出しの共通化 */
       section h2 {
         font-size: 32px;
         margin-bottom: 60px;
@@ -157,7 +151,6 @@
         letter-spacing: 0.05em;
       }
 
-      /* テキスト共通スタイル */
       .section-description,
       .chart-description,
       .bar-chart-description,
@@ -168,7 +161,6 @@
         margin-bottom: 30px;
       }
 
-      /* データ出典注釈 */
       .data-note {
         font-size: 12px;
         color: var(--color-text-muted);
@@ -181,10 +173,10 @@
           Specific Sections Styles
           ========================================= */
 
-      /* 法定雇用率セクション*/
+      /* 法定雇用率セクション */
       .statutory-rate {
         background: var(--color-bg-opportunity);
-        border-top: 4px solid var(--color-opportunity-border);
+        border-top: 4px solid var(--color-primary);
       }
       .statutory-alert {
         display: flex;
@@ -242,7 +234,7 @@
         color: var(--color-opportunity-border);
       }
 
-      /* Strength*/
+      /* Strength */
       .strength-grid {
         display: flex;
         flex-direction: column;
@@ -257,12 +249,11 @@
         border-radius: var(--radius-default);
         overflow: hidden;
       }
-      /* 偶数番目は画像を右に */
       .strength-card:nth-child(even) {
-        direction: rtl; /* 簡易的に左右反転 */
+        direction: rtl;
       }
       .strength-card:nth-child(even) > * {
-        direction: ltr; /* 中身は戻す */
+        direction: ltr;
       }
 
       .strength-content {
@@ -321,9 +312,15 @@
         color: var(--color-primary);
         font-weight: bold;
         border-radius: var(--radius-default);
+        overflow: hidden;
+      }
+      .strength-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
-      /* Voice (導入事例) */
+      /* Voice */
       .voice-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -376,7 +373,7 @@
         z-index: 0;
       }
 
-      /* データチャートエリア */
+      /* Data */
       .data-charts {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -412,7 +409,7 @@
         max-height: 400px;
       }
 
-      /* 流れ（Flow）セクション共通 */
+      /* Flow */
       .flow-steps {
         display: flex;
         flex-direction: column;
@@ -431,7 +428,6 @@
         align-items: flex-start;
         border: 1px solid var(--border-color-light);
       }
-      /* 下矢印のデザイン */
       .flow-step-item:not(:last-child)::after {
         content: "▼";
         position: absolute;
@@ -454,7 +450,7 @@
         font-size: 18px;
         font-weight: bold;
         flex-shrink: 0;
-        margin-top: 5px; /* テキストとのバランス調整 */
+        margin-top: 5px;
       }
       .step-content {
         flex: 1;
@@ -471,7 +467,6 @@
         color: var(--color-text-light);
       }
 
-      /* Fee Section (Flow内) */
       .fee-box {
         max-width: 800px;
         margin: 60px auto 0;
@@ -519,8 +514,6 @@
       }
 
       .header-logo {
-        font-size: 24px;
-        font-weight: bold;
         color: var(--color-primary);
         text-decoration: none;
         display: flex;
@@ -529,15 +522,13 @@
         flex-shrink: 0;
       }
 
-      /* 追加: ロゴ画像のサイズ調整 */
       .header-logo img {
-        height: 50px; /* ヘッダーの高さに合わせて調整 */
+        height: 40px;
         width: auto;
       }
 
-      /* 追加: フッターロゴ画像のサイズ調整 */
       .footer-logo img {
-        height: 40px;
+        height: 60px;
         width: auto;
       }
 
@@ -607,12 +598,10 @@
         background: var(--color-bg-accent);
       }
 
-      /* Switcher */
       body {
         padding-top: calc(var(--header-height) + var(--switcher-height));
       }
 
-      /* View Toggle */
       .view-content {
         display: none;
         animation: fadeIn 0.5s ease;
@@ -800,28 +789,37 @@
         text-align: center;
       }
 
-      /* toC向けヒーロー背景*/
       .hero-toc {
         background: linear-gradient(135deg, #fffbf0 0%, #fef3c7 100%);
       }
 
       .hero-image {
         width: 100%;
-        height: 400px;
+        max-width: 1200px;
+        margin: 0 auto 60px;
+        aspect-ratio: 3 / 1; /* PC用デフォルト */
         background: var(--color-secondary);
-        margin-bottom: 60px;
         display: flex;
         align-items: center;
         justify-content: center;
         color: var(--color-white);
         font-size: 18px;
         border-radius: var(--radius-default);
+        overflow: hidden;
       }
 
-      /* toC向け画像プレースホルダー*/
-      .hero-toc .hero-image {
-        background: #fcd34d;
-        color: #78350f;
+      /* スマホ向けにヒーロー画像の比率を調整 */
+      @media (max-width: 480px) {
+        .hero-image {
+          aspect-ratio: 1 / 1; /* SP用1200x1200に合わせて正方形に */
+          height: auto;
+        }
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
       .hero h1 {
@@ -946,13 +944,6 @@
         color: var(--color-text-muted);
       }
 
-      .chart-item h3,
-      .bar-chart h3 {
-        font-size: 18px;
-        margin-bottom: 20px;
-        font-weight: 500;
-      }
-
       /* Services */
       .services-grid {
         display: grid;
@@ -990,42 +981,7 @@
         color: var(--color-primary);
       }
 
-      /* toC向けサービスセクション用：フロー表示 */
-      .service-flow-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 40px;
-      }
-      .service-flow-card {
-        background: var(--color-white);
-        padding: 30px;
-        border-radius: var(--radius-default);
-        text-align: center;
-        border: 1px solid var(--border-color-light);
-        position: relative;
-      }
-      .service-flow-step {
-        display: inline-block;
-        background: var(--color-primary);
-        color: #fff;
-        padding: 5px 15px;
-        border-radius: 20px;
-        font-size: 12px;
-        margin-bottom: 15px;
-        font-weight: bold;
-      }
-      .service-flow-card h4 {
-        margin-bottom: 15px;
-        font-size: 18px;
-        color: var(--color-text-main);
-      }
-      .service-flow-card p {
-        font-size: 14px;
-        color: var(--color-text-light);
-        text-align: left;
-      }
-
-      /* FAQ Section */
+      /* FAQ */
       .faq-grid {
         max-width: 800px;
         margin: 0 auto;
@@ -1084,7 +1040,7 @@
         padding-top: 15px;
       }
 
-      /* Company Info */
+      /* Company */
       .company-details {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -1189,32 +1145,22 @@
           Mobile & Responsive
           ========================================= */
 
-      @media (max-width: 900px) {
-        .companies-logos {
-          grid-template-columns: repeat(4, 1fr);
-        }
-      }
-
       @media (max-width: 1024px) {
         header {
           padding: 0 20px;
         }
-
-        /* Navigation Switch */
         .nav-links {
           display: none;
         }
         .hamburger {
           display: flex;
         }
-
         .hero h1 {
           font-size: 32px;
         }
         .hero-subtitle {
           font-size: 16px;
         }
-
         .mission-content,
         .reasons-grid,
         .strength-grid,
@@ -1222,38 +1168,21 @@
         .data-charts,
         .services-grid,
         .company-details,
-        .footer-content,
-        .service-flow-grid {
+        .footer-content {
           grid-template-columns: 1fr;
           gap: 40px;
         }
-
-        /* Mobile specific adjustments */
-        .companies-logos {
-          /* Mobile: 4 columns (compact) or 2 columns */
-          grid-template-columns: repeat(4, 1fr);
-          gap: 15px;
-        }
-
         .strength-card {
           grid-template-columns: 1fr;
           direction: ltr !important;
         }
-        .strength-card > * {
-          direction: ltr !important;
-        }
-
         .data-percentage {
           font-size: 56px;
         }
-
-        /* Mobile Font Sizes for Headings */
         section h2,
         .mission h2 {
           font-size: 28px;
         }
-
-        /* Statutory & Flow Mobile */
         .statutory-alert {
           flex-direction: column;
           text-align: center;
@@ -1263,8 +1192,6 @@
           text-align: center;
           align-items: center;
         }
-
-        /* Footer Specifics */
         .footer-content {
           text-align: center;
         }
@@ -1276,15 +1203,11 @@
       }
 
       @media (max-width: 480px) {
-        .companies-logos {
-          grid-template-columns: repeat(2, 1fr);
-        }
         .cta-button {
           width: 100%;
           text-align: center;
           padding: 16px;
         }
-
         .toast-notification {
           width: 90%;
           font-size: 12px;
@@ -1296,15 +1219,14 @@
     <header>
       <a href="#" class="header-logo">
         <img
-          src="img/logo.webp"
+          src="img/logo-wide.webp"
           alt="キズキキャリア"
-          width="200"
-          height="152"
+          width="300"
+          height="51"
         />
       </a>
       <nav aria-label="メインメニュー">
         <ul class="nav-links">
-          <!-- PCメニュー: data-key属性を追加 -->
           <li data-key="mission">
             <a href="#mission" class="nav-link-mission">ミッション</a>
           </li>
@@ -1361,7 +1283,6 @@
       aria-hidden="true"
     >
       <ul>
-        <!-- モバイルメニュー: data-key属性を追加 -->
         <li data-key="top">
           <a href="#" class="mobile-link nav-link-top">TOP</a>
         </li>
@@ -1414,13 +1335,22 @@
     </div>
 
     <!-- ==============================================
-         toB View (Optimized Order)
-         ============================================== -->
+          toB View (企業向け)
+          ============================================== -->
     <div id="view-tob" class="view-content active">
-      <!-- 1. Hero -->
       <section class="hero">
         <div class="container">
-          <div class="hero-image">[ヒーロー画像エリア]</div>
+          <div class="hero-image">
+            <picture>
+              <!-- スマホ用画像 (ユーザー作成済み) -->
+              <source
+                srcset="img/hero-tob-sp.webp"
+                media="(max-width: 480px)"
+              />
+              <!-- PC用メイン画像 (ユーザー作成済み) -->
+              <img src="img/hero-tob-pc.webp" alt="キズキキャリア 企業様向け" />
+            </picture>
+          </div>
           <h1>「配慮」のその先へ</h1>
           <p class="hero-subtitle">
             仕事を通じて、人生をより良くしたいと願うすべての人へ。
@@ -1432,7 +1362,6 @@
         </div>
       </section>
 
-      <!-- 1.5. Statutory Employment Rate -->
       <section class="statutory-rate" id="statutory_rate">
         <div class="container">
           <span class="section-label">MARKET</span>
@@ -1458,7 +1387,6 @@
         </div>
       </section>
 
-      <!-- 2. Strength (Renewed Reasons) -->
       <section class="reasons bg-white" id="strength">
         <div class="container">
           <span class="section-label">STRENGTH</span>
@@ -1467,7 +1395,6 @@
             「見えない障害」を可視化し、相互理解を深めるための独自のツールとメソッドを提供します。
           </p>
           <div class="strength-grid">
-            <!-- Strength 1 -->
             <div class="strength-card">
               <div class="strength-content">
                 <span class="strength-number">SOLUTION 01</span>
@@ -1481,10 +1408,14 @@
                   <li>入社前のミスマッチリスクを大幅に低減</li>
                 </ul>
               </div>
-              <div class="strength-image">[レジュメ サンプル画像]</div>
+              <div class="strength-image">
+                <img
+                  src="img/strength-resume.webp"
+                  alt="オリジナルレジュメ サンプル"
+                />
+              </div>
             </div>
 
-            <!-- Strength 2 -->
             <div class="strength-card">
               <div class="strength-content">
                 <span class="strength-number">SOLUTION 02</span>
@@ -1498,10 +1429,14 @@
                   <li>具体的な接し方のアドバイス機能付き</li>
                 </ul>
               </div>
-              <div class="strength-image">[ケアブリッジ 画面イメージ]</div>
+              <div class="strength-image">
+                <img
+                  src="img/strength-carebridge.webp"
+                  alt="ケアブリッジ 画面イメージ"
+                />
+              </div>
             </div>
 
-            <!-- Strength 3 -->
             <div class="strength-card">
               <div class="strength-content">
                 <span class="strength-number">SOLUTION 03</span>
@@ -1515,13 +1450,14 @@
                   <li>現場の管理工数を大幅に軽減</li>
                 </ul>
               </div>
-              <div class="strength-image">[伴走支援 イメージ]</div>
+              <div class="strength-image">
+                <img src="img/strength-support.webp" alt="伴走支援 イメージ" />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 2.5. Voice (New Section) -->
       <section class="voice bg-light" id="voice">
         <div class="container">
           <span class="section-label">VOICE</span>
@@ -1563,7 +1499,6 @@
         </div>
       </section>
 
-      <!-- 3. Data (bg-white) - alternate -->
       <section class="data bg-white" id="data">
         <div class="container">
           <span class="section-label">DATA</span>
@@ -1615,7 +1550,6 @@
         </div>
       </section>
 
-      <!-- 4. Services (bg-light) - alternate -->
       <section class="services bg-light" id="services">
         <div class="container">
           <span class="section-label">SERVICE</span>
@@ -1645,7 +1579,6 @@
         </div>
       </section>
 
-      <!-- 4.5. Flow toB -->
       <section class="flow bg-white" id="flow_tob">
         <div class="container">
           <span class="section-label">FLOW</span>
@@ -1659,7 +1592,7 @@
               <div class="step-content">
                 <h3>課題ヒアリング・要件定義</h3>
                 <p>
-                  貴社の業務内容や課題、現場の雰囲気を詳細にヒアリング。「どんな配慮が必要か」「どんな業務を任せられるか」をプロが言語化し、求人票作成をサポートします。
+                  貴社の業務内容や課題、現場の雰囲気を詳細にヒアリング。プロが言語化し、求人票作成をサポートします。
                 </p>
               </div>
             </div>
@@ -1668,7 +1601,7 @@
               <div class="step-content">
                 <h3>候補者のご紹介・選考</h3>
                 <p>
-                  データベースから要件に合う人材を厳選してご紹介。面接だけでなく、必要に応じて「実習」の調整も行い、入社前のミスマッチを防ぎます。
+                  要件に合う人材を厳選してご紹介。必要に応じて「実習」の調整も行い、ミスマッチを防ぎます。
                 </p>
               </div>
             </div>
@@ -1677,38 +1610,35 @@
               <div class="step-content">
                 <h3>受け入れ体制の整備・ご入社</h3>
                 <p>
-                  入社当日の迎え入れ方や、現場社員への周知方法など、スムーズなスタートを切るためのアドバイスを行います。
+                  入社当日の迎え入れ方や現場社員への周知など、スムーズなスタートのアドバイスを行います。
                 </p>
               </div>
             </div>
             <div class="flow-step-item">
               <div class="step-number">4</div>
               <div class="step-content">
-                <h3>定着・活躍支援（入社後サポート）</h3>
+                <h3>定着・活躍支援</h3>
                 <p>
-                  入社後も定期的にご本人・企業様双方と面談を実施。小さな違和感の芽を摘み、長期的な定着とパフォーマンス発揮を伴走します。
+                  入社後も定期的に面談を実施。長期的な定着とパフォーマンス発揮を伴走します。
                 </p>
               </div>
             </div>
           </div>
-
-          <!-- 料金についての追加エリア -->
           <div class="fee-box">
             <div class="fee-title">料金について</div>
             <div class="fee-main">完全成功報酬型（初期費用無料）</div>
             <p>
               採用が決定するまで費用は一切かかりません。<br />
-              また、万が一早期に退職となってしまった場合の「返還金規定」も設けております。
+              また、早期に退職となってしまった場合の返還金規定もございます。
             </p>
             <p class="fee-note">
               ※人材紹介料：理論年収の35%（下限65万円）<br />
-              ※返還金規定あり（入社後1ヶ月未満：80%返金、3ヶ月未満：50%返金、6ヶ月未満：5%返金）
+              ※返還金規定あり（1ヶ月未満：80%返金、3ヶ月未満：50%返金、6ヶ月未満：5%返金）
             </p>
           </div>
         </div>
       </section>
 
-      <!-- 6. Mission (bg-light) - background changed -->
       <section class="mission bg-light" id="mission">
         <div class="container">
           <span class="section-label">OUR MISSION</span>
@@ -1716,21 +1646,22 @@
             <div>
               <h2>何度でもやり直せる社会をつくる</h2>
               <p class="mission-text">
-                人生には、立ち止まってしまう時があります。しかし、そこからどう歩み出すかが、その後の人生を決めます。
+                人生には立ち止まってしまう時があります。しかし、そこからどう歩み出すかが重要です。
               </p>
               <p class="mission-text">
-                キズキキャリアは、単に「仕事を紹介する」だけのエージェントではありません。これまでの型にはまらず「やり直し」を肯定できるようなグループでありたいと考えます。本質的な個性の理解と、輝く場所の創造に。<br />
+                キズキキャリアは単に仕事を紹介するだけでなく「やり直し」を肯定できるグループでありたいと考えます。
               </p>
               <p class="mission-text">
-                仕事を通じて世界中の人々がより輝き、企業にとって欠かせない戦力となる未来を創り出します。
+                仕事を通じて世界中の人々が輝き、企業の戦力となる未来を創り出します。
               </p>
             </div>
-            <div class="mission-image">[イメージ画像]</div>
+            <div class="mission-image">
+              <img src="img/mission-tob.webp" alt="キズキキャリア ミッション" />
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- 7. FAQ (bg-white) - background changed -->
       <section class="faq bg-white" id="faq">
         <div class="container">
           <span class="section-label">FAQ</span>
@@ -1739,32 +1670,23 @@
             <details class="faq-item">
               <summary>利用料はかかりますか？</summary>
               <p>
-                原則として利用料はかかりませんが、前年度の収入によっては自己負担が発生する場合があります。詳細はお問い合わせください。
+                原則として利用料はかかりませんが、前年度収入により自己負担が発生する場合があります。
               </p>
             </details>
             <details class="faq-item">
               <summary>在職中でも利用できますか？</summary>
               <p>
-                はい、ご利用いただけます。転職に向けたサポートや、現在の職場での定着支援も行っています。
+                はい、ご利用いただけます。転職サポートや現在の職場での定着支援も行っています。
               </p>
             </details>
             <details class="faq-item">
-              <summary>どのような障害種別の方が対象ですか？</summary>
-              <p>
-                身体、知的、精神、発達障害など、障害者手帳をお持ちの方や医師の診断がある方が対象です。手帳をお持ちでない方もご相談ください。
-              </p>
-            </details>
-            <details class="faq-item">
-              <summary>オンラインでの相談は可能ですか？</summary>
-              <p>
-                はい、Zoom等を使用したオンライン相談も承っております。遠方の方や外出が難しい方もお気軽にご利用ください。
-              </p>
+              <summary>オンライン相談は可能ですか？</summary>
+              <p>はい、Zoom等を使用したオンライン相談も承っております。</p>
             </details>
           </div>
         </div>
       </section>
 
-      <!-- 8. Company Info (bg-light) - background changed -->
       <section class="company-info bg-light" id="company">
         <div class="container">
           <span class="section-label">COMPANY</span>
@@ -1774,47 +1696,59 @@
               <h3>キズキキャリア株式会社</h3>
               <p>（株式会社キズキ 100%子会社）</p>
               <p>
-                私たちは、不登校・中退・ひきこもり・うつ病などの困難を経験した方々の支援を行うキズキグループの一員として、雇用領域における最高のソリューションを提供します。
+                私たちは不登校・ひきこもり等の支援を行うキズキグループの一員として最高のソリューションを提供します。
               </p>
               <p>
-                「優しさ」だけでなく、プロフェッショナルとして人生を再構築する姿勢で、求職者と企業の双方に寄り添います。
+                プロフェッショナルとして人生を再構築する姿勢で、求職者と企業双方に寄り添います。
               </p>
               <a href="#" class="cta-button">お問い合わせ</a>
             </div>
-            <div class="company-image">[会社画像エリア]</div>
+            <div class="company-image">
+              <img src="img/company.webp" alt="キズキキャリア 会社風景" />
+            </div>
           </div>
         </div>
       </section>
     </div>
-    <!-- End of toB View -->
 
     <!-- ==============================================
-         toC View (New Order & Optimized Content)
-         ============================================== -->
+          toC View (求職者向け)
+          ============================================== -->
     <div id="view-toc" class="view-content">
-      <!-- 1. Hero (toC) -->
       <section class="hero hero-toc">
         <div class="container">
-          <div class="hero-image">[求職者向けイメージ]</div>
+          <div class="hero-image">
+            <picture>
+              <!-- スマホ用画像 (1200x1200) -->
+              <source
+                srcset="img/hero-toc-sp.webp"
+                media="(max-width: 480px)"
+              />
+              <!-- PC用メイン画像 (2400x800) -->
+              <img
+                src="img/hero-toc-pc.webp"
+                alt="自分らしく働ける場所が、きっとある。"
+              />
+            </picture>
+          </div>
           <h1>自分らしく働ける場所が、<br />きっとある。</h1>
           <p class="hero-subtitle">
             あなたの「強み」を見つけ、長く安心して働ける職場へ。
           </p>
           <p class="hero-description">
             キズキキャリアは、障害や特性のある方の就職・転職をサポートするエージェントです。<br />
-            ただ仕事を紹介するだけでなく、あなたが自信を持って働けるよう、カウンセリングから定着まで伴走します。
+            ただ仕事を紹介するだけでなく、あなたが自信を持って働けるよう伴走します。
           </p>
           <a href="#" class="cta-button">お問い合わせ</a>
         </div>
       </section>
 
-      <!-- 2. Data (toC) - 実績を全表示 -->
       <section class="data bg-white" id="data_toc">
         <div class="container">
           <span class="section-label">DATA</span>
           <h2>数字で見るキズキキャリア</h2>
           <p class="chart-description">
-            多くの方が、自分に合った職場を見つけ、長く活躍されています。
+            多くの方が自分に合った職場を見つけ、長く活躍されています。
           </p>
           <div class="data-highlight">
             <p class="data-label">定着率</p>
@@ -1823,34 +1757,22 @@
               入社後もしっかりサポートするため、早期離職が非常に少ないのが特徴です。
             </p>
           </div>
-
-          <!-- toC用全チャート (canvas IDを変更) -->
           <div class="data-charts">
             <div class="chart-item">
               <h3>雇用形態</h3>
-              <p class="chart-description">
-                当社の支援を受けた方の雇用形態の内訳です。
-              </p>
               <div class="chart-container">
                 <canvas id="genderAgeChartToc"></canvas>
               </div>
             </div>
             <div class="chart-item">
               <h3>就職先企業規模</h3>
-              <p class="chart-description">
-                支援を通じて就職された企業の規模別割合です。
-              </p>
               <div class="chart-container">
                 <canvas id="companySizeChartToc"></canvas>
               </div>
             </div>
           </div>
-
           <div class="bar-chart">
             <h3>多様な職種での活躍</h3>
-            <p class="bar-chart-description">
-              事務職だけでなく、専門スキルを活かせる職種など、幅広い選択肢があります。
-            </p>
             <div class="bar-chart-container">
               <canvas id="jobTypeChartToc"></canvas>
             </div>
@@ -1858,7 +1780,6 @@
         </div>
       </section>
 
-      <!-- 3. Reasons (toC) - 求職者メリット -->
       <section class="reasons bg-light" id="reasons_toc">
         <div class="container">
           <span class="section-label">MERIT</span>
@@ -1889,7 +1810,6 @@
         </div>
       </section>
 
-      <!-- 3.5 Voice (toC) - Added -->
       <section class="voice bg-white" id="voice_toc">
         <div class="container">
           <span class="section-label">VOICE</span>
@@ -1903,11 +1823,11 @@
                 </div>
               </div>
               <div class="voice-user">
-                <strong>K.Rさん</strong><br />
-                職種：労務・人事 / 特性：適応障害・ADHD
+                <strong>K.Rさん</strong><br />職種：労務・人事 /
+                特性：適応障害・ADHD
               </div>
               <p class="voice-comment">
-                以前までは、自分の特性について言いづらく、苦手な仕事を避けようとしていましたが、今では障害特性を理解いただきながら、主体的に仕事ができるようになりました。適性がある業務で、働きやすい環境で働かせてもらっているので、2年以上気持ちよく働くことができています。
+                障害特性を理解いただきながら主体的に仕事ができるようになりました。適性がある業務で2年以上気持ちよく働けています。
               </p>
             </div>
             <div class="voice-card">
@@ -1918,36 +1838,27 @@
                 </div>
               </div>
               <div class="voice-user">
-                <strong>K.Sさん</strong><br />
-                職種：事務職OA / 特性：ADHD・うつ
+                <strong>K.Sさん</strong><br />職種：事務職OA / 特性：ADHD・うつ
               </div>
               <p class="voice-comment">
-                事前に、自身の強みと特性、会社の環境を認識し合えたため、現場にもスムーズに入ることができました。ハイブリッド勤務で体調も考慮しながら、より特性に合った異動もいただき、今後も長く続けたいと思っています。
+                強みと特性、環境を事前に認識し合えたため現場にスムーズに入れました。今後も長く続けたいと思っています。
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 4. Services (toC) - 具体的なステップ -->
       <section class="services bg-light" id="services_toc">
         <div class="container">
           <span class="section-label">FLOW</span>
           <h2>ご利用の流れ</h2>
-          <p
-            class="section-description"
-            style="text-align: center; margin-bottom: 50px"
-          >
-            登録から就職、そして定着まで。専任アドバイザーがマンツーマンでサポートします。
-          </p>
-
           <div class="flow-steps">
             <div class="flow-step-item">
               <div class="step-number">1</div>
               <div class="step-content">
                 <h3>無料登録・カウンセリング</h3>
                 <p>
-                  まずはWebから簡単登録。オンラインまたは対面で、あなたの状況や希望、不安なことをじっくりお聞かせください。
+                  Webから簡単登録。あなたの状況や希望、不安をじっくりお聞かせください。
                 </p>
               </div>
             </div>
@@ -1956,16 +1867,16 @@
               <div class="step-content">
                 <h3>求人紹介・自己分析</h3>
                 <p>
-                  「強み」や「特性」を整理し、あなたに合った求人をご提案します。一般公開されていない非公開求人も多数あります。
+                  強みや特性を整理し、あなたに合った求人を提案。非公開求人も多数ございます。
                 </p>
               </div>
             </div>
             <div class="flow-step-item">
               <div class="step-number">3</div>
               <div class="step-content">
-                <h3>選考対策（書類・面接）</h3>
+                <h3>選考対策</h3>
                 <p>
-                  応募書類の添削や、模擬面接による練習を徹底的に行います。企業ごとに「何を見ているか」のアドバイスも可能です。
+                  書類添削や模擬面接を徹底的に行います。企業ごとのポイントもアドバイス可能です。
                 </p>
               </div>
             </div>
@@ -1973,9 +1884,7 @@
               <div class="step-number">4</div>
               <div class="step-content">
                 <h3>内定・条件交渉</h3>
-                <p>
-                  給与や入社日、必要な配慮事項などの条件交渉を代行します。納得して入社できるようサポートします。
-                </p>
+                <p>給与や入社日、必要な配慮事項などの条件交渉を代行します。</p>
               </div>
             </div>
             <div class="flow-step-item">
@@ -1983,19 +1892,17 @@
               <div class="step-content">
                 <h3>入社・定着サポート</h3>
                 <p>
-                  入社後も定期的に面談を行い、新しい職場での悩み相談に乗ります。長く安心して働けるよう、私たちが伴走し続けます。
+                  入社後も定期的に面談。長く安心して働けるよう、私たちが伴走し続けます。
                 </p>
               </div>
             </div>
           </div>
-
           <div style="text-align: center; margin-top: 50px">
             <a href="#" class="cta-button">お問い合わせ</a>
           </div>
         </div>
       </section>
 
-      <!-- 6. Mission (toC) - 想いを最後に -->
       <section class="mission bg-white" id="mission_toc">
         <div class="container">
           <span class="section-label">MESSAGE</span>
@@ -2003,19 +1910,22 @@
             <div>
               <h2>何度でも、ここから始められる</h2>
               <p class="mission-text">
-                「一度つまづいたら、もう終わり」なんてことはありません。<br />
-                私たちは、何度でもやり直せる社会をつくりたいと考えています。
+                「一度つまづいたら終わり」なんてことはありません。何度でもやり直せる社会をつくりたいと考えています。
               </p>
               <p class="mission-text">
-                あなたのペースで大丈夫です。私たちと一緒に、<br />自分らしく輝ける次のステージを探しに行きませんか？
+                あなたのペースで大丈夫です。自分らしく輝ける次のステージを一緒に探しに行きませんか？
               </p>
             </div>
-            <div class="mission-image">[サポーティブな画像]</div>
+            <div class="mission-image">
+              <img
+                src="img/mission-toc.webp"
+                alt="キズキキャリア 求職者様向けメッセージ"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- 7. FAQ (toC) -->
       <section class="faq bg-light" id="faq_toc">
         <div class="container">
           <span class="section-label">FAQ</span>
@@ -2023,33 +1933,24 @@
           <div class="faq-grid">
             <details class="faq-item">
               <summary>サービスの利用にお金はかかりますか？</summary>
-              <p>
-                いいえ、求職者の方は<strong>完全無料</strong>でご利用いただけます。費用は一切かかりませんのでご安心ください。
-              </p>
+              <p>いいえ、求職者の方は完全無料でご利用いただけます。</p>
             </details>
             <details class="faq-item">
               <summary>まだ転職するか決めていないのですが...</summary>
               <p>
-                もちろん大丈夫です。「まずは話だけ聞いてみたい」「自分の市場価値を知りたい」という方も歓迎です。
+                もちろん大丈夫です。「まずは話だけ聞いてみたい」という方も歓迎です。
               </p>
             </details>
             <details class="faq-item">
               <summary>障害者手帳を持っていなくても利用できますか？</summary>
               <p>
-                はい、手帳をお持ちでない方や申請中の方、医師の診断がある方もご相談可能です。まずは一度お問い合わせください。
-              </p>
-            </details>
-            <details class="faq-item">
-              <summary>地方在住でもサポートを受けられますか？</summary>
-              <p>
-                はい、オンライン（Zoom等）での面談を実施しておりますので、全国どこからでもサポート可能です。
+                はい、医師の診断がある方もご相談可能です。まずは一度お問い合わせください。
               </p>
             </details>
           </div>
         </div>
       </section>
 
-      <!-- 8. Company (toC) -->
       <section class="company-info bg-white" id="company_toc">
         <div class="container">
           <span class="section-label">COMPANY</span>
@@ -2058,17 +1959,17 @@
             <div class="company-text">
               <h3>キズキキャリア株式会社</h3>
               <p>
-                「何度でもやり直せる社会をつくる」をミッションに掲げるキズキグループの一員です。<br />
-                就労支援のほか、不登校支援の学習塾なども運営しており、困難を抱える方の「次の一歩」を応援し続けています。
+                何度でもやり直せる社会をつくるキズキグループの一員です。困難を抱える方の「次の一歩」を応援し続けています。
               </p>
               <a href="#" class="cta-button">会社概要を見る</a>
             </div>
-            <div class="company-image">[会社画像エリア]</div>
+            <div class="company-image">
+              <img src="img/company.webp" alt="会社風景" />
+            </div>
           </div>
         </div>
       </section>
     </div>
-    <!-- End of toC View -->
 
     <!-- Footer -->
     <footer>
@@ -2084,8 +1985,7 @@
               />
             </div>
             <p style="font-size: 14px; color: #ccc; line-height: 1.8">
-              〒160-0022<br />
-              東京都新宿区新宿6-28-7 新宿EAST COURT 2階
+              〒160-0022 東京都新宿区新宿6-28-7 新宿EAST COURT 2階
             </p>
           </div>
           <nav class="footer-links" aria-label="フッターメニュー">
@@ -2100,7 +2000,7 @@
               </li>
               <li>
                 <a href="https://kizuki-corp.com/customer-abuse-policy/"
-                  >カスタマーハラスメントに対する基本方針</a
+                  >カスハラ基本方針</a
                 >
               </li>
               <li><a href="https://kizuki-corp.com/documents/">社内規定</a></li>
@@ -2112,23 +2012,15 @@
       </div>
     </footer>
 
-    <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る">
       ↑
     </button>
-
-    <!-- Toast Notification -->
     <div id="toast" class="toast-notification"></div>
 
     <script>
       const CONFIG = {
-        SCROLL: {
-          BACK_TO_TOP_THRESHOLD: 300,
-        },
-        ANIMATION: {
-          DURATION: 1500,
-          EASING: "easeInOutQuart",
-        },
+        SCROLL: { BACK_TO_TOP_THRESHOLD: 300 },
+        ANIMATION: { DURATION: 1500, EASING: "easeInOutQuart" },
         COLORS: {
           PRIMARY: "#20a384",
           PRIMARY_HOVER: "#178066",
@@ -2136,13 +2028,10 @@
           ACCENT: "#178066",
           ACCENT_LIGHT: "#4db6ac",
           GRID: "#e0f2f1",
-          WARNING_LIGHT: "#fffbf0",
         },
       };
 
-      // メニュー順序の定義
       const MENU_ORDER = {
-        // toB (企業向け)
         tob: [
           "top",
           "statutory_rate",
@@ -2156,7 +2045,6 @@
           "company",
           "contact",
         ],
-        // toC (求職者向け)
         toc: [
           "top",
           "data",
@@ -2170,27 +2058,20 @@
         ],
       };
 
-      // トースト通知を表示する関数
       let toastTimeout;
       function showToast(message) {
         const toast = document.getElementById("toast");
         if (!toast) return;
-
         toast.textContent = message;
         toast.classList.add("show");
-
         if (toastTimeout) clearTimeout(toastTimeout);
-
         toastTimeout = setTimeout(() => {
           toast.classList.remove("show");
-        }, 3000); // 3秒後に非表示
+        }, 3000);
       }
 
-      // ビュー切り替え機能
       function switchView(type) {
-        // ボタンのアクティブ化
         const buttons = document.querySelectorAll(".switcher-btn");
-        // 一旦全解除
         buttons.forEach((btn) => btn.classList.remove("active"));
 
         if (type === "tob") {
@@ -2202,85 +2083,57 @@
           buttons[1].classList.add("active");
           updateNavLinks("toc");
           reorderNav("toc");
-          showToast("求職者の方者向けページを表示しています");
+          showToast("求職者の方向けページを表示しています");
         }
 
-        // コンテンツの表示切り替え
         document.querySelectorAll(".view-content").forEach((content) => {
           content.classList.remove("active");
         });
         document.getElementById(`view-${type}`).classList.add("active");
 
-        // toCチャートの初期化（初回表示時のみ等の制御が必要だが簡易的に呼び出し）
         if (type === "toc") {
-          // 少し遅延させて描画（display:block適用待ち）
           setTimeout(initTocCharts, 100);
         }
-
-        // スクロール位置をトップへ（UX向上）
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
-      // ナビゲーションリンクの更新
       function updateNavLinks(viewType) {
         const suffix = viewType === "toc" ? "_toc" : "";
-
-        // マッピング定義
         const map = {
           mission: `#mission${suffix}`,
-          reasons: `#reasons${suffix}`,
-          voice: `#voice${suffix === "_toc" ? "_toc" : ""}`, // voiceもsuffix対応
+          reasons: viewType === "toc" ? "#reasons_toc" : "#strength",
+          voice: `#voice${suffix}`,
           data: `#data${suffix}`,
-          // companies: `#companies${suffix}`, // Removed
           services: `#services${suffix}`,
           faq: `#faq${suffix}`,
           company: `#company${suffix}`,
         };
-
-        // toBの場合はreasonsリンクを#strengthに向ける特別対応
-        if (viewType === "tob") {
-          map["reasons"] = "#strength";
-          map["voice"] = "#voice";
-        }
-
-        // 各リンクのhrefを更新
         for (const [key, val] of Object.entries(map)) {
           const links = document.querySelectorAll(`.nav-link-${key}`);
           links.forEach((link) => link.setAttribute("href", val));
         }
       }
 
-      // ナビゲーションの順序並び替え
       function reorderNav(viewType) {
         const order = MENU_ORDER[viewType];
-
-        // モバイルメニューとPCメニュー両方を対象にする
         const containers = [
           document.querySelector(".mobile-menu ul"),
           document.querySelector(".nav-links"),
         ];
-
         containers.forEach((container) => {
           if (!container) return;
-
-          // 現在のアイテムを取得してMapにする
           const items = Array.from(container.children);
           const itemMap = {};
           items.forEach((item) => {
             const key = item.getAttribute("data-key");
             if (key) itemMap[key] = item;
           });
-
-          // 順序通りに再配置
           order.forEach((key) => {
-            if (itemMap[key]) {
-              container.appendChild(itemMap[key]);
-            }
+            if (itemMap[key]) container.appendChild(itemMap[key]);
           });
         });
       }
 
-      // グラデーション生成関数
       const createGradient = (ctx, colorStart, colorEnd) => {
         const gradient = ctx.createLinearGradient(0, 0, 0, 400);
         gradient.addColorStop(0, colorStart);
@@ -2312,10 +2165,7 @@
                 position: "bottom",
                 labels:
                   type !== "bar"
-                    ? {
-                        padding: 20,
-                        font: { size: 12 },
-                      }
+                    ? { padding: 20, font: { size: 12 } }
                     : undefined,
               },
             },
@@ -2324,22 +2174,12 @@
                 ? {
                     y: {
                       beginAtZero: true,
-                      ticks: { font: { size: 12 } },
                       grid: { color: CONFIG.COLORS.GRID },
                     },
-                    x: {
-                      ticks: {
-                        font: { size: 11 },
-                        maxRotation: 45,
-                        minRotation: 45,
-                      },
-                      grid: { display: false },
-                    },
+                    x: { grid: { display: false } },
                   }
                 : undefined,
             animation: {
-              animateRotate: true,
-              animateScale: true,
               duration: CONFIG.ANIMATION.DURATION,
               easing: CONFIG.ANIMATION.EASING,
             },
@@ -2347,59 +2187,28 @@
         };
       };
 
-      /**
-       * モバイルメニューの初期化
-       */
       const initMobileMenu = () => {
         const hamburgerBtn = document.getElementById("hamburger-btn");
         const mobileMenu = document.getElementById("mobile-menu");
         const mobileLinks = document.querySelectorAll(".mobile-link");
-
         if (!hamburgerBtn || !mobileMenu) return;
 
         const closeMenu = () => {
           hamburgerBtn.classList.remove("active");
           mobileMenu.classList.remove("active");
-          hamburgerBtn.setAttribute("aria-expanded", "false");
-          hamburgerBtn.setAttribute("aria-label", "メニューを開く");
-          mobileMenu.setAttribute("aria-hidden", "true");
         };
-
-        const toggleMenu = () => {
-          const isActive = hamburgerBtn.classList.toggle("active");
+        hamburgerBtn.addEventListener("click", () => {
+          hamburgerBtn.classList.toggle("active");
           mobileMenu.classList.toggle("active");
-          hamburgerBtn.setAttribute("aria-expanded", isActive);
-          hamburgerBtn.setAttribute(
-            "aria-label",
-            isActive ? "メニューを閉じる" : "メニューを開く",
-          );
-          mobileMenu.setAttribute("aria-hidden", !isActive);
-        };
-
-        hamburgerBtn.addEventListener("click", toggleMenu);
-
-        mobileLinks.forEach((link) => {
-          link.addEventListener("click", () => {
-            closeMenu();
-            hamburgerBtn.focus();
-          });
         });
-
-        document.addEventListener("keydown", (e) => {
-          if (e.key === "Escape" && mobileMenu.classList.contains("active")) {
-            closeMenu();
-            hamburgerBtn.focus();
-          }
+        mobileLinks.forEach((link) => {
+          link.addEventListener("click", closeMenu);
         });
       };
 
-      /**
-       * トップへ戻るボタンの初期化
-       */
       const initScrollToTop = () => {
         const backToTopBtn = document.getElementById("backToTop");
         if (!backToTopBtn) return;
-
         window.addEventListener("scroll", () => {
           if (window.scrollY > CONFIG.SCROLL.BACK_TO_TOP_THRESHOLD) {
             backToTopBtn.classList.add("show");
@@ -2407,208 +2216,120 @@
             backToTopBtn.classList.remove("show");
           }
         });
-
         backToTopBtn.addEventListener("click", () => {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
+          window.scrollTo({ top: 0, behavior: "smooth" });
         });
       };
 
-      // toC用のチャート初期化（グラデーション適用）
-      // すべてのチャートを描画するように変更
       let tocChartInitialized = false;
       const initTocCharts = () => {
         if (tocChartInitialized) return;
-
-        // 職種別 (Bar)
-        const canvasJob = document.getElementById("jobTypeChartToc");
-        if (canvasJob) {
-          const ctx = canvasJob.getContext("2d");
-          const gradient = createGradient(
-            ctx,
-            CONFIG.COLORS.PRIMARY,
-            "rgba(32, 163, 132, 0.4)",
-          );
-          new Chart(
-            ctx,
-            createChartConfig(
-              "bar",
-              [
-                "事務職",
-                "IT専門職",
-                "専門・研究職",
-                "営業職",
-                "サービス職",
-                "その他",
-              ],
-              [43, 15, 12, 10, 7, 13],
-              gradient,
-            ),
-          );
-        }
-
-        // 雇用形態 (Doughnut)
-        const canvasGender = document.getElementById("genderAgeChartToc");
-        if (canvasGender) {
-          const ctx = canvasGender.getContext("2d");
-          const primaryGradient = createGradient(
-            ctx,
-            CONFIG.COLORS.PRIMARY,
-            "rgba(32, 163, 132, 0.5)",
-          );
-          const secondaryGradient = createGradient(
-            ctx,
-            CONFIG.COLORS.SECONDARY,
-            "rgba(178, 223, 219, 0.5)",
-          );
-          new Chart(
-            ctx,
-            createChartConfig(
-              "doughnut",
-              ["一般雇用", "障害者雇用"],
-              [58, 42],
-              [primaryGradient, secondaryGradient],
-            ),
-          );
-        }
-
-        // 企業規模 (Doughnut)
-        const canvasCompany = document.getElementById("companySizeChartToc");
-        if (canvasCompany) {
-          const ctx = canvasCompany.getContext("2d");
-          const accentGradient = createGradient(
-            ctx,
+        const draw = (id, type, labels, data, colors) => {
+          const el = document.getElementById(id);
+          if (el) {
+            const ctx = el.getContext("2d");
+            let bg = colors;
+            if (Array.isArray(colors)) {
+              bg = colors.map((c) => createGradient(ctx, c, c + "80"));
+            } else {
+              bg = createGradient(ctx, colors, colors + "80");
+            }
+            new Chart(ctx, createChartConfig(type, labels, data, bg));
+          }
+        };
+        draw(
+          "jobTypeChartToc",
+          "bar",
+          ["事務", "IT", "専門", "営業", "サービス", "他"],
+          [43, 15, 12, 10, 7, 13],
+          CONFIG.COLORS.PRIMARY,
+        );
+        draw(
+          "genderAgeChartToc",
+          "doughnut",
+          ["一般雇用", "障害者雇用"],
+          [58, 42],
+          [CONFIG.COLORS.PRIMARY, CONFIG.COLORS.SECONDARY],
+        );
+        draw(
+          "companySizeChartToc",
+          "doughnut",
+          ["大企業", "中堅", "他"],
+          [53, 37, 10],
+          [
             CONFIG.COLORS.ACCENT,
-            "rgba(23, 128, 102, 0.5)",
-          );
-          const accentLightGradient = createGradient(
-            ctx,
             CONFIG.COLORS.ACCENT_LIGHT,
-            "rgba(77, 182, 172, 0.5)",
-          );
-          const secondaryGradient = createGradient(
-            ctx,
             CONFIG.COLORS.SECONDARY,
-            "rgba(178, 223, 219, 0.5)",
-          );
-          new Chart(
-            ctx,
-            createChartConfig(
-              "doughnut",
-              ["大企業・グループ", "中堅企業・中小企業", "その他"],
-              [53, 37, 10],
-              [accentGradient, accentLightGradient, secondaryGradient],
-            ),
-          );
-        }
-
+          ],
+        );
         tocChartInitialized = true;
       };
 
-      /**
-       * チャートの初期化 (Intersection Observerによる遅延読み込み)
-       * toB用のチャート初期化（グラデーション適用）
-       */
       const initCharts = () => {
-        // Intersection Observerのオプション
-        const observerOptions = {
-          root: null, // ビューポート
-          rootMargin: "0px",
-          threshold: 0.1, // 10%見えたら発火
-        };
-
-        // チャート生成を行うコールバック
-        const handleIntersect = (entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const canvas = entry.target;
-              const chartId = canvas.id;
-              const ctx = canvas.getContext("2d");
-
-              // グラデーション定義
-              const primaryGradient = createGradient(
-                ctx,
-                CONFIG.COLORS.PRIMARY,
-                "rgba(32, 163, 132, 0.5)",
-              );
-              const secondaryGradient = createGradient(
-                ctx,
-                CONFIG.COLORS.SECONDARY,
-                "rgba(178, 223, 219, 0.5)",
-              );
-              const accentGradient = createGradient(
-                ctx,
-                CONFIG.COLORS.ACCENT,
-                "rgba(23, 128, 102, 0.5)",
-              );
-              const accentLightGradient = createGradient(
-                ctx,
-                CONFIG.COLORS.ACCENT_LIGHT,
-                "rgba(77, 182, 172, 0.5)",
-              );
-
-              let config;
-
-              if (chartId === "genderAgeChart") {
-                config = createChartConfig(
-                  "doughnut",
-                  ["一般雇用", "障害者雇用"],
-                  [58, 42],
-                  [primaryGradient, secondaryGradient],
-                );
-              } else if (chartId === "companySizeChart") {
-                config = createChartConfig(
-                  "doughnut",
-                  ["大企業・グループ", "中堅企業・中小企業", "その他"],
-                  [53, 37, 10],
-                  [accentGradient, accentLightGradient, secondaryGradient],
-                );
-              } else if (chartId === "jobTypeChart") {
-                config = createChartConfig(
-                  "bar",
-                  [
-                    "事務職",
-                    "IT専門職",
-                    "専門・研究職",
-                    "営業職",
-                    "サービス職",
-                    "その他",
-                  ],
-                  [43, 15, 12, 10, 7, 13],
-                  primaryGradient,
-                );
-              }
-
-              if (config) {
-                new Chart(ctx, config);
-              }
-
-              // 一度描画したら監視を解除
-              observer.unobserve(canvas);
-            }
-          });
-        };
-
         const observer = new IntersectionObserver(
-          handleIntersect,
-          observerOptions,
-        );
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const id = entry.target.id;
+                const ctx = entry.target.getContext("2d");
+                let config;
+                const pG = createGradient(
+                  ctx,
+                  CONFIG.COLORS.PRIMARY,
+                  CONFIG.COLORS.PRIMARY + "80",
+                );
+                const sG = createGradient(
+                  ctx,
+                  CONFIG.COLORS.SECONDARY,
+                  CONFIG.COLORS.SECONDARY + "80",
+                );
+                const aG = createGradient(
+                  ctx,
+                  CONFIG.COLORS.ACCENT,
+                  CONFIG.COLORS.ACCENT + "80",
+                );
+                const alG = createGradient(
+                  ctx,
+                  CONFIG.COLORS.ACCENT_LIGHT,
+                  CONFIG.COLORS.ACCENT_LIGHT + "80",
+                );
 
-        // 各キャンバスを監視対象に追加
-        const chartIds = ["genderAgeChart", "companySizeChart", "jobTypeChart"];
-        chartIds.forEach((id) => {
+                if (id === "genderAgeChart")
+                  config = createChartConfig(
+                    "doughnut",
+                    ["一般", "障害"],
+                    [58, 42],
+                    [pG, sG],
+                  );
+                if (id === "companySizeChart")
+                  config = createChartConfig(
+                    "doughnut",
+                    ["大企業", "中堅", "他"],
+                    [53, 37, 10],
+                    [aG, alG, sG],
+                  );
+                if (id === "jobTypeChart")
+                  config = createChartConfig(
+                    "bar",
+                    ["事務", "IT", "専門", "営業", "サービス", "他"],
+                    [43, 15, 12, 10, 7, 13],
+                    pG,
+                  );
+
+                if (config) new Chart(ctx, config);
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 },
+        );
+        ["genderAgeChart", "companySizeChart", "jobTypeChart"].forEach((id) => {
           const el = document.getElementById(id);
-          if (el) {
-            observer.observe(el);
-          }
+          if (el) observer.observe(el);
         });
       };
 
-      // アプリケーション初期化
       document.addEventListener("DOMContentLoaded", () => {
-        // 初期状態のメニュー順序を適用（デフォルトがHTML順と異なる場合に備えて）
         reorderNav("tob");
         initMobileMenu();
         initScrollToTop();
