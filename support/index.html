@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キズキ高等学院 - 通信制高校サポート校</title>
+    <meta name="description" content="何度でもやり直せる社会をつくる。不登校・中退・ひきこもり経験者のための通信制高校サポート校「キズキ高等学院」。">
+    <meta name="theme-color" content="#16a34a">
+    
+    <!-- 1. Performance: Preload LCP Image -->
+    <link rel="preload" as="image" href="./img/hero_main.webp">
+
+    <!-- 6. SEO: OGP & Structured Data -->
+    <meta property="og:title" content="キズキ高等学院 - 通信制高校サポート校">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kizuki.or.jp/highschool/">
+    <meta property="og:image" content="https://placehold.co/1200x630/16a34a/ffffff/png?text=Kizuki+High+School">
+    <meta property="og:description" content="不登校・中退・ひきこもり経験者のための通信制高校サポート校。">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "キズキ高等学院",
+      "description": "不登校・中退経験者のための通信制高校サポート校",
+      "url": "https://kizuki.or.jp/highschool/",
+      "telephone": "03-6279-0000",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Shinjuku-ku",
+        "addressRegion": "Tokyo",
+        "addressCountry": "JP"
+      }
+    }
+    </script>
+    
+    <!-- Lucide Icons (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* --- 1. Variables & Reset --- */
+        :root {
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+
+            --green-50: #f0fdf4;
+            --green-100: #dcfce7;
+            --green-200: #bbf7d0;
+            --green-500: #22c55e;
+            --green-600: #16a34a; /* Main Color */
+            --green-700: #15803d;
+            
+            --orange-50: #fff7ed;
+            --orange-100: #ffedd5;
+            --orange-400: #fb923c;
+            --orange-500: #f97316;
+            --orange-600: #ea580c;
+            
+            --yellow-100: #fef9c3;
+            --yellow-600: #ca8a04;
+
+            --container-width: 1200px;
+            --header-height: 64px;
+            --header-height-md: 80px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--gray-700);
+            background-color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 100px; /* Increased for mobile CTA with text */
+        }
+
+        @media (min-width: 768px) { body { padding-bottom: 0; } }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+        /* --- 2. Layout --- */
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        @media (min-width: 768px) { .container { padding: 0 1.5rem; } }
+
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-3 { gap: 0.75rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-8 { gap: 2rem; }
+        
+        .w-full { width: 100%; }
+        .h-full { height: 100%; }
+        .text-center { text-align: center; }
+        .hidden { display: none; }
+        
+        @media (min-width: 768px) {
+            .md\:flex { display: flex; }
+            .md\:hidden { display: none; }
+            .md\:flex-row { flex-direction: row; }
+            .md\:flex-row-reverse { flex-direction: row-reverse; }
+            .md\:w-1\/2 { width: 50%; }
+            .md\:text-left { text-align: left; }
+            .md\:gap-16 { gap: 4rem; }
+        }
+
+        .grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        @media (min-width: 768px) { .grid-2 { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } .grid-4 { grid-template-columns: repeat(4, 1fr); } }
+
+        /* --- 3. Components --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            min-height: 48px;
+            width: 100%;
+        }
+        @media (min-width: 768px) { .btn { width: auto; font-size: 0.875rem; padding: 0.75rem 1.5rem; min-height: auto; } }
+        .btn:active { transform: scale(0.98); }
+        
+        .btn-primary { background-color: var(--green-600); color: var(--white); }
+        .btn-accent { background-color: var(--orange-400); color: var(--white); }
+        .btn-outline { background-color: var(--white); border: 2px solid var(--green-600); color: var(--green-700); }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .badge-green { background-color: var(--green-100); color: var(--green-700); border: 1px solid var(--green-200); }
+        .badge-pulse { width: 8px; height: 8px; background-color: var(--green-500); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+        .section-tag {
+            font-size: 0.75rem; font-weight: bold; text-transform: uppercase; padding: 0.25rem 0.75rem;
+            border-radius: 9999px; background-color: var(--green-50); color: var(--green-600); display: inline-block; margin-bottom: 0.5rem;
+        }
+        .section-title { font-size: 1.75rem; font-weight: 800; line-height: 1.3; color: var(--gray-900); }
+        @media (min-width: 768px) { .section-title { font-size: 2.25rem; } }
+        .text-highlight { color: var(--green-600); }
+
+        /* --- 4. Section Styles --- */
+        .header {
+            position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height);
+            background-color: rgba(255,255,255,0.95); backdrop-filter: blur(4px); border-bottom: 1px solid var(--gray-100); z-index: 50;
+        }
+        @media (min-width: 768px) { .header { height: var(--header-height-md); } }
+        .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 0.5rem; font-size: 1.25rem; font-weight: bold; color: var(--green-700); }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-link { font-size: 0.875rem; font-weight: 500; color: var(--gray-600); }
+
+        #mobile-menu {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background-color: var(--white); z-index: 40;
+            padding-top: var(--header-height); transform: translateX(100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #mobile-menu.open { transform: translateX(0); }
+        .mobile-nav { display: flex; flex-direction: column; padding: 1.5rem; gap: 1.5rem; height: 100%; overflow-y: auto; }
+        .mobile-link { font-size: 1.125rem; font-weight: bold; color: var(--gray-800); border-bottom: 1px solid var(--gray-100); padding-bottom: 0.75rem; }
+
+        .hero-section {
+            padding-top: calc(var(--header-height) + 2rem); padding-bottom: 3rem;
+            background: linear-gradient(to bottom, var(--white), rgba(220, 252, 231, 0.5), var(--white));
+        }
+        @media (min-width: 768px) { .hero-section { padding-top: calc(var(--header-height-md) + 5rem); padding-bottom: 6rem; } }
+        .hero-title { font-size: 2.25rem; font-weight: 900; line-height: 1.2; color: var(--gray-900); margin-bottom: 1rem; }
+        @media (min-width: 768px) { .hero-title { font-size: 3.75rem; } }
+        .hero-image-wrapper {
+            position: relative; border-radius: 1rem; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border: 4px solid var(--white); aspect-ratio: 4/3;
+        }
+        .hero-stats {
+            position: absolute; bottom: 1rem; left: 1rem; background-color: rgba(255,255,255,0.95); padding: 0.5rem 1rem;
+            border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); font-weight: bold;
+        }
+
+        .bg-green-section { background-color: var(--green-600); color: var(--white); padding: 4rem 0; position: relative; overflow: hidden; }
+        .bg-green-section .section-title { color: var(--white); }
+        .bg-green-section .section-tag { background-color: rgba(255,255,255,0.2); color: var(--white); }
+        
+        .problem-card {
+            background-color: rgba(255,255,255,0.1); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.2);
+            padding: 1.5rem; border-radius: 1rem; text-align: center;
+        }
+        .problem-icon {
+            background-color: var(--white); color: var(--green-600); width: 3.5rem; height: 3.5rem; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;
+        }
+
+        /* --- Graph Styles --- */
+        .data-card {
+            background-color: var(--white); border-radius: 1rem; padding: 1.5rem; border: 1px solid var(--gray-100);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); height: 100%; display: flex; flex-direction: column;
+        }
+        .bar-bg { width: 100%; height: 1rem; background-color: var(--gray-100); border-radius: 9999px; overflow: hidden; margin-bottom: 0.5rem; }
+        .bar-fill {
+            height: 100%; border-radius: 9999px; width: 0; transition: width 1s ease-out; position: relative;
+        }
+        .bar-green { background: linear-gradient(to right, var(--green-500), var(--green-400)); }
+        .bar-gray { background-color: var(--gray-300); }
+        
+        .donut-chart { width: 160px; height: 160px; position: relative; margin: 0 auto; }
+        .donut-chart svg { transform: rotate(-90deg); width: 100%; height: 100%; }
+        .donut-bg { stroke: var(--gray-100); }
+        .donut-path {
+            stroke: var(--orange-400); stroke-dasharray: 100, 100; stroke-dashoffset: 100;
+            transition: stroke-dashoffset 1s ease-out; stroke-linecap: round;
+        }
+
+        .growth-chart { display: flex; align-items: flex-end; justify-content: center; gap: 1rem; padding: 0 1rem; flex-grow: 1; min-height: 180px; }
+        .growth-bar-wrap { width: 33%; text-align: center; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; }
+        .growth-bar { width: 100%; border-radius: 4px 4px 0 0; position: relative; transition: height 1s ease-out; height: 0; }
+        .bar-2004 { background-color: var(--gray-200); }
+        .bar-2024 { background: linear-gradient(to top, var(--green-600), var(--green-400)); }
+        .growth-label { font-size: 0.75rem; font-weight: bold; color: var(--gray-500); margin-top: 0.5rem; }
+        .growth-bubble {
+            position: absolute; top: -2rem; left: 50%; transform: translateX(-50%); background: var(--green-600); color: var(--white);
+            font-size: 0.75rem; font-weight: bold; padding: 0.25rem 0.5rem; border-radius: 4px; white-space: nowrap; opacity: 0; transition: opacity 0.5s ease-out 0.8s;
+        }
+        .growth-bubble.visible { opacity: 1; }
+
+        .feature-card { background-color: var(--white); color: var(--gray-800); padding: 2rem 1.5rem; border-radius: 1.5rem; }
+        .feature-num { font-size: 3rem; font-weight: 900; color: var(--green-100); line-height: 1; display: block; margin-bottom: 0.5rem; }
+        
+        .course-card {
+            background-color: var(--white); border-radius: 1rem; padding: 1.5rem; border: 1px solid var(--gray-100);
+            position: relative; overflow: hidden; display: flex; flex-direction: column; height: 100%; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .course-bar { position: absolute; top: 0; left: 0; width: 100%; height: 8px; }
+        .bar-creation { background-color: var(--green-500); }
+        .bar-inquiry { background-color: var(--orange-400); }
+
+        /* 7. Improved Table Visualization */
+        .scroll-container { 
+            overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 1rem; border: 1px solid var(--gray-100); border-radius: 1rem; position: relative;
+        }
+        .scroll-container::after {
+            content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 40px;
+            background: linear-gradient(to left, rgba(255,255,255,0.9), transparent); pointer-events: none;
+        }
+        .scroll-hint { font-size: 0.75rem; color: var(--gray-500); display: flex; align-items: center; justify-content: flex-end; gap: 0.25rem; margin-bottom: 0.5rem; }
+        
+        .custom-table { width: 100%; min-width: 600px; border-collapse: collapse; font-size: 0.875rem; text-align: center; }
+        .custom-table th { padding: 1rem; background-color: var(--gray-50); border-bottom: 1px solid var(--gray-100); }
+        .custom-table td { padding: 1rem; border-bottom: 1px solid var(--gray-50); }
+        
+        .tab-btn { flex: 1; padding: 1rem; font-weight: bold; font-size: 0.9rem; transition: background-color 0.3s; }
+        .tab-btn.active-creation { background-color: var(--green-600); color: var(--white); }
+        .tab-btn.active-inquiry { background-color: var(--orange-400); color: var(--white); }
+        .tab-btn.inactive { background-color: var(--gray-50); color: var(--gray-600); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .faq-item { background-color: var(--white); border-radius: 0.75rem; overflow: hidden; margin-bottom: 1rem; transition: all 0.3s; }
+        .faq-btn { width: 100%; padding: 1.25rem; text-align: left; display: flex; justify-content: space-between; align-items: flex-start; min-height: 60px; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .faq-answer { padding: 0 1.25rem 1.25rem; border-left: 4px solid var(--orange-400); margin-left: 1.25rem; margin-bottom: 1.25rem; }
+
+        /* Action Cards */
+        .action-card {
+            background-color: var(--white); border-radius: 1rem; padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border: 1px solid var(--gray-100);
+            display: flex; flex-direction: column; height: 100%; transition: transform 0.3s;
+        }
+        .action-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .action-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+        .action-icon { width: 3rem; height: 3rem; display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; }
+        .action-title { font-size: 1.25rem; font-weight: bold; color: var(--gray-900); }
+        .action-list { margin-bottom: 2rem; list-style: none; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.875rem; flex-grow: 1; }
+        .action-list li { display: flex; align-items: flex-start; gap: 0.5rem; color: var(--gray-600); }
+        .action-label { font-size: 0.75rem; font-weight: bold; color: var(--gray-500); margin-bottom: 0.25rem; display: block; }
+        .action-value { font-size: 0.875rem; font-weight: bold; color: var(--gray-800); display: block; margin-bottom: 1rem; }
+        
+        .sticky-footer {
+            position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--white); border-top: 1px solid var(--gray-200);
+            padding: 0.5rem 1rem; display: flex; flex-direction: column; gap: 0.5rem; z-index: 100; box-shadow: 0 -4px 6px -1px rgba(0,0,0,0.1);
+        }
+        @media (min-width: 768px) { .sticky-footer { display: none; } }
+
+        .footer { background-color: var(--gray-900); color: var(--gray-400); padding: 3rem 0; font-size: 0.875rem; }
+        .py-20 { padding-top: 4rem; padding-bottom: 4rem; }
+        @media(min-width:768px) { .py-20 { padding-top: 5rem; padding-bottom: 5rem; } }
+
+        /* Animation Classes */
+        .reveal { opacity: 0; transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translate(0, 0) !important; }
+        .reveal-up { transform: translateY(30px); }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) skewX(-12deg); }
+            100% { transform: translateX(200%) skewX(-12deg); }
+        }
+        .animate-shimmer {
+            animation: shimmer 2s infinite linear;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+            position: absolute; top: 0; right: 0; bottom: 0; width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <i data-lucide="graduation-cap" class="icon-lg"></i>
+                <span>キズキ高等学院</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <nav class="nav-links">
+                    <a href="#about" class="nav-link">キズキについて</a>
+                    <a href="#data" class="nav-link">データで見る</a>
+                    <a href="#courses" class="nav-link">コース・料金</a>
+                    <a href="#schooling" class="nav-link">スクーリング</a>
+                    <a href="#faq" class="nav-link">よくある質問</a>
+                </nav>
+                <!-- 2. Accessibility: aria attributes -->
+                <button class="btn btn-primary" style="width: auto;" aria-label="個別相談会を予約する" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                    <i data-lucide="users" aria-hidden="true" style="margin-right: 0.5rem; width: 18px;"></i>個別相談
+                </button>
+            </div>
+            <button id="menu-btn" class="md:hidden" style="color: var(--gray-600); padding: 0.5rem;" aria-label="メニューを開く">
+                <i data-lucide="menu" style="width: 24px; height: 24px;" aria-hidden="true"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu">
+        <nav class="mobile-nav">
+            <a href="#about" class="mobile-link">キズキについて <i data-lucide="chevron-right"></i></a>
+            <a href="#data" class="mobile-link">データで見る <i data-lucide="chevron-right"></i></a>
+            <a href="#courses" class="mobile-link">コース・料金 <i data-lucide="chevron-right"></i></a>
+            <a href="#schooling" class="mobile-link">スクーリング <i data-lucide="chevron-right"></i></a>
+            <a href="#faq" class="mobile-link">よくある質問 <i data-lucide="chevron-right"></i></a>
+            <div style="margin-top: auto; padding-bottom: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+                <button class="btn btn-accent w-full" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'}); toggleMenu()"><i data-lucide="youtube" style="margin-right: 8px;"></i>オンライン説明会</button>
+                <button class="btn btn-primary w-full" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'}); toggleMenu()"><i data-lucide="users" style="margin-right: 8px;"></i>個別相談会</button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="about">
+        <div class="container">
+            <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                <div class="md:w-1/2 text-center md:text-left reveal reveal-up">
+                    <div class="badge badge-green" style="margin-bottom: 1rem;">
+                        <span class="badge-pulse"></span>通信制高校サポート校
+                    </div>
+                    <h1 class="hero-title">
+                        何度でも<br />
+                        <span class="text-highlight" style="background: var(--green-50); padding: 0 0.5rem; border-radius: 0.5rem;">やり直せる</span><br class="md:hidden"/>社会をつくる
+                    </h1>
+                    <p class="hero-subtitle">
+                        不登校・中退・ひきこもり…<br class="md:hidden"/>「生きづらさ」を経験した方のための、<br/>
+                        「学び直し」と「再出発」の場所です。
+                    </p>
+                    <div class="flex flex-col gap-3 md:flex-row md:gap-4 w-full md:w-auto">
+                        <button class="btn btn-accent btn-lg" aria-label="オンライン説明会に申し込む" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                            <i data-lucide="youtube" style="margin-right: 8px;" aria-hidden="true"></i> オンライン説明会
+                        </button>
+                        <button class="btn btn-outline btn-lg" aria-label="個別相談会を予約する" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                            <i data-lucide="users" style="margin-right: 8px;" aria-hidden="true"></i> 個別相談
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 w-full reveal reveal-up" style="transition-delay: 200ms;">
+                    <div class="hero-image-wrapper">
+                        <img src="./img/hero_main.webp" width="800" height="600" onerror="this.src='https://placehold.co/800x600/10B981/FFFFFF/png?text=Smile'" alt="生徒たちの笑顔">
+                        <div class="hero-stats">
+                            <p style="font-size: 0.75rem; color: var(--gray-500); font-weight: bold; text-transform: uppercase;">支援実績</p>
+                            <p style="font-size: 1.25rem; font-weight: 900; color: var(--green-700);">10,000名<span style="font-size: 0.875rem; color: var(--gray-600); font-weight: 500;">以上</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 悩みセクション (Green) -->
+    <section class="bg-green-section">
+        <div class="container" style="position: relative; z-index: 10;">
+            <div class="section-title-wrapper reveal reveal-up">
+                <h2 class="section-title">
+                    こんな<span style="border-bottom: 4px solid var(--green-200);">お悩み</span>ありませんか？
+                </h2>
+                <p style="color: var(--green-100); margin-top: 1rem;">今の環境が合わないと感じていても、大丈夫です。</p>
+            </div>
+            <div class="grid grid-2 grid-4">
+                <div class="problem-card reveal reveal-up">
+                    <div class="problem-icon"><i data-lucide="book-open" style="width: 24px; height: 24px;"></i></div>
+                    <h3 style="font-weight: bold; font-size: 1.125rem; margin-bottom: 0.5rem;">勉強の不安</h3>
+                    <p style="font-size: 0.875rem; color: var(--green-50);">基礎から学び直したい</p>
+                </div>
+                <div class="problem-card reveal reveal-up" style="transition-delay: 100ms;">
+                    <div class="problem-icon"><i data-lucide="heart" style="width: 24px; height: 24px;"></i></div>
+                    <h3 style="font-weight: bold; font-size: 1.125rem; margin-bottom: 0.5rem;">人間関係</h3>
+                    <p style="font-size: 0.875rem; color: var(--green-50);">集団が苦手</p>
+                </div>
+                <div class="problem-card reveal reveal-up" style="transition-delay: 200ms;">
+                    <div class="problem-icon"><i data-lucide="star" style="width: 24px; height: 24px;"></i></div>
+                    <h3 style="font-weight: bold; font-size: 1.125rem; margin-bottom: 0.5rem;">進路の悩み</h3>
+                    <p style="font-size: 0.875rem; color: var(--green-50);">大学進学したい</p>
+                </div>
+                <div class="problem-card reveal reveal-up" style="transition-delay: 300ms;">
+                    <div class="problem-icon"><i data-lucide="calendar" style="width: 24px; height: 24px;"></i></div>
+                    <h3 style="font-weight: bold; font-size: 1.125rem; margin-bottom: 0.5rem;">生活リズム</h3>
+                    <p style="font-size: 0.875rem; color: var(--green-50);">昼夜逆転を直したい</p>
+                </div>
+            </div>
+            <div class="text-center mt-8 reveal reveal-up" style="transition-delay: 400ms;">
+                <div style="display: inline-block; background: var(--white); color: var(--green-700); font-weight: bold; padding: 0.75rem 2rem; border-radius: 9999px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);">
+                    キズキなら、その不安を「希望」に変えられます
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Section -->
+    <section class="py-20" id="data">
+        <div class="container">
+            <div class="section-title-wrapper reveal reveal-up">
+                <span class="section-tag">Data</span>
+                <h2 class="section-title" style="margin-top: 0.5rem;">
+                    数字で見る<br/><span class="text-highlight">キズキ高等学院</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-3">
+                <!-- Graph 1: Retention -->
+                <div class="data-card reveal reveal-up graph-container">
+                    <h4 style="text-align: center; font-weight: bold; margin-bottom: 1.5rem;">高い定着率（継続率）の比較</h4>
+                    <div class="mb-6">
+                        <div style="display:flex; justify-content:space-between; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">
+                            <span style="display:flex; align-items:center; gap:0.5rem; color:var(--green-600);"><i data-lucide="shield-check" style="width:16px;"></i> キズキ高等学院</span>
+                            <span style="color:var(--green-600); font-size: 1.25rem;">約<span class="animate-num" data-end="97">0</span>%</span>
+                        </div>
+                        <div class="bar-bg">
+                            <div class="bar-fill bar-green" style="width: 0%" data-width="97%">
+                                <div class="animate-shimmer"></div>
+                            </div>
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--gray-500); text-align: right;">※直近の休退会率3〜5%より算出</p>
+                    </div>
+                    <div>
+                        <div style="display:flex; justify-content:space-between; font-size: 0.875rem; color: var(--gray-500); margin-bottom: 0.5rem;">
+                            <span>一般的な通信制高校</span>
+                            <span>約<span class="animate-num" data-end="80">0</span>%</span>
+                        </div>
+                        <div class="bar-bg">
+                            <div class="bar-fill bar-gray" style="width: 0%; transition-delay: 0.2s;" data-width="80%"></div>
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--gray-400); text-align: right;">※大学進学後の退学率等からの推計</p>
+                    </div>
+                </div>
+
+                <!-- Graph 2: Donut -->
+                <div class="data-card reveal reveal-up graph-container" style="transition-delay: 100ms;">
+                    <h4 style="text-align: center; font-weight: bold; margin-bottom: 1rem;">通信制高校に通う生徒の<br/>不登校経験の割合</h4>
+                    <div class="donut-chart">
+                        <svg viewBox="0 0 36 36">
+                            <path class="donut-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3.8" />
+                            <path class="donut-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3.8" />
+                        </svg>
+                        <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <span style="font-size: 1.5rem; font-weight: bold;"><span class="animate-num" data-end="68">0</span><span style="font-size: 0.875rem;">%</span></span>
+                            <span style="font-size: 0.75rem; color: var(--gray-500);">経験あり</span>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.875rem; color: var(--gray-600); margin-top: 1rem; text-align: center;">
+                        半数以上の生徒が不登校を経験。<br/>
+                        <span style="font-weight: bold; color: var(--orange-500); text-decoration: underline; text-decoration-color: var(--orange-100);">あなただけではありません。</span>
+                    </p>
+                </div>
+
+                <!-- Graph 3: Student Growth -->
+                <div class="data-card reveal reveal-up graph-container" style="transition-delay: 200ms;">
+                    <h4 style="text-align: center; font-weight: bold; margin-bottom: 1rem;">通信制高校の生徒数推移</h4>
+                    <div class="growth-chart">
+                        <div class="growth-bar-wrap">
+                            <div class="growth-bar bar-2004" style="height:0;" data-height="6rem"></div>
+                            <span class="growth-label">2004年度</span>
+                        </div>
+                        <div style="padding-bottom: 2rem; color: var(--green-600);"><i data-lucide="trending-up" style="width:24px;"></i></div>
+                        <div class="growth-bar-wrap">
+                            <div class="growth-bar bar-2024" style="height:0;" data-height="10rem">
+                                <div class="growth-bubble">1.75倍</div>
+                            </div>
+                            <span class="growth-label" style="color:var(--green-700);">2024年度</span>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.75rem; color: var(--gray-500); text-align: center; margin-top: 1rem;">
+                        通信制を選ぶ生徒は年々増えています。<br/>
+                        <span style="font-weight: bold;">「当たり前の選択肢」</span>になりつつあります。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section (Green) -->
+    <section class="bg-green-section">
+        <div class="container">
+            <div class="section-title-wrapper reveal reveal-up">
+                <span class="section-tag" style="background: rgba(255,255,255,0.2); color: var(--white);">Features</span>
+                <h2 class="section-title" style="margin-top: 1rem;">キズキ高等学院が<br/>選ばれる2つの理由</h2>
+            </div>
+            <div class="flex flex-col gap-12">
+                <div class="md:flex md:flex-row items-center gap-8">
+                    <div class="md:w-1/2 reveal reveal-up">
+                        <div class="feature-card">
+                            <span class="feature-num">01</span>
+                            <h3 style="font-size: 1.5rem; font-weight: bold; color: var(--green-700); margin-bottom: 1rem;">完全マンツーマン指導</h3>
+                            <p style="color: var(--gray-600);">集団授業ではありません。小学校・中学校の基礎からの学び直しから、難関大学受験まで、あなたの「現在地」に合わせたオーダーメイドのカリキュラムで指導します。</p>
+                            <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-weight: bold; color: var(--orange-500); font-size: 0.875rem;">
+                                <i data-lucide="check-circle" style="width:20px;"></i> 周りを気にせず、自分のペースでOK
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 mt-4 md:mt-0">
+                        <img src="./img/feature_man_to_man.webp" loading="lazy" onerror="this.src='https://placehold.co/600x400/D1FAE5/047857/png?text=1on1'" alt="マンツーマン" class="feature-img">
+                    </div>
+                </div>
+                <div class="md:flex md:flex-row-reverse items-center gap-8">
+                    <div class="md:w-1/2 reveal reveal-up">
+                        <div class="feature-card">
+                            <span class="feature-num">02</span>
+                            <h3 style="font-size: 1.5rem; font-weight: bold; color: var(--green-700); margin-bottom: 1rem;">メンタル面の「伴走」</h3>
+                            <p style="color: var(--gray-600);">学習だけでなく、生活・精神面を支える専任のメンターがつきます。雑談や悩み相談を最優先し、自己肯定感を育みます。</p>
+                            <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-weight: bold; color: var(--orange-500); font-size: 0.875rem;">
+                                <i data-lucide="check-circle" style="width:20px;"></i> 悩み相談最優先の安心環境
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 mt-4 md:mt-0">
+                        <img src="./img/feature_mentor.webp" loading="lazy" onerror="this.src='https://placehold.co/600x400/FEF3C7/92400E/png?text=Mentor'" alt="メンター" class="feature-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="py-20" id="courses">
+        <div class="container">
+            <div class="section-title-wrapper reveal reveal-up">
+                <span class="section-tag">Courses</span>
+                <h2 class="section-title" style="margin-top: 0.5rem;">目的に合わせて選べる<br/>2つのコース</h2>
+            </div>
+            <div class="grid grid-2 mb-8">
+                <div class="course-card reveal reveal-up">
+                    <div class="course-bar bar-creation"></div>
+                    <div class="course-header">
+                        <h3 class="course-title text-green"><i data-lucide="heart" class="fill-green icon-lg"></i> 未来創成コース</h3>
+                        <span class="badge badge-green">マイペース</span>
+                    </div>
+                    <p style="font-size: 0.875rem; color: var(--gray-600); margin-bottom: 1rem; flex-grow: 1;">専門学校や総合型選抜での受験、高卒資格取得を目指すコースです。学習面とメンタル面の両輪で支え、自己肯定感を育みます。</p>
+                    <ul style="background: var(--gray-50); padding: 1rem; border-radius: 0.5rem; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.875rem;">
+                        <li style="display:flex; gap:0.5rem; font-weight:bold;"><i data-lucide="check-circle" class="text-highlight" style="width:16px;"></i> 週1〜3回の通学</li>
+                        <li style="display:flex; gap:0.5rem;"><i data-lucide="check-circle" class="text-highlight" style="width:16px;"></i> 小中学校の学び直し対応</li>
+                    </ul>
+                </div>
+                <div class="course-card reveal reveal-up" style="transition-delay: 100ms;">
+                    <div class="course-bar bar-inquiry"></div>
+                    <div class="course-header">
+                        <h3 class="course-title text-orange"><i data-lucide="star" class="fill-orange icon-lg"></i> 未来探究コース</h3>
+                        <span class="badge" style="background: var(--orange-100); color: var(--orange-600);">大学受験</span>
+                    </div>
+                    <p style="font-size: 0.875rem; color: var(--gray-600); margin-bottom: 1rem; flex-grow: 1;">大学受験を主な目的としたコースです。志望校に応じた個別学習計画に基づき、徹底した指導を行います。</p>
+                    <ul style="background: var(--gray-50); padding: 1rem; border-radius: 0.5rem; display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.875rem;">
+                        <li style="display:flex; gap:0.5rem; font-weight:bold;"><i data-lucide="check-circle" class="text-orange" style="width:16px;"></i> 週3〜5回の通学</li>
+                        <li style="display:flex; gap:0.5rem;"><i data-lucide="check-circle" class="text-orange" style="width:16px;"></i> 大学受験対策（一般・推薦）</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Schedule -->
+            <div class="reveal reveal-up">
+                <h3 style="text-align: center; font-size: 1.125rem; font-weight: bold; margin-bottom: 1rem;">
+                    <i data-lucide="clock" style="width:20px; vertical-align:middle; margin-right:4px;" class="text-highlight"></i> 時間割（モデルスケジュール）
+                </h3>
+                <span class="scroll-hint"><i data-lucide="arrow-left-right" style="width:14px;"></i> 横にスクロールできます</span>
+                <div class="scroll-container">
+                    <div style="display:flex; border-bottom: 1px solid var(--gray-100);">
+                        <button onclick="switchTab('creation')" id="tab-btn-creation" class="tab-btn active-creation">未来創成コース</button>
+                        <button onclick="switchTab('inquiry')" id="tab-btn-inquiry" class="tab-btn inactive">未来探究コース</button>
+                    </div>
+                    <div style="padding: 1rem;">
+                        <div id="tab-content-creation" class="tab-content active">
+                            <table class="custom-table">
+                                <thead><tr><th>時間</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th></tr></thead>
+                                <tbody>
+                                    <tr><td style="font-weight:bold; color:var(--gray-400);">10:00</td><td><span class="cell-tag tag-gray">映像</span></td><td><span class="cell-tag tag-gray">自宅</span></td><td>-</td><td><span class="cell-tag tag-green">個別</span></td><td>-</td></tr>
+                                    <tr><td style="font-weight:bold; color:var(--gray-400);">13:00</td><td><span class="cell-tag tag-gray">演習</span></td><td><span class="cell-tag tag-gray">レポ</span></td><td>-</td><td><span class="cell-tag tag-gray">自宅</span></td><td><span class="cell-tag tag-gray">演習</span></td></tr>
+                                    <tr><td style="font-weight:bold; color:var(--gray-400);">14:00</td><td><span class="cell-tag tag-gray">演習</span></td><td><span class="cell-tag tag-gray">レポ</span></td><td>-</td><td><span class="cell-tag tag-gray">自宅</span></td><td><span class="cell-tag tag-orange">メンター</span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="tab-content-inquiry" class="tab-content">
+                            <table class="custom-table">
+                                <thead><tr><th>時間</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th class="text-orange">土</th></tr></thead>
+                                <tbody>
+                                    <tr><td style="font-weight:bold; color:var(--gray-400);">10:00</td><td><span class="cell-tag tag-gray">演習</span></td><td><span class="cell-tag tag-gray">演習</span></td><td><span class="cell-tag tag-gray">レポ</span></td><td><span class="cell-tag tag-gray">登校</span></td><td><span class="cell-tag tag-gray">演習</span></td><td><span class="cell-tag tag-yellow">イベント</span></td></tr>
+                                    <tr><td style="font-weight:bold; color:var(--gray-400);">13:00</td><td><span class="cell-tag tag-gray">映像</span></td><td><span class="cell-tag tag-gray">演習</span></td><td>-</td><td><span class="cell-tag tag-orange">メンター</span></td><td><span class="cell-tag tag-green">個別</span></td><td>-</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing -->
+            <div class="mt-8 reveal reveal-up">
+                <h3 style="text-align: center; font-size: 1.125rem; font-weight: bold; margin-bottom: 1rem;">料金のご案内 <span style="font-size:0.75rem; font-weight:normal; color:var(--gray-500);">（税込表記）</span></h3>
+                <div class="price-table-wrap">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align:left;">項目</th>
+                                <th style="background:var(--green-50); color:var(--green-700); border-left:1px solid var(--white);">未来創成</th>
+                                <th style="background:var(--orange-50); color:var(--orange-600); border-left:1px solid var(--white);">未来探究</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="font-weight:bold; background:var(--gray-50);">入会金</td><td>55,000円</td><td>55,000円</td></tr>
+                            <tr><td style="font-weight:bold; background:var(--gray-50);">個別指導料/年</td><td class="text-green" style="font-weight:bold;">369,600円〜</td><td class="text-orange" style="font-weight:bold;">792,000円〜</td></tr>
+                            <tr><td style="background:var(--gray-50);">設備費/年</td><td>26,400円</td><td>26,400円</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="font-size:0.75rem; color:var(--gray-500); text-align:right; margin-top:0.5rem;">※詳細は個別にお問い合わせください。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section (Green) -->
+    <section class="bg-green-section" id="faq">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-title-wrapper reveal reveal-up">
+                <span class="section-tag" style="background:var(--white); color:var(--green-600);">FAQ</span>
+                <h2 class="section-title" style="margin-top: 1rem;">よくある質問</h2>
+            </div>
+            <div id="faq-container">
+                <!-- JS will populate this -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Conversion: Info Session & Consultation (Replaces Form) -->
+    <section class="py-20 bg-gray-50" id="contact">
+        <div class="container">
+            <h2 class="section-title text-center" style="margin-bottom: 3rem;">まずは、オンライン説明会や<br class="md:hidden">個別相談会にお越しください</h2>
+            
+            <div class="grid grid-2 gap-8">
+                <!-- Card: Online Info Session -->
+                <div class="action-card reveal reveal-up">
+                    <div class="action-header">
+                        <div class="action-icon" style="background: #ffe4e6; color: #e11d48;">
+                            <i data-lucide="youtube" style="width:32px; height:32px;"></i>
+                        </div>
+                        <h3 class="action-title">オンライン説明会</h3>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                        <div style="display:flex;">
+                            <span style="width: 80px; font-weight: bold; color: var(--gray-500); font-size: 0.875rem;">開催場所</span>
+                            <span style="font-weight: bold; color: var(--gray-800);">YouTube Live</span>
+                        </div>
+                        <div style="display:flex;">
+                            <span style="width: 80px; font-weight: bold; color: var(--gray-500); font-size: 0.875rem;">参加費用</span>
+                            <span style="font-weight: bold; color: var(--green-600);">無料</span>
+                        </div>
+                        <div style="display:flex;">
+                            <span style="width: 80px; font-weight: bold; color: var(--gray-500); font-size: 0.875rem;">日　　時</span>
+                            <span style="font-weight: bold; color: var(--gray-800); font-size: 0.875rem;">毎週開催 <span style="font-weight:normal; color:var(--gray-500);">※参加可能日をお選びください</span></span>
+                        </div>
+                    </div>
+
+                    <ul class="action-list">
+                        <li><i data-lucide="check" style="width:18px; color:var(--green-500); flex-shrink:0;"></i> キズキ高等学院の理念がわかる</li>
+                        <li><i data-lucide="check" style="width:18px; color:var(--green-500); flex-shrink:0;"></i> 授業やカリキュラム、特徴がわかる</li>
+                        <li><i data-lucide="check" style="width:18px; color:var(--green-500); flex-shrink:0;"></i> 通学コースから入学までの流れがわかる</li>
+                    </ul>
+
+                    <div style="text-align: center; margin-top: auto;">
+                        <p style="font-size: 0.75rem; color: var(--gray-500); margin-bottom: 0.5rem;">30秒で申し込み完了</p>
+                        <button class="btn btn-accent w-full" style="padding: 1rem;">
+                            オンライン説明会に申し込む
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card: Individual Consultation -->
+                <div class="action-card reveal reveal-up" style="transition-delay: 100ms;">
+                    <div class="action-header">
+                        <div class="action-icon" style="background: #dcfce7; color: #16a34a;">
+                            <i data-lucide="users" style="width:32px; height:32px;"></i>
+                        </div>
+                        <h3 class="action-title">個別相談会</h3>
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                        <div style="display:flex;">
+                            <span style="width: 80px; font-weight: bold; color: var(--gray-500); font-size: 0.875rem;">開催場所</span>
+                            <span style="font-weight: bold; color: var(--gray-800);">Google Meet または お電話</span>
+                        </div>
+                        <div style="display:flex;">
+                            <span style="width: 80px; font-weight: bold; color: var(--gray-500); font-size: 0.875rem;">参加費用</span>
+                            <span style="font-weight: bold; color: var(--green-600);">無料</span>
+                        </div>
+                        <div style="display:flex;">
+                            <span style="width: 80px; font-weight: bold; color: var(--gray-500); font-size: 0.875rem;">日　　時</span>
+                            <span style="font-weight: bold; color: var(--gray-800); font-size: 0.875rem;">お申し込み時にお選びください</span>
+                        </div>
+                    </div>
+
+                    <ul class="action-list">
+                        <li><i data-lucide="check" style="width:18px; color:var(--green-500); flex-shrink:0;"></i> 不登校特化のサポートを解説</li>
+                        <li><i data-lucide="check" style="width:18px; color:var(--green-500); flex-shrink:0;"></i> サポート校の仕組み、助成金なども解説</li>
+                        <li><i data-lucide="check" style="width:18px; color:var(--green-500); flex-shrink:0;"></i> 不登校受験に関するお悩みも解決</li>
+                    </ul>
+
+                    <div style="text-align: center; margin-top: auto;">
+                        <p style="font-size: 0.75rem; color: var(--gray-500); margin-bottom: 0.5rem;">30秒で申し込み完了</p>
+                        <button class="btn btn-primary w-full" style="padding: 1rem;">
+                            個別相談会に申し込む
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sticky Footer (Enhanced) -->
+    <div class="sticky-footer">
+        <!-- 5. Conversion Optimization: Urgency -->
+        <div style="font-size:0.75rem; color:var(--orange-600); text-align:center; font-weight:bold;">
+            📅 今月の個別相談枠 残り3名
+        </div>
+        <div style="display: flex; gap: 0.75rem; width: 100%;">
+            <button class="btn btn-accent w-full" style="flex:1; padding:0.5rem; font-size:0.875rem;" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})"><i data-lucide="youtube" style="width:16px; margin-right:4px;"></i>説明会</button>
+            <button class="btn btn-primary w-full" style="flex:1; padding:0.5rem; font-size:0.875rem;" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})"><i data-lucide="users" style="width:16px; margin-right:4px;"></i>個別相談</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="md:flex justify-between items-center">
+                <div class="flex items-center gap-2 mb-4 md:mb-0" style="font-size: 1.25rem; font-weight: bold; color: var(--white);">
+                    <i data-lucide="graduation-cap" class="text-highlight"></i><span>キズキ高等学院</span>
+                </div>
+                <p>&copy; 2024 Kizuki High School.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script -->
+    <script>
+        // Init Icons
+        lucide.createIcons();
+
+        // 4. Data Visualization: Count Up Animation
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // 1. Reveal Animation
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // 2. Graph Animation
+        const graphObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Bar Chart
+                    entry.target.querySelectorAll('.bar-fill').forEach(bar => {
+                        bar.style.width = bar.getAttribute('data-width');
+                    });
+                    // Donut Chart
+                    entry.target.querySelectorAll('.donut-path').forEach(donut => {
+                        donut.style.strokeDashoffset = '32'; // 100 - 68
+                    });
+                    
+                    // Growth Chart (Fixed)
+                    const bars = entry.target.querySelectorAll('.growth-bar');
+                    bars.forEach(bar => {
+                        const targetHeight = bar.getAttribute('data-height');
+                        if (targetHeight) {
+                            bar.style.height = targetHeight;
+                        }
+                    });
+                    
+                    const bubble = entry.target.querySelector('.growth-bubble');
+                    if(bubble) setTimeout(() => bubble.classList.add('visible'), 800);
+
+                    // Trigger Count Up
+                    entry.target.querySelectorAll('.animate-num').forEach(num => {
+                        animateValue(num, 0, parseInt(num.getAttribute('data-end')), 1500);
+                    });
+
+                    graphObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.graph-container').forEach(el => graphObserver.observe(el));
+
+        // 3. Mobile Menu UX: Scroll Lock
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+        let scrollY = 0;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                scrollY = window.scrollY;
+                document.body.style.position = 'fixed';
+                document.body.style.top = `-${scrollY}px`;
+                document.body.style.width = '100%';
+                
+                mobileMenu.classList.add('open');
+                menuBtn.innerHTML = '<i data-lucide="x" style="width:24px;height:24px;"></i>';
+                menuBtn.setAttribute('aria-label', 'メニューを閉じる');
+            } else {
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.width = '';
+                window.scrollTo(0, scrollY);
+                
+                mobileMenu.classList.remove('open');
+                menuBtn.innerHTML = '<i data-lucide="menu" style="width:24px;height:24px;"></i>';
+                menuBtn.setAttribute('aria-label', 'メニューを開く');
+            }
+            lucide.createIcons();
+        }
+        menuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => { if(isMenuOpen) toggleMenu(); });
+        });
+
+        // 4. Tab Switching
+        window.switchTab = function(tabName) {
+            const btnC = document.getElementById('tab-btn-creation');
+            const btnI = document.getElementById('tab-btn-inquiry');
+            const contentC = document.getElementById('tab-content-creation');
+            const contentI = document.getElementById('tab-content-inquiry');
+
+            if (tabName === 'creation') {
+                btnC.className = 'tab-btn active-creation';
+                btnI.className = 'tab-btn inactive';
+                contentC.classList.add('active');
+                contentI.classList.remove('active');
+            } else {
+                btnC.className = 'tab-btn inactive';
+                btnI.className = 'tab-btn active-inquiry';
+                contentC.classList.remove('active');
+                contentI.classList.add('active');
+            }
+        };
+
+        // 5. Populate FAQ & Accessibility (Fixed)
+        const faqData = [
+            { q: "今、全く外に出られません。オンラインでのサポートは可能ですか？", a: "はい。オンライン形式も併設しており、ご自宅からの通学が可能です。体調が安定してから校舎への通学に切り替えることもできます。" },
+            { q: "提携する通信制高校について教えてください。", a: "鹿島山北高等学校は、全国に学習センターを展開する広域通信制高校です。レポート学習やスクーリングを通じて、確実に高校卒業資格を取得できる仕組みを整えており、通学頻度・課題提出スケジュールなども個別に調整できます。" },
+            { q: "スクーリングはどこで行いますか？", a: "スクーリングは年に1回、提携先の通信制高校のキャンパスで行います。宿泊型で行うため、通常10日程度かかるスクーリングを3泊4日で完了させることができます。場所は神奈川県山北町。自然豊かな環境で非日常を味わいながら、勉強だけでなく、農業体験などにも参加できるので、高校生活の素敵な想い出作りにもなります。" },
+            { q: "サークル活動は必須参加ですか？", a: "いいえ、全て任意参加です。ご自身の体調や興味に合わせて、参加したいものだけお選びいただけます。まずは見学だけでも歓迎です。" }
+        ];
+
+        const faqContainer = document.getElementById('faq-container');
+        faqData.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = "faq-item reveal reveal-up";
+            div.innerHTML = `
+                <button onclick="toggleFaq(this)" class="faq-btn" aria-expanded="false" aria-controls="faq-${idx}">
+                    <span style="font-weight: bold; color: var(--gray-800); display: flex; gap: 0.75rem;">
+                        <span style="color: var(--green-600); font-weight: 900; font-size: 1.125rem;">Q.</span> ${item.q}
+                    </span>
+                    <div class="faq-icon-wrap"><i data-lucide="chevron-down" style="width:20px;"></i></div>
+                </button>
+                <div id="faq-${idx}" class="accordion-content" aria-hidden="true">
+                    <div class="faq-answer">
+                        <div style="display: flex; gap: 0.75rem;">
+                            <span style="color: var(--orange-500); font-weight: 900; font-size: 1.125rem;">A.</span>
+                            <p style="color: var(--gray-600); font-size: 0.875rem;">${item.a}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            faqContainer.appendChild(div);
+        });
+        
+        // Re-init icons & Observe for FAQs (Fix)
+        lucide.createIcons();
+        document.querySelectorAll('.faq-item.reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        window.toggleFaq = function(btn) {
+            const content = btn.nextElementSibling;
+            const iconWrap = btn.querySelector('.faq-icon-wrap');
+            const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+            
+            btn.setAttribute('aria-expanded', !isExpanded);
+            content.setAttribute('aria-hidden', isExpanded);
+
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                iconWrap.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                iconWrap.style.transform = 'rotate(180deg)';
+            }
+        };
+    </script>
+</body>
+</html>
