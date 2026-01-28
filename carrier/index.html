@@ -119,6 +119,32 @@
         transform: translateY(-2px);
       }
 
+      /* 追加：CTA付近のマイクロコピー */
+      .cta-micro-copy {
+        display: block;
+        font-size: 13px;
+        margin-top: 10px;
+        color: var(--color-text-light);
+        font-weight: normal;
+      }
+
+      /* 追加：セクション内CTA用スタイル */
+      .section-cta {
+        margin-top: 60px;
+        text-align: center;
+        background: rgba(32, 163, 132, 0.05);
+        padding: 40px 20px;
+        border-radius: var(--radius-default);
+        border: 1px solid var(--color-secondary);
+      }
+      .section-cta-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--color-primary);
+        margin-bottom: 15px;
+        display: block;
+      }
+
       .section-label {
         display: inline-block;
         background: var(--color-bg-accent);
@@ -184,6 +210,15 @@
         line-height: 2;
         color: var(--color-text-light);
         margin-bottom: 30px;
+      }
+
+      /* 追加：サブコピー */
+      .section-sub-copy {
+        font-size: 18px;
+        color: var(--color-primary);
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: block;
       }
 
       .data-note {
@@ -877,69 +912,112 @@
       }
 
       /* =========================================
-          Hero Section
+          Hero Section (Fullscreen Customization)
           ========================================= */
       .hero {
-        background: #fff;
-        padding: 100px 0 80px;
-        text-align: center;
-      }
-
-      .hero-toc {
-        background: #fff;
-      }
-
-      .hero-image {
+        position: relative;
+        padding: 0; /* padding解除 */
         width: 100%;
-        max-width: 1200px;
-        margin: 0 auto 60px;
-        aspect-ratio: 3 / 1; /* PC用デフォルト */
-        background: var(--color-secondary);
+        /* ヘッダーとスイッチャーの高さを引いた画面いっぱいの高さ */
+        height: calc(100vh - var(--header-height) - var(--switcher-height));
+        min-height: 550px; /* 最小高さ確保 */
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--color-white);
-        font-size: 18px;
-        border-radius: var(--radius-default);
         overflow: hidden;
+        color: var(--color-white); /* テキスト白 */
+        text-align: center;
       }
 
-      /* スマホ向けにヒーロー画像の比率を調整 */
-      @media (max-width: 480px) {
-        .hero-image {
-          aspect-ratio: 1 / 1; /* SP用1200x1200に合わせて正方形に */
-          height: auto;
-        }
+      .hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
       }
 
-      .hero-image img {
+      .hero-bg img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(
+          0,
+          0,
+          0,
+          0.4
+        ); /* 文字を見やすくするための黒透過レイヤー */
+        z-index: 1;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+        padding: 0 20px;
+        /* テキストに影をつけて可読性アップ */
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
       }
 
       .hero h1 {
+        color: var(--color-white); /* 明示的に白 */
         font-size: 48px;
-        margin-bottom: 30px;
-        font-weight: 500;
+        margin-bottom: 20px;
+        font-weight: bold;
         letter-spacing: 2px;
-        color: #2c3e50;
       }
 
       .hero-subtitle {
-        font-size: 18px;
+        color: #f0f0f0;
+        font-size: 20px;
+        font-weight: bold;
         margin-bottom: 30px;
-        color: var(--color-text-sub);
       }
 
       .hero-description {
+        color: #e0e0e0;
         font-size: 16px;
         line-height: 2;
-        margin-bottom: 40px;
-        color: var(--color-text-light);
         max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 0 auto 40px;
+        font-weight: 500;
+      }
+
+      /* セクションサブコピー（FV用オーバーライド） */
+      .hero .section-sub-copy {
+        color: #fff;
+        background: rgba(32, 163, 132, 0.9); /* プライマリーカラー背景 */
+        display: inline-block;
+        padding: 5px 15px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        text-shadow: none;
+        font-size: 16px;
+      }
+
+      /* スマホ対応 */
+      @media (max-width: 768px) {
+        .hero {
+          height: auto;
+          min-height: 600px; /* スマホでもある程度高さをとる */
+          padding: 60px 0;
+        }
+        .hero h1 {
+          font-size: 32px;
+        }
+        .hero-subtitle {
+          font-size: 16px;
+        }
       }
 
       /* =========================================
@@ -1460,18 +1538,17 @@
           ============================================== -->
     <div id="view-tob" class="view-content active">
       <section class="hero">
-        <div class="container">
-          <div class="hero-image">
-            <picture>
-              <!-- スマホ用画像 (ユーザー作成済み) -->
-              <source
-                srcset="img/hero-tob-sp.webp"
-                media="(max-width: 480px)"
-              />
-              <!-- PC用メイン画像 (ユーザー作成済み) -->
-              <img src="img/hero-tob-pc.webp" alt="キズキキャリア 企業様向け" />
-            </picture>
-          </div>
+        <div class="hero-bg">
+          <picture>
+            <source srcset="img/hero-tob-sp.webp" media="(max-width: 480px)" />
+            <img src="img/hero-tob-pc.webp" alt="キズキキャリア 企業様向け" />
+          </picture>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <span class="section-sub-copy"
+            >累計導入実績多数。雇用課題の解決をサポートします。</span
+          >
           <h1>「配慮」のその先へ</h1>
           <p class="hero-subtitle">
             仕事を通じて、人生をより良くしたいと願うすべての人へ。
@@ -1480,12 +1557,18 @@
             就労移⾏⽀援の確かなノウハウで、ミスマッチを防ぎ、定着と「活躍」を支援します。私たちは、障害者雇用を「福祉」ではなく、企業の「成長」と個人の「再出発」の架け橋にします。
           </p>
           <a href="#" class="cta-button">お問い合わせ</a>
+          <span class="cta-micro-copy" style="color: #eee"
+            >【無料】まずはお気軽に資料請求・ご相談ください</span
+          >
         </div>
       </section>
 
       <section class="statutory-rate scroll-animate" id="statutory_rate">
         <div class="container">
           <span class="section-label">MARKET</span>
+          <span class="section-sub-copy"
+            >制度改正への対応は、早めの準備が鍵となります。</span
+          >
           <h2>法定雇用率2.7%時代を見据えて</h2>
           <div class="statutory-alert">
             <!-- 新しいデザインに変更 -->
@@ -1521,6 +1604,9 @@
       <section class="reasons bg-white" id="strength">
         <div class="container">
           <span class="section-label">STRENGTH</span>
+          <span class="section-sub-copy"
+            >現場の負担を減らし、定着率を高める独自の仕組み。</span
+          >
           <h2 class="scroll-animate">
             キズキキャリアが選ばれる3つの独自のソリューション
           </h2>
@@ -1591,12 +1677,25 @@
               </div>
             </div>
           </div>
+          <!-- CTAエリア追加 (toB Strength後) -->
+          <div class="section-cta scroll-animate">
+            <span class="section-cta-title"
+              >貴社の課題に合わせた活用方法をご提案します</span
+            >
+            <a href="#" class="cta-button">お問い合わせ</a>
+            <span class="cta-micro-copy"
+              >導入事例集・サービス詳細資料もこちらから</span
+            >
+          </div>
         </div>
       </section>
 
       <section class="voice bg-light" id="voice">
         <div class="container">
           <span class="section-label">VOICE</span>
+          <span class="section-sub-copy"
+            >業界をリードする各社から、高い評価をいただいています。</span
+          >
           <h2 class="scroll-animate">導入企業・ご利用者の声</h2>
           <div class="voice-grid">
             <div class="voice-card scroll-animate">
@@ -1632,12 +1731,23 @@
               </p>
             </div>
           </div>
+          <!-- CTAエリア追加 (toB Voice後) -->
+          <div class="section-cta scroll-animate">
+            <span class="section-cta-title"
+              >障害者雇用の「定着」にお悩みではありませんか？</span
+            >
+            <a href="#" class="cta-button">無料相談・お問い合わせ</a>
+            <span class="cta-micro-copy">専門スタッフが丁寧にお答えします</span>
+          </div>
         </div>
       </section>
 
       <section class="data bg-white" id="data">
         <div class="container">
           <span class="section-label">DATA</span>
+          <span class="section-sub-copy"
+            >確かな支援力が、数字としての結果に表れています。</span
+          >
           <h2 class="scroll-animate">実績データ</h2>
           <p class="chart-description scroll-animate">
             キズキキャリアの就労定着サービスがこれまでに達成してきた実績をご紹介します。
@@ -1718,6 +1828,9 @@
       <section class="flow bg-white" id="flow_tob">
         <div class="container">
           <span class="section-label">FLOW</span>
+          <span class="section-sub-copy"
+            >お急ぎの場合も柔軟に対応。スムーズな導入をサポートします。</span
+          >
           <h2 class="scroll-animate">ご利用の流れ</h2>
           <p class="section-description scroll-animate">
             お問い合わせから採用、そして定着まで。一気通貫でサポートいたします。
@@ -1772,6 +1885,12 @@
               ※返還金規定あり（1ヶ月未満：80%返金、3ヶ月未満：50%返金、6ヶ月未満：5%返金）
             </p>
           </div>
+          <div style="text-align: center; margin-top: 50px">
+            <a href="#" class="cta-button">お問い合わせ</a>
+            <span class="cta-micro-copy"
+              >【最短当日回答】お悩みレベルのご相談も歓迎です</span
+            >
+          </div>
         </div>
       </section>
 
@@ -1801,23 +1920,50 @@
       <section class="faq bg-white" id="faq">
         <div class="container">
           <span class="section-label">FAQ</span>
+          <span class="section-sub-copy"
+            >その他、気になることがあれば何でもご質問ください。</span
+          >
           <h2 class="scroll-animate">よくある質問</h2>
           <div class="faq-grid">
             <details class="faq-item scroll-animate">
-              <summary>利用料はかかりますか？</summary>
+              <summary>どのような方が登録されていますか？</summary>
               <p>
-                原則として利用料はかかりませんが、前年度収入により自己負担が発生する場合があります。
+                うつ病や適応障害などの精神障害、または発達障害のある方が中心です。高学歴の方や、前職で専門職（エンジニア、企画、事務等）に従事されていた「中途採用層」が多く、ポテンシャルの高い層が揃っています。
               </p>
             </details>
             <details class="faq-item scroll-animate delay-100">
-              <summary>在職中でも利用できますか？</summary>
+              <summary>他の人材紹介会社との違いは何ですか？</summary>
               <p>
-                はい、ご利用いただけます。転職サポートや現在の職場での定着支援も行っています。
+                私たちは「何度でもやり直せる社会」を目指し、ブランクのある方の復職支援に強みを持っています。単なるマッチングだけでなく、本人の自己理解（障害特性の把握）と、貴社の業務を深く理解した上での「持続可能な雇用」を提案します。
               </p>
             </details>
             <details class="faq-item scroll-animate delay-200">
-              <summary>オンライン相談は可能ですか？</summary>
-              <p>はい、Zoom等を使用したオンライン相談も承っております。</p>
+              <summary>採用してもすぐに辞めてしまわないか心配です。</summary>
+              <p>
+                キズキキャリアでは、入社前の段階で「体調管理の状況」や「安定して働ける根拠」を厳密にヒアリングしています。また、入社後も定期的に状況を確認し、必要に応じて企業さまとご本人との間に立って調整を行うため、高い定着率を実現しています。
+              </p>
+            </details>
+            <details class="faq-item scroll-animate">
+              <summary>
+                現場にどのような配慮を求めればよいかわかりません。
+              </summary>
+              <p>
+                候補者のご紹介時に、その方の「得意・不得意」や「必要な配慮・調整事項」を具体的にお伝えします。過度な負担をお願いするのではなく、業務指示の方法を工夫するなど、貴社の既存のオペレーションの中で無理なく受け入れられる体制を一緒に検討します。
+              </p>
+            </details>
+            <details class="faq-item scroll-animate delay-100">
+              <summary>サービスの利用料金（手数料）はいくらですか？</summary>
+              <p>
+                完全成功報酬型を採用しております。求人の掲載や候補者のご紹介、面接の実施までは一切費用はかかりません。採用が決定し、入社に至った段階ではじめて紹介手数料が発生いたします。
+              </p>
+            </details>
+            <details class="faq-item scroll-animate delay-200">
+              <summary>
+                初めて障害者採用を検討しているのですが、相談に乗ってもらえますか？
+              </summary>
+              <p>
+                もちろん可能です。求人票の作成から、面接での質問事項の留意点、助成金の活用アドバイスまで、障害者採用の経験が少ない企業さまもトータルでサポートいたします。
+              </p>
             </details>
           </div>
         </div>
@@ -1852,21 +1998,20 @@
           ============================================== -->
     <div id="view-toc" class="view-content">
       <section class="hero hero-toc">
-        <div class="container">
-          <div class="hero-image">
-            <picture>
-              <!-- スマホ用画像 (1200x1200) -->
-              <source
-                srcset="img/hero-toc-sp.webp"
-                media="(max-width: 480px)"
-              />
-              <!-- PC用メイン画像 (2400x800) -->
-              <img
-                src="img/hero-toc-pc.webp"
-                alt="自分らしく働ける場所が、きっとある。"
-              />
-            </picture>
-          </div>
+        <div class="hero-bg">
+          <picture>
+            <source srcset="img/hero-toc-sp.webp" media="(max-width: 480px)" />
+            <img
+              src="img/hero-toc-pc.webp"
+              alt="自分らしく働ける場所が、きっとある。"
+            />
+          </picture>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <span class="section-sub-copy"
+            >【完全無料】あなたの可能性を一緒に見つけましょう。</span
+          >
           <h1>自分らしく働ける場所が、<br />きっとある。</h1>
           <p class="hero-subtitle">
             あなたの「強み」を見つけ、長く安心して働ける職場へ。
@@ -1876,12 +2021,18 @@
             ただ仕事を紹介するだけでなく、あなたが自信を持って働けるよう伴走します。
           </p>
           <a href="#" class="cta-button">お問い合わせ</a>
+          <span class="cta-micro-copy" style="color: #eee"
+            >30秒で完了！まずは気軽なキャリア相談から</span
+          >
         </div>
       </section>
 
       <section class="data bg-white" id="data_toc">
         <div class="container">
           <span class="section-label">DATA</span>
+          <span class="section-sub-copy"
+            >自分に合った職場で、長く安定して働ける。</span
+          >
           <h2 class="scroll-animate">数字で見るキズキキャリア</h2>
           <p class="chart-description scroll-animate">
             多くの方が自分に合った職場を見つけ、長く活躍されています。
@@ -1913,12 +2064,23 @@
               <canvas id="jobTypeChartToc"></canvas>
             </div>
           </div>
+          <!-- CTAエリア追加 (toC Data後) -->
+          <div class="section-cta scroll-animate">
+            <span class="section-cta-title"
+              >あなたの市場価値を知るチャンス</span
+            >
+            <a href="#" class="cta-button">まずは無料登録</a>
+            <span class="cta-micro-copy">あなたに合う求人があるかチェック</span>
+          </div>
         </div>
       </section>
 
       <section class="reasons bg-light" id="reasons_toc">
         <div class="container">
           <span class="section-label">MERIT</span>
+          <span class="section-sub-copy"
+            >一人ひとりに向き合う、手厚いサポート体制が自慢です。</span
+          >
           <h2 class="scroll-animate">あなたがキズキキャリアを使うべき理由</h2>
           <div class="reasons-grid">
             <div class="reason-card scroll-animate">
@@ -1943,12 +2105,23 @@
               </p>
             </div>
           </div>
+          <!-- CTAエリア追加 (toC Merit後) -->
+          <div class="section-cta scroll-animate">
+            <span class="section-cta-title"
+              >一人で悩まず、まずはプロに相談しませんか？</span
+            >
+            <a href="#" class="cta-button">今すぐ無料相談する</a>
+            <span class="cta-micro-copy">完全無料。強引な勧誘はありません</span>
+          </div>
         </div>
       </section>
 
       <section class="voice bg-white" id="voice_toc">
         <div class="container">
           <span class="section-label">VOICE</span>
+          <span class="section-sub-copy"
+            >「一歩踏み出してよかった」そんな喜びの声が届いています。</span
+          >
           <h2 class="scroll-animate">ご利用者の声</h2>
           <div class="voice-grid">
             <div class="voice-card scroll-animate">
@@ -1981,12 +2154,23 @@
               </p>
             </div>
           </div>
+          <!-- CTAエリア追加 (toC Voice後) -->
+          <div class="section-cta scroll-animate">
+            <span class="section-cta-title"
+              >あなたらしく働ける職場が、きっと見つかります</span
+            >
+            <a href="#" class="cta-button">非公開求人を紹介してもらう</a>
+            <span class="cta-micro-copy">最短30秒で登録完了</span>
+          </div>
         </div>
       </section>
 
       <section class="services bg-light" id="services_toc">
         <div class="container">
           <span class="section-label">FLOW</span>
+          <span class="section-sub-copy"
+            >初めての方も安心。担当者が寄り添って進めます。</span
+          >
           <h2 class="scroll-animate">ご利用の流れ</h2>
           <div class="flow-steps">
             <div class="flow-step-item scroll-animate">
@@ -2035,6 +2219,9 @@
           </div>
           <div style="text-align: center; margin-top: 50px">
             <a href="#" class="cta-button scroll-animate">お問い合わせ</a>
+            <span class="cta-micro-copy"
+              >強引な勧誘は一切ありません。ご安心ください。</span
+            >
           </div>
         </div>
       </section>
@@ -2065,22 +2252,41 @@
       <section class="faq bg-light" id="faq_toc">
         <div class="container">
           <span class="section-label">FAQ</span>
+          <span class="section-sub-copy"
+            >ご不明な点があれば、いつでもお問い合わせください。</span
+          >
           <h2 class="scroll-animate">よくある質問</h2>
           <div class="faq-grid">
             <details class="faq-item scroll-animate">
-              <summary>サービスの利用にお金はかかりますか？</summary>
-              <p>いいえ、求職者の方は完全無料でご利用いただけます。</p>
+              <summary>キズキキャリアとは？</summary>
+              <p>
+                障害者のための転職・就職支援サービスです。キャリアアドバイザーによるキャリアカウンセリング、ご希望や障害への配慮・調整事項などにあわせて非公開求人を含む求人のご紹介、応募書類や面接対策など、転職・就職成功のために幅広くサポートします。
+              </p>
             </details>
             <details class="faq-item scroll-animate delay-100">
-              <summary>まだ転職するか決めていないのですが...</summary>
+              <summary>サービスを利用できるのは、どのような方ですか？</summary>
               <p>
-                もちろん大丈夫です。「まずは話だけ聞いてみたい」という方も歓迎です。
+                「身体障害者手帳」「療育手帳」「愛の手帳」「精神障害者保健福祉手帳」をお持ちの方、または申請中の方が対象となります。
               </p>
             </details>
             <details class="faq-item scroll-animate delay-200">
-              <summary>障害者手帳を持っていなくても利用できますか？</summary>
+              <summary>
+                転職・就職支援サービスの利用はすべて無料ですか？
+              </summary>
               <p>
-                はい、医師の診断がある方もご相談可能です。まずは一度お問い合わせください。
+                求職者さまにおかれましては、すべて無料となっており、一切の料金は発生いたしません。
+              </p>
+            </details>
+            <details class="faq-item scroll-animate">
+              <summary>求人は必ず紹介してもらえますか？</summary>
+              <p>
+                転職・就職の市場環境やタイミングによってはご紹介できる求人がすぐご用意できない場合がございます。ご紹介可能な求人がない場合には、求人発生までお待ちいただくこともございます。ご紹介可能な求人をご用意でき次第、ご案内いたします。何卒ご了承ください。
+              </p>
+            </details>
+            <details class="faq-item scroll-animate delay-100">
+              <summary>求人にはどのような仕事・職種がありますか？</summary>
+              <p>
+                一般事務、情報システム、人事・経理・法務などの管理部門系職種の求人がございます。ご経験やスキルをもとに企業側と交渉することも可能なため、お気軽にご相談ください。
               </p>
             </details>
           </div>
