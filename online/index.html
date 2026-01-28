@@ -8,24 +8,15 @@
       content="不登校・中退・ひきこもりからの逆転合格を支援するキズキオンライン家庭教師。メンタルケアと学習指導の両面から、あなたのペースで「学び」を再開できます。"
     />
     <meta name="format-detection" content="telephone=no" />
-
+    
     <!-- OGP Tags -->
-    <meta
-      property="og:title"
-      content="キズキオンライン家庭教師 | 不登校からの逆転合格・メンタル支援"
-    />
+    <meta property="og:title" content="キズキオンライン家庭教師 | 不登校からの逆転合格・メンタル支援" />
     <meta property="og:type" content="website" />
-    <meta
-      property="og:description"
-      content="メンタルと学習の両面をサポートする完全1対1のオンライン個別指導。"
-    />
-    <meta
-      property="og:image"
-      content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-    />
-
+    <meta property="og:description" content="メンタルと学習の両面をサポートする完全1対1のオンライン個別指導。" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" />
+    
     <title>キズキオンライン家庭教師 | 不登校からの逆転合格・メンタル支援</title>
-
+    
     <!-- Preload Critical Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,26 +24,26 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
       rel="stylesheet"
     />
-
+    
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": "キズキオンライン家庭教師",
-        "description": "不登校・中退・ひきこもり支援のオンライン学習塾",
-        "url": "https://kizuki.or.jp/online/",
-        "logo": "https://placehold.co/112x112?text=Logo",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+81-3-1234-5678",
-          "contactType": "customer service"
-        },
-        "areaServed": "JP"
-      }
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "キズキオンライン家庭教師",
+      "description": "不登校・中退・ひきこもり支援のオンライン学習塾",
+      "url": "https://kizuki.or.jp/online/",
+      "logo": "https://placehold.co/112x112?text=Logo",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+81-3-1234-5678",
+        "contactType": "customer service"
+      },
+      "areaServed": "JP"
+    }
     </script>
 
     <style>
@@ -72,20 +63,19 @@
         --color-white: #ffffff;
         --color-border: #e5e7eb;
         --color-hero-bg: #111827;
+        --color-overlay: rgba(0, 0, 0, 0.5);
 
         /* Spacing & Sizes */
         --container-width: 1152px;
         --header-height: 70px;
         --radius-md: 0.5rem;
         --radius-lg: 1rem;
-
+        
         /* Transitions */
         --transition-base: all 0.3s ease;
       }
 
-      *,
-      *::before,
-      *::after {
+      *, *::before, *::after {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
@@ -104,118 +94,51 @@
       }
 
       @media (min-width: 768px) {
-        body {
-          padding-bottom: 0;
-        }
+        body { padding-bottom: 0; }
       }
 
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
-      button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font: inherit;
-      }
-      img {
-        max-width: 100%;
-        height: auto;
-        vertical-align: middle;
-      }
+      a { text-decoration: none; color: inherit; }
+      button { background: none; border: none; cursor: pointer; font: inherit; }
+      img { max-width: 100%; height: auto; vertical-align: middle; }
+      ul, ol { list-style: none; }
 
       /* =========================================
          2. Utilities
          ========================================= */
       .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border-width: 0;
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
       }
 
-      :focus-visible {
-        outline: 3px solid var(--color-accent);
-        outline-offset: 2px;
-      }
+      :focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
 
-      .container {
-        max-width: var(--container-width);
-        margin: 0 auto;
-        padding: 0 1rem;
-      }
-      .container--narrow {
-        max-width: 56rem;
-      } /* ~900px */
+      .container { max-width: var(--container-width); margin: 0 auto; padding: 0 1rem; }
+      .container--narrow { max-width: 56rem; } /* ~900px */
+      
+      .section { padding: 4rem 0; }
+      .section--white { background-color: var(--color-white); }
+      .section--gray { background-color: #f3f4f6; }
+      .section--green { background-color: var(--color-primary-light); }
+      
+      .text-center { text-align: center; }
+      .font-bold { font-weight: 700; }
+      .text-primary { color: var(--color-primary); }
+      .text-accent { color: var(--color-accent); }
+      
+      .flex { display: flex; }
+      .flex-col { flex-direction: column; }
+      .items-center { align-items: center; }
+      .justify-center { justify-content: center; }
+      .gap-2 { gap: 0.5rem; }
+      .gap-4 { gap: 1rem; }
+      .gap-6 { gap: 1.5rem; }
 
-      .section {
-        padding: 4rem 0;
-      }
-      .section--white {
-        background-color: var(--color-white);
-      }
-      .section--gray {
-        background-color: #f3f4f6;
-      }
-      .section--green {
-        background-color: var(--color-primary-light);
-      }
-
-      .text-center {
-        text-align: center;
-      }
-      .font-bold {
-        font-weight: 700;
-      }
-      .text-primary {
-        color: var(--color-primary);
-      }
-      .text-accent {
-        color: var(--color-accent);
-      }
-
-      .flex {
-        display: flex;
-      }
-      .flex-col {
-        flex-direction: column;
-      }
-      .items-center {
-        align-items: center;
-      }
-      .justify-center {
-        justify-content: center;
-      }
-      .gap-2 {
-        gap: 0.5rem;
-      }
-      .gap-4 {
-        gap: 1rem;
-      }
-      .gap-6 {
-        gap: 1.5rem;
-      }
-
-      .hidden-md {
-        display: block;
-      }
-      .visible-md {
-        display: none;
-      }
+      .hidden-md { display: block; }
+      .visible-md { display: none; }
 
       @media (min-width: 768px) {
-        .hidden-md {
-          display: none;
-        }
-        .visible-md {
-          display: inline;
-        }
+        .hidden-md { display: none; }
+        .visible-md { display: inline; }
       }
 
       /* =========================================
@@ -229,21 +152,12 @@
         margin-bottom: 1rem;
         line-height: 1.4;
       }
-
-      .section-title--primary {
-        color: var(--color-primary-dark);
-      }
-      .section-title--flex {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-      }
+      
+      .section-title--primary { color: var(--color-primary-dark); }
+      .section-title--flex { display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
 
       @media (min-width: 768px) {
-        .section-title {
-          font-size: 1.875rem;
-        }
+        .section-title { font-size: 1.875rem; }
       }
 
       .section-desc {
@@ -254,1105 +168,509 @@
 
       /* Buttons */
       .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem 1.5rem;
-        border-radius: var(--radius-md);
-        font-weight: 700;
-        transition: var(--transition-base);
-        text-align: center;
-        width: 100%;
-        gap: 0.5rem;
+        display: inline-flex; align-items: center; justify-content: center;
+        padding: 1rem 1.5rem; border-radius: var(--radius-md);
+        font-weight: 700; transition: var(--transition-base);
+        text-align: center; width: 100%; gap: 0.5rem;
       }
 
       .btn-primary {
-        background-color: var(--color-accent);
-        color: var(--color-white);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background-color: var(--color-accent); color: var(--color-white);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       }
-      .btn-primary:hover {
-        background-color: var(--color-accent-hover);
-        transform: translateY(-2px);
-      }
+      .btn-primary:hover { background-color: var(--color-accent-hover); transform: translateY(-2px); }
 
       .btn-secondary {
-        border: 2px solid var(--color-primary);
-        color: var(--color-primary);
+        border: 2px solid var(--color-primary); color: var(--color-primary);
         background-color: transparent;
       }
-      .btn-secondary:hover {
-        background-color: var(--color-bg-light);
-      }
-
+      .btn-secondary:hover { background-color: var(--color-bg-light); }
+      
       .btn-outline-gray {
-        background-color: var(--color-white);
-        border: 2px solid var(--color-text-muted);
-        color: var(--color-text-muted);
-        border-radius: 9999px;
+        background-color: var(--color-white); border: 2px solid var(--color-text-muted);
+        color: var(--color-text-muted); border-radius: 9999px;
       }
-      .btn-outline-gray:hover {
-        background-color: var(--color-bg-light);
-      }
+      .btn-outline-gray:hover { background-color: var(--color-bg-light); }
 
       /* Icons */
       .icon-circle {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        padding: 2px;
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 20px; height: 20px; border-radius: 50%; padding: 2px;
       }
-      .icon-circle--gray {
-        background: white;
-        color: #6b7280;
-      }
-      .icon-circle--accent {
-        background: white;
-        color: var(--color-accent);
-        width: 24px;
-        height: 24px;
-      }
-      .icon-circle--dark {
-        background: var(--color-text-muted);
-        color: white;
-      }
+      .icon-circle--gray { background: white; color: #6b7280; }
+      .icon-circle--accent { background: white; color: var(--color-accent); width: 24px; height: 24px; }
+      .icon-circle--dark { background: var(--color-text-muted); color: white; }
 
       /* =========================================
          4. Header
          ========================================= */
       .site-header {
-        background-color: var(--color-white);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        height: var(--header-height);
+        background-color: var(--color-white); box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        position: sticky; top: 0; z-index: 50; height: var(--header-height);
       }
-      .header-inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 100%;
-      }
+      .header-inner { display: flex; justify-content: space-between; align-items: center; height: 100%; }
       .logo {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--color-primary);
-        letter-spacing: -0.05em;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+        font-size: 1.5rem; font-weight: 700; color: var(--color-primary);
+        letter-spacing: -0.05em; display: flex; align-items: center; gap: 0.5rem;
       }
-      .menu-toggle {
-        padding: 0.5rem;
-        color: var(--color-text-muted);
-      }
-      .menu-toggle:hover {
-        color: var(--color-primary);
-      }
+      .menu-toggle { padding: 0.5rem; color: var(--color-text-muted); }
+      .menu-toggle:hover { color: var(--color-primary); }
 
       /* Mobile Menu */
+      .mobile-menu-overlay {
+        position: fixed; inset: 0; background-color: var(--color-overlay);
+        z-index: 100; visibility: hidden; opacity: 0; transition: opacity 0.3s ease;
+      }
+      .mobile-menu-overlay[aria-hidden="false"] { visibility: visible; opacity: 1; }
+
       .mobile-menu {
-        position: fixed;
-        inset: 0;
-        background-color: var(--color-white);
-        z-index: 100;
-        display: flex;
-        flex-direction: column;
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-        visibility: hidden;
+        position: absolute; top: 0; right: 0; bottom: 0; width: 85%; max-width: 400px;
+        background-color: var(--color-white); display: flex; flex-direction: column;
+        transform: translateX(100%); transition: transform 0.3s ease-in-out;
+        box-shadow: -4px 0 6px rgba(0,0,0,0.1);
       }
-      .mobile-menu[aria-hidden="false"] {
-        transform: translateX(0);
-        visibility: visible;
-      }
+      .mobile-menu-overlay[aria-hidden="false"] .mobile-menu { transform: translateX(0); }
+
       .menu-header {
-        padding: 1rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid var(--color-border);
+        padding: 1rem; display: flex; justify-content: space-between;
+        align-items: center; border-bottom: 1px solid var(--color-border);
       }
       .menu-nav {
-        flex: 1;
-        overflow-y: auto;
-        padding: 2rem 1.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        text-align: center;
+        flex: 1; overflow-y: auto; padding: 2rem 1.5rem;
+        display: flex; flex-direction: column; gap: 1.5rem; text-align: center;
       }
-      .nav-link {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--color-text-main);
-      }
-      .nav-link:hover {
-        color: var(--color-primary);
-      }
-      .mobile-menu__cta {
-        margin-top: 1rem;
-      }
+      .nav-link { font-size: 1.25rem; font-weight: 700; color: var(--color-text-main); }
+      .nav-link:hover { color: var(--color-primary); }
+      .mobile-menu__cta { margin-top: 1rem; }
 
       /* =========================================
          5. Hero Section
          ========================================= */
       .hero {
-        position: relative;
-        width: 100%;
-        height: 600px;
-        background-color: var(--color-hero-bg);
-        overflow: hidden;
+        position: relative; width: 100%; height: 600px;
+        background-color: var(--color-hero-bg); overflow: hidden;
       }
-      @media (min-width: 768px) {
-        .hero {
-          height: 700px;
-        }
-      }
-
+      @media (min-width: 768px) { .hero { height: 700px; } }
+      
       .hero-bg-img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0.8;
+        position: absolute; inset: 0; width: 100%; height: 100%;
+        object-fit: cover; opacity: 0.8;
       }
       .hero-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.8),
-          transparent,
-          rgba(0, 0, 0, 0.1)
-        );
+        position: absolute; inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.8), transparent, rgba(0,0,0,0.1));
       }
       .hero-badges {
-        position: absolute;
-        top: 2rem;
-        right: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 1rem;
-        z-index: 10;
-        padding-right: 0;
+        position: absolute; top: 2rem; right: 0;
+        display: flex; flex-direction: column; align-items: flex-end;
+        gap: 1rem; z-index: 10; padding-right: 0;
       }
       .skew-badge {
-        background-color: rgba(255, 255, 255, 0.95);
-        padding: 0.5rem 1.5rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-left: 4px solid var(--color-primary);
-        margin-right: -10px;
-        transform: skewX(-15deg);
+        background-color: rgba(255, 255, 255, 0.95); padding: 0.5rem 1.5rem;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-left: 4px solid var(--color-primary);
+        margin-right: -10px; transform: skewX(-15deg);
       }
       .skew-badge-text {
-        transform: skewX(15deg);
-        font-weight: 700;
-        color: #111827;
-        font-size: 0.875rem;
-        letter-spacing: 0.05em;
+        transform: skewX(15deg); font-weight: 700; color: #111827;
+        font-size: 0.875rem; letter-spacing: 0.05em;
       }
       @media (min-width: 768px) {
-        .skew-badge {
-          padding: 0.5rem 2rem;
-        }
-        .skew-badge-text {
-          font-size: 1.25rem;
-        }
+        .skew-badge { padding: 0.5rem 2rem; }
+        .skew-badge-text { font-size: 1.25rem; }
       }
       .hero-content {
-        position: absolute;
-        bottom: 3rem;
-        left: 1rem;
-        z-index: 10;
-        max-width: 56rem;
+        position: absolute; bottom: 3rem; left: 1rem; z-index: 10; max-width: 56rem;
       }
-      @media (min-width: 768px) {
-        .hero-content {
-          left: 3rem;
-          bottom: 4rem;
-        }
-      }
+      @media (min-width: 768px) { .hero-content { left: 3rem; bottom: 4rem; } }
       .hero-title {
-        font-size: 1.875rem;
-        font-weight: 900;
-        color: var(--color-white);
-        line-height: 1.2;
-        text-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-        margin: 0;
+        font-size: 1.875rem; font-weight: 900; color: var(--color-white);
+        line-height: 1.2; text-shadow: 0 4px 6px rgba(0,0,0,0.5); margin: 0;
       }
-      @media (min-width: 768px) {
-        .hero-title {
-          font-size: 3rem;
-        }
-      }
-      @media (min-width: 1024px) {
-        .hero-title {
-          font-size: 3.75rem;
-        }
-      }
+      @media (min-width: 768px) { .hero-title { font-size: 3rem; } }
+      @media (min-width: 1024px) { .hero-title { font-size: 3.75rem; } }
 
       /* =========================================
          6. Intro Section
          ========================================= */
       .intro-image {
-        border-radius: var(--radius-lg);
-        overflow: hidden;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        margin-bottom: 3rem;
+        border-radius: var(--radius-lg); overflow: hidden;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); margin-bottom: 3rem;
       }
-      .intro-image img {
-        width: 100%;
-        display: block;
-      }
-      .intro-text {
-        text-align: justify;
-        font-size: 1.125rem;
-        margin-top: 1.5rem;
-      }
+      .intro-image img { width: 100%; height: auto; display: block; }
+      .intro-text { text-align: justify; font-size: 1.125rem; margin-top: 1.5rem; }
 
       /* =========================================
          7. Video Section
          ========================================= */
       .video-card {
-        background-color: var(--color-white);
-        border-radius: var(--radius-lg);
-        padding: 1.5rem;
-        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        background-color: var(--color-white); border-radius: var(--radius-lg);
+        padding: 1.5rem; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
       }
       .video-wrapper {
-        aspect-ratio: 16/9;
-        background-color: #000;
-        border-radius: var(--radius-md);
-        overflow: hidden;
-        margin-bottom: 2.5rem;
+        aspect-ratio: 16/9; background-color: #000; border-radius: var(--radius-md);
+        overflow: hidden; margin-bottom: 2.5rem;
       }
       .video-content {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
+        display: flex; flex-direction: column; gap: 1.5rem;
       }
       @media (min-width: 768px) {
-        .video-content {
-          flex-direction: row;
-          align-items: flex-start;
-        }
+        .video-content { flex-direction: row; align-items: flex-start; }
       }
-
+      
       .profile-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex-shrink: 0;
+        display: flex; flex-direction: column; align-items: center; flex-shrink: 0;
       }
       .profile-img {
-        width: 6rem;
-        height: 6rem;
-        border-radius: 9999px;
-        overflow: hidden;
-        border: 4px solid #e5e7eb;
-        background-color: #1f2937;
-        margin-bottom: 0.5rem;
+        width: 6rem; height: 6rem; border-radius: 9999px; overflow: hidden;
+        border: 4px solid #e5e7eb; background-color: #1f2937; margin-bottom: 0.5rem;
       }
-      .profile-name {
-        font-weight: 700;
-        font-size: 0.875rem;
-      }
+      .profile-name { font-weight: 700; font-size: 0.875rem; }
 
       .speech-bubble {
-        position: relative;
-        background-color: var(--color-primary-light);
-        border-radius: var(--radius-lg);
-        padding: 1.5rem;
-        border: 1px solid #bbf7d0;
-        flex: 1;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        position: relative; background-color: var(--color-primary-light);
+        border-radius: var(--radius-lg); padding: 1.5rem;
+        border: 1px solid #bbf7d0; flex: 1; box-shadow: 0 1px 2px rgba(0,0,0,0.05);
       }
       .speech-title {
-        font-weight: 700;
-        font-size: 1.125rem;
-        color: var(--color-primary-dark);
+        font-weight: 700; font-size: 1.125rem; color: var(--color-primary-dark);
         margin-bottom: 0.75rem;
       }
-      .speech-text {
-        font-size: 0.875rem;
-        color: var(--color-text-main);
-      }
-
-      .speech-arrow-left,
-      .speech-arrow-top {
-        position: absolute;
-        width: 0;
-        height: 0;
-        border-style: solid;
+      .speech-text { font-size: 0.875rem; color: var(--color-text-main); }
+      
+      .speech-arrow-left, .speech-arrow-top {
+        position: absolute; width: 0; height: 0; border-style: solid;
       }
       @media (min-width: 768px) {
         .speech-arrow-left {
-          top: 24px;
-          left: -12px;
-          border-width: 12px 12px 12px 0;
-          border-color: transparent var(--color-primary-light) transparent
-            transparent;
+          top: 24px; left: -12px; border-width: 12px 12px 12px 0;
+          border-color: transparent var(--color-primary-light) transparent transparent;
         }
       }
       @media (max-width: 767px) {
         .speech-arrow-top {
-          top: -12px;
-          left: 50%;
-          transform: translateX(-50%);
+          top: -12px; left: 50%; transform: translateX(-50%);
           border-width: 0 12px 12px 12px;
-          border-color: transparent transparent var(--color-primary-light)
-            transparent;
+          border-color: transparent transparent var(--color-primary-light) transparent;
         }
       }
 
       /* =========================================
          8. Voices Section (Marquee)
          ========================================= */
-      .marquee-container {
-        overflow: hidden;
-        position: relative;
-        width: 100%;
-        margin-bottom: 4rem;
-      }
-      .marquee-track {
-        display: flex;
-        width: max-content;
-        will-change: transform;
-      }
-      .marquee-track:hover {
-        animation-play-state: paused;
-      }
+      .marquee-container { overflow: hidden; position: relative; width: 100%; margin-bottom: 4rem; }
+      .marquee-track { display: flex; width: max-content; will-change: transform; }
+      .marquee-track:hover { animation-play-state: paused; }
+      
+      .animate-marquee { animation: marquee 40s linear infinite; }
+      .animate-marquee-slow { animation: marquee 60s linear infinite; }
+      @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-      .animate-marquee {
-        animation: marquee 40s linear infinite;
-      }
-      .animate-marquee-slow {
-        animation: marquee 60s linear infinite;
-      }
-      @keyframes marquee {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          transform: translateX(-50%);
-        }
-      }
-
-      .marquee-content {
-        display: flex;
-        gap: 1.5rem;
-        padding: 0 0.75rem;
-      }
+      .marquee-content { display: flex; gap: 1.5rem; padding: 0 0.75rem; }
 
       .voice-card {
-        width: 300px;
-        background-color: var(--color-bg-light);
-        padding: 1.5rem;
-        border-radius: var(--radius-lg);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        border-left: 4px solid;
+        width: 300px; background-color: var(--color-bg-light); padding: 1.5rem;
+        border-radius: var(--radius-lg); box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        display: flex; flex-direction: column; gap: 1rem; border-left: 4px solid;
       }
-      @media (min-width: 768px) {
-        .voice-card {
-          width: 400px;
-        }
-      }
+      @media (min-width: 768px) { .voice-card { width: 400px; } }
 
-      .voice-card--green {
-        border-left-color: #22c55e;
-      }
-      .voice-card--orange {
-        border-left-color: var(--color-accent);
-      }
-      .voice-card--blue {
-        border-left-color: #3b82f6;
-      }
+      .voice-card--green { border-left-color: #22c55e; }
+      .voice-card--orange { border-left-color: var(--color-accent); }
+      .voice-card--blue { border-left-color: #3b82f6; }
 
-      .voice-card__header {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
+      .voice-card__header { display: flex; align-items: center; gap: 1rem; }
       .voice-card__img {
-        width: 3rem;
-        height: 3rem;
-        border-radius: 9999px;
-        background-color: #e5e7eb;
-        object-fit: cover;
+        width: 3rem; height: 3rem; border-radius: 9999px; background-color: #e5e7eb; object-fit: cover;
       }
-      .voice-card__title {
-        font-weight: 700;
-        font-size: 1rem;
-        margin: 0;
-      }
-      .voice-card__meta {
-        font-size: 0.75rem;
-        color: var(--color-text-muted);
-        margin-bottom: 0.5rem;
-      }
-      .voice-card__text {
-        font-size: 0.875rem;
-        margin: 0;
-      }
+      .voice-card__title { font-weight: 700; font-size: 1rem; margin: 0; }
+      .voice-card__meta { font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 0.5rem; }
+      .voice-card__text { font-size: 0.875rem; margin: 0; }
 
       .achievement-box {
-        background-color: var(--color-white);
-        border-radius: var(--radius-lg);
-        padding: 2rem;
-        border: 1px solid var(--color-border);
-        text-align: center;
-        margin-bottom: 3rem;
+        background-color: var(--color-white); border-radius: var(--radius-lg);
+        padding: 2rem; border: 1px solid var(--color-border); text-align: center; margin-bottom: 3rem;
       }
       .achievement-tag {
-        display: inline-block;
-        background-color: var(--color-primary-light);
-        color: #166534;
-        padding: 0.25rem 1rem;
-        border-radius: 9999px;
-        font-size: 0.875rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
+        display: inline-block; background-color: var(--color-primary-light); color: #166534;
+        padding: 0.25rem 1rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 700; margin-bottom: 1rem;
       }
       .achievement-list {
-        font-weight: 700;
-        line-height: 2;
+        display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem;
+        font-weight: 700; line-height: 1.8; margin-bottom: 1rem;
       }
-      .achievement-note {
-        color: var(--color-text-muted);
-        font-size: 0.75rem;
+      .achievement-list li:not(:last-child)::after {
+        content: "/"; margin-left: 0.5rem; color: var(--color-border);
       }
+      .achievement-note { color: var(--color-text-muted); font-size: 0.75rem; }
 
       /* =========================================
          9. Instructors Section
          ========================================= */
       .instructor-card {
-        background-color: var(--color-primary-light);
-        border-radius: 1.5rem;
-        padding: 1.5rem;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        background-color: var(--color-primary-light); border-radius: 1.5rem;
+        padding: 1.5rem; position: relative; overflow: hidden;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
       }
       .instructor-blob {
-        position: absolute;
-        width: 16rem;
-        height: 16rem;
-        border-radius: 9999px;
-        filter: blur(40px);
-        opacity: 0.5;
+        position: absolute; width: 16rem; height: 16rem; border-radius: 9999px;
+        filter: blur(40px); opacity: 0.5;
       }
-      .instructor-blob--yellow {
-        top: 0;
-        right: 0;
-        background-color: #fef9c3;
-        transform: translate(50%, -50%);
-      }
-      .instructor-blob--green {
-        bottom: 0;
-        left: 0;
-        background-color: #bbf7d0;
-        transform: translate(-50%, 50%);
-      }
+      .instructor-blob--yellow { top: 0; right: 0; background-color: #fef9c3; transform: translate(50%, -50%); }
+      .instructor-blob--green { bottom: 0; left: 0; background-color: #bbf7d0; transform: translate(-50%, 50%); }
 
       .instructor-layout {
-        position: relative;
-        z-index: 10;
-        display: flex;
-        flex-direction: column;
-        gap: 2.5rem;
+        position: relative; z-index: 10; display: flex; flex-direction: column; gap: 2.5rem;
       }
       @media (min-width: 768px) {
-        .instructor-layout {
-          flex-direction: row;
-          align-items: center;
-        }
+        .instructor-layout { flex-direction: row; align-items: center; }
       }
 
-      .instructor-text {
-        flex: 1;
-      }
+      .instructor-text { flex: 1; }
       .instructor-badge {
-        display: inline-block;
-        background-color: white;
-        color: var(--color-primary);
-        font-size: 0.75rem;
-        font-weight: 700;
-        padding: 0.25rem 0.75rem;
-        border-radius: 9999px;
-        margin-bottom: 1rem;
-        border: 1px solid #bbf7d0;
+        display: inline-block; background-color: white; color: var(--color-primary);
+        font-size: 0.75rem; font-weight: 700; padding: 0.25rem 0.75rem;
+        border-radius: 9999px; margin-bottom: 1rem; border: 1px solid #bbf7d0;
       }
       .instructor-title {
-        font-size: 1.5rem;
-        font-weight: 900;
-        color: #111827;
-        margin-bottom: 1.5rem;
-        line-height: 1.25;
+        font-size: 1.5rem; font-weight: 900; color: #111827;
+        margin-bottom: 1.5rem; line-height: 1.25;
       }
-      .instructor-highlight {
-        color: var(--color-primary);
-        background-color: white;
-        padding: 0 0.25rem;
-      }
-      .instructor-desc {
-        color: var(--color-text-main);
-        font-size: 1.125rem;
-        margin-bottom: 1.5rem;
-      }
+      .instructor-highlight { color: var(--color-primary); background-color: white; padding: 0 0.25rem; }
+      .instructor-desc { color: var(--color-text-main); font-size: 1.125rem; margin-bottom: 1.5rem; }
 
-      .instructor-images {
-        position: relative;
-        height: 300px;
-        width: 100%;
-        flex: 1;
-      }
-      @media (min-width: 768px) {
-        .instructor-images {
-          height: 400px;
-        }
-      }
-
+      .instructor-images { position: relative; height: 300px; width: 100%; flex: 1; }
+      @media (min-width: 768px) { .instructor-images { height: 400px; } }
+      
       .instructor-img-card {
-        position: absolute;
-        transition: transform 0.5s;
-        object-fit: cover;
-        border-radius: 0.75rem;
-        border: 4px solid white;
+        position: absolute; transition: transform 0.5s; object-fit: cover;
+        border-radius: 0.75rem; border: 4px solid white;
       }
       .instructor-img-card--back {
-        top: 1rem;
-        left: 1rem;
-        width: 75%;
-        height: 75%;
-        z-index: 20;
-        transform: rotate(-2deg);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        top: 1rem; left: 1rem; width: 75%; height: 75%; z-index: 20;
+        transform: rotate(-2deg); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
       }
       .instructor-img-card--front {
-        bottom: 1rem;
-        right: 1rem;
-        width: 66%;
-        height: 66%;
-        z-index: 10;
-        transform: rotate(3deg);
-        opacity: 0.9;
+        bottom: 1rem; right: 1rem; width: 66%; height: 66%; z-index: 10;
+        transform: rotate(3deg); opacity: 0.9;
       }
 
       /* =========================================
          10. Features Section
          ========================================= */
       .feature-image-wrapper {
-        border-radius: var(--radius-lg);
-        overflow: hidden;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg); overflow: hidden;
+        box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); border: 1px solid var(--color-border);
       }
 
       /* =========================================
          11. Comparison Table
          ========================================= */
       .comparison-wrapper {
-        background-color: var(--color-white);
-        border-radius: var(--radius-lg);
-        padding: 1rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        background-color: var(--color-white); border-radius: var(--radius-lg);
+        padding: 1rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
       }
-      @media (min-width: 768px) {
-        .comparison-wrapper {
-          padding: 2rem;
-        }
-      }
+      @media (min-width: 768px) { .comparison-wrapper { padding: 2rem; } }
 
-      .comparison-table {
-        width: 100%;
-        border-collapse: collapse;
-        text-align: left;
+      .comparison-table { width: 100%; border-collapse: collapse; text-align: left; }
+      .comparison-table th, .comparison-table td {
+        border: 1px solid var(--color-border); padding: 1rem; vertical-align: middle;
       }
-      .comparison-table th,
-      .comparison-table td {
-        border: 1px solid var(--color-border);
-        padding: 1rem;
-        vertical-align: middle;
-      }
-      .comparison-note {
-        text-align: right;
-        font-size: 0.75rem;
-        color: #9ca3af;
-        margin-top: 0.5rem;
-      }
+      .comparison-note { text-align: right; font-size: 0.75rem; color: #9ca3af; margin-top: 0.5rem; }
 
       /* Mobile Card View */
       @media (max-width: 767px) {
-        .comparison-table,
-        .comparison-table thead,
-        .comparison-table tbody,
-        .comparison-table th,
-        .comparison-table td,
+        .comparison-table, .comparison-table thead, .comparison-table tbody,
+        .comparison-table th, .comparison-table td, .comparison-table tr { display: block; }
+        .comparison-table thead tr { position: absolute; top: -9999px; left: -9999px; }
         .comparison-table tr {
-          display: block;
-        }
-        .comparison-table thead tr {
-          position: absolute;
-          top: -9999px;
-          left: -9999px;
-        }
-        .comparison-table tr {
-          margin-bottom: 2rem;
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius-md);
-          overflow: hidden;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+          margin-bottom: 2rem; border: 1px solid var(--color-border);
+          border-radius: var(--radius-md); overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
         .comparison-table td {
-          border: none;
-          border-bottom: 1px solid var(--color-border);
-          position: relative;
-          padding-left: 40%;
-          min-height: 3rem;
-          text-align: right;
+          border: none; border-bottom: 1px solid var(--color-border);
+          position: relative; padding-left: 40%; min-height: 3rem; text-align: right;
         }
         .comparison-table td:first-child {
-          background-color: var(--color-bg-light);
-          font-weight: bold;
-          text-align: center;
-          padding: 1rem;
-          color: var(--color-text-main);
-          display: flex;
-          justify-content: center;
-          align-items: center;
+          background-color: var(--color-bg-light); font-weight: bold; text-align: center;
+          padding: 1rem; color: var(--color-text-main); display: flex; justify-content: center; align-items: center;
         }
-        .comparison-table td:first-child::before {
-          display: none;
-        }
+        .comparison-table td:first-child::before { display: none; }
         .comparison-table td::before {
-          position: absolute;
-          top: 1rem;
-          left: 1rem;
-          width: 35%;
-          padding-right: 10px;
-          white-space: nowrap;
-          text-align: left;
-          font-weight: bold;
-          font-size: 0.875rem;
-          color: var(--color-text-muted);
-          content: attr(data-label);
+          position: absolute; top: 1rem; left: 1rem; width: 35%; padding-right: 10px;
+          white-space: nowrap; text-align: left; font-weight: bold; font-size: 0.875rem;
+          color: var(--color-text-muted); content: attr(data-label);
         }
-        .comparison-table td:last-child {
-          border-bottom: none;
-        }
+        .comparison-table td:last-child { border-bottom: none; }
       }
 
       /* Desktop Table Styles */
       @media (min-width: 768px) {
-        .comparison-table th {
-          background-color: var(--color-primary-light);
-          color: var(--color-primary);
-        }
-        .comparison-table th.col-other {
-          background-color: var(--color-bg-light);
-          color: var(--color-text-muted);
-        }
-        .comparison-table th.col-header {
-          background-color: #f3f4f6;
-          color: var(--color-text-muted);
-        }
+        .comparison-table th { background-color: var(--color-primary-light); color: var(--color-primary); }
+        .comparison-table th.col-other { background-color: var(--color-bg-light); color: var(--color-text-muted); }
+        .comparison-table th.col-header { background-color: #f3f4f6; color: var(--color-text-muted); }
       }
-
-      .cell-highlight {
-        background-color: #dcfce7;
-        color: #166534;
-        font-weight: bold;
-      }
+      
+      .cell-highlight { background-color: #dcfce7; color: #166534; font-weight: bold; }
       @media (min-width: 768px) {
-        .cell-highlight {
-          border-bottom: 4px solid var(--color-primary);
-        }
+        .cell-highlight { border-bottom: 4px solid var(--color-primary); }
       }
 
       .badge-recommend {
-        position: absolute;
-        top: -1rem;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #ef4444;
-        color: white;
-        font-size: 0.75rem;
-        padding: 0.25rem 0.5rem;
-        border-radius: 0.25rem;
-        white-space: nowrap;
+        position: absolute; top: -1rem; left: 50%; transform: translateX(-50%);
+        background-color: #ef4444; color: white; font-size: 0.75rem; padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem; white-space: nowrap;
       }
 
       /* =========================================
          12. CTA Groups & Cards
          ========================================= */
       .cta-group {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        max-width: 42rem;
-        margin: 0 auto;
+        display: flex; flex-direction: column; gap: 1.5rem;
+        max-width: 42rem; margin: 0 auto;
       }
-
+      
       .btn-cta-main {
-        background-color: #6b7280;
-        color: var(--color-white);
-        font-size: 1.125rem;
-        padding: 1.25rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background-color: #6b7280; color: var(--color-white);
+        font-size: 1.125rem; padding: 1.25rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       }
-      .btn-cta-main:hover {
-        background-color: #4b5563;
-      }
-
+      .btn-cta-main:hover { background-color: #4b5563; }
+      
       .btn-cta-orange {
-        background-color: var(--color-accent);
-        color: var(--color-white);
-        font-size: 1.25rem;
-        padding: 1.25rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background-color: var(--color-accent); color: var(--color-white);
+        font-size: 1.25rem; padding: 1.25rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       }
-      .btn-cta-orange:hover {
-        background-color: var(--color-accent-hover);
-        transform: translateY(-2px);
-      }
+      .btn-cta-orange:hover { background-color: var(--color-accent-hover); transform: translateY(-2px); }
 
       .cta-separator {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
+        display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin-bottom: 1rem;
       }
-      .cta-separator__line {
-        height: 1px;
-        background-color: #d1d5db;
-        width: 3rem;
-      }
-      .cta-separator__text {
-        font-weight: 700;
-        font-size: 1.125rem;
-        letter-spacing: 0.05em;
-        margin: 0;
-      }
+      .cta-separator__line { height: 1px; background-color: #d1d5db; width: 3rem; }
+      .cta-separator__text { font-weight: 700; font-size: 1.125rem; letter-spacing: 0.05em; margin: 0; }
 
       .cta-card {
-        background-color: #374151;
-        color: var(--color-white);
-        border-radius: var(--radius-md);
-        overflow: hidden;
-        transition: var(--transition-base);
-        position: relative;
-        display: block;
+        background-color: #374151; color: var(--color-white); border-radius: var(--radius-md);
+        overflow: hidden; transition: var(--transition-base); position: relative; display: block;
       }
-      .cta-card:hover {
-        background-color: #1f2937;
-      }
-      .cta-card-inner {
-        display: flex;
-        align-items: center;
-        height: 5rem;
-      }
-      @media (min-width: 768px) {
-        .cta-card-inner {
-          height: 6rem;
-        }
-      }
+      .cta-card:hover { background-color: #1f2937; }
+      .cta-card-inner { display: flex; align-items: center; height: 5rem; }
+      @media (min-width: 768px) { .cta-card-inner { height: 6rem; } }
 
       .cta-img-col {
-        width: 33%;
-        height: 100%;
-        background-color: #e5e7eb;
-        position: relative;
+        width: 33%; height: 100%; background-color: #e5e7eb; position: relative;
       }
-      @media (min-width: 768px) {
-        .cta-img-col {
-          width: 25%;
-        }
-      }
-
-      .cta-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0.8;
-        mix-blend-mode: multiply;
-      }
+      @media (min-width: 768px) { .cta-img-col { width: 25%; } }
+      
+      .cta-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; mix-blend-mode: multiply; }
       .cta-img-badge {
-        position: absolute;
-        top: 0.5rem;
-        left: 0.5rem;
-        background-color: var(--color-white);
-        color: var(--color-text-main);
-        font-size: 0.625rem;
-        font-weight: 700;
-        padding: 0.125rem 0.25rem;
-        border-radius: 0.25rem;
-        transform: rotate(-6deg);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        position: absolute; top: 0.5rem; left: 0.5rem; background-color: var(--color-white);
+        color: var(--color-text-main); font-size: 0.625rem; font-weight: 700;
+        padding: 0.125rem 0.25rem; border-radius: 0.25rem; transform: rotate(-6deg);
+        box-shadow: 0 1px 2px rgba(0,0,0,0.1);
       }
 
       .cta-text-col {
-        width: 67%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.75rem;
-        padding-right: 1rem;
+        width: 67%; display: flex; align-items: center; justify-content: center;
+        gap: 0.75rem; padding-right: 1rem;
       }
-      @media (min-width: 768px) {
-        .cta-text-col {
-          width: 75%;
-        }
-      }
-
+      @media (min-width: 768px) { .cta-text-col { width: 75%; } }
+      
       .cta-free-label {
-        background-color: #6b7280;
-        color: white;
-        font-size: 0.75rem;
-        padding: 0.25rem 0.5rem;
-        border-radius: 0.25rem;
+        background-color: #6b7280; color: white; font-size: 0.75rem;
+        padding: 0.25rem 0.5rem; border-radius: 0.25rem;
       }
       .cta-label-serif {
-        font-family: serif;
-        font-size: 1.125rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
+        font-family: serif; font-size: 1.125rem; font-weight: 700; letter-spacing: 0.1em;
       }
-      @media (min-width: 768px) {
-        .cta-label-serif {
-          font-size: 1.5rem;
-        }
-      }
-
-      .cta-area-info {
-        font-size: 0.875rem;
-        font-weight: 700;
-        line-height: 2;
-        margin-top: 0;
-      }
+      @media (min-width: 768px) { .cta-label-serif { font-size: 1.5rem; } }
+      
+      .cta-area-info { font-size: 0.875rem; font-weight: 700; line-height: 2; margin-top: 0; }
 
       .campaign-box {
-        background-color: white;
-        border: 2px solid #fb923c;
-        border-radius: var(--radius-lg);
-        padding: 1.5rem;
-        margin-bottom: 2.5rem;
-        max-width: 32rem;
-        margin-left: auto;
-        margin-right: auto;
-        transform: rotate(1deg);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        background-color: white; border: 2px solid #fb923c; border-radius: var(--radius-lg);
+        padding: 1.5rem; margin-bottom: 2.5rem; max-width: 32rem; margin-left: auto; margin-right: auto;
+        transform: rotate(1deg); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
       }
-      .campaign-title {
-        color: var(--color-accent);
-        font-weight: 900;
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
-      }
-      .campaign-content {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #1f2937;
-        margin: 0;
-      }
-      .campaign-highlight {
-        color: #ef4444;
-        font-size: 2.25rem;
-      }
+      .campaign-title { color: var(--color-accent); font-weight: 900; font-size: 1.25rem; margin-bottom: 0.5rem; }
+      .campaign-content { font-size: 1.5rem; font-weight: 700; color: #1f2937; margin: 0; }
+      .campaign-highlight { color: #ef4444; font-size: 2.25rem; }
 
       /* =========================================
          13. Books & Media
          ========================================= */
-      .book-item {
-        width: 180px;
-        flex-shrink: 0;
-        cursor: pointer;
-      }
+      .book-item { width: 180px; flex-shrink: 0; cursor: pointer; }
       .book-cover {
-        width: 100%;
-        aspect-ratio: 2/3;
-        background-color: #e5e7eb;
-        border-radius: var(--radius-md);
-        overflow: hidden;
-        margin-bottom: 1rem;
+        width: 100%; aspect-ratio: 2/3; background-color: #e5e7eb;
+        border-radius: var(--radius-md); overflow: hidden; margin-bottom: 1rem;
       }
-      .book-cover img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .book-title {
-        font-size: 0.75rem;
-        font-weight: 700;
-        margin: 0;
-      }
+      .book-cover img { width: 100%; height: 100%; object-fit: cover; }
+      .book-title { font-size: 0.75rem; font-weight: 700; margin: 0; }
 
       .media-section-title {
-        text-align: center;
-        color: var(--color-text-muted);
-        font-size: 0.875rem;
-        margin-bottom: 1.5rem;
-        border-bottom: 1px solid var(--color-border);
-        padding-bottom: 0.5rem;
+        text-align: center; color: var(--color-text-muted); font-size: 0.875rem;
+        margin-bottom: 1.5rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;
       }
-      .media-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-        text-align: center;
-      }
-      @media (min-width: 768px) {
-        .media-grid {
-          grid-template-columns: repeat(4, 1fr);
-        }
-      }
-
+      .media-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; text-align: center; }
+      @media (min-width: 768px) { .media-grid { grid-template-columns: repeat(4, 1fr); } }
+      
       .media-item {
-        background-color: var(--color-bg-light);
-        padding: 1rem;
-        border-radius: var(--radius-md);
+        background-color: var(--color-bg-light); padding: 1rem; border-radius: var(--radius-md);
+        display: flex; align-items: center; justify-content: center;
       }
-      .media-name {
-        font-weight: 700;
-        color: #4b5563;
-      }
+      .media-name { font-weight: 700; color: #4b5563; }
 
       /* =========================================
          14. Locations
          ========================================= */
-      .location-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
-      @media (min-width: 768px) {
-        .location-grid {
-          grid-template-columns: repeat(4, 1fr);
-        }
-      }
-
+      .location-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      @media (min-width: 768px) { .location-grid { grid-template-columns: repeat(4, 1fr); } }
+      
       .location-card {
-        background-color: var(--color-bg-light);
-        padding: 1rem;
-        border-radius: var(--radius-md);
-        text-align: center;
-        cursor: pointer;
-        transition: background-color 0.2s;
+        background-color: var(--color-bg-light); padding: 1rem; border-radius: var(--radius-md);
+        text-align: center; cursor: pointer; transition: background-color 0.2s;
       }
-      .location-card:hover {
-        background-color: var(--color-primary-light);
-      }
-      .location-name {
-        font-weight: 700;
-        color: #166534;
-        margin: 0;
-      }
-      .location-area {
-        font-size: 0.75rem;
-        color: #6b7280;
-        margin: 0;
-      }
+      .location-card:hover { background-color: var(--color-primary-light); }
+      .location-name { font-weight: 700; color: #166534; margin: 0; }
+      .location-area { font-size: 0.75rem; color: #6b7280; margin: 0; }
 
       /* =========================================
          15. Footer
          ========================================= */
       .site-footer {
-        background-color: var(--color-primary-dark);
-        color: var(--color-white);
-        padding: 2.5rem 0;
-        text-align: center;
-        font-size: 0.875rem;
+        background-color: var(--color-primary-dark); color: var(--color-white);
+        padding: 2.5rem 0; text-align: center; font-size: 0.875rem;
       }
       .footer-logo {
-        font-weight: 700;
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
+        font-weight: 700; font-size: 1.5rem; margin-bottom: 1rem;
+        display: flex; align-items: center; justify-content: center; gap: 0.5rem;
       }
-      .footer-desc {
-        opacity: 0.7;
-        margin-bottom: 1rem;
-      }
-      .footer-copy {
-        opacity: 0.5;
-        margin: 0;
-      }
+      .footer-desc { opacity: 0.7; margin-bottom: 1rem; }
+      .footer-copy { opacity: 0.5; margin: 0; }
 
       /* =========================================
          16. Mobile Sticky CTA
          ========================================= */
       .mobile-sticky-cta {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: var(--color-white);
-        border-top: 1px solid var(--color-border);
-        padding: 0.75rem;
-        display: flex;
-        gap: 0.5rem;
-        z-index: 50;
-        box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+        position: fixed; bottom: 0; left: 0; width: 100%;
+        background-color: var(--color-white); border-top: 1px solid var(--color-border);
+        padding: 0.75rem; display: flex; gap: 0.5rem; z-index: 50;
+        box-shadow: 0 -4px 6px -1px rgba(0,0,0,0.1);
       }
-      @media (min-width: 768px) {
-        .mobile-sticky-cta {
-          display: none;
-        }
-      }
+      @media (min-width: 768px) { .mobile-sticky-cta { display: none; } }
 
       .cta-icon-btn {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border-radius: var(--radius-md);
-        padding: 0.75rem;
-        line-height: 1;
-        font-weight: 700;
-        text-align: center;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        border-radius: var(--radius-md); padding: 0.75rem; line-height: 1; font-weight: 700; text-align: center;
       }
-      .cta-icon-btn--request {
-        flex: 1;
-        border: 1px solid var(--color-primary);
-        color: var(--color-primary);
-      }
-      .cta-icon-btn--consult {
-        flex: 2;
-        background-color: var(--color-accent);
-        color: white;
-      }
-      .cta-icon-btn-icon {
-        width: 1rem;
-        height: 1rem;
-        margin-bottom: 0.25rem;
-      }
-      .cta-icon-btn-text {
-        font-size: 0.875rem;
-      }
-      .cta-icon-btn-text--sm {
-        font-size: 0.75rem;
-      }
+      .cta-icon-btn--request { flex: 1; border: 1px solid var(--color-primary); color: var(--color-primary); }
+      .cta-icon-btn--consult { flex: 2; background-color: var(--color-accent); color: white; }
+      .cta-icon-btn-icon { width: 1rem; height: 1rem; margin-bottom: 0.25rem; }
+      .cta-icon-btn-text { font-size: 0.875rem; }
+      .cta-icon-btn-text--sm { font-size: 0.75rem; }
+
     </style>
   </head>
   <body>
-    <a
-      href="#main-content"
-      class="sr-only focus:not-sr-only"
-      style="background: white; color: black; padding: 10px; z-index: 1000"
-    >
+    <a href="#main-content" class="sr-only focus:not-sr-only" style="background:white; color:black; padding:10px; z-index:1000;">
       メインコンテンツへスキップ
     </a>
 
@@ -1370,37 +688,39 @@
           class="menu-toggle"
           aria-label="メニューを開く"
           aria-expanded="false"
-          aria-controls="mobile-menu"
+          aria-controls="mobile-menu-overlay"
         >
           <i data-lucide="menu" class="w-8 h-8"></i>
         </button>
       </div>
 
       <!-- Mobile Menu Overlay -->
-      <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
-        <div class="menu-header">
-          <span class="logo">MENU</span>
-          <button
-            id="close-menu-btn"
-            class="menu-toggle"
-            aria-label="メニューを閉じる"
-          >
-            <i data-lucide="x" class="w-8 h-8"></i>
-          </button>
+      <div
+        id="mobile-menu-overlay"
+        class="mobile-menu-overlay"
+        aria-hidden="true"
+      >
+        <div class="mobile-menu">
+            <div class="menu-header">
+              <span class="logo">MENU</span>
+              <button
+                id="close-menu-btn"
+                class="menu-toggle"
+                aria-label="メニューを閉じる"
+              >
+                <i data-lucide="x" class="w-8 h-8"></i>
+              </button>
+            </div>
+            <nav class="menu-nav">
+              <a href="#voices" class="nav-link mobile-link">合格者の声</a>
+              <a href="#instructors" class="nav-link mobile-link">講師について</a>
+              <a href="#features" class="nav-link mobile-link">特徴</a>
+              <div class="mobile-menu__cta">
+                <a href="#cta" class="btn btn-primary mobile-link">無料相談・体験はこちら</a>
+              </div>
+              <a href="#cta" class="btn btn-secondary mobile-link">資料請求はこちら</a>
+            </nav>
         </div>
-        <nav class="menu-nav">
-          <a href="#voices" class="nav-link mobile-link">合格者の声</a>
-          <a href="#instructors" class="nav-link mobile-link">講師について</a>
-          <a href="#features" class="nav-link mobile-link">特徴</a>
-          <div class="mobile-menu__cta">
-            <a href="#cta" class="btn btn-primary mobile-link"
-              >無料相談・体験はこちら</a
-            >
-          </div>
-          <a href="#cta" class="btn btn-secondary mobile-link"
-            >資料請求はこちら</a
-          >
-        </nav>
       </div>
     </header>
 
@@ -1412,6 +732,8 @@
           alt="学習する様子"
           class="hero-bg-img"
           fetchpriority="high"
+          width="1600"
+          height="900"
         />
         <div class="hero-overlay"></div>
 
@@ -1445,23 +767,16 @@
               loading="lazy"
             />
           </div>
-          <div class="text-center" style="max-width: 48rem; margin: 0 auto">
+          <div class="text-center" style="max-width: 48rem; margin: 0 auto;">
             <h2 class="section-title section-title--primary">
               不登校特有の悩みに寄り添い<br />
-              <span class="text-gray-900">メンタルと学習を同時に支援する</span
-              ><br />
+              <span class="text-gray-900">メンタルと学習を同時に支援する</span><br />
               キズキ共育塾のオンライン家庭教師
             </h2>
             <p class="intro-text">
-              「勉強したいけれど、学校には行けない」「将来が不安で手につかない」。<br
-                class="hidden-md"
-              />
-              そんな悩みに、メンタルケアと学習指導の両面からサポート。<br
-                class="hidden-md"
-              />
-              自宅という安心できる環境で、あなたのペースで「学び」を再開できる<br
-                class="hidden-md"
-              />
+              「勉強したいけれど、学校には行けない」「将来が不安で手につかない」。<br class="hidden-md" />
+              そんな悩みに、メンタルケアと学習指導の両面からサポート。<br class="hidden-md" />
+              自宅という安心できる環境で、あなたのペースで「学び」を再開できる<br class="hidden-md" />
               オンライン家庭教師サービスです。
             </p>
           </div>
@@ -1476,26 +791,20 @@
           </h2>
           <div class="video-card">
             <div class="video-wrapper">
+              <!-- Replaced with a more generic peaceful video ID -->
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=dummy"
+                src="https://www.youtube.com/embed/LXb3EKWsInQ?si=dummy"
                 title="YouTube video player"
                 frameborder="0"
                 loading="lazy"
-                allow="
-                  accelerometer;
-                  autoplay;
-                  clipboard-write;
-                  encrypted-media;
-                  gyroscope;
-                  picture-in-picture;
-                  web-share;
-                "
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen
+                style="aspect-ratio: 16/9;"
               ></iframe>
             </div>
-
+            
             <div class="video-content">
               <div class="profile-box">
                 <div class="profile-img">
@@ -1503,7 +812,9 @@
                     src="https://placehold.co/200x200/333333/ffffff?text=三木"
                     alt="キズキオンライン責任者 三木"
                     loading="lazy"
-                    style="width: 100%; height: 100%; object-fit: cover"
+                    width="200"
+                    height="200"
+                    style="width: 100%; height: 100%; object-fit: cover;"
                   />
                 </div>
                 <h3 class="profile-name">責任者：三木</h3>
@@ -1513,9 +824,7 @@
                 <div class="speech-arrow-left hidden-md"></div>
                 <div class="speech-arrow-top visible-md"></div>
                 <h3 class="speech-title">
-                  キズキオンライン家庭教師を選んでくれて<br
-                    class="hidden-md"
-                  />ありがとうございます。
+                  キズキオンライン家庭教師を選んでくれて<br class="hidden-md" />ありがとうございます。
                 </h3>
                 <p class="speech-text">
                   不登校や引きこもりなど、様々な困難を抱える方々に寄り添い続けて15年。
@@ -1529,15 +838,11 @@
       </section>
 
       <!-- Voices Section -->
-      <section
-        id="voices"
-        class="section section--white"
-        style="overflow: hidden"
-      >
-        <div style="width: 100%">
+      <section id="voices" class="section section--white" style="overflow: hidden;">
+        <div style="width: 100%;">
           <h2 class="section-title">キズキオンラインで合格した人の声</h2>
           <p class="section-desc">多くの卒業生が次のステップへ進んでいます</p>
-
+          
           <div class="marquee-container">
             <div class="marquee-track animate-marquee">
               <!-- Content Block 1 -->
@@ -1545,133 +850,67 @@
                 <!-- Card 1 -->
                 <article class="voice-card voice-card--green">
                   <div class="voice-card__header">
-                    <img
-                      src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80"
-                      alt=""
-                      loading="lazy"
-                      class="voice-card__img"
-                    />
-                    <h3 class="voice-card__title">
-                      通信制高校から<br />上智大に合格！
-                    </h3>
+                    <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" alt="" loading="lazy" class="voice-card__img" width="100" height="100">
+                    <h3 class="voice-card__title">通信制高校から<br>上智大に合格！</h3>
                   </div>
                   <div>
-                    <p class="voice-card__meta">
-                      上智大学(文) 合格 / 岩倉 優太さん
-                    </p>
-                    <p class="voice-card__text">
-                      「自分なんて無理だ」と思っていましたが、先生が根気強く付き合ってくれたおかげで、自信を取り戻せました。
-                    </p>
+                    <p class="voice-card__meta">上智大学(文) 合格 / 岩倉 優太さん</p>
+                    <p class="voice-card__text">「自分なんて無理だ」と思っていましたが、先生が根気強く付き合ってくれたおかげで、自信を取り戻せました。</p>
                   </div>
                 </article>
                 <!-- Card 2 -->
                 <article class="voice-card voice-card--orange">
                   <div class="voice-card__header">
-                    <img
-                      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80"
-                      alt=""
-                      loading="lazy"
-                      class="voice-card__img"
-                    />
-                    <h3 class="voice-card__title">
-                      不登校期間を経て<br />早稲田大へ
-                    </h3>
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" alt="" loading="lazy" class="voice-card__img" width="100" height="100">
+                    <h3 class="voice-card__title">不登校期間を経て<br>早稲田大へ</h3>
                   </div>
                   <div>
-                    <p class="voice-card__meta">
-                      早稲田大学(社) 合格 / K.Sさん
-                    </p>
-                    <p class="voice-card__text">
-                      オンラインだからこそ、家から出られない時期でも勉強を続けられました。メンタル面のサポートが大きかったです。
-                    </p>
+                    <p class="voice-card__meta">早稲田大学(社) 合格 / K.Sさん</p>
+                    <p class="voice-card__text">オンラインだからこそ、家から出られない時期でも勉強を続けられました。メンタル面のサポートが大きかったです。</p>
                   </div>
                 </article>
                 <!-- Card 3 -->
                 <article class="voice-card voice-card--blue">
                   <div class="voice-card__header">
-                    <img
-                      src="https://images.unsplash.com/photo-1491349174775-aaafddd81942?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80"
-                      alt=""
-                      loading="lazy"
-                      class="voice-card__img"
-                    />
-                    <h3 class="voice-card__title">
-                      中学レベルから<br />看護学部へ
-                    </h3>
+                    <img src="https://images.unsplash.com/photo-1491349174775-aaafddd81942?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" alt="" loading="lazy" class="voice-card__img" width="100" height="100">
+                    <h3 class="voice-card__title">中学レベルから<br>看護学部へ</h3>
                   </div>
                   <div>
-                    <p class="voice-card__meta">
-                      私立大学 看護学部 合格 / M.Tさん
-                    </p>
-                    <p class="voice-card__text">
-                      中学の内容も抜けている状態からのスタート。基礎の基礎から丁寧に教えてもらい、夢への道が開けました。
-                    </p>
+                    <p class="voice-card__meta">私立大学 看護学部 合格 / M.Tさん</p>
+                    <p class="voice-card__text">中学の内容も抜けている状態からのスタート。基礎の基礎から丁寧に教えてもらい、夢への道が開けました。</p>
                   </div>
                 </article>
               </div>
               <!-- Content Block 2 (Duplicate for smooth loop) -->
               <div class="marquee-content">
-                <article class="voice-card voice-card--green">
+                 <article class="voice-card voice-card--green">
                   <div class="voice-card__header">
-                    <img
-                      src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80"
-                      alt=""
-                      loading="lazy"
-                      class="voice-card__img"
-                    />
-                    <h3 class="voice-card__title">
-                      通信制高校から<br />上智大に合格！
-                    </h3>
+                    <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" alt="" loading="lazy" class="voice-card__img" width="100" height="100">
+                    <h3 class="voice-card__title">通信制高校から<br>上智大に合格！</h3>
                   </div>
                   <div>
-                    <p class="voice-card__meta">
-                      上智大学(文) 合格 / 岩倉 優太さん
-                    </p>
-                    <p class="voice-card__text">
-                      「自分なんて無理だ」と思っていましたが、先生が根気強く付き合ってくれたおかげで、自信を取り戻せました。
-                    </p>
+                    <p class="voice-card__meta">上智大学(文) 合格 / 岩倉 優太さん</p>
+                    <p class="voice-card__text">「自分なんて無理だ」と思っていましたが、先生が根気強く付き合ってくれたおかげで、自信を取り戻せました。</p>
                   </div>
                 </article>
                 <article class="voice-card voice-card--orange">
                   <div class="voice-card__header">
-                    <img
-                      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80"
-                      alt=""
-                      loading="lazy"
-                      class="voice-card__img"
-                    />
-                    <h3 class="voice-card__title">
-                      不登校期間を経て<br />早稲田大へ
-                    </h3>
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" alt="" loading="lazy" class="voice-card__img" width="100" height="100">
+                    <h3 class="voice-card__title">不登校期間を経て<br>早稲田大へ</h3>
                   </div>
                   <div>
-                    <p class="voice-card__meta">
-                      早稲田大学(社) 合格 / K.Sさん
-                    </p>
-                    <p class="voice-card__text">
-                      オンラインだからこそ、家から出られない時期でも勉強を続けられました。メンタル面のサポートが大きかったです。
-                    </p>
+                    <p class="voice-card__meta">早稲田大学(社) 合格 / K.Sさん</p>
+                    <p class="voice-card__text">オンラインだからこそ、家から出られない時期でも勉強を続けられました。メンタル面のサポートが大きかったです。</p>
                   </div>
                 </article>
                 <article class="voice-card voice-card--blue">
                   <div class="voice-card__header">
-                    <img
-                      src="https://images.unsplash.com/photo-1491349174775-aaafddd81942?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80"
-                      alt=""
-                      loading="lazy"
-                      class="voice-card__img"
-                    />
-                    <h3 class="voice-card__title">
-                      中学レベルから<br />看護学部へ
-                    </h3>
+                    <img src="https://images.unsplash.com/photo-1491349174775-aaafddd81942?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80" alt="" loading="lazy" class="voice-card__img" width="100" height="100">
+                    <h3 class="voice-card__title">中学レベルから<br>看護学部へ</h3>
                   </div>
                   <div>
-                    <p class="voice-card__meta">
-                      私立大学 看護学部 合格 / M.Tさん
-                    </p>
-                    <p class="voice-card__text">
-                      中学の内容も抜けている状態からのスタート。基礎の基礎から丁寧に教えてもらい、夢への道が開けました。
-                    </p>
+                    <p class="voice-card__meta">私立大学 看護学部 合格 / M.Tさん</p>
+                    <p class="voice-card__text">中学の内容も抜けている状態からのスタート。基礎の基礎から丁寧に教えてもらい、夢への道が開けました。</p>
                   </div>
                 </article>
               </div>
@@ -1681,54 +920,39 @@
           <div class="container">
             <div class="achievement-box">
               <span class="achievement-tag">2025年春 合格実績</span>
-              <p class="achievement-list">
-                東京大学 / 京都大学 / 早稲田大学 / 慶應義塾大学 / 一橋大 /
-                東京科学大 / 北海道大 / 東北大 / 名古屋大 / 大阪大 / 神戸大 /
-                広島大 / 九州大 / 上智大 / ICU / 明治大 / 青山学院大 / 立教大 /
-                中央大 / 法政大 / 学習院大 / 東京理科大 / 同志社大 / 立命館大 /
-                関西大 / 関西学院大 <br />
-                <span class="achievement-note">他 546校</span>
-              </p>
+              <!-- Semantically improved list structure -->
+              <ul class="achievement-list">
+                <li>東京大学</li> <li>京都大学</li> <li>早稲田大学</li> <li>慶應義塾大学</li> <li>一橋大</li>
+                <li>東京科学大</li> <li>北海道大</li> <li>東北大</li> <li>名古屋大</li> <li>大阪大</li> <li>神戸大</li>
+                <li>広島大</li> <li>九州大</li> <li>上智大</li> <li>ICU</li> <li>明治大</li> <li>青山学院大</li> <li>立教大</li>
+                <li>中央大</li> <li>法政大</li> <li>学習院大</li> <li>東京理科大</li> <li>同志社大</li> <li>立命館大</li>
+                <li>関西大</li> <li>関西学院大</li>
+              </ul>
+              <span class="achievement-note">他 546校</span>
             </div>
 
             <!-- Standard CTA Group -->
             <div class="cta-group">
               <a href="#cta" class="btn btn-cta-main">
                 無料個別相談会
-                <span class="icon-circle icon-circle--gray"
-                  ><i data-lucide="chevron-right"></i
-                ></span>
+                <span class="icon-circle icon-circle--gray"><i data-lucide="chevron-right"></i></span>
               </a>
-
+              
               <a href="#cta" class="cta-card">
                 <div class="cta-card-inner">
                   <div class="cta-img-col">
-                    <img
-                      src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-                      alt=""
-                      class="cta-img"
-                      loading="lazy"
-                    />
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="" class="cta-img" loading="lazy" width="300" height="200">
                     <span class="cta-img-badge">合格</span>
                   </div>
                   <div class="cta-text-col">
                     <span class="cta-label-serif">資料請求</span>
-                    <i
-                      data-lucide="chevron-right"
-                      style="
-                        border: 1px solid white;
-                        border-radius: 50%;
-                        padding: 2px;
-                      "
-                    ></i>
+                    <i data-lucide="chevron-right" style="border: 1px solid white; border-radius: 50%; padding: 2px;"></i>
                   </div>
                 </div>
               </a>
 
               <a href="#school-locations" class="btn btn-outline-gray">
-                <span class="icon-circle icon-circle--dark"
-                  ><i data-lucide="chevron-down"></i
-                ></span>
+                <span class="icon-circle icon-circle--dark"><i data-lucide="chevron-down"></i></span>
                 お近くの校舎をお探しの方はこちらから
               </a>
             </div>
@@ -1737,58 +961,34 @@
       </section>
 
       <!-- Instructors Section -->
-      <section
-        id="instructors"
-        class="section section--white"
-        style="overflow: hidden"
-      >
+      <section id="instructors" class="section section--white" style="overflow: hidden;">
         <div class="container">
           <div class="instructor-card">
             <!-- Decorative Blobs -->
             <div class="instructor-blob instructor-blob--yellow"></div>
             <div class="instructor-blob instructor-blob--green"></div>
-
+            
             <div class="instructor-layout">
-              <div class="instructor-text">
-                <span class="instructor-badge">安心の講師陣</span>
-                <h2 class="instructor-title">
-                  キズキオンラインは<br />
-                  <span class="instructor-highlight">こんな方にピッタリ</span>
-                </h2>
-                <p class="instructor-desc">
-                  キズキには、不登校や中退、引きこもりを経験し、そこから立ち直った講師が多く在籍しています。<br /><br />
-                  「勉強が手につかない」「将来が不安」といった気持ちを、講師自身も経験しているからこそ、あなたの悩みに深く共感し、同じ目線で寄り添うことができます。
-                </p>
-              </div>
-
-              <div class="instructor-images">
-                <div class="instructor-img-card instructor-img-card--back">
-                  <img
-                    src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    alt=""
-                    loading="lazy"
-                    style="
-                      width: 100%;
-                      height: 100%;
-                      object-fit: cover;
-                      border-radius: 0.75rem;
-                    "
-                  />
-                </div>
-                <div class="instructor-img-card instructor-img-card--front">
-                  <img
-                    src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
-                    alt=""
-                    loading="lazy"
-                    style="
-                      width: 100%;
-                      height: 100%;
-                      object-fit: cover;
-                      border-radius: 0.75rem;
-                    "
-                  />
-                </div>
-              </div>
+               <div class="instructor-text">
+                 <span class="instructor-badge">安心の講師陣</span>
+                 <h2 class="instructor-title">
+                   キズキオンラインは<br />
+                   <span class="instructor-highlight">こんな方にピッタリ</span>
+                 </h2>
+                 <p class="instructor-desc">
+                   キズキには、不登校や中退、引きこもりを経験し、そこから立ち直った講師が多く在籍しています。<br /><br />
+                   「勉強が手につかない」「将来が不安」といった気持ちを、講師自身も経験しているからこそ、あなたの悩みに深く共感し、同じ目線で寄り添うことができます。
+                 </p>
+               </div>
+               
+               <div class="instructor-images">
+                 <div class="instructor-img-card instructor-img-card--back">
+                   <img src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="" loading="lazy" width="600" height="400" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0.75rem;">
+                 </div>
+                 <div class="instructor-img-card instructor-img-card--front">
+                   <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="" loading="lazy" width="600" height="400" style="width: 100%; height: 100%; object-fit: cover; border-radius: 0.75rem;">
+                 </div>
+               </div>
             </div>
           </div>
         </div>
@@ -1808,31 +1008,22 @@
               loading="lazy"
               width="1200"
               height="800"
-              style="width: 100%; height: auto"
+              style="width: 100%; height: auto;"
             />
           </div>
         </div>
       </section>
 
       <!-- Comparison Table Section -->
-      <section
-        class="section section--green"
-        style="border-top: 1px solid #bbf7d0"
-      >
+      <section class="section section--green" style="border-top: 1px solid #bbf7d0;">
         <div class="container">
           <div class="comparison-wrapper">
-            <h2 class="section-title" style="margin-bottom: 2rem">
-              他のオンライン塾との違い
-            </h2>
+            <h2 class="section-title" style="margin-bottom: 2rem;">他のオンライン塾との違い</h2>
             <table class="comparison-table">
               <thead>
                 <tr>
                   <th class="col-header" scope="col">比較項目</th>
-                  <th
-                    class="cell-highlight"
-                    scope="col"
-                    style="position: relative"
-                  >
+                  <th class="cell-highlight" scope="col" style="position: relative;">
                     <div class="badge-recommend">おすすめ</div>
                     キズキオンライン
                   </th>
@@ -1844,57 +1035,41 @@
                 <tr>
                   <td data-label="比較項目">①メンタルサポート</td>
                   <td data-label="キズキ" class="cell-highlight">
-                    ◎ あり<br /><span
-                      style="font-size: 0.75rem; font-weight: normal"
-                      >授業内・外で実施</span
-                    >
+                    ◎ あり<br /><span style="font-size: 0.75rem; font-weight: normal;">授業内・外で実施</span>
                   </td>
                   <td data-label="大手A社">△ 講師次第</td>
                   <td data-label="大手B社">× なし</td>
                 </tr>
                 <tr>
-                  <td data-label="比較項目">②学習の進め方</td>
-                  <td data-label="キズキ" class="cell-highlight">
-                    ◎ 完全1対1<br /><span
-                      style="font-size: 0.75rem; font-weight: normal"
-                      >対話重視</span
-                    >
-                  </td>
-                  <td data-label="大手A社">◯ 1対2〜3</td>
-                  <td data-label="大手B社">◎ 映像授業</td>
+                   <td data-label="比較項目">②学習の進め方</td>
+                   <td data-label="キズキ" class="cell-highlight">
+                     ◎ 完全1対1<br /><span style="font-size: 0.75rem; font-weight: normal;">対話重視</span>
+                   </td>
+                   <td data-label="大手A社">◯ 1対2〜3</td>
+                   <td data-label="大手B社">◎ 映像授業</td>
                 </tr>
                 <tr>
                   <td data-label="比較項目">⑤カリキュラム</td>
                   <td data-label="キズキ" class="cell-highlight">
-                    ◎ オーダーメイド<br /><span
-                      style="font-size: 0.75rem; font-weight: normal"
-                      >一人ひとりに最適化</span
-                    >
+                    ◎ オーダーメイド<br /><span style="font-size: 0.75rem; font-weight: normal;">一人ひとりに最適化</span>
                   </td>
                   <td data-label="大手A社">△ 決まった教材あり</td>
                   <td data-label="大手B社">◯ レベル別コース</td>
                 </tr>
               </tbody>
             </table>
-            <p class="comparison-note">
-              ※当社調べによる一般的なサービスとの比較
-            </p>
+            <p class="comparison-note">※当社調べによる一般的なサービスとの比較</p>
           </div>
         </div>
       </section>
 
       <!-- Intermediate CTA -->
-      <section
-        class="section section--white"
-        style="border-bottom: 1px solid var(--color-border)"
-      >
+      <section class="section section--white" style="border-bottom: 1px solid var(--color-border);">
         <h2 class="sr-only">お問い合わせ・資料請求</h2>
         <div class="cta-group">
           <a href="#cta" class="btn btn-cta-main">
             無料個別相談会
-            <span class="icon-circle icon-circle--gray"
-              ><i data-lucide="chevron-right"></i
-            ></span>
+            <span class="icon-circle icon-circle--gray"><i data-lucide="chevron-right"></i></span>
           </a>
 
           <div class="text-center">
@@ -1903,35 +1078,23 @@
               <h3 class="cta-separator__text">資料請求の方はこちらから！</h3>
               <span class="cta-separator__line"></span>
             </div>
-            <a href="#cta" class="cta-card">
-              <div class="cta-card-inner">
-                <div class="cta-img-col">
-                  <img
-                    src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-                    alt=""
-                    class="cta-img"
-                    loading="lazy"
-                  />
-                  <div class="cta-img-badge">東大に!?</div>
+             <a href="#cta" class="cta-card">
+                <div class="cta-card-inner">
+                  <div class="cta-img-col">
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="" class="cta-img" loading="lazy" width="300" height="200">
+                    <div class="cta-img-badge">東大に!?</div>
+                  </div>
+                  <div class="cta-text-col">
+                    <span class="cta-free-label">無料</span>
+                    <span class="cta-label-serif">資料請求</span>
+                    <i data-lucide="chevron-right" style="border: 1px solid white; border-radius: 50%; padding: 2px;"></i>
+                  </div>
                 </div>
-                <div class="cta-text-col">
-                  <span class="cta-free-label">無料</span>
-                  <span class="cta-label-serif">資料請求</span>
-                  <i
-                    data-lucide="chevron-right"
-                    style="
-                      border: 1px solid white;
-                      border-radius: 50%;
-                      padding: 2px;
-                    "
-                  ></i>
-                </div>
-              </div>
-            </a>
+              </a>
           </div>
 
           <div class="text-center">
-            <p class="cta-area-info">
+             <p class="cta-area-info">
               東京・神奈川・千葉・埼玉・静岡・名古屋・<br class="visible-md" />
               大阪・京都・神戸・広島・福岡・仙台・札幌<br />
               <span class="text-primary">全国オンラインでも受講可！</span>
@@ -1939,19 +1102,14 @@
           </div>
 
           <a href="#school-locations" class="btn btn-outline-gray">
-            <span class="icon-circle icon-circle--dark"
-              ><i data-lucide="chevron-down"></i
-            ></span>
-            お近くの校舎をお探しの方はこちらから
+             <span class="icon-circle icon-circle--dark"><i data-lucide="chevron-down"></i></span>
+             お近くの校舎をお探しの方はこちらから
           </a>
         </div>
       </section>
-
+      
       <!-- Books & Media -->
-      <section
-        class="section section--white"
-        style="border-top: 1px solid var(--color-border); overflow: hidden"
-      >
+      <section class="section section--white" style="border-top: 1px solid var(--color-border); overflow: hidden;">
         <div class="container">
           <h2 class="section-title section-title--flex">
             <i data-lucide="newspaper" class="text-primary"></i>
@@ -1961,68 +1119,47 @@
           <div class="marquee-container">
             <div class="marquee-track animate-marquee-slow">
               <!-- Book Items Loop -->
-              <div class="flex" style="gap: 2rem; padding: 0 1rem">
+              <div class="flex" style="gap: 2rem; padding: 0 1rem;">
                 <!-- Item 1 -->
                 <article class="book-item">
                   <div class="book-cover">
-                    <img
-                      src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-                      alt="書籍：不登校からの大学受験"
-                      loading="lazy"
-                    />
+                    <img src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="書籍：不登校からの大学受験" loading="lazy" width="300" height="450">
                   </div>
                   <h3 class="book-title">不登校からの大学受験</h3>
                 </article>
                 <!-- Item 2 -->
                 <article class="book-item">
                   <div class="book-cover">
-                    <img
-                      src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-                      alt="書籍：暗闇でも走る"
-                      loading="lazy"
-                    />
+                    <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="書籍：暗闇でも走る" loading="lazy" width="300" height="450">
                   </div>
                   <h3 class="book-title">暗闇でも走る（講談社）</h3>
                 </article>
                 <!-- Duplicates for loop -->
-                <article class="book-item">
+                 <article class="book-item">
                   <div class="book-cover">
-                    <img
-                      src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-                      alt="書籍：不登校からの大学受験"
-                      loading="lazy"
-                    />
+                    <img src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="書籍：不登校からの大学受験" loading="lazy" width="300" height="450">
                   </div>
                   <h3 class="book-title">不登校からの大学受験</h3>
                 </article>
                 <article class="book-item">
                   <div class="book-cover">
-                    <img
-                      src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-                      alt="書籍：暗闇でも走る"
-                      loading="lazy"
-                    />
+                    <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="書籍：暗闇でも走る" loading="lazy" width="300" height="450">
                   </div>
                   <h3 class="book-title">暗闇でも走る（講談社）</h3>
                 </article>
               </div>
             </div>
           </div>
-
-          <div class="container--narrow" style="margin: 0 auto">
+          
+          <div class="container--narrow" style="margin: 0 auto;">
             <p class="media-section-title">メディア掲載実績</p>
-            <div class="media-grid">
-              <div class="media-item">
-                <span class="media-name">日本経済新聞</span>
-              </div>
-              <div class="media-item">
-                <span class="media-name">朝日新聞</span>
-              </div>
-              <div class="media-item"><span class="media-name">NHK</span></div>
-              <div class="media-item">
-                <span class="media-name">Yahoo!ニュース</span>
-              </div>
-            </div>
+            <!-- Semantically improved grid structure -->
+            <ul class="media-grid">
+              <li class="media-item"><span class="media-name">日本経済新聞</span></li>
+              <li class="media-item"><span class="media-name">朝日新聞</span></li>
+              <li class="media-item"><span class="media-name">NHK</span></li>
+              <li class="media-item"><span class="media-name">Yahoo!ニュース</span></li>
+            </ul>
           </div>
         </div>
       </section>
@@ -2031,108 +1168,83 @@
       <section id="cta" class="section section--green">
         <div class="container text-center">
           <h2 class="sr-only">お問い合わせ・申し込み</h2>
-
+          
           <!-- Campaign Box -->
           <div class="campaign-box">
-            <p class="campaign-title">＼ キャンペーン実施中 ／</p>
-            <p class="campaign-content">
-              受講料(80分×1回)も教材費も<br />
-              <span class="campaign-highlight">2教科まで無料</span>
-            </p>
+             <p class="campaign-title">＼ キャンペーン実施中 ／</p>
+             <p class="campaign-content">
+               受講料(80分×1回)も教材費も<br />
+               <span class="campaign-highlight">2教科まで無料</span>
+             </p>
           </div>
 
           <div class="cta-group">
             <a href="#cta" class="btn btn-cta-orange">
               無料個別相談会
-              <span class="icon-circle icon-circle--accent"
-                ><i data-lucide="chevron-right"></i
-              ></span>
+              <span class="icon-circle icon-circle--accent"><i data-lucide="chevron-right"></i></span>
             </a>
-
-            <div class="text-center">
-              <div class="cta-separator">
-                <span class="cta-separator__line"></span>
-                <h3 class="cta-separator__text">資料請求の方はこちらから！</h3>
-                <span class="cta-separator__line"></span>
-              </div>
-              <a href="#cta" class="cta-card">
-                <div class="cta-card-inner">
-                  <div class="cta-img-col">
-                    <img
-                      src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-                      alt=""
-                      class="cta-img"
-                      loading="lazy"
-                    />
-                    <div class="cta-img-badge">東大に!?</div>
-                  </div>
-                  <div class="cta-text-col">
-                    <span class="cta-free-label">無料</span>
-                    <span class="cta-label-serif">資料請求</span>
-                    <i
-                      data-lucide="chevron-right"
-                      style="
-                        border: 1px solid white;
-                        border-radius: 50%;
-                        padding: 2px;
-                      "
-                    ></i>
-                  </div>
+            
+             <div class="text-center">
+                <div class="cta-separator">
+                  <span class="cta-separator__line"></span>
+                  <h3 class="cta-separator__text">資料請求の方はこちらから！</h3>
+                  <span class="cta-separator__line"></span>
                 </div>
+                 <a href="#cta" class="cta-card">
+                    <div class="cta-card-inner">
+                      <div class="cta-img-col">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="" class="cta-img" loading="lazy" width="300" height="200">
+                        <div class="cta-img-badge">東大に!?</div>
+                      </div>
+                      <div class="cta-text-col">
+                        <span class="cta-free-label">無料</span>
+                        <span class="cta-label-serif">資料請求</span>
+                        <i data-lucide="chevron-right" style="border: 1px solid white; border-radius: 50%; padding: 2px;"></i>
+                      </div>
+                    </div>
+                  </a>
+              </div>
+              
+              <div class="text-center">
+                 <p class="cta-area-info">
+                  東京・神奈川・千葉・埼玉・静岡・名古屋・<br class="visible-md" />
+                  大阪・京都・神戸・広島・福岡・仙台・札幌<br />
+                  <span class="text-primary">全国オンラインでも受講可！</span>
+                </p>
+              </div>
+              
+              <a href="#school-locations" class="btn btn-outline-gray">
+                <span class="icon-circle icon-circle--dark"><i data-lucide="chevron-down"></i></span>
+                お近くの校舎をお探しの方はこちらから
               </a>
-            </div>
-
-            <div class="text-center">
-              <p class="cta-area-info">
-                東京・神奈川・千葉・埼玉・静岡・名古屋・<br
-                  class="visible-md"
-                />
-                大阪・京都・神戸・広島・福岡・仙台・札幌<br />
-                <span class="text-primary">全国オンラインでも受講可！</span>
-              </p>
-            </div>
-
-            <a href="#school-locations" class="btn btn-outline-gray">
-              <span class="icon-circle icon-circle--dark"
-                ><i data-lucide="chevron-down"></i
-              ></span>
-              お近くの校舎をお探しの方はこちらから
-            </a>
           </div>
         </div>
       </section>
 
       <!-- Locations -->
-      <section
-        id="school-locations"
-        class="section section--white"
-        style="border-top: 1px solid var(--color-border)"
-      >
+      <section id="school-locations" class="section section--white" style="border-top: 1px solid var(--color-border);">
         <div class="container">
-          <h2
-            class="section-title section-title--flex"
-            style="margin-bottom: 2rem"
-          >
+          <h2 class="section-title section-title--flex" style="margin-bottom: 2rem;">
             <i data-lucide="map-pin" class="text-primary"></i> 校舎一覧
           </h2>
           <div class="location-grid">
-            <div class="location-card">
-              <h3 class="location-name">代々木校</h3>
-              <p class="location-area">東京都渋谷区</p>
-            </div>
-            <div class="location-card">
-              <h3 class="location-name">大阪校</h3>
-              <p class="location-area">大阪府大阪市</p>
-            </div>
-            <!-- Mock additional locations for grid demo -->
-            <div class="location-card">
-              <h3 class="location-name">名古屋校</h3>
-              <p class="location-area">愛知県名古屋市</p>
-            </div>
-            <div class="location-card">
-              <h3 class="location-name">福岡校</h3>
-              <p class="location-area">福岡県福岡市</p>
-            </div>
+             <div class="location-card">
+                <h3 class="location-name">代々木校</h3>
+                <p class="location-area">東京都渋谷区</p>
+             </div>
+             <div class="location-card">
+                <h3 class="location-name">大阪校</h3>
+                <p class="location-area">大阪府大阪市</p>
+             </div>
+             <!-- Mock additional locations for grid demo -->
+             <div class="location-card">
+                <h3 class="location-name">名古屋校</h3>
+                <p class="location-area">愛知県名古屋市</p>
+             </div>
+             <div class="location-card">
+                <h3 class="location-name">福岡校</h3>
+                <p class="location-area">福岡県福岡市</p>
+             </div>
           </div>
         </div>
       </section>
@@ -2145,9 +1257,7 @@
           <i data-lucide="book-open"></i>
           キズキオンライン家庭教師
         </div>
-        <p class="footer-desc">
-          不登校・中退・ひきこもり支援のオンライン学習塾
-        </p>
+        <p class="footer-desc">不登校・中退・ひきこもり支援のオンライン学習塾</p>
         <p class="footer-copy">&copy; kizuki online. All Rights Reserved.</p>
       </div>
     </footer>
@@ -2171,17 +1281,17 @@
       // Mobile Menu Logic with Accessibility Focus
       const menuBtn = document.getElementById("menu-btn");
       const closeMenuBtn = document.getElementById("close-menu-btn");
-      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
       const mobileLinks = document.querySelectorAll(".mobile-link");
 
       function toggleMenu(isOpen) {
         const expanded = isOpen ? "true" : "false";
         const hidden = isOpen ? "false" : "true";
-
+        
         menuBtn.setAttribute("aria-expanded", expanded);
-        mobileMenu.setAttribute("aria-hidden", hidden);
+        mobileMenuOverlay.setAttribute("aria-hidden", hidden);
         document.body.style.overflow = isOpen ? "hidden" : "";
-
+        
         if (isOpen) {
           closeMenuBtn.focus();
         } else {
@@ -2191,16 +1301,20 @@
 
       menuBtn.addEventListener("click", () => toggleMenu(true));
       closeMenuBtn.addEventListener("click", () => toggleMenu(false));
+      
+      // Close menu when clicking outside (on the overlay)
+      mobileMenuOverlay.addEventListener("click", (e) => {
+        if (e.target === mobileMenuOverlay) {
+            toggleMenu(false);
+        }
+      });
 
       mobileLinks.forEach((link) => {
         link.addEventListener("click", () => toggleMenu(false));
       });
 
-      document.addEventListener("keydown", (e) => {
-        if (
-          e.key === "Escape" &&
-          mobileMenu.getAttribute("aria-hidden") === "false"
-        ) {
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenuOverlay.getAttribute('aria-hidden') === 'false') {
           toggleMenu(false);
         }
       });
