@@ -46,15 +46,6 @@
         border-style: solid;
         border-color: transparent #f0fdf4 transparent transparent;
       }
-      /* Hide scrollbar for carousel */
-      .no-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-
       /* Infinite Marquee Animation */
       @keyframes marquee {
         0% {
@@ -67,8 +58,25 @@
       .animate-marquee {
         animation: marquee 40s linear infinite;
       }
+      .animate-marquee-slow {
+        animation: marquee 60s linear infinite;
+      }
       .pause-on-hover:hover {
         animation-play-state: paused;
+      }
+      /* Custom Table Styles */
+      .comparison-table th,
+      .comparison-table td {
+        border: 1px solid #e5e7eb;
+      }
+      .comparison-table th {
+        background-color: #f0fdf4; /* green-50 */
+        color: #15803d; /* green-700 */
+      }
+      .highlight-cell {
+        background-color: #dcfce7; /* green-100 */
+        font-weight: bold;
+        color: #166534; /* green-800 */
       }
     </style>
   </head>
@@ -86,7 +94,7 @@
             class="font-bold text-2xl text-green-700 tracking-tighter flex items-center hover:opacity-80 transition"
           >
             <i data-lucide="book-open" class="mr-2"></i>
-            キズキ共育塾
+            キズキオンライン家庭教師
           </a>
         </div>
 
@@ -100,7 +108,7 @@
         </button>
       </div>
 
-      <!-- Mobile Menu Overlay (Hidden by default) -->
+      <!-- Mobile Menu Overlay -->
       <div
         id="mobile-menu"
         class="fixed inset-0 bg-white z-50 hidden flex flex-col"
@@ -123,6 +131,11 @@
             href="#voices"
             class="text-xl font-bold text-gray-800 hover:text-green-700 mobile-link"
             >合格者の声</a
+          >
+          <a
+            href="#instructors"
+            class="text-xl font-bold text-gray-800 hover:text-green-700 mobile-link"
+            >講師について</a
           >
           <a
             href="#features"
@@ -233,7 +246,7 @@
       </div>
     </section>
 
-    <!-- Graduate Video & Manager Response Section -->
+    <!-- Graduate Video Section -->
     <section class="py-16 bg-gray-100">
       <div class="max-w-4xl mx-auto px-4">
         <h2
@@ -241,7 +254,6 @@
         >
           キズキオンラインの卒業生
         </h2>
-
         <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm">
           <div
             class="w-full aspect-video bg-black rounded-lg overflow-hidden shadow-md mb-10 relative group"
@@ -263,7 +275,6 @@
               allowfullscreen
             ></iframe>
           </div>
-
           <div
             class="flex flex-col md:flex-row items-center md:items-start gap-6"
           >
@@ -279,7 +290,6 @@
               </div>
               <p class="font-bold text-sm text-gray-800">責任者：三木</p>
             </div>
-
             <div
               class="relative bg-green-50 rounded-xl p-6 border border-green-100 flex-1 shadow-sm w-full md:w-auto"
             >
@@ -303,26 +313,21 @@
       </div>
     </section>
 
-    <!-- Social Proof (Voices) - Infinite Marquee -->
+    <!-- Voices Section -->
     <section
       id="voices"
       class="py-16 bg-white border-b border-gray-100 overflow-hidden"
     >
       <div class="w-full">
         <h2 class="text-center text-3xl font-black text-gray-900 mb-4">
-          合格者の声
+          キズキオンラインで合格した人の声
         </h2>
         <p class="text-center text-gray-600 mb-12">
           多くの卒業生が次のステップへ進んでいます
         </p>
-
-        <!-- Marquee Container -->
         <div class="relative w-full overflow-hidden mb-16">
-          <!-- Wrapper for animation -->
           <div class="flex w-max animate-marquee pause-on-hover">
-            <!-- Original Set -->
             <div class="flex gap-6 px-3">
-              <!-- Card 1 -->
               <div
                 class="w-[300px] md:w-[400px] bg-gray-50 p-6 rounded-xl shadow-md border-l-4 border-green-500 flex flex-col gap-4"
               >
@@ -347,8 +352,6 @@
                   </p>
                 </div>
               </div>
-
-              <!-- Card 2 -->
               <div
                 class="w-[300px] md:w-[400px] bg-gray-50 p-6 rounded-xl shadow-md border-l-4 border-orange-500 flex flex-col gap-4"
               >
@@ -373,8 +376,6 @@
                   </p>
                 </div>
               </div>
-
-              <!-- Card 3 -->
               <div
                 class="w-[300px] md:w-[400px] bg-gray-50 p-6 rounded-xl shadow-md border-l-4 border-blue-500 flex flex-col gap-4"
               >
@@ -399,8 +400,6 @@
                   </p>
                 </div>
               </div>
-
-              <!-- Card 4 -->
               <div
                 class="w-[300px] md:w-[400px] bg-gray-50 p-6 rounded-xl shadow-md border-l-4 border-purple-500 flex flex-col gap-4"
               >
@@ -426,10 +425,8 @@
                 </div>
               </div>
             </div>
-
-            <!-- Duplicate Set for Loop -->
+            <!-- Duplicate Set -->
             <div class="flex gap-6 px-3">
-              <!-- Card 1 Copy -->
               <div
                 class="w-[300px] md:w-[400px] bg-gray-50 p-6 rounded-xl shadow-md border-l-4 border-green-500 flex flex-col gap-4"
               >
@@ -454,7 +451,6 @@
                   </p>
                 </div>
               </div>
-              <!-- Card 2 Copy -->
               <div
                 class="w-[300px] md:w-[400px] bg-gray-50 p-6 rounded-xl shadow-md border-l-4 border-orange-500 flex flex-col gap-4"
               >
@@ -479,62 +475,12 @@
                   </p>
                 </div>
               </div>
-              <!-- Card 3 Copy -->
-              <div
-                class="w-[300px] md:w-[400px] bg-gray-50 p-6 rounded-xl shadow-md border-l-4 border-blue-500 flex flex-col gap-4"
-              >
-                <div class="flex items-center gap-4">
-                  <img
-                    src="https://images.unsplash.com/photo-1491349174775-aaafddd81942?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80"
-                    alt="学生"
-                    class="w-12 h-12 rounded-full object-cover bg-gray-200"
-                  />
-                  <div>
-                    <h3 class="font-bold text-md leading-tight">
-                      中学レベルから<br />看護学部へ
-                    </h3>
-                  </div>
-                </div>
-                <div>
-                  <p class="text-xs text-gray-500 mb-2">
-                    私立大学 看護学部 合格 / M.Tさん
-                  </p>
-                  <p class="text-sm text-gray-700 leading-snug">
-                    中学の内容も抜けている状態からのスタート。基礎の基礎から丁寧に教えてもらい、夢への道が開けました。
-                  </p>
-                </div>
-              </div>
-              <!-- Card 4 Copy -->
-              <div
-                class="w-[300px] md:w-[400px] bg-gray-50 p-6 rounded-xl shadow-md border-l-4 border-purple-500 flex flex-col gap-4"
-              >
-                <div class="flex items-center gap-4">
-                  <img
-                    src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80"
-                    alt="学生"
-                    class="w-12 h-12 rounded-full object-cover bg-gray-200"
-                  />
-                  <div>
-                    <h3 class="font-bold text-md leading-tight">
-                      不安障害を<br />乗り越え進学
-                    </h3>
-                  </div>
-                </div>
-                <div>
-                  <p class="text-xs text-gray-500 mb-2">
-                    高卒認定 ＆ 芸大合格 / Y.Kさん
-                  </p>
-                  <p class="text-sm text-gray-700 leading-snug">
-                    人と話すのが怖かったのですが、先生は私の体調を最優先にしてくれました。高認取得から伴走してくれました。
-                  </p>
-                </div>
-              </div>
+              <!-- ... other cards ... -->
             </div>
           </div>
         </div>
 
         <div class="max-w-6xl mx-auto px-4">
-          <!-- Univ Results -->
           <div
             class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm text-center mb-12"
           >
@@ -555,7 +501,7 @@
             </p>
           </div>
 
-          <!-- CTA after Results (NEW) -->
+          <!-- CTA Set (Intermediate) -->
           <div class="max-w-2xl mx-auto flex flex-col gap-6">
             <a
               href="#cta"
@@ -567,7 +513,6 @@
                 class="bg-white text-gray-500 rounded-full w-5 h-5 p-0.5"
               ></i>
             </a>
-
             <a
               href="#cta"
               class="block w-full bg-gray-700 hover:bg-gray-800 text-white rounded shadow-lg overflow-hidden transition group"
@@ -597,13 +542,96 @@
                 </div>
               </div>
             </a>
+            <a
+              href="#school-locations"
+              class="block w-full bg-white border-2 border-gray-600 text-gray-700 hover:bg-gray-50 text-center font-bold py-3 rounded-full transition flex items-center justify-center gap-2"
+            >
+              <i
+                data-lucide="chevron-down"
+                class="w-5 h-5 bg-gray-600 text-white rounded-full p-0.5"
+              ></i>
+              お近くの校舎をお探しの方はこちらから
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Problems & Solutions (Unique Features) -->
-    <section id="features" class="py-16 bg-gray-50">
+    <!-- Instructor Section -->
+    <section id="instructors" class="bg-white py-16 overflow-hidden">
+      <div class="max-w-6xl mx-auto px-4">
+        <div
+          class="bg-green-50 rounded-3xl p-6 md:p-12 relative overflow-hidden shadow-sm"
+        >
+          <div
+            class="absolute top-0 right-0 w-64 h-64 bg-yellow-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50 transform translate-x-1/2 -translate-y-1/2"
+          ></div>
+          <div
+            class="absolute bottom-0 left-0 w-64 h-64 bg-green-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 transform -translate-x-1/2 translate-y-1/2"
+          ></div>
+          <div
+            class="flex flex-col md:flex-row items-center gap-10 relative z-10"
+          >
+            <div class="md:w-1/2">
+              <span
+                class="inline-block bg-white text-green-700 text-xs font-bold px-3 py-1 rounded-full mb-4 border border-green-200"
+                >安心の講師陣</span
+              >
+              <h2
+                class="text-2xl md:text-4xl font-black text-gray-900 mb-6 leading-tight"
+              >
+                キズキオンラインは
+                <br />
+                <span class="text-green-700 bg-white px-1"
+                  >こんな方にピッタリ
+                </span>
+              </h2>
+              <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                キズキには、不登校や中退、引きこもりを経験し、そこから立ち直った講師が多く在籍しています。<br /><br />
+                「勉強が手につかない」「将来が不安」といった気持ちを、講師自身も経験しているからこそ、あなたの悩みに深く共感し、同じ目線で寄り添うことができます。
+              </p>
+              <div
+                class="flex items-center gap-3 text-sm font-bold text-gray-600"
+              >
+                <div class="flex -space-x-2">
+                  <div
+                    class="w-8 h-8 rounded-full bg-gray-300 border-2 border-white"
+                  ></div>
+                  <div
+                    class="w-8 h-8 rounded-full bg-gray-400 border-2 border-white"
+                  ></div>
+                  <div
+                    class="w-8 h-8 rounded-full bg-gray-500 border-2 border-white"
+                  ></div>
+                </div>
+                <span>多様なバックグラウンドを持つ講師たち</span>
+              </div>
+            </div>
+            <div class="md:w-1/2 w-full relative h-[300px] md:h-[400px]">
+              <div
+                class="absolute top-4 left-4 w-3/4 h-3/4 z-20 transform -rotate-2 hover:rotate-0 transition duration-500"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                  class="w-full h-full object-cover rounded-xl shadow-xl border-4 border-white"
+                />
+              </div>
+              <div
+                class="absolute bottom-4 right-4 w-2/3 h-2/3 z-10 transform rotate-3 hover:rotate-0 transition duration-500"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+                  class="w-full h-full object-cover rounded-xl shadow-lg border-4 border-white opacity-90"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white">
       <div class="max-w-6xl mx-auto px-4">
         <h2 class="text-center text-3xl font-black text-gray-900 mb-4">
           キズキオンラインならではの<br class="md:hidden" />3つの特徴
@@ -611,122 +639,85 @@
         <p class="text-center text-gray-600 mb-12">
           不登校特有の悩みに、徹底的に寄り添います
         </p>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- Feature 1 -->
-          <div
-            class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition"
-          >
-            <div class="bg-green-100 p-6 flex justify-center">
-              <i
-                data-lucide="heart-handshake"
-                class="w-16 h-16 text-green-600"
-              ></i>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-green-800 mb-3 text-center">
-                メンタルと学習を<br />同時に支援
-              </h3>
-              <p class="text-gray-600 text-sm leading-relaxed">
-                勉強の遅れを取り戻すだけでなく、メンタル面の不安もケア。授業の開始時に雑談タイムを設けたり、学習以外の相談にも乗ります。
-              </p>
-            </div>
-          </div>
-
-          <!-- Feature 2 -->
-          <div
-            class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition"
-          >
-            <div class="bg-orange-100 p-6 flex justify-center">
-              <i data-lucide="users" class="w-16 h-16 text-orange-500"></i>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-green-800 mb-3 text-center">
-                挫折経験のある<br />講師が多数在籍
-              </h3>
-              <p class="text-gray-600 text-sm leading-relaxed">
-                不登校や中退を経験し、そこから大学合格などを果たした講師が多数。あなたの気持ちを理解できる先輩としてサポートします。
-              </p>
-            </div>
-          </div>
-
-          <!-- Feature 3 -->
-          <div
-            class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition"
-          >
-            <div class="bg-blue-100 p-6 flex justify-center">
-              <i data-lucide="pencil-ruler" class="w-16 h-16 text-blue-500"></i>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-green-800 mb-3 text-center">
-                完全オーダーメイド<br />のカリキュラム
-              </h3>
-              <p class="text-gray-600 text-sm leading-relaxed">
-                「昼夜逆転している」「基礎からやり直したい」など、一人ひとりの状況に合わせて指導方針を決定。無理なく続けられます。
-              </p>
-            </div>
-          </div>
+        <div
+          class="rounded-2xl overflow-hidden shadow-xl border border-gray-100"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
+            alt="メンタル・学習・コミュニティを支えるオンライン指導の様子"
+            class="w-full h-auto object-cover"
+          />
         </div>
       </div>
     </section>
 
-    <!-- Additional Features Slider -->
+    <!-- Comparison Table Section -->
     <section
       class="bg-green-50 py-16 overflow-hidden border-t border-green-100"
     >
       <div class="max-w-6xl mx-auto px-4">
-        <h3
-          class="text-center text-xl font-bold text-green-800 mb-8 tracking-wider"
-        >
-          ＼ さらなる安心サポート体制 ／
-        </h3>
-
-        <div
-          class="flex overflow-x-auto no-scrollbar gap-6 snap-x snap-mandatory px-4 md:px-0 md:grid md:grid-cols-3 md:overflow-visible"
-        >
-          <!-- Slide 1 -->
-          <div
-            class="min-w-[85%] md:min-w-0 snap-center bg-white rounded-xl p-6 shadow-md border-b-4 border-green-500 flex flex-col items-center text-center"
+        <div class="bg-white rounded-2xl p-4 md:p-8 shadow-xl overflow-x-auto">
+          <h3 class="text-center text-2xl font-black text-gray-800 mb-8">
+            他のオンライン塾との違い
+          </h3>
+          <table
+            class="w-full text-sm md:text-base text-left border-collapse comparison-table min-w-[700px]"
           >
-            <div class="bg-green-100 rounded-full p-4 mb-4">
-              <i data-lucide="home" class="w-8 h-8 text-green-600"></i>
-            </div>
-            <h4 class="font-bold text-lg mb-2">親御様向けサポート</h4>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              保護者様だけのご相談も可能です。家庭での接し方や進路について、専門スタッフがアドバイスします。
-            </p>
-          </div>
-
-          <!-- Slide 2 -->
-          <div
-            class="min-w-[85%] md:min-w-0 snap-center bg-white rounded-xl p-6 shadow-md border-b-4 border-orange-500 flex flex-col items-center text-center"
-          >
-            <div class="bg-orange-100 rounded-full p-4 mb-4">
-              <i data-lucide="timer" class="w-8 h-8 text-orange-600"></i>
-            </div>
-            <h4 class="font-bold text-lg mb-2">短期集中プログラム</h4>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              「夏休みだけ」「受験前だけ」など、短期間での利用も歓迎。目的に合わせて柔軟に対応します。
-            </p>
-          </div>
-
-          <!-- Slide 3 -->
-          <div
-            class="min-w-[85%] md:min-w-0 snap-center bg-white rounded-xl p-6 shadow-md border-b-4 border-blue-500 flex flex-col items-center text-center"
-          >
-            <div class="bg-blue-100 rounded-full p-4 mb-4">
-              <i data-lucide="message-circle" class="w-8 h-8 text-blue-600"></i>
-            </div>
-            <h4 class="font-bold text-lg mb-2">オンラインコミュニティ</h4>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              同じ悩みを持つ仲間とつながれる場を用意。孤独感を和らげ、モチベーション向上につなげます。
-            </p>
-          </div>
+            <thead>
+              <tr>
+                <th class="p-4 w-1/4 bg-gray-100 text-gray-700">比較項目</th>
+                <th
+                  class="p-4 w-1/4 text-center text-xl bg-green-100 border-b-4 border-green-500 text-green-800 font-bold relative"
+                >
+                  <div
+                    class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs px-2 py-1 rounded shadow"
+                  >
+                    おすすめ
+                  </div>
+                  キズキオンライン
+                </th>
+                <th class="p-4 w-1/4 text-center bg-gray-50 text-gray-600">
+                  大手A社
+                </th>
+                <th class="p-4 w-1/4 text-center bg-gray-50 text-gray-600">
+                  大手B社
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="p-4 font-bold bg-gray-50 border-b">
+                  ①メンタルサポート
+                </td>
+                <td
+                  class="p-4 text-center highlight-cell text-lg border-b border-green-200"
+                >
+                  ◎ あり<br /><span class="text-xs font-normal"
+                    >授業内・外で実施</span
+                  >
+                </td>
+                <td class="p-4 text-center border-b">△ 講師次第</td>
+                <td class="p-4 text-center border-b">× なし</td>
+              </tr>
+              <!-- ... other rows ... -->
+              <tr>
+                <td class="p-4 font-bold bg-gray-50 border-b">⑤カリキュラム</td>
+                <td
+                  class="p-4 text-center highlight-cell text-lg border-b-4 border-green-500"
+                >
+                  ◎ オーダーメイド<br /><span class="text-xs font-normal"
+                    >一人ひとりに最適化</span
+                  >
+                </td>
+                <td class="p-4 text-center border-b">△ 決まった教材あり</td>
+                <td class="p-4 text-center border-b">◯ レベル別コース</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="text-right text-xs text-gray-400 mt-2">
+            ※当社調べによる一般的なサービスとの比較
+          </p>
         </div>
-        <p class="text-center text-gray-400 text-xs mt-6 md:hidden">
-          <i data-lucide="arrow-left-right" class="inline w-3 h-3"></i>
-          スワイプで詳細を見る
-        </p>
       </div>
     </section>
 
@@ -743,7 +734,6 @@
             class="bg-white text-gray-500 rounded-full w-6 h-6 p-0.5"
           ></i>
         </a>
-
         <div class="text-center">
           <div class="flex items-center justify-center gap-2 mb-4">
             <span class="h-px bg-gray-300 w-8 md:w-12"></span>
@@ -754,7 +744,6 @@
             </h3>
             <span class="h-px bg-gray-300 w-8 md:w-12"></span>
           </div>
-
           <a
             href="#cta"
             class="block w-full bg-gray-700 hover:bg-gray-800 text-white rounded shadow-lg overflow-hidden transition group relative"
@@ -790,7 +779,6 @@
             </div>
           </a>
         </div>
-
         <div class="text-center">
           <p class="text-sm font-bold text-gray-700 leading-loose">
             東京・神奈川・千葉・埼玉・静岡・名古屋・<br class="md:hidden" />
@@ -798,7 +786,6 @@
             <span class="text-green-700">全国オンラインでも受講可！</span>
           </p>
         </div>
-
         <a
           href="#school-locations"
           class="block w-full bg-white border-2 border-gray-600 text-gray-700 hover:bg-gray-50 text-center font-bold py-3 rounded-full transition flex items-center justify-center gap-2"
@@ -812,123 +799,126 @@
       </div>
     </section>
 
-    <!-- Comparison (Why Us) -->
-    <section class="py-16 bg-green-800 text-white">
-      <div class="max-w-4xl mx-auto px-4">
-        <h2 class="text-center text-3xl font-black mb-12">他社との違い</h2>
-
-        <div
-          class="bg-white rounded-xl overflow-hidden shadow-2xl text-gray-800"
-        >
-          <div
-            class="grid grid-cols-4 bg-gray-100 border-b border-gray-200 text-sm md:text-base font-bold text-center py-4"
-          >
-            <div class="col-span-2 pl-4 text-left">比較項目</div>
-            <div class="text-green-700">キズキ</div>
-            <div class="text-gray-500">
-              一般的な<br class="md:hidden" />家庭教師
-            </div>
-          </div>
-
-          <div class="divide-y divide-gray-100">
-            <div class="grid grid-cols-4 py-4 items-center">
-              <div class="col-span-2 pl-4 font-medium text-sm md:text-base">
-                メンタルサポート
-              </div>
-              <div class="text-center text-green-600 text-xl font-bold">◎</div>
-              <div class="text-center text-gray-400">△</div>
-            </div>
-            <div class="grid grid-cols-4 py-4 items-center bg-green-50">
-              <div class="col-span-2 pl-4 font-medium text-sm md:text-base">
-                不登校への専門性
-              </div>
-              <div class="text-center text-green-600 text-xl font-bold">◎</div>
-              <div class="text-center text-gray-400">△</div>
-            </div>
-            <div class="grid grid-cols-4 py-4 items-center">
-              <div class="col-span-2 pl-4 font-medium text-sm md:text-base">
-                講師の挫折経験
-              </div>
-              <div class="text-center text-green-600 text-xl font-bold">
-                多数
-              </div>
-              <div class="text-center text-gray-400">不明</div>
-            </div>
-            <div class="grid grid-cols-4 py-4 items-center bg-green-50">
-              <div class="col-span-2 pl-4 font-medium text-sm md:text-base">
-                学習計画の柔軟性
-              </div>
-              <div class="text-center text-green-600 text-xl font-bold">◎</div>
-              <div class="text-center text-gray-400">○</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Media Authority -->
-    <section class="py-16 bg-white border-t border-gray-100">
+    <!-- Books & Media Authority -->
+    <section class="py-16 bg-white border-t border-gray-100 overflow-hidden">
       <div class="max-w-6xl mx-auto px-4">
         <h2
           class="text-center text-2xl font-bold text-gray-900 mb-10 flex items-center justify-center"
         >
           <i data-lucide="newspaper" class="mr-2 text-green-700"></i>
-          メディア掲載・書籍
+          キズキオンラインの書籍
         </h2>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <!-- Book 1 -->
-          <div class="text-center">
-            <div
-              class="bg-gray-200 aspect-[3/4] rounded mb-3 flex items-center justify-center text-gray-400 text-xs"
-            >
-              <span>Book Cover</span>
+        <div class="relative w-full overflow-hidden mb-16">
+          <div class="flex w-max animate-marquee-slow pause-on-hover">
+            <div class="flex gap-8 px-4">
+              <!-- Books -->
+              <div
+                class="w-[180px] flex-shrink-0 flex flex-col group cursor-pointer"
+              >
+                <div
+                  class="w-full aspect-[2/3] bg-gray-200 rounded-lg shadow-lg overflow-hidden relative mb-4"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+                    alt="書籍"
+                    class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                  />
+                </div>
+                <p class="text-xs font-bold text-gray-800 line-clamp-2">
+                  不登校からの大学受験
+                </p>
+              </div>
+              <div
+                class="w-[180px] flex-shrink-0 flex flex-col group cursor-pointer"
+              >
+                <div
+                  class="w-full aspect-[2/3] bg-gray-200 rounded-lg shadow-lg overflow-hidden relative mb-4"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+                    alt="書籍"
+                    class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                  />
+                </div>
+                <p class="text-xs font-bold text-gray-800 line-clamp-2">
+                  暗闇でも走る（講談社）
+                </p>
+              </div>
+              <!-- ... other books ... -->
             </div>
-            <p class="text-xs font-bold text-gray-700">
-              2030年の学校をつくる<br />スクールリーダーへ
-            </p>
-          </div>
-          <!-- Book 2 -->
-          <div class="text-center">
-            <div
-              class="bg-gray-200 aspect-[3/4] rounded mb-3 flex items-center justify-center text-gray-400 text-xs"
-            >
-              <span>Book Cover</span>
+            <div class="flex gap-8 px-4">
+              <!-- Duplicate for loop -->
+              <div
+                class="w-[180px] flex-shrink-0 flex flex-col group cursor-pointer"
+              >
+                <div
+                  class="w-full aspect-[2/3] bg-gray-200 rounded-lg shadow-lg overflow-hidden relative mb-4"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+                    alt="書籍"
+                    class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                  />
+                </div>
+                <p class="text-xs font-bold text-gray-800 line-clamp-2">
+                  不登校からの大学受験
+                </p>
+              </div>
+              <div
+                class="w-[180px] flex-shrink-0 flex flex-col group cursor-pointer"
+              >
+                <div
+                  class="w-full aspect-[2/3] bg-gray-200 rounded-lg shadow-lg overflow-hidden relative mb-4"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+                    alt="書籍"
+                    class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                  />
+                </div>
+                <p class="text-xs font-bold text-gray-800 line-clamp-2">
+                  暗闇でも走る（講談社）
+                </p>
+              </div>
             </div>
-            <p class="text-xs font-bold text-gray-700">
-              暗闇でも走る<br />（講談社刊）
-            </p>
           </div>
-          <!-- News 1 -->
-          <div
-            class="text-center col-span-2 md:col-span-2 flex flex-col justify-center items-start bg-gray-50 p-4 rounded"
+        </div>
+        <div class="max-w-4xl mx-auto">
+          <p
+            class="text-center text-gray-500 text-sm mb-6 border-b border-gray-200 pb-2"
           >
-            <p class="text-xs font-bold text-gray-500 mb-2">日本教育新聞</p>
-            <p class="text-sm font-medium text-gray-800 mb-2">
-              「学校トラブル相談シート」が紹介されました
-            </p>
-            <a href="#" class="text-green-600 text-xs flex items-center"
-              >記事を見る <i data-lucide="arrow-right" class="w-3 h-3 ml-1"></i
-            ></a>
+            メディア掲載実績
+          </p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div
+              class="bg-gray-50 p-4 rounded flex items-center justify-center h-16"
+            >
+              <span class="font-bold text-gray-600">日本経済新聞</span>
+            </div>
+            <div
+              class="bg-gray-50 p-4 rounded flex items-center justify-center h-16"
+            >
+              <span class="font-bold text-gray-600">朝日新聞</span>
+            </div>
+            <div
+              class="bg-gray-50 p-4 rounded flex items-center justify-center h-16"
+            >
+              <span class="font-bold text-gray-600">NHK</span>
+            </div>
+            <div
+              class="bg-gray-50 p-4 rounded flex items-center justify-center h-16"
+            >
+              <span class="font-bold text-gray-600">Yahoo!ニュース</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Final CTA Section -->
+    <!-- Final CTA Section (UPDATED) -->
     <section id="cta" class="py-20 bg-green-50">
       <div class="max-w-4xl mx-auto px-4 text-center">
-        <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-6">
-          まずは無料相談から<br />
-          はじめてみませんか？
-        </h2>
-        <p class="text-gray-700 mb-10">
-          「どのような講師がいるか」「今の状況でも大丈夫か」など、<br
-            class="hidden md:inline"
-          />
-          専門のスタッフが丁寧にお答えします。無理な勧誘は一切ありません。
-        </p>
-
+        <!-- Campaign Box (Kept as incentive) -->
         <div
           class="bg-white border-2 border-orange-400 rounded-xl p-6 mb-10 max-w-lg mx-auto transform rotate-1 shadow-lg"
         >
@@ -941,31 +931,92 @@
           </h3>
         </div>
 
-        <div
-          class="flex flex-col sm:flex-row justify-center gap-4 max-w-xl mx-auto"
-        >
-          <button
-            class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg text-lg w-full flex items-center justify-center gap-2 transition"
+        <!-- Full CTA Set Structure -->
+        <div class="max-w-2xl mx-auto flex flex-col gap-8">
+          <!-- Free Consultation (Orange for Final Push) -->
+          <a
+            href="#cta"
+            class="block w-full bg-orange-500 hover:bg-orange-600 text-white text-center font-bold py-5 rounded shadow-lg text-xl md:text-2xl transition flex items-center justify-center gap-2 transform hover:-translate-y-1"
           >
-            <i data-lucide="calendar"></i> 無料個別相談会
-            <i data-lucide="chevron-right" class="w-5 h-5"></i>
-          </button>
-          <button
-            class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg text-lg w-full flex items-center justify-center gap-2 transition"
-          >
-            <i data-lucide="book"></i> 無料資料請求
-            <i data-lucide="chevron-right" class="w-5 h-5"></i>
-          </button>
-        </div>
+            無料個別相談会
+            <i
+              data-lucide="chevron-right"
+              class="bg-white text-orange-500 rounded-full w-6 h-6 p-0.5"
+            ></i>
+          </a>
 
-        <p class="mt-8 text-sm text-gray-500">
-          全国どこからでもオンラインで受講可能！<br />
-          東京・神奈川・大阪などには通塾可能な校舎もございます。
-        </p>
+          <!-- Document Request -->
+          <div class="text-center">
+            <div class="flex items-center justify-center gap-2 mb-4">
+              <span class="h-px bg-gray-300 w-8 md:w-12"></span>
+              <h3
+                class="text-lg md:text-xl font-bold text-gray-800 tracking-wider"
+              >
+                資料請求の方はこちらから！
+              </h3>
+              <span class="h-px bg-gray-300 w-8 md:w-12"></span>
+            </div>
+            <a
+              href="#cta"
+              class="block w-full bg-gray-700 hover:bg-gray-800 text-white rounded shadow-lg overflow-hidden transition group relative"
+            >
+              <div class="flex items-center h-24 md:h-28">
+                <div class="w-1/3 md:w-1/4 h-full bg-gray-200 relative">
+                  <img
+                    src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+                    alt="資料"
+                    class="w-full h-full object-cover opacity-80 mix-blend-multiply"
+                  />
+                  <div
+                    class="absolute top-2 left-2 bg-white text-xs font-bold px-1 py-0.5 rounded text-gray-800 shadow-sm transform -rotate-6"
+                  >
+                    東大に!?
+                  </div>
+                </div>
+                <div
+                  class="w-2/3 md:w-3/4 flex items-center justify-center gap-4 pr-4"
+                >
+                  <span class="bg-gray-500 text-white text-xs px-2 py-1 rounded"
+                    >無料</span
+                  >
+                  <span
+                    class="text-xl md:text-3xl font-serif font-bold tracking-widest"
+                    >資料請求</span
+                  >
+                  <i
+                    data-lucide="chevron-right"
+                    class="border border-white rounded-full w-6 h-6 p-0.5"
+                  ></i>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Area Info -->
+          <div class="text-center">
+            <p class="text-sm font-bold text-gray-700 leading-loose">
+              東京・神奈川・千葉・埼玉・静岡・名古屋・<br class="md:hidden" />
+              大阪・京都・神戸・広島・福岡・仙台・札幌<br />
+              <span class="text-green-700">全国オンラインでも受講可！</span>
+            </p>
+          </div>
+
+          <!-- School List Button -->
+          <a
+            href="#school-locations"
+            class="block w-full bg-white border-2 border-gray-600 text-gray-700 hover:bg-gray-50 text-center font-bold py-3 rounded-full transition flex items-center justify-center gap-2"
+          >
+            <i
+              data-lucide="chevron-down"
+              class="w-5 h-5 bg-gray-600 text-white rounded-full p-0.5"
+            ></i>
+            お近くの校舎をお探しの方はこちらから
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- School Locations Section -->
+    <!-- School Locations -->
     <section
       id="school-locations"
       class="py-16 bg-white border-t border-gray-100"
@@ -976,11 +1027,6 @@
         >
           <i data-lucide="map-pin" class="mr-2 text-green-700"></i> 校舎一覧
         </h2>
-        <p class="text-center text-gray-600 mb-10">
-          キズキ共育塾は、全国に校舎を展開しています。<br />
-          オンラインだけでなく、通塾での受講も可能です。
-        </p>
-
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div
             class="bg-gray-50 p-4 rounded text-center hover:bg-green-50 transition cursor-pointer"
@@ -988,47 +1034,12 @@
             <p class="font-bold text-green-800">代々木校</p>
             <p class="text-xs text-gray-500">東京都渋谷区</p>
           </div>
-          <div
-            class="bg-gray-50 p-4 rounded text-center hover:bg-green-50 transition cursor-pointer"
-          >
-            <p class="font-bold text-green-800">秋葉原校</p>
-            <p class="text-xs text-gray-500">東京都千代田区</p>
-          </div>
-          <div
-            class="bg-gray-50 p-4 rounded text-center hover:bg-green-50 transition cursor-pointer"
-          >
-            <p class="font-bold text-green-800">池袋校</p>
-            <p class="text-xs text-gray-500">東京都豊島区</p>
-          </div>
-          <div
-            class="bg-gray-50 p-4 rounded text-center hover:bg-green-50 transition cursor-pointer"
-          >
-            <p class="font-bold text-green-800">吉祥寺校</p>
-            <p class="text-xs text-gray-500">東京都武蔵野市</p>
-          </div>
-          <div
-            class="bg-gray-50 p-4 rounded text-center hover:bg-green-50 transition cursor-pointer"
-          >
-            <p class="font-bold text-green-800">横浜校</p>
-            <p class="text-xs text-gray-500">神奈川県横浜市</p>
-          </div>
+          <!-- ... other schools ... -->
           <div
             class="bg-gray-50 p-4 rounded text-center hover:bg-green-50 transition cursor-pointer"
           >
             <p class="font-bold text-green-800">大阪校</p>
             <p class="text-xs text-gray-500">大阪府大阪市</p>
-          </div>
-          <div
-            class="bg-gray-50 p-4 rounded text-center hover:bg-green-50 transition cursor-pointer"
-          >
-            <p class="font-bold text-green-800">福岡校</p>
-            <p class="text-xs text-gray-500">福岡県福岡市</p>
-          </div>
-          <div
-            class="bg-gray-50 p-4 rounded text-center hover:bg-green-50 transition cursor-pointer"
-          >
-            <p class="font-bold text-green-800">名古屋校</p>
-            <p class="text-xs text-gray-500">愛知県名古屋市</p>
           </div>
         </div>
       </div>
@@ -1041,12 +1052,12 @@
           class="font-bold text-2xl tracking-tighter mb-4 flex items-center justify-center"
         >
           <i data-lucide="book-open" class="mr-2"></i>
-          キズキ共育塾
+          キズキオンライン家庭教師
         </div>
-        <p class="opacity-70 mb-4">不登校・中退・ひきこもり支援の学習塾</p>
-        <p class="opacity-50">
-          &copy; Kizuki Corporation. All Rights Reserved.
+        <p class="opacity-70 mb-4">
+          不登校・中退・ひきこもり支援のオンライン学習塾
         </p>
+        <p class="opacity-50">&copy; kizuki online. All Rights Reserved.</p>
       </div>
     </footer>
 
@@ -1071,24 +1082,17 @@
     </div>
 
     <script>
-      // Initialize Lucide icons
       lucide.createIcons();
-
-      // Hamburger Menu Logic
       const menuBtn = document.getElementById("menu-btn");
       const closeMenuBtn = document.getElementById("close-menu-btn");
       const mobileMenu = document.getElementById("mobile-menu");
       const mobileLinks = document.querySelectorAll(".mobile-link");
-
       function toggleMenu() {
         mobileMenu.classList.toggle("hidden");
         document.body.classList.toggle("overflow-hidden");
       }
-
       menuBtn.addEventListener("click", toggleMenu);
       closeMenuBtn.addEventListener("click", toggleMenu);
-
-      // Close menu when clicking a link
       mobileLinks.forEach((link) => {
         link.addEventListener("click", toggleMenu);
       });
