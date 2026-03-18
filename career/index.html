@@ -64,8 +64,8 @@
 
         /* Text */
         --color-text-main: #333;
-        --color-text-light: #555; /* コントラスト改善: #666 → #555 */
-        --color-text-muted: #777; /* フッター等でのコントラスト改善 */
+        --color-text-light: #555;
+        --color-text-muted: #777;
         --color-text-slate: #64748b;
 
         /* Hero overlay text */
@@ -91,8 +91,7 @@
         /* Fonts */
         --font-body: "Noto Sans JP", "Hiragino Sans", Meiryo, sans-serif;
         --font-heading: "Noto Serif JP", "Hiragino Mincho ProN", Georgia, serif;
-        --font-accent:
-          "DM Serif Display", Georgia, serif; /* Regular(400)のみ */
+        --font-accent: "DM Serif Display", Georgia, serif;
 
         /* Z-index */
         --z-back-to-top: 90;
@@ -164,7 +163,7 @@
          ========================================= */
       section h2 {
         font-family: var(--font-heading);
-        font-size: clamp(22px, 2.5vw, 32px); /* fluid typography */
+        font-size: clamp(22px, 2.5vw, 32px);
         margin-bottom: 60px;
         font-weight: 700;
         line-height: 1.5;
@@ -836,7 +835,7 @@
 
       .strength-image {
         width: 100%;
-        aspect-ratio: 16 / 10; /* 固定px → アスペクト比で管理 */
+        aspect-ratio: 16 / 10;
         height: auto;
         background: var(--color-bg-accent);
         border-radius: var(--radius-default);
