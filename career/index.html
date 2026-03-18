@@ -113,7 +113,6 @@
       }
 
       html {
-        /* scroll-behavior は prefers-reduced-motion で分岐（詳細度の競合を回避） */
         scroll-padding-top: var(--header-height);
       }
 
@@ -360,11 +359,10 @@
         color: var(--color-primary);
       }
 
-      /* ナビ内CTAボタン（詳細度を上げて !important 不要に） */
       .nav-links a.nav-cta {
         background: var(--color-primary);
         color: var(--color-white);
-        padding: 12px 20px; /* タップ領域を44px以上に拡大 */
+        padding: 12px 20px;
         min-height: 44px;
         display: inline-flex;
         align-items: center;
@@ -389,8 +387,8 @@
         justify-content: center;
         align-items: center;
         gap: 6px;
-        width: 44px;  /* タップ領域 44px確保 */
-        height: 44px; /* タップ領域 44px確保 */
+        width: 44px;
+        height: 44px;
         background: transparent;
         border: none;
         cursor: pointer;
@@ -529,7 +527,7 @@
 
       .hero-bg {
         position: absolute;
-        inset: 0; /* top/right/bottom/left: 0 の短縮形 */
+        inset: 0;
         z-index: 0;
       }
 
@@ -558,11 +556,16 @@
       .hero h1 {
         font-family: var(--font-heading);
         color: var(--color-white);
-        font-size: clamp(28px, 5vw, 52px); /* fluid typography: 3段階固定px → 1箇所に集約 */
+        font-size: clamp(28px, 5vw, 52px);
         margin-bottom: 20px;
         font-weight: 700;
         letter-spacing: 0.1em;
         line-height: 1.4;
+        background-color: rgba(10, 192, 125, 0.5);
+        display: inline-block;
+        padding: 16px 24px;
+        border-radius: 8px;
+        backdrop-filter: blur(4px);
       }
 
       .hero-subtitle {
@@ -769,7 +772,6 @@
         overflow: hidden;
       }
 
-      /* 偶数カードの画像を先頭に移動（order による視覚的反転） */
       .strength-card:nth-child(even) .strength-image {
         order: -1;
       }
@@ -900,7 +902,7 @@
       }
 
       .voice-comment::before {
-        content: "\201C" / ""; /* '/' 以降が空 = スクリーンリーダー読み上げ対象外 */
+        content: "\201C" / "";
         font-family: var(--font-accent);
         font-size: 80px;
         color: var(--color-bg-accent);
@@ -921,7 +923,7 @@
 
       .data-percentage {
         font-family: var(--font-accent);
-        font-size: clamp(60px, 8vw, 80px); /* fluid typography: 固定px → clampに集約 */
+        font-size: clamp(60px, 8vw, 80px);
         font-weight: 400;
         color: var(--color-primary);
         margin-bottom: 15px;
@@ -1150,7 +1152,7 @@
 
       .mission-image {
         width: 100%;
-        aspect-ratio: 4 / 3; /* 固定px → アスペクト比で管理 */
+        aspect-ratio: 4 / 3;
         height: auto;
         background: var(--color-secondary);
         border-radius: var(--radius-default);
@@ -1188,7 +1190,6 @@
         padding-right: 30px;
         color: var(--color-primary);
         transition: color var(--transition-base);
-        /* Safariのデフォルトマーカーを除去 */
         -webkit-list-style: none;
       }
 
@@ -1213,7 +1214,7 @@
       }
 
       .faq-item[open] summary::after {
-        content: "−"; /* ハイフンではなくマイナス記号 */
+        content: "−";
         color: var(--color-primary);
       }
 
@@ -1265,7 +1266,7 @@
 
       .company-image {
         width: 100%;
-        aspect-ratio: 4 / 3; /* 固定px → アスペクト比で管理 */
+        aspect-ratio: 4 / 3;
         height: auto;
         border-radius: var(--radius-default);
         overflow: hidden;
@@ -1293,6 +1294,7 @@
       .footer-logo img {
         height: 60px;
         width: auto;
+        border-radius: var(--radius-default);
       }
 
       .footer-content {
@@ -1333,7 +1335,7 @@
         padding-top: 30px;
         text-align: center;
         font-size: 12px;
-        color: #aaa; /* ダーク背景に対するコントラスト確保 */
+        color: #aaa;
       }
 
       /* =========================================
@@ -1408,14 +1410,13 @@
           grid-template-columns: 1fr;
         }
 
-        /* 偶数カードの画像orderリセット */
         .strength-card:nth-child(even) .strength-image {
           order: 0;
         }
 
         section h2,
         .mission h2 {
-          font-size: clamp(20px, 3vw, 26px); /* タブレットでのfluid typography */
+          font-size: clamp(20px, 3vw, 26px);
         }
 
         .statutory-alert {
@@ -1451,7 +1452,7 @@
          ========================================= */
       @media (max-width: 480px) {
         :root {
-          --section-padding: 70px 0; /* SP縦スペース最適化 */
+          --section-padding: 70px 0;
         }
 
         .cta-button {
@@ -1484,7 +1485,7 @@
         <img
           src="img/logo-wide.webp"
           alt="キズキキャリア"
-          width="300"
+          width="207"
           height="51"
         />
       </a>
@@ -1747,7 +1748,9 @@
           </p>
           <div class="data-highlight scroll-animate delay-100">
             <p class="data-label">入社6ヶ月定着率</p>
-            <div class="data-percentage" data-target="95" data-suffix="%">0%</div>
+            <div class="data-percentage" data-target="95" data-suffix="%">
+              0%
+            </div>
             <p class="data-description">
               就職後6ヶ月時点の定着率。業界平均※約60%に対し、35ポイント上回る水準を実現しています。
             </p>
@@ -2045,7 +2048,7 @@
                 src="img/logo.webp"
                 alt="キズキキャリア"
                 width="200"
-                height="152"
+                height="200"
               />
             </div>
             <p class="footer-address">
@@ -2250,7 +2253,10 @@
 
         // Escape キーで閉じる
         document.addEventListener("keydown", (e) => {
-          if (e.key === "Escape" && mobileMenu.classList.contains("is-active")) {
+          if (
+            e.key === "Escape" &&
+            mobileMenu.classList.contains("is-active")
+          ) {
             closeMenu();
           }
         });
@@ -2412,7 +2418,9 @@
 
       /** スクロールで一度だけカウントアップを発火する */
       const initCountUp = () => {
-        const percentEl = document.querySelector(".data-percentage[data-target]");
+        const percentEl = document.querySelector(
+          ".data-percentage[data-target]",
+        );
         if (!percentEl) return;
 
         // data属性から設定値を取得（HTML初期値は "0%" のまま）
