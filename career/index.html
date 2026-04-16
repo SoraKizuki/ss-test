@@ -35,65 +35,48 @@
       rel="stylesheet"
     />
 
+    <!-- Chart.js & Plugins -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
     <style>
       /* =========================================
          CSS Custom Properties
          ========================================= */
       :root {
-        /* Brand Colors */
         --color-primary: #20a384;
         --color-primary-hover: #178066;
         --color-secondary: #b2dfdb;
         --color-accent-light: #4db6ac;
-
-        /* Backgrounds */
         --color-bg-light: #f7fcfa;
         --color-bg-accent: #e0f2f1;
         --color-white: #fff;
-
-        /* Opportunity Section */
-        --color-bg-opportunity: #eff6ff;
-        --color-opportunity-bg-deep: #dbeafe;
-        --color-opportunity-text: #1e40af;
+        --color-bg-opportunity: #f7fcfa;
+        --color-opportunity-bg-deep: #e0f2f1;
+        --color-opportunity-text: #178066;
         --color-opportunity-border: #3b82f6;
-        --color-opportunity-border-light: #bfdbfe;
-        --color-opportunity-card-border: #dbeafe;
-
-        /* Danger */
+        --color-opportunity-border-light: #b2dfdb;
+        --color-opportunity-card-border: #e8e8e8;
         --color-danger: #ef4444;
-
-        /* Text */
         --color-text-main: #333;
         --color-text-light: #555;
         --color-text-muted: #777;
         --color-text-slate: #64748b;
-
-        /* Hero overlay text */
         --color-hero-subtitle: #f0f0f0;
         --color-hero-description: #e0e0e0;
         --color-hero-micro: #eee;
         --color-footer-text: #ccc;
-
-        /* Layout */
         --header-height: 80px;
         --container-width: 1200px;
         --section-padding: 100px 0;
-
-        /* Misc */
         --shadow-default: 0 2px 10px rgba(0, 0, 0, 0.05);
         --border-color-light: #e8e8e8;
         --radius-default: 8px;
-
-        /* Transitions */
         --transition-base: 0.3s ease;
         --transition-spring: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-
-        /* Fonts */
         --font-body: "Noto Sans JP", "Hiragino Sans", Meiryo, sans-serif;
         --font-heading: "Noto Serif JP", "Hiragino Mincho ProN", Georgia, serif;
         --font-accent: "DM Serif Display", Georgia, serif;
-
-        /* Z-index */
         --z-back-to-top: 90;
         --z-header: 100;
         --z-mobile-menu: 99;
@@ -153,13 +136,12 @@
       .bg-white {
         background: var(--color-white);
       }
-
       .bg-light {
         background: var(--color-bg-light);
       }
 
       /* =========================================
-         Typography
+         Typography & Highlights
          ========================================= */
       section h2 {
         font-family: var(--font-heading);
@@ -173,15 +155,20 @@
 
       .section-label {
         display: inline-block;
-        background: var(--color-bg-accent);
-        color: var(--color-primary);
-        padding: 6px 16px;
+        background: linear-gradient(
+          135deg,
+          var(--color-primary) 0%,
+          var(--color-accent-light) 100%
+        );
+        color: var(--color-white);
+        padding: 8px 24px;
         font-family: var(--font-accent);
-        font-size: 13px;
-        letter-spacing: 2px;
+        font-size: 14px;
+        letter-spacing: 0.1em;
         margin-bottom: 30px;
-        border-radius: 3px;
-        font-weight: 400;
+        border-radius: 30px;
+        font-weight: 700;
+        box-shadow: 0 4px 12px rgba(32, 163, 132, 0.3);
       }
 
       .section-sub-copy {
@@ -210,6 +197,22 @@
         line-height: 1.5;
       }
 
+      .highlight {
+        background: linear-gradient(
+          transparent 60%,
+          rgba(253, 224, 71, 0.8) 60%
+        );
+        font-weight: bold;
+        padding: 0 2px;
+        border-radius: 2px;
+      }
+      .highlight2 {
+        background-color: rgba(253, 224, 71, 0.4);
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-weight: bold;
+      }
+
       /* =========================================
          Scroll Animations
          ========================================= */
@@ -236,27 +239,9 @@
         transition-delay: 0.3s;
       }
 
-      /* アニメーション無効化（前庭障害・動作軽減設定への対応） */
-      @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
-
-        .scroll-animate {
-          opacity: 1;
-          transform: none;
-        }
-      }
-
       /* =========================================
          Shared Components
          ========================================= */
-
-      /* CTA Button */
       .cta-button {
         display: inline-block;
         background: var(--color-primary);
@@ -266,16 +251,62 @@
         font-size: 16px;
         font-weight: bold;
         border-radius: 4px;
-        transition:
-          background var(--transition-base),
-          transform var(--transition-base);
+        transition: var(--transition-base);
         cursor: pointer;
-        border: none;
+        border: 2px solid var(--color-primary);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(32, 163, 132, 0.4);
+      }
+
+      .cta-button::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.8),
+          transparent
+        );
+        animation: shine 4s infinite ease-in-out;
+      }
+
+      @keyframes shine {
+        0% {
+          transform: translateX(-150%);
+        }
+        20%,
+        100% {
+          transform: translateX(150%);
+        }
       }
 
       .cta-button:hover {
         background: var(--color-primary-hover);
+        border-color: var(--color-primary-hover);
+        color: var(--color-white);
         transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(32, 163, 132, 0.5);
+      }
+
+      .cta-button--outline {
+        background: var(--color-white);
+        color: var(--color-primary);
+        padding: 14px 48px;
+        box-shadow: 0 2px 10px rgba(32, 163, 132, 0.1);
+      }
+
+      .cta-button--outline::after {
+        display: none;
+      }
+
+      .cta-button--outline:hover {
+        background: var(--color-primary);
+        color: var(--color-white);
       }
 
       .cta-micro-copy {
@@ -286,7 +317,6 @@
         font-weight: normal;
       }
 
-      /* Section CTA Block */
       .section-cta {
         margin-top: 60px;
         text-align: center;
@@ -324,15 +354,6 @@
         -webkit-backdrop-filter: blur(5px);
       }
 
-      .header-logo {
-        color: var(--color-primary);
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        flex-shrink: 0;
-      }
-
       .header-logo img {
         height: 40px;
         width: auto;
@@ -351,7 +372,6 @@
         font-weight: 500;
         transition: color var(--transition-base);
         font-size: 15px;
-        white-space: nowrap;
       }
 
       .nav-links a:hover {
@@ -362,19 +382,26 @@
         background: var(--color-primary);
         color: var(--color-white);
         padding: 12px 20px;
-        min-height: 44px;
-        display: inline-flex;
-        align-items: center;
         border-radius: 4px;
-        transition:
-          background var(--transition-base),
-          transform var(--transition-base);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(32, 163, 132, 0.3);
       }
 
-      .nav-links a.nav-cta:hover {
-        background: var(--color-primary-hover);
-        color: var(--color-white);
-        transform: translateY(-1px);
+      .nav-links a.nav-cta::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.8),
+          transparent
+        );
+        animation: shine 4s infinite ease-in-out;
       }
 
       /* =========================================
@@ -384,14 +411,12 @@
         display: none;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
         gap: 6px;
         width: 44px;
         height: 44px;
         background: transparent;
         border: none;
         cursor: pointer;
-        padding: 0;
         z-index: var(--z-hamburger);
       }
 
@@ -400,17 +425,15 @@
         height: 3px;
         background: var(--color-text-main);
         border-radius: 10px;
-        transition: all 0.3s linear;
+        transition: 0.3s;
       }
 
       .hamburger.is-active span:nth-child(1) {
         transform: translateY(9px) rotate(45deg);
       }
-
       .hamburger.is-active span:nth-child(2) {
         opacity: 0;
       }
-
       .hamburger.is-active span:nth-child(3) {
         transform: translateY(-9px) rotate(-45deg);
       }
@@ -441,18 +464,11 @@
           visibility 0s;
       }
 
-      .mobile-menu ul {
-        list-style: none;
-        text-align: center;
-      }
-
       .mobile-menu li {
         margin: 20px 0;
         opacity: 0;
         transform: translateY(20px);
-        transition:
-          opacity 0.4s ease,
-          transform 0.4s ease;
+        transition: 0.4s;
       }
 
       .mobile-menu.is-active li {
@@ -460,51 +476,16 @@
         transform: translateY(0);
       }
 
-      /* ステガードアニメーション */
-      .mobile-menu.is-active li:nth-child(1) {
-        transition-delay: 0.05s;
-      }
-      .mobile-menu.is-active li:nth-child(2) {
-        transition-delay: 0.1s;
-      }
-      .mobile-menu.is-active li:nth-child(3) {
-        transition-delay: 0.15s;
-      }
-      .mobile-menu.is-active li:nth-child(4) {
-        transition-delay: 0.2s;
-      }
-      .mobile-menu.is-active li:nth-child(5) {
-        transition-delay: 0.25s;
-      }
-      .mobile-menu.is-active li:nth-child(6) {
-        transition-delay: 0.3s;
-      }
-      .mobile-menu.is-active li:nth-child(7) {
-        transition-delay: 0.35s;
-      }
-      .mobile-menu.is-active li:nth-child(8) {
-        transition-delay: 0.4s;
-      }
-      .mobile-menu.is-active li:nth-child(9) {
-        transition-delay: 0.45s;
-      }
-
       .mobile-menu a {
         font-size: 20px;
         color: var(--color-text-main);
         text-decoration: none;
         font-weight: bold;
-        transition: color var(--transition-base);
-      }
-
-      .mobile-menu a:hover {
-        color: var(--color-primary);
       }
 
       .mobile-menu a.mobile-cta {
         color: var(--color-primary);
         margin-top: 20px;
-        display: inline-block;
       }
 
       /* =========================================
@@ -512,15 +493,12 @@
          ========================================= */
       .hero {
         position: relative;
-        padding: 0;
-        width: 100%;
         height: calc(100vh - var(--header-height));
         min-height: 550px;
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        color: var(--color-white);
         text-align: center;
       }
 
@@ -529,27 +507,22 @@
         inset: 0;
         z-index: 0;
       }
-
       .hero-bg img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        object-position: center;
       }
-
       .hero-overlay {
         position: absolute;
         inset: 0;
         background: rgba(0, 0, 0, 0.4);
         z-index: 1;
       }
-
       .hero-content {
         position: relative;
         z-index: 2;
         max-width: 900px;
         padding: 0 20px;
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
       }
 
       .hero h1 {
@@ -558,7 +531,6 @@
         font-size: clamp(28px, 5vw, 48px);
         margin-bottom: 20px;
         font-weight: 700;
-        letter-spacing: 0.1em;
         line-height: 1.4;
         background-color: rgba(10, 192, 125, 0.5);
         display: inline-block;
@@ -580,11 +552,6 @@
         line-height: 2;
         max-width: 800px;
         margin: 0 auto 40px;
-        font-weight: 500;
-      }
-
-      .hero .cta-micro-copy {
-        color: var(--color-hero-micro);
       }
 
       /* =========================================
@@ -609,7 +576,6 @@
       }
 
       .statutory-visual {
-        flex-shrink: 0;
         width: 300px;
         background: linear-gradient(
           135deg,
@@ -621,7 +587,6 @@
         display: flex;
         flex-direction: column;
         gap: 15px;
-        box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.15);
         border: 1px solid var(--color-opportunity-border-light);
       }
 
@@ -632,16 +597,13 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border: 1px solid transparent;
       }
 
       .statutory-item--future {
         background: var(--color-white);
         border: 2px solid var(--color-opportunity-border);
-        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.15);
         transform: scale(1.05);
         position: relative;
-        z-index: 1;
       }
 
       .statutory-item--future::before {
@@ -652,56 +614,21 @@
         background: var(--color-danger);
         color: var(--color-white);
         font-size: 10px;
-        font-weight: bold;
         padding: 2px 8px;
         border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-
-      .statutory-date {
-        font-size: 14px;
-        color: var(--color-text-slate);
-        font-weight: bold;
-        display: flex;
-        flex-direction: column;
-        line-height: 1.2;
-      }
-
-      .statutory-date span {
-        font-size: 11px;
-        opacity: 0.8;
-        font-weight: normal;
-        margin-top: 2px;
       }
 
       .statutory-value {
         font-family: var(--font-accent);
         font-size: 32px;
-        font-weight: 400;
         color: var(--color-opportunity-text);
-        line-height: 1;
-        letter-spacing: -1px;
-      }
-
-      .statutory-value span {
-        font-family: var(--font-body);
-        font-size: 16px;
-        font-weight: 600;
-        margin-left: 2px;
-        color: var(--color-opportunity-border);
-      }
-
-      .statutory-arrow {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: var(--color-opportunity-border);
-        height: 10px;
-        opacity: 0.8;
       }
 
       .statutory-arrow-icon {
+        display: block;
+        text-align: center;
         font-size: 20px;
+        color: var(--color-opportunity-border);
         animation: bounce 2s infinite;
       }
 
@@ -726,14 +653,6 @@
         font-size: 26px;
         color: var(--color-opportunity-text);
         margin-bottom: 20px;
-        font-weight: 700;
-        line-height: 1.5;
-      }
-
-      .statutory-text p {
-        font-size: 16px;
-        color: var(--color-text-main);
-        margin-bottom: 15px;
       }
 
       .statutory-anchor {
@@ -741,15 +660,8 @@
         margin-top: 10px;
         color: var(--color-opportunity-text);
         font-weight: bold;
-        font-size: 15px;
         text-decoration: none;
         border-bottom: 2px solid currentColor;
-        padding-bottom: 2px;
-        transition: opacity var(--transition-base);
-      }
-
-      .statutory-anchor:hover {
-        opacity: 0.7;
       }
 
       /* =========================================
@@ -774,7 +686,6 @@
       .strength-card:nth-child(even) .strength-image {
         order: -1;
       }
-
       .strength-content {
         padding: 30px 40px;
       }
@@ -786,26 +697,14 @@
         padding: 4px 12px;
         border-radius: 4px;
         font-family: var(--font-accent);
-        font-weight: 400;
-        font-size: 15px;
-        letter-spacing: 0.05em;
         margin-bottom: 15px;
       }
 
       .strength-title {
         font-family: var(--font-heading);
         font-size: 24px;
-        font-weight: 700;
         margin-bottom: 20px;
         color: var(--color-primary);
-        line-height: 1.5;
-      }
-
-      .strength-desc {
-        font-size: 16px;
-        color: var(--color-text-light);
-        margin-bottom: 20px;
-        line-height: 1.8;
       }
 
       .strength-list {
@@ -829,14 +728,9 @@
         color: var(--color-primary);
       }
 
-      .strength-list li:last-child {
-        margin-bottom: 0;
-      }
-
       .strength-image {
         width: 100%;
         aspect-ratio: 16 / 10;
-        height: auto;
         background: var(--color-bg-accent);
         border-radius: var(--radius-default);
         overflow: hidden;
@@ -856,35 +750,34 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 40px;
       }
-
       .voice-card {
         background: var(--color-white);
         padding: 40px;
         border-radius: var(--radius-default);
         box-shadow: var(--shadow-default);
       }
-
+      .voice-tabs {
+        display: none;
+      }
+      .voice-panel {
+        display: block;
+      }
       .voice-header {
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
         margin-bottom: 20px;
         border-bottom: 1px solid var(--border-color-light);
         padding-bottom: 20px;
       }
-
       .voice-company-name {
         font-size: 18px;
         font-weight: bold;
-        color: var(--color-text-main);
       }
-
       .voice-company-attr {
         font-size: 12px;
         color: var(--color-text-muted);
         margin-top: 5px;
       }
-
       .voice-user {
         background: var(--color-bg-light);
         padding: 15px;
@@ -892,57 +785,147 @@
         margin-bottom: 20px;
         font-size: 14px;
       }
-
       .voice-comment,
       .voice-comment2 {
         font-size: 15px;
-        line-height: 1.8;
-        color: var(--color-text-main);
         position: relative;
+        z-index: 1;
       }
       .voice-comment2 {
         margin-top: 20px;
       }
-
       .voice-comment::before,
       .voice-comment2::before {
-        content: "\201C" / "";
+        content: "\201C";
         font-family: var(--font-accent);
         font-size: 80px;
         color: var(--color-bg-accent);
         position: absolute;
         top: -30px;
         left: -20px;
-        z-index: 0;
+        z-index: -1;
         line-height: 1;
+      }
+
+      @media (max-width: 768px) {
+        .voice-tabs {
+          display: flex;
+          background: var(--color-bg-accent);
+          border-radius: 8px;
+          padding: 4px;
+          margin-bottom: 25px;
+        }
+        .voice-tab {
+          flex: 1;
+          border: none;
+          background: transparent;
+          padding: 10px 0;
+          font-weight: bold;
+          color: var(--color-primary);
+          opacity: 0.6;
+          border-radius: 6px;
+          cursor: pointer;
+        }
+        .voice-tab.active {
+          background: var(--color-white);
+          opacity: 1;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .voice-panel {
+          display: none;
+        }
+        .voice-panel.active {
+          display: block;
+          animation: tabFadeIn 0.3s ease;
+        }
+        .voice-header {
+          border-bottom: none;
+          padding-bottom: 0;
+        }
+      }
+
+      @keyframes tabFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       /* =========================================
          Data Section
          ========================================= */
-      .data-highlight {
-        text-align: center;
+      .retention-vs-wrapper {
         margin-bottom: 80px;
       }
-
-      .data-percentage {
-        font-family: var(--font-accent);
-        font-size: clamp(60px, 8vw, 80px);
-        font-weight: 400;
-        color: var(--color-primary);
-        margin-bottom: 15px;
-        line-height: 1;
-        letter-spacing: -2px;
+      .retention-title {
+        text-align: center;
+        font-family: var(--font-heading);
+        font-size: 24px;
+        margin-bottom: 40px;
       }
-
-      .data-label {
-        font-size: 16px;
-        color: var(--color-text-light);
-        margin-bottom: 10px;
+      .retention-vs-container {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        max-width: 900px;
+        margin: 0 auto 30px;
       }
-
-      .data-description {
+      .retention-box {
+        flex: 1;
+        padding: 40px 20px;
+        border-radius: 16px;
+        text-align: center;
+      }
+      .retention-box.industry {
+        background: #f8fafc;
+        border: 2px dashed #cbd5e1;
+        color: #64748b;
+      }
+      .retention-box.kizuki {
+        background: var(--color-white);
+        border: 4px solid var(--color-primary);
+        box-shadow: 0 15px 35px rgba(32, 163, 132, 0.15);
+        transform: scale(1.05);
+        position: relative;
+        z-index: 2;
+      }
+      .retention-box.kizuki::before {
+        content: "圧倒的定着率！";
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--color-primary);
+        color: var(--color-white);
+        padding: 6px 20px;
+        border-radius: 20px;
         font-size: 14px;
+        font-weight: bold;
+        white-space: nowrap;
+      }
+      .retention-box-value {
+        font-family: var(--font-accent);
+        font-size: 48px;
+        font-weight: 700;
+      }
+      .retention-box.kizuki .retention-box-value {
+        color: var(--color-primary);
+        font-size: clamp(60px, 8vw, 80px);
+      }
+
+      .data-description-center {
+        text-align: center;
+        font-size: 14px;
+        color: var(--color-text-muted);
+      }
+      .data-note-center {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 12px;
         color: var(--color-text-muted);
       }
 
@@ -952,81 +935,41 @@
         gap: 60px;
         margin-bottom: 60px;
       }
-
-      .chart-item h3,
-      .bar-chart h3 {
-        font-family: var(--font-heading);
-        font-size: 18px;
-        margin-bottom: 20px;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-      }
-
       .chart-container {
         width: 100%;
         height: 300px;
         position: relative;
       }
-
-      .chart-container canvas {
-        max-height: 300px;
-      }
-
-      .bar-chart {
-        margin-top: 30px;
-      }
-
       .bar-chart-container {
         width: 100%;
         height: 400px;
         position: relative;
       }
 
-      .bar-chart-container canvas {
-        max-height: 400px;
-      }
-
       /* =========================================
          Services Section
          ========================================= */
-      .services-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 60px;
+      .services-grid-container {
+        max-width: 700px;
+        margin: 0 auto;
       }
-
       .service-category {
         background: var(--color-bg-light);
         padding: 30px;
         border-radius: var(--radius-default);
       }
-
       .service-category h3 {
         font-family: var(--font-heading);
         font-size: 22px;
         margin-bottom: 30px;
-        font-weight: 700;
         color: var(--color-primary);
         border-bottom: 2px solid var(--color-bg-accent);
         padding-bottom: 10px;
-        letter-spacing: 0.04em;
       }
-
-      .service-category ul {
-        list-style: none;
-      }
-
       .service-category li {
         padding: 15px 0;
         border-bottom: 1px solid var(--border-color-light);
         font-size: 15px;
-        color: var(--color-text-light);
-      }
-
-      .service-category li::before {
-        content: "・";
-        margin-right: 8px;
-        color: var(--color-primary);
       }
 
       /* =========================================
@@ -1038,12 +981,12 @@
         gap: 30px;
         max-width: 800px;
         margin: 0 auto;
+        list-style: none;
       }
-
       .flow-step-item {
         display: flex;
         gap: 30px;
-        background: var(--color-white);
+        background: var(--white);
         padding: 30px 40px;
         border-radius: var(--radius-default);
         box-shadow: var(--shadow-default);
@@ -1051,7 +994,6 @@
         align-items: flex-start;
         border: 1px solid var(--border-color-light);
       }
-
       .flow-step-item:not(:last-child)::after {
         content: "▼";
         position: absolute;
@@ -1060,9 +1002,7 @@
         transform: translateX(-50%);
         color: var(--color-primary);
         font-size: 24px;
-        z-index: 1;
       }
-
       .step-number {
         background: var(--color-primary);
         color: var(--color-white);
@@ -1074,28 +1014,14 @@
         justify-content: center;
         font-family: var(--font-accent);
         font-size: 20px;
-        font-weight: 400;
         flex-shrink: 0;
-        margin-top: 5px;
       }
-
-      .step-content {
-        flex: 1;
-      }
-
       .step-content h3 {
         font-family: var(--font-heading);
         font-size: 20px;
         color: var(--color-primary);
         margin-bottom: 10px;
         font-weight: 700;
-        letter-spacing: 0.04em;
-      }
-
-      .step-content p {
-        font-size: 15px;
-        line-height: 1.8;
-        color: var(--color-text-light);
       }
 
       .fee-box {
@@ -1107,24 +1033,19 @@
         text-align: center;
         border: 2px solid var(--color-secondary);
       }
-
       .fee-title {
         font-family: var(--font-heading);
         font-size: 20px;
         font-weight: 700;
         color: var(--color-primary);
         margin-bottom: 20px;
-        letter-spacing: 0.05em;
       }
-
       .fee-main {
         font-family: var(--font-heading);
         font-size: 28px;
         font-weight: 700;
         margin-bottom: 15px;
-        letter-spacing: 0.03em;
       }
-
       .fee-note {
         font-size: 14px;
         color: var(--color-text-light);
@@ -1132,6 +1053,7 @@
         margin-top: 20px;
       }
 
+      /* CTA を中央配置にするための共通スタイル */
       .flow-cta {
         text-align: center;
         margin-top: 50px;
@@ -1146,23 +1068,19 @@
         gap: 60px;
         align-items: center;
       }
-
       .mission-text {
         font-size: 16px;
         line-height: 2;
         color: var(--color-text-light);
         margin-bottom: 20px;
       }
-
       .mission-image {
         width: 100%;
         aspect-ratio: 4 / 3;
-        height: auto;
         background: var(--color-secondary);
         border-radius: var(--radius-default);
         overflow: hidden;
       }
-
       .mission-image img {
         width: 100%;
         height: 100%;
@@ -1176,7 +1094,6 @@
         max-width: 800px;
         margin: 0 auto;
       }
-
       .faq-item {
         background: var(--color-white);
         border-radius: var(--radius-default);
@@ -1184,67 +1101,35 @@
         padding: 20px 30px;
         box-shadow: var(--shadow-default);
       }
-
       .faq-item summary {
         font-weight: bold;
-        font-size: 16px;
         cursor: pointer;
         list-style: none;
         position: relative;
         padding-right: 30px;
         color: var(--color-primary);
-        transition: color var(--transition-base);
-        -webkit-list-style: none;
       }
-
-      .faq-item summary::-webkit-details-marker {
-        display: none;
-      }
-
-      .faq-item summary:hover {
-        color: var(--color-primary-hover);
-      }
-
       .faq-item summary::after {
         content: "+";
         position: absolute;
         right: 0;
         top: 0;
         font-size: 24px;
-        line-height: 1;
-        font-weight: normal;
         color: var(--color-text-muted);
-        transition: color var(--transition-base);
       }
-
       .faq-item[open] summary::after {
         content: "−";
-        color: var(--color-primary);
       }
-
       .faq-item p {
         margin-top: 15px;
         font-size: 14px;
-        line-height: 1.8;
-        color: var(--color-text-light);
         border-top: 1px solid var(--border-color-light);
         padding-top: 15px;
         animation: faqFadeIn 0.25s ease;
       }
 
-      @keyframes faqFadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(-6px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
       /* =========================================
-         Company Section
+         Company Info
          ========================================= */
       .company-details {
         display: grid;
@@ -1252,30 +1137,23 @@
         gap: 60px;
         align-items: start;
       }
-
       .company-text h3 {
         font-family: var(--font-heading);
         font-size: 24px;
         margin-bottom: 20px;
         font-weight: 700;
-        letter-spacing: 0.05em;
-        line-height: 1.5;
       }
-
       .company-text p {
         margin-bottom: 15px;
         line-height: 2;
         color: var(--color-text-light);
       }
-
       .company-image {
         width: 100%;
         aspect-ratio: 4 / 3;
-        height: auto;
         border-radius: var(--radius-default);
         overflow: hidden;
       }
-
       .company-image img {
         width: 100%;
         height: 100%;
@@ -1288,32 +1166,33 @@
       .site-footer {
         background: var(--color-text-main);
         color: var(--color-white);
-        padding: 60px 0 30px;
       }
-
-      .footer-logo {
-        margin-bottom: 20px;
+      .footer-white-band {
+        background: var(--color-white);
+        padding: 10px 20px;
+        display: flex;
+        justify-content: center;
       }
-
       .footer-logo img {
-        height: 60px;
-        width: auto;
-        border-radius: var(--radius-default);
+        width: 100%;
+        max-width: 360px;
       }
-
+      .footer-inner {
+        padding: 50px 0 30px;
+      }
       .footer-content {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 40px;
         margin-bottom: 40px;
+        align-items: center;
+        text-align: center;
       }
-
       .footer-address {
         font-size: 14px;
         color: var(--color-footer-text);
         line-height: 1.8;
       }
-
       .footer-links ul {
         list-style: none;
         display: flex;
@@ -1321,19 +1200,12 @@
         flex-wrap: wrap;
         justify-content: flex-end;
       }
-
       .footer-links a {
         color: var(--color-white);
         text-decoration: none;
         font-size: 14px;
         opacity: 0.8;
-        transition: opacity var(--transition-base);
       }
-
-      .footer-links a:hover {
-        opacity: 1;
-      }
-
       .copyright {
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         padding-top: 30px;
@@ -1359,131 +1231,57 @@
         justify-content: center;
         opacity: 0;
         visibility: hidden;
-        transition:
-          opacity var(--transition-base),
-          visibility var(--transition-base),
-          background var(--transition-base),
-          transform var(--transition-base);
+        transition: 0.3s;
         z-index: var(--z-back-to-top);
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         cursor: pointer;
-        font-size: 24px;
         border: none;
       }
-
       .back-to-top.is-visible {
         opacity: 1;
         visibility: visible;
       }
 
-      .back-to-top:hover {
-        background: var(--color-primary-hover);
-        transform: translateY(-5px);
-      }
-
       /* =========================================
-         Responsive — Tablet (≤1024px)
+         Responsive Adjustments
          ========================================= */
       @media (max-width: 1024px) {
-        .site-header {
-          padding: 0 20px;
-        }
-
         .nav-links {
           display: none;
         }
-
         .hamburger {
           display: flex;
         }
-
-        .hero-subtitle {
-          font-size: 16px;
-        }
-
         .mission-content,
         .voice-grid,
         .data-charts,
         .company-details,
-        .footer-content {
+        .footer-content,
+        .strength-card {
           grid-template-columns: 1fr;
           gap: 40px;
         }
-
-        .strength-card {
-          grid-template-columns: 1fr;
-        }
-
-        .strength-card:nth-child(even) .strength-image {
-          order: 0;
-        }
-
-        section h2,
-        .mission h2 {
-          font-size: clamp(20px, 3vw, 26px);
-        }
-
         .statutory-alert {
           flex-direction: column;
           text-align: center;
-          gap: 40px;
         }
-
         .statutory-visual {
           width: 100%;
           max-width: 320px;
+          margin: 0 auto;
         }
-
         .flow-step-item {
           flex-direction: column;
           text-align: center;
           align-items: center;
         }
-
-        .footer-content {
-          text-align: center;
-        }
-
         .footer-links ul {
           justify-content: center;
-          gap: 15px;
-          margin-top: 20px;
-        }
-      }
-
-      /* =========================================
-         Responsive — Mobile (≤480px)
-         ========================================= */
-      @media (max-width: 480px) {
-        :root {
-          --section-padding: 70px 0;
-        }
-
-        .cta-button {
-          width: 100%;
-          text-align: center;
-          padding: 16px;
-        }
-
-        .statutory-alert {
-          padding: 30px 20px;
-        }
-
-        .voice-card {
-          padding: 30px 20px;
-        }
-
-        .flow-step-item {
-          padding: 20px;
         }
       }
     </style>
   </head>
 
   <body>
-    <!-- =========================================
-         Header
-         ========================================= -->
     <header class="site-header">
       <a href="#" class="header-logo">
         <img
@@ -1521,9 +1319,6 @@
       </button>
     </header>
 
-    <!-- =========================================
-         Mobile Menu
-         ========================================= -->
     <nav
       class="mobile-menu"
       id="mobile-menu"
@@ -1538,18 +1333,13 @@
         <li><a href="#services" class="mobile-link">サービス内容</a></li>
         <li><a href="#mission" class="mobile-link">会社について</a></li>
         <li><a href="#faq" class="mobile-link">よくある質問</a></li>
-        <li>
-          <a href="#" class="mobile-link mobile-cta">お問い合わせ</a>
-        </li>
+        <li><a href="#" class="mobile-link mobile-cta">お問い合わせ</a></li>
       </ul>
     </nav>
 
-    <!-- =========================================
-         Main Content
-         ========================================= -->
     <main>
       <!-- Hero -->
-      <section class="hero">
+      <section class="hero" aria-labelledby="hero-title">
         <div class="hero-bg" aria-hidden="true">
           <picture>
             <source srcset="img/hero-tob-sp.webp" media="(max-width: 480px)" />
@@ -1558,28 +1348,37 @@
         </div>
         <div class="hero-overlay" aria-hidden="true"></div>
         <div class="hero-content">
-          <h1>「手探り」な配慮から、<br />活かす「理解」へ。</h1>
+          <h1 id="hero-title">
+            「手探り」の配慮から、<br />活かす「理解」へ。
+          </h1>
           <p class="hero-subtitle">
             障害者雇用を「福祉」ではなく、企業の「成長」と個人の「再出発」の架け橋に。
           </p>
           <p class="hero-description">
-            就労移行支援の確かなノウハウで、ミスマッチを防ぎ、定着と「活躍」を支援します。採用課題のヒアリングから入社後の伴走まで、すべてお任せください。
+            就労移行支援の確かなノウハウで、ミスマッチを防ぎ、<span
+              class="highlight2"
+              >定着と「活躍」</span
+            >を支援します。 採用課題のヒアリングから入社後の伴走まで、<span
+              class="highlight2"
+              >すべてお任せください。</span
+            >
           </p>
           <a href="#" class="cta-button">無料で採用課題を相談する</a>
-          <span class="cta-micro-copy">強引な営業は一切行いません</span>
         </div>
       </section>
 
       <!-- Statutory Rate -->
-      <section class="statutory-rate" id="statutory_rate">
+      <section
+        class="statutory-rate"
+        id="statutory_rate"
+        aria-labelledby="statutory-title"
+      >
         <div class="container">
-          <span class="section-label"
-            >数合わせの採用で「現場崩壊」を招く前に！</span
-          >
+          <span class="section-label">採用現場の課題</span>
           <p class="section-sub-copy">
-            制度改正への対応は、早めの準備が鍵となります。
+            数合わせの採用で「現場崩壊」を招く前に。制度改正への対応は早めの準備が鍵です。
           </p>
-          <h2>法定雇用率2.7%時代を見据えて</h2>
+          <h2 id="statutory-title">法定雇用率2.7%時代を見据えて</h2>
           <div class="statutory-alert">
             <div class="statutory-visual scroll-animate delay-100">
               <div class="statutory-item">
@@ -1596,14 +1395,20 @@
                 <div class="statutory-value">2.7<span>%</span></div>
               </div>
             </div>
-
             <div class="statutory-text scroll-animate delay-200">
-              <h3>「数合わせ」の採用から、<br />「戦力化」する採用へ。</h3>
+              <h3>
+                <span class="highlight"
+                  >「数合わせ」の採用から、<br />「戦力化」する採用へ。</span
+                >
+              </h3>
               <p>
                 2024年4月から法定雇用率が2.5%へ引き上げられ、2026年には2.7%への引き上げが予定されています。
               </p>
               <p>
-                しかし、焦って採用し「定着しない」「現場が疲弊する」という悪循環に陥っていませんか？キズキキャリアは、単なる枠の充足ではなく、貴社の事業成長に貢献する「定着と活躍」を実現します。
+                しかし、焦って採用し「定着しない」「現場が疲弊する」という悪循環に陥っていませんか？キズキキャリアは、単なる枠の充足ではなく、貴社の事業成長に貢献する<span
+                  class="highlight"
+                  >「定着と活躍」を実現</span
+                >します。
               </p>
               <a href="#strength" class="statutory-anchor"
                 >キズキキャリアの解決策を見る →</a
@@ -1614,20 +1419,22 @@
       </section>
 
       <!-- Strength -->
-      <section class="reasons bg-white" id="strength">
+      <section
+        class="reasons bg-white"
+        id="strength"
+        aria-labelledby="strength-title"
+      >
         <div class="container">
-          <span class="section-label">入社後の「想定外」をゼロに！</span>
+          <span class="section-label">独自のソリューション</span>
           <p class="section-sub-copy">
-            現場の負担を減らし、定着率を高める独自の仕組み。
+            入社後の「想定外」をゼロに。現場の負担を減らし、定着率を高める独自の仕組み。
           </p>
-          <h2 class="scroll-animate">
+          <h2 id="strength-title" class="scroll-animate">
             キズキキャリアが選ばれる2つの独自のソリューション
           </h2>
-          <p
-            class="section-description scroll-animate"
-            style="text-align: center"
-          >
-            「見えない障害」を可視化し、相互理解を深め、企業と求職者のミスマッチをふせぎ、安定した長期就労を支援する独自のツールとノウハウを提供します。
+          <p class="section-description scroll-animate">
+            <span class="highlight">「見えない障害」を可視化</span
+            >し、相互理解を深め、企業と求職者のミスマッチをふせぎ、安定した長期就労を支援する独自のツールとノウハウを提供します。
           </p>
           <div class="strength-grid">
             <div class="strength-card scroll-animate">
@@ -1640,7 +1447,11 @@
                 <ul class="strength-list">
                   <li>特性と配慮事項を定量・定性的に把握</li>
                   <li>環境・業務・コミュニケーションの相性を事前整理</li>
-                  <li>入社前のミスマッチリスクを大幅に低減</li>
+                  <li>
+                    入社前の<span class="highlight"
+                      >ミスマッチリスクを大幅に低減</span
+                    >
+                  </li>
                 </ul>
               </div>
               <div class="strength-image">
@@ -1664,7 +1475,9 @@
                 <ul class="strength-list">
                   <li>人事・現場・アドバイザーの3者連携サポート</li>
                   <li>体調記録を確認し、不調の芽を早期発見</li>
-                  <li>現場の管理工数を大幅に軽減</li>
+                  <li>
+                    現場の<span class="highlight">管理工数を大幅に軽減</span>
+                  </li>
                 </ul>
               </div>
               <div class="strength-image">
@@ -1681,7 +1494,7 @@
             <span class="section-cta-title"
               >貴社の課題に合わせた活用方法をご提案します</span
             >
-            <a href="#" class="cta-button">お問い合わせ</a>
+            <a href="#" class="cta-button cta-button--outline">お問い合わせ</a>
             <span class="cta-micro-copy"
               >導入事例集・サービス詳細資料もこちらから</span
             >
@@ -1690,92 +1503,179 @@
       </section>
 
       <!-- Voice -->
-      <section class="voice bg-light" id="voice">
+      <section class="voice bg-light" id="voice" aria-labelledby="voice-title">
         <div class="container">
-          <span class="section-label">リアルなメッセージ！</span>
+          <span class="section-label">導入事例</span>
           <p class="section-sub-copy">
-            業界をリードする各社に実際に就労した方々からも、高い評価をいただいています。
+            定着率の高さの証明。各社で実際に就労・活躍されている方々のリアルな声をご紹介します。
           </p>
-          <h2 class="scroll-animate">就労定着者の声</h2>
+          <h2 id="voice-title" class="scroll-animate">就労定着者の声</h2>
           <div class="voice-grid">
             <article class="voice-card scroll-animate">
-              <div class="voice-header">
-                <div>
-                  <div class="voice-company-name">
-                    A社（大手ECのグループ会社）<br />
-                    グループ内アウトソース事業<br />
-                    人事担当者
+              <div class="voice-tabs" role="tablist">
+                <button
+                  class="voice-tab active"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="panel-company-1"
+                >
+                  企業担当者
+                </button>
+                <button
+                  class="voice-tab"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="panel-user-1"
+                >
+                  定着者ご本人
+                </button>
+              </div>
+
+              <div
+                class="voice-panel active"
+                id="panel-company-1"
+                role="tabpanel"
+              >
+                <div class="voice-header">
+                  <div>
+                    <div class="voice-company-name">
+                      A社（大手ECのグループ会社）<br />
+                      グループ内アウトソース事業<br />
+                      人事担当者
+                    </div>
+                    <div class="voice-company-attr">従業員規模：430名</div>
+                    <p class="voice-comment2">
+                      適性がある業務で、Kさんが働きやすい環境で働いてもらっているので、2年以上、お互いが<span
+                        class="highlight"
+                        >気持ちよく働くこと</span
+                      >ができています。
+                    </p>
                   </div>
-                  <div class="voice-company-attr">従業員規模：430名</div>
-                  <p class="voice-comment2">
-                    適性がある業務で、Kさんが働きやすい環境で働いてもらっているので、2年以上、お互いが気持ちよく働くことができています。
-                  </p>
                 </div>
               </div>
-              <div class="voice-user">
-                <strong>K.Rさん（30代前半）</strong><br />
-                雇用形態：正社員<br />
-                職種：労務・人事<br />
-                特性：適応障害・ADHD
+
+              <div class="voice-panel" id="panel-user-1" role="tabpanel">
+                <div class="voice-user">
+                  <strong>K.Rさん（30代前半）</strong><br />
+                  雇用形態：正社員<br />
+                  職種：労務・人事<br />
+                  特性：適応障害・ADHD
+                </div>
+                <p class="voice-comment">
+                  以前までは、自分の特性について言いづらく、苦手な仕事を避けようとしていたが、今では障害特性を理解いただきながら、主体的に仕事ができるようになりました。<span
+                    class="highlight"
+                    >働きやすく自信がつきました。</span
+                  >
+                </p>
               </div>
-              <p class="voice-comment">
-                以前までは、自分の特性について言いづらく、苦手な仕事を避けようとしていたが、今では障害特性を理解いただきながら、主体的に仕事ができるようになりました。働きやすく自信がつきました。
-              </p>
             </article>
+
             <article class="voice-card scroll-animate delay-200">
-              <div class="voice-header">
-                <div>
-                  <div class="voice-company-name">
-                    B社<br />
-                    通信インフラ事業<br />
-                    人事担当者
+              <div class="voice-tabs" role="tablist">
+                <button
+                  class="voice-tab active"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="panel-company-2"
+                >
+                  企業担当者
+                </button>
+                <button
+                  class="voice-tab"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="panel-user-2"
+                >
+                  定着者ご本人
+                </button>
+              </div>
+
+              <div
+                class="voice-panel active"
+                id="panel-company-2"
+                role="tabpanel"
+              >
+                <div class="voice-header">
+                  <div>
+                    <div class="voice-company-name">
+                      B社<br />
+                      通信インフラ事業<br />
+                      人事担当者
+                    </div>
+                    <div class="voice-company-attr">従業員規模：17,000名</div>
+                    <p class="voice-comment2">
+                      事前に、ご自身の強みと特性、会社の環境を認識し合えたため、現場にもスムーズに入っていただけました。ハイブリッド勤務で自身の体調も考慮しながら、より<span
+                        class="highlight"
+                        >特性に合った異動もいただき、活躍</span
+                      >いただいています。
+                    </p>
                   </div>
-                  <div class="voice-company-attr">従業員規模：17,000名</div>
-                  <p class="voice-comment2">
-                    事前に、ご自身の強みと特性、会社の環境を認識し合えたため、現場にもスムーズに入っていただけました。ハイブリッド勤務で自身の体調も考慮しながら、より特性に合った異動もいただき、活躍いただいています。
-                  </p>
                 </div>
               </div>
-              <div class="voice-user">
-                <strong>K.Sさん（40代前半）</strong><br />
-                雇用形態：正社員<br />
-                職種：事務職OA<br />特性：ADHD・うつ・自律神経失調症
+
+              <div class="voice-panel" id="panel-user-2" role="tabpanel">
+                <div class="voice-user">
+                  <strong>K.Sさん（40代前半）</strong><br />
+                  雇用形態：正社員<br />
+                  職種：事務職OA<br />特性：ADHD・うつ・自律神経失調症
+                </div>
+                <p class="voice-comment">
+                  自分に合った条件（ハイブリッド勤務）、自分に合った業務で、周囲の人に恵まれて無理なく働けており、<span
+                    class="highlight"
+                    >今後も長く続けたい</span
+                  >と思っています。
+                </p>
               </div>
-              <p class="voice-comment">
-                自分に合った条件（ハイブリッド勤務）、自分に合った業務で、周囲の人に恵まれて無理なく働けており、今後も長く続けたいと思っています。
-              </p>
             </article>
           </div>
           <div class="section-cta scroll-animate">
             <span class="section-cta-title"
               >障害者雇用の「定着」にお悩みではありませんか？</span
             >
-            <a href="#" class="cta-button">お問い合わせ</a>
+            <a href="#" class="cta-button cta-button--outline">お問い合わせ</a>
             <span class="cta-micro-copy">専門スタッフが丁寧にお答えします</span>
           </div>
         </div>
       </section>
 
       <!-- Data -->
-      <section class="data bg-white" id="data">
+      <section class="data bg-white" id="data" aria-labelledby="data-title">
         <div class="container">
           <span class="section-label">マッチング解像度の証明</span>
           <p class="section-sub-copy">
             確かな支援力が、数字としての結果に表れています。
           </p>
-          <h2 class="scroll-animate">実績データ</h2>
+          <h2 id="data-title" class="scroll-animate">実績データ</h2>
           <p class="chart-description scroll-animate">
             キズキキャリアの就労定着サービスがこれまでに達成してきた実績をご紹介します。
           </p>
-          <div class="data-highlight scroll-animate delay-100">
-            <p class="data-label">入社6ヶ月定着率</p>
-            <div class="data-percentage" data-target="95" data-suffix="%">
-              0%
+
+          <div class="retention-vs-wrapper scroll-animate delay-100">
+            <h3 class="retention-title">入社6ヶ月定着率</h3>
+            <div class="retention-vs-container">
+              <div class="retention-box industry">
+                <div class="retention-box-label">一般的な<br />障害者雇用※</div>
+                <div class="retention-box-value">約60<span>%</span></div>
+              </div>
+              <div class="retention-box kizuki">
+                <div class="retention-box-label">
+                  キズキキャリア経由<br />での採用
+                </div>
+                <div
+                  class="retention-box-value data-percentage"
+                  data-target="95"
+                  data-suffix="%"
+                >
+                  0%
+                </div>
+              </div>
             </div>
-            <p class="data-description">
-              就職後6ヶ月時点の定着率。業界平均※約60%に対し、35ポイント上回る水準を実現しています。
+            <p class="data-description-center">
+              就職後6ヶ月時点の定着率。業界平均に対し、<span class="highlight"
+                >約35ポイント上回る水準</span
+              >を実現しています。
             </p>
-            <p class="data-note" style="text-align: center; margin-top: 10px">
+            <p class="data-note-center">
               ※厚生労働省「障害者の就業状況等に関する調査研究」（令和4年度）より
             </p>
           </div>
@@ -1829,20 +1729,36 @@
       </section>
 
       <!-- Services -->
-      <section class="services bg-light" id="services">
+      <section
+        class="services bg-light"
+        id="services"
+        aria-labelledby="services-title"
+      >
         <div class="container">
           <span class="section-label">特性特化型サービス</span>
-          <h2 class="scroll-animate">企業様向けサービス内容</h2>
-          <div
-            class="services-grid scroll-animate"
-            style="max-width: 700px; margin: 0 auto"
-          >
+          <h2 id="services-title" class="scroll-animate">
+            企業様向けサービス内容
+          </h2>
+          <div class="services-grid-container scroll-animate">
             <div class="service-category">
               <h3>定着・活躍できる人材を採用できるマッチングサービス</h3>
               <ul>
-                <li>個人の特性・配慮事項 などを整理した上での マッチング</li>
-                <li>業務との適合性まで 設計し、ミスマッチを 大幅に削減</li>
-                <li>特性・配慮事項を 事前に共有し、 採用後のトラブル防止</li>
+                <li>
+                  個人の特性・配慮事項 などを整理した上での<span
+                    class="highlight"
+                    >的なマッチング</span
+                  >
+                </li>
+                <li>
+                  業務との適合性まで 設計し、<span class="highlight"
+                    >ミスマッチを 大幅に削減</span
+                  >
+                </li>
+                <li>
+                  特性・配慮事項を 事前に共有し、<span class="highlight"
+                    >採用後のトラブル防止</span
+                  >
+                </li>
               </ul>
             </div>
           </div>
@@ -1850,22 +1766,20 @@
             <span class="section-cta-title"
               >どのサービスが貴社に合うか、まずはご相談ください</span
             >
-            <a href="#" class="cta-button">お問い合わせ</a>
-            <span class="cta-micro-copy"
-              >最短翌営業日ご連絡・強引な営業は一切行いません</span
-            >
+            <a href="#" class="cta-button cta-button--outline">お問い合わせ</a>
+            <span class="cta-micro-copy">強引な営業は一切行いません</span>
           </div>
         </div>
       </section>
 
       <!-- Flow -->
-      <section class="flow bg-white" id="flow_tob">
+      <section class="flow bg-white" id="flow_tob" aria-labelledby="flow-title">
         <div class="container">
-          <span class="section-label">定着まで一気通貫</span>
+          <span class="section-label">一気通貫のサポート体制</span>
           <p class="section-sub-copy">
-            お急ぎの場合も柔軟に対応。スムーズな導入をサポートします。
+            定着まで一気通貫。お急ぎの場合も柔軟に対応し、スムーズな導入をサポートします。
           </p>
-          <h2 class="scroll-animate">ご利用の流れ</h2>
+          <h2 id="flow-title" class="scroll-animate">ご利用の流れ</h2>
           <p class="section-description scroll-animate">
             お問い合わせから採用、そして定着まで。一気通貫でサポートいたします。
           </p>
@@ -1910,7 +1824,9 @@
 
           <div class="fee-box scroll-animate">
             <div class="fee-title">料金について</div>
-            <div class="fee-main">完全成功報酬型（初期費用無料）</div>
+            <div class="fee-main">
+              <span class="highlight">完全成功報酬型（初期費用無料）</span>
+            </div>
             <p>
               採用が決定するまで費用は一切かかりません。<br />
               また、早期に退職となってしまった場合の返還金規定もございます。
@@ -1921,20 +1837,25 @@
             </p>
           </div>
 
-          <div class="flow-cta">
-            <a href="#" class="cta-button">お問い合わせ</a>
+          <!-- 料金セクション下部CTA -->
+          <div class="flow-cta scroll-animate">
+            <a href="#" class="cta-button cta-button--outline">お問い合わせ</a>
             <span class="cta-micro-copy">お気軽にご相談ください</span>
           </div>
         </div>
       </section>
 
       <!-- Mission -->
-      <section class="mission bg-light" id="mission">
+      <section
+        class="mission bg-light"
+        id="mission"
+        aria-labelledby="mission-title"
+      >
         <div class="container">
-          <span class="section-label">代表取締役 安田祐輔のメッセージ</span>
+          <span class="section-label">代表メッセージ</span>
           <div class="mission-content">
             <div class="scroll-animate">
-              <h2>何度でもやり直せる社会をつくる</h2>
+              <h2 id="mission-title">何度でもやり直せる社会をつくる</h2>
               <p class="mission-text">
                 人生には立ち止まってしまう時があります。しかし、そこからどう歩み出すかが重要です。
               </p>
@@ -1957,13 +1878,13 @@
       </section>
 
       <!-- FAQ -->
-      <section class="faq bg-white" id="faq">
+      <section class="faq bg-white" id="faq" aria-labelledby="faq-title">
         <div class="container">
-          <span class="section-label">FAQ</span>
+          <span class="section-label">よくあるご質問</span>
           <p class="section-sub-copy">
-            その他、気になることがあれば何でもご質問ください。
+            その他、気になることがあれば何でもお気軽にご質問ください。
           </p>
-          <h2 class="scroll-animate">よくある質問</h2>
+          <h2 id="faq-title" class="scroll-animate">よくある質問</h2>
           <div class="faq-grid">
             <details class="faq-item scroll-animate">
               <summary>どのような方が登録されていますか？</summary>
@@ -1978,7 +1899,7 @@
               </p>
             </details>
             <details class="faq-item scroll-animate delay-200">
-              <summary>採用してもすぐに辞めてしまわないか心配です。</summary>
+              <summary>採用してもすぐに辞めてしまわないか心配です？</summary>
               <p>
                 キズキキャリアでは、入社前の段階で「体調管理の状況」や「安定して働ける根拠」を厳密にヒアリングしています。また、入社後も定期的に状況を確認し、必要に応じて企業さまとご本人との間に立って調整を行うため、高い定着率を実現しています。
               </p>
@@ -2006,38 +1927,36 @@
               </p>
             </details>
           </div>
-
-          <div class="section-cta scroll-animate" style="margin-top: 60px">
+          <div class="section-cta faq-consultation-box scroll-animate">
             <span class="section-cta-title">まずはお気軽にご相談ください</span>
-            <p
-              style="
-                font-size: 15px;
-                color: var(--color-text-light);
-                margin-bottom: 20px;
-              "
-            >
+            <p class="faq-consultation-text">
               初めての障害者採用も、定着でお悩みの方も。専門スタッフが丁寧にお答えします。
             </p>
-            <a href="#" class="cta-button">お問い合わせ</a>
+            <a href="#" class="cta-button cta-button--outline">お問い合わせ</a>
             <span class="cta-micro-copy">お悩みレベルのご相談も歓迎です</span>
           </div>
         </div>
       </section>
-      <section class="company-info bg-light" id="company">
+
+      <!-- Company Info -->
+      <section
+        class="company-info bg-light"
+        id="company"
+        aria-labelledby="company-title"
+      >
         <div class="container">
-          <span class="section-label">COMPANY</span>
-          <h2 class="scroll-animate">運営会社</h2>
+          <span class="section-label">会社概要</span>
+          <h2 id="company-title" class="scroll-animate">運営会社</h2>
           <div class="company-details">
             <div class="company-text scroll-animate">
               <h3>キズキキャリア株式会社</h3>
               <p>（株式会社キズキ 100%子会社）</p>
               <p>
-                キズキはビジョン・ミッションを達成するために存在する会社です。「何度でもやり直せる社会」をつくることを目指して、「事業を通じた社会的包摂」を行う会
+                キズキはビジョン・ミッションを達成するために存在する会社です。「何度でもやり直せる社会」をつくることを目指して、「事業を通じた社会的包摂」を行う会社です。このミッション・ビジョンの達成のために必要なことを行い、必要のないことは行わない。それが私たちの経営方針の基本となっています。
               </p>
               <p>
                 プロフェッショナルとして人生を再構築する姿勢で、求職者と企業双方に寄り添います。
               </p>
-              <a href="#" class="cta-button">お問い合わせ</a>
             </div>
             <div class="company-image scroll-animate delay-200">
               <img
@@ -2047,25 +1966,30 @@
               />
             </div>
           </div>
+
+          <!-- 会社概要下部CTA（センター配置） -->
+          <div class="flow-cta scroll-animate">
+            <a href="#" class="cta-button cta-button--outline">お問い合わせ</a>
+          </div>
         </div>
       </section>
     </main>
 
-    <!-- =========================================
-         Footer
-         ========================================= -->
     <footer class="site-footer">
-      <div class="container">
+      <div class="footer-white-band">
+        <a href="#" class="footer-logo">
+          <img
+            src="img/logo.webp"
+            alt="キズキキャリア"
+            width="200"
+            height="200"
+            loading="lazy"
+          />
+        </a>
+      </div>
+      <div class="footer-inner container">
         <div class="footer-content">
           <div class="footer-info">
-            <div class="footer-logo">
-              <img
-                src="img/logo.webp"
-                alt="キズキキャリア"
-                width="200"
-                height="200"
-              />
-            </div>
             <p class="footer-address">
               〒160-0022 東京都新宿区新宿6-28-7 新宿EAST COURT 2階
             </p>
@@ -2098,38 +2022,13 @@
       ↑
     </button>
 
-    <!-- =========================================
-         JavaScript
-         ========================================= -->
-    <!-- Chart.js: defer を使わず body 末尾に配置することで確実にロード -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script>
-      /* -----------------------------------------
-         定数・設定
-         ----------------------------------------- */
-
-      /**
-       * オブジェクトをネストも含めて完全に凍結する
-       * @template T
-       * @param {T} obj
-       * @returns {Readonly<T>}
-       */
-      const deepFreeze = (obj) => {
-        Object.values(obj).forEach((v) => {
-          if (v && typeof v === "object") deepFreeze(v);
-        });
-        return Object.freeze(obj);
-      };
-
-      const CONFIG = deepFreeze({
+      /* CONFIGURATION */
+      const CONFIG = Object.freeze({
         SCROLL_THRESHOLD: 300,
-        ANIMATION: {
-          DURATION: 1500,
-          EASING: "easeInOutQuart",
-        },
+        ANIMATION: { DURATION: 1500, EASING: "easeInOutQuart" },
         COLORS: {
           PRIMARY: "#20a384",
-          PRIMARY_HOVER: "#178066",
           SECONDARY: "#b2dfdb",
           ACCENT: "#178066",
           ACCENT_LIGHT: "#4db6ac",
@@ -2141,336 +2040,184 @@
             type: "doughnut",
             labels: ["一般", "障害"],
             data: [58, 42],
-            colors: ["primary", "secondary"],
+            colors: ["PRIMARY", "SECONDARY"],
           },
           {
             id: "companySizeChart",
             type: "doughnut",
             labels: ["大企業", "中堅", "他"],
             data: [53, 37, 10],
-            colors: ["accent", "accentLight", "secondary"],
+            colors: ["ACCENT", "ACCENT_LIGHT", "SECONDARY"],
           },
           {
             id: "jobTypeChart",
             type: "bar",
-            labels: ["事務", "IT", "専門", "営業", "サービス", "他"],
-            data: [43, 15, 12, 10, 7, 13],
-            colors: ["primary"],
+            labels: ["事務", "IT", "専門", "営業", "他"],
+            data: [43, 15, 12, 10, 20],
+            colors: ["PRIMARY"],
           },
         ],
       });
 
-      /* -----------------------------------------
-         ユーティリティ
-         ----------------------------------------- */
-      /**
-       * Chart.js 用グラデーション生成
-       * @param {CanvasRenderingContext2D} ctx
-       * @param {string} colorStart
-       * @param {string} colorEnd
-       */
+      /* UTILITIES */
       const createGradient = (ctx, colorStart, colorEnd) => {
         const gradient = ctx.createLinearGradient(0, 0, 0, 400);
         gradient.addColorStop(0, colorStart);
-        gradient.addColorStop(1, colorEnd);
+        gradient.addColorStop(1, colorEnd || colorStart);
         return gradient;
       };
 
-      /**
-       * Chart.js 設定オブジェクト生成
-       * @param {"bar"|"doughnut"} type
-       * @param {string[]} labels
-       * @param {number[]} data
-       * @param {any} bgColors
-       */
-      const createChartConfig = (type, labels, data, bgColors) => ({
-        type,
-        data: {
-          labels,
-          datasets: [
-            {
-              label: type === "bar" ? "就職者数" : undefined,
-              data,
-              backgroundColor: bgColors,
-              borderWidth: type === "doughnut" ? 0 : undefined,
-              borderRadius: type === "bar" ? 4 : undefined,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              display: type !== "bar",
-              position: "bottom",
-              labels:
-                type !== "bar"
-                  ? { padding: 20, font: { size: 12 } }
-                  : undefined,
-            },
-          },
-          scales:
-            type === "bar"
-              ? {
-                  y: { beginAtZero: true, grid: { color: CONFIG.COLORS.GRID } },
-                  x: { grid: { display: false } },
-                }
-              : undefined,
-          animation: {
-            duration: CONFIG.ANIMATION.DURATION,
-            easing: CONFIG.ANIMATION.EASING,
-          },
-        },
-      });
-
-      /* -----------------------------------------
-         モバイルメニュー
-         ----------------------------------------- */
+      /* MOBILE MENU */
       const initMobileMenu = () => {
-        const hamburgerBtn = document.getElementById("hamburger-btn");
-        const mobileMenu = document.getElementById("mobile-menu");
-        if (!hamburgerBtn || !mobileMenu) return;
-
-        /** フォーカス可能な要素を取得 */
-        const getFocusable = () =>
-          Array.from(
-            mobileMenu.querySelectorAll(
-              'a, button, [tabindex]:not([tabindex="-1"])',
-            ),
-          ).filter((el) => !el.disabled);
-
-        const closeMenu = () => {
-          hamburgerBtn.classList.remove("is-active");
-          hamburgerBtn.setAttribute("aria-expanded", "false");
-          mobileMenu.classList.remove("is-active");
-          mobileMenu.setAttribute("aria-hidden", "true");
-          hamburgerBtn.focus(); // フォーカスをハンバーガーに戻す
-        };
-
-        hamburgerBtn.addEventListener("click", () => {
-          const isOpen = hamburgerBtn.classList.toggle("is-active");
-          hamburgerBtn.setAttribute("aria-expanded", String(isOpen));
-          mobileMenu.classList.toggle("is-active", isOpen);
-          mobileMenu.setAttribute("aria-hidden", String(!isOpen));
-
-          if (isOpen) {
-            // メニューを開いたとき、最初のフォーカス可能要素へ
-            const focusable = getFocusable();
-            if (focusable.length) focusable[0].focus();
-          }
-        });
-
-        // モバイルリンクをクリックしたら閉じる
-        mobileMenu.querySelectorAll(".mobile-link").forEach((link) => {
-          link.addEventListener("click", closeMenu);
-        });
-
-        // Escape キーで閉じる
-        document.addEventListener("keydown", (e) => {
-          if (
-            e.key === "Escape" &&
-            mobileMenu.classList.contains("is-active")
-          ) {
-            closeMenu();
-          }
-        });
-
-        // Focus Trap: メニュー内でTabキーがループするように
-        mobileMenu.addEventListener("keydown", (e) => {
-          if (e.key !== "Tab") return;
-          const focusable = getFocusable();
-          if (!focusable.length) return;
-          const first = focusable[0];
-          const last = focusable[focusable.length - 1];
-
-          if (e.shiftKey) {
-            // Shift+Tab: 先頭にいたら末尾へ
-            if (document.activeElement === first) {
-              e.preventDefault();
-              last.focus();
-            }
-          } else {
-            // Tab: 末尾にいたら先頭へ
-            if (document.activeElement === last) {
-              e.preventDefault();
-              first.focus();
-            }
-          }
-        });
-      };
-
-      /* -----------------------------------------
-         ページトップへ戻るボタン
-         ----------------------------------------- */
-      const initScrollToTop = () => {
-        const btn = document.getElementById("backToTop");
-        if (!btn) return;
-
-        window.addEventListener(
-          "scroll",
-          () => {
-            btn.classList.toggle(
-              "is-visible",
-              window.scrollY > CONFIG.SCROLL_THRESHOLD,
-            );
-          },
-          { passive: true },
-        );
+        const btn = document.getElementById("hamburger-btn");
+        const menu = document.getElementById("mobile-menu");
+        if (!btn || !menu) return;
 
         btn.addEventListener("click", () => {
-          const reducedMotion = window.matchMedia(
-            "(prefers-reduced-motion: reduce)",
-          ).matches;
-          window.scrollTo({
-            top: 0,
-            behavior: reducedMotion ? "instant" : "smooth",
-          });
+          const isOpen = btn.classList.toggle("is-active");
+          btn.setAttribute("aria-expanded", String(isOpen));
+          menu.classList.toggle("is-active", isOpen);
         });
+
+        menu.querySelectorAll(".mobile-link").forEach((l) =>
+          l.addEventListener("click", () => {
+            btn.classList.remove("is-active");
+            menu.classList.remove("is-active");
+          }),
+        );
       };
 
-      /* -----------------------------------------
-         Chart.js グラフ初期化
-         ----------------------------------------- */
+      /* CHARTS */
       const initCharts = () => {
-        const CHART_DEFS = CONFIG.CHARTS;
-
-        /* colorMap はコールバック外で一度だけ定義 */
-        const colorMap = {
-          primary: [CONFIG.COLORS.PRIMARY, CONFIG.COLORS.PRIMARY + "80"],
-          secondary: [CONFIG.COLORS.SECONDARY, CONFIG.COLORS.SECONDARY + "80"],
-          accent: [CONFIG.COLORS.ACCENT, CONFIG.COLORS.ACCENT + "80"],
-          accentLight: [
-            CONFIG.COLORS.ACCENT_LIGHT,
-            CONFIG.COLORS.ACCENT_LIGHT + "80",
-          ],
-        };
-
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (!entry.isIntersecting) return;
-
               const canvas = entry.target;
-              const def = CHART_DEFS.find((d) => d.id === canvas.id);
+              const def = CONFIG.CHARTS.find((d) => d.id === canvas.id);
               if (!def) return;
-
               const ctx = canvas.getContext("2d");
+              const bgColors = def.colors.map((c) => CONFIG.COLORS[c]);
 
-              const bgColors =
-                def.type === "bar"
-                  ? createGradient(ctx, ...colorMap[def.colors[0]])
-                  : def.colors.map((c) => createGradient(ctx, ...colorMap[c]));
-
-              new Chart(
-                ctx,
-                createChartConfig(def.type, def.labels, def.data, bgColors),
-              );
+              new Chart(ctx, {
+                type: def.type,
+                data: {
+                  labels: def.labels,
+                  datasets: [
+                    {
+                      label: "割合", // undefined を防ぐためにラベルを明記
+                      data: def.data,
+                      backgroundColor: bgColors,
+                      borderWidth: 0,
+                    },
+                  ],
+                },
+                plugins: [ChartDataLabels],
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: {
+                    datalabels: {
+                      color: "#fff",
+                      formatter: (v) => v + "%",
+                    },
+                    legend: {
+                      display: def.type === "doughnut", // バーチャートでは凡例を非表示に
+                      position: "bottom",
+                    },
+                    tooltip: {
+                      enabled: true,
+                      callbacks: {
+                        title: () => "", // ツールチップタイトルを空にして余計な表示を抑制
+                      },
+                    },
+                  },
+                },
+              });
               observer.unobserve(canvas);
             });
           },
           { threshold: 0.1 },
         );
 
-        CHART_DEFS.forEach(({ id }) => {
-          const el = document.getElementById(id);
+        CONFIG.CHARTS.forEach((c) => {
+          const el = document.getElementById(c.id);
           if (el) observer.observe(el);
         });
       };
 
-      /* -----------------------------------------
-         スクロールアニメーション
-         ----------------------------------------- */
+      /* ANIMATIONS */
       const initScrollAnimations = () => {
-        const observer = new IntersectionObserver(
-          (entries, obs) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-              const el = entry.target;
-              el.style.willChange = "opacity, transform";
-              el.classList.add("is-visible");
-              el.addEventListener(
-                "transitionend",
-                () => {
-                  el.style.willChange = "auto";
-                },
-                { once: true },
-              );
-              obs.unobserve(el);
-            });
-          },
-          { rootMargin: "0px 0px -10% 0px", threshold: 0 },
-        );
-
-        document.querySelectorAll(".scroll-animate").forEach((el) => {
-          observer.observe(el);
-        });
-      };
-
-      /* -----------------------------------------
-         カウントアップアニメーション
-         ----------------------------------------- */
-      /**
-       * 指定要素の数値を 0 → target までアニメーションさせる
-       * @param {HTMLElement} el   対象要素
-       * @param {number} target   目標値
-       * @param {number} duration アニメーション時間(ms)
-       * @param {string} suffix   末尾に付ける文字列（例: "%"）
-       */
-      const animateCountUp = (el, target, duration, suffix = "") => {
-        const start = performance.now();
-        const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
-
-        const tick = (now) => {
-          const elapsed = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          const value = Math.round(easeOutQuart(progress) * target);
-          el.textContent = value + suffix;
-          if (progress < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-      };
-
-      /** スクロールで一度だけカウントアップを発火する */
-      const initCountUp = () => {
-        const percentEl = document.querySelector(
-          ".data-percentage[data-target]",
-        );
-        if (!percentEl) return;
-
-        // data属性から設定値を取得（HTML初期値は "0%" のまま）
-        const target = parseInt(percentEl.dataset.target, 10);
-        const suffix = percentEl.dataset.suffix ?? "";
-
-        // prefers-reduced-motion が有効なら即座に最終値を表示
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-          percentEl.textContent = target + suffix;
-          return;
-        }
-
-        // scroll-animate の is-visible 付与タイミングに合わせて threshold を統一
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (!entry.isIntersecting) return;
-              animateCountUp(entry.target, target, 1800, suffix);
-              observer.unobserve(entry.target);
+              entry.target.classList.add("is-visible");
+              if (entry.target.dataset.target) {
+                animateCountUp(
+                  entry.target,
+                  parseInt(entry.target.dataset.target),
+                  1500,
+                  entry.target.dataset.suffix,
+                );
+              }
             });
           },
-          { rootMargin: "0px 0px -10% 0px", threshold: 0 }, // initScrollAnimations と統一
+          { threshold: 0.1 },
         );
-        observer.observe(percentEl);
+
+        document
+          .querySelectorAll(".scroll-animate, [data-target]")
+          .forEach((el) => observer.observe(el));
       };
 
-      /* -----------------------------------------
-         DOMContentLoaded エントリーポイント
-         ----------------------------------------- */
+      const animateCountUp = (el, target, duration, suffix = "") => {
+        let start = null;
+        const step = (timestamp) => {
+          if (!start) start = timestamp;
+          const progress = Math.min((timestamp - start) / duration, 1);
+          el.innerText = Math.floor(progress * target) + suffix;
+          if (progress < 1) window.requestAnimationFrame(step);
+        };
+        window.requestAnimationFrame(step);
+      };
+
+      /* VOICE TABS */
+      const initVoiceTabs = () => {
+        document.querySelectorAll(".voice-tab").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const card = btn.closest(".voice-card");
+            card
+              .querySelectorAll(".voice-tab")
+              .forEach((t) => t.classList.remove("active"));
+            card
+              .querySelectorAll(".voice-panel")
+              .forEach((p) => p.classList.remove("active"));
+            btn.classList.add("active");
+            document
+              .getElementById(btn.getAttribute("aria-controls"))
+              .classList.add("active");
+          });
+        });
+      };
+
+      /* INIT */
       document.addEventListener("DOMContentLoaded", () => {
         initMobileMenu();
-        initScrollToTop();
         initCharts();
         initScrollAnimations();
-        initCountUp(); /* カウントアップ追加 */
+        initVoiceTabs();
+
+        const btt = document.getElementById("backToTop");
+        window.addEventListener("scroll", () => {
+          btt.classList.toggle(
+            "is-visible",
+            window.scrollY > CONFIG.SCROLL_THRESHOLD,
+          );
+        });
+        btt.addEventListener("click", () =>
+          window.scrollTo({ top: 0, behavior: "smooth" }),
+        );
       });
     </script>
   </body>
